@@ -1,4 +1,4 @@
-Equipe: Júlia Lucy, Paulo César, Janiele Justino e Polyana Patrícia.
+Equipe: Júlia Lucena, Paulo César, Janiele Justino e Polyana Patrícia.
 
 Projeto
 Marca: Ctrl' Real
