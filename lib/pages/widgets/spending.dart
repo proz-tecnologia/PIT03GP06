@@ -14,14 +14,19 @@ class Speding extends StatelessWidget {
           return  Column(
           children: [
             Container(
-            color: DarkController.instance.darkmod ? const Color.fromARGB(100, 10, 10, 10) : const Color.fromARGB(220, 104, 89, 205),
-            width: MediaQuery.of(context).size.width,
-            height: 28,
+              decoration: BoxDecoration(
+              color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
+              boxShadow: kElevationToShadow[0.8],
+              ),
+            height: 32,
             ),
             const SizedBox(height: 2),
             Container(
-            color: DarkController.instance.darkmod ? const Color.fromARGB(100, 10, 10, 10) : const Color.fromARGB(220, 104, 89, 205),
-            height: 142,
+              decoration: BoxDecoration(
+              color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
+              boxShadow: kElevationToShadow[4],
+              ),
+            height: 176,
             width: MediaQuery.of(context).size.width,
           ),
           ],
