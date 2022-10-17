@@ -15,18 +15,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: DarkContoller.instance,
+      animation: DarkController.instance,
       builder: (context, child) {
         return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Crtl'Real",
         theme: ThemeData(
-          primarySwatch: Colors.purple,
-          brightness: DarkContoller.instance.darkmod ? Brightness.dark : Brightness.light,
+          brightness: DarkController.instance.darkmod ? Brightness.dark : Brightness.light,
+          appBarTheme: AppBarTheme(
+            backgroundColor: DarkController.instance.darkmod ? const Color.fromARGB(50, 10, 10, 10) : const Color(0xff6959CD),
+          ),
         ),
         initialRoute: "/",
         routes: {
-          "/":(context) => HomePage(),
+          "/":(context) => const HomePage(),
         },
       );
       },
