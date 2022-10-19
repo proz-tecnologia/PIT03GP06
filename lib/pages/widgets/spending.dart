@@ -17,6 +17,7 @@ class Speding extends StatelessWidget {
               decoration: BoxDecoration(
               color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[0.8],
+              borderRadius: BorderRadius.circular(4.0),
               ),
             height: 32,
             ),
@@ -25,8 +26,9 @@ class Speding extends StatelessWidget {
               decoration: BoxDecoration(
               color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[4],
+              borderRadius: BorderRadius.circular(4.0),
               ),
-            height: 176,
+            height: 148,
             width: MediaQuery.of(context).size.width,
           ),
           ],
