@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import '../categories/categoriespage.dart';
 
 class HomePage extends StatefulWidget {
-
   const HomePage({super.key});
 
   @override
@@ -17,11 +16,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  late PageController pagesanimated;
 
-    int _selectedIndex = 0;
-    late PageController pagesanimated;
-
-    @override
+  @override
   void initState() {
     super.initState();
     pagesanimated = PageController(initialPage: _selectedIndex);
@@ -38,65 +36,82 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        key: _scaffoldKey,
-        drawer: const DrawerCuston(),
-        appBar: AppbarCustom(
-          appBar: AppBar(),
-          leading: IconButton(
+        child: Scaffold(
+      key: _scaffoldKey,
+      drawer: const DrawerCuston(),
+      appBar: AppbarCustom(
+        appBar: AppBar(),
+        leading: IconButton(
           icon: const Icon(Icons.person_rounded),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-            ),
-            widgets: const [
-              ButtonDark(),
-            ],
-          ),
-          body: PageView(
-          onPageChanged: _onItemTapped,
-          controller: pagesanimated,
-          children: const [
+        ),
+        widgets: const [
+          ButtonDark(),
+        ],
+      ),
+      body: PageView(
+        onPageChanged: _onItemTapped,
+        controller: pagesanimated,
+        children: const [
           HomeBody(),
           CategoriesPage(),
           AddCategories(),
           HistoricPage(),
           SettingsPage(),
-          ],
-        ),
-        bottomNavigationBar: AnimatedBuilder(
-      animation: DarkController.instance,
-      builder: (context, child) {
-        return BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Color.fromARGB(220, 104, 89, 205),),
-              label: 'Início',
-            ),
+        ],
+      ),
+      bottomNavigationBar: AnimatedBuilder(
+        animation: DarkController.instance,
+        builder: (context, child) {
+          return BottomNavigationBar(
+            items: const [
               BottomNavigationBarItem(
-              icon: Icon(Icons.category, color: Color.fromARGB(220, 104, 89, 205),),
-              label: 'Categorias',
-            ),
+                icon: Icon(
+                  Icons.home_outlined,
+                  color: Color.fromARGB(220, 104, 89, 205),
+                ),
+                label: 'Início',
+              ),
               BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline, color: Color.fromARGB(220, 104, 89, 205), size: 40,),
-              label: 'Add Categorias',
-            ),
+                icon: Icon(
+                  Icons.category_outlined,
+                  color: Color.fromARGB(220, 104, 89, 205),
+                ),
+                label: 'Categorias',
+              ),
               BottomNavigationBarItem(
-              icon: Icon(Icons.history, color: Color.fromARGB(220, 104, 89, 205),),
-              label: 'Histórico',
-            ),
+                icon: Icon(
+                  Icons.add_circle_outline,
+                  color: Color.fromARGB(220, 104, 89, 205),
+                  size: 40,
+                ),
+                label: 'Add Compras',
+              ),
               BottomNavigationBarItem(
-              icon: Icon(Icons.settings, color: Color.fromARGB(220, 104, 89, 205),),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor:const Color.fromARGB(220, 104, 89, 205),
-          onTap: (value) {
-            pagesanimated.animateToPage(value, duration: const Duration(milliseconds: 400), curve: Curves.ease);
-          },
-        );
-      },
-    ),
-      )
-    );
+                icon: Icon(
+                  Icons.history_edu,
+                  color: Color.fromARGB(220, 104, 89, 205),
+                ),
+                label: 'Histórico',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: Color.fromARGB(220, 104, 89, 205),
+                ),
+                label: 'Configurações',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: const Color.fromARGB(220, 104, 89, 205),
+            onTap: (value) {
+              pagesanimated.animateToPage(value,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.ease);
+            },
+          );
+        },
+      ),
+    ));
   }
 }

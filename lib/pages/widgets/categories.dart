@@ -26,7 +26,7 @@ class Categories extends StatelessWidget {
                 const Center(
                   child: Text(
                     "Categorias",
-                    style: TextStyle(fontSize: 24, color:Color.fromARGB(220, 250, 250, 250)),
+                    style: TextStyle(fontSize: 24, color:Color(0xdfffffff)),
                   )
                 ),
               ),
