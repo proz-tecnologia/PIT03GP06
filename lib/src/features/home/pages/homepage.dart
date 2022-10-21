@@ -1,12 +1,12 @@
-import 'package:ctrl_real/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/pages/addcategories/addcategorias.dart';
-import 'package:ctrl_real/pages/historic/historicpage.dart';
-import 'package:ctrl_real/pages/home/appbar.dart';
-import 'package:ctrl_real/pages/home/homebody.dart';
-import 'package:ctrl_real/pages/settings/settingspage.dart';
-import 'package:ctrl_real/pages/widgets/drawercustom.dart';
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/features/addcategories/pages/addcategorias.dart';
+import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
+import 'package:ctrl_real/src/features/home/widgets/appbar.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/homebody.dart';
+import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
+import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
 import 'package:flutter/material.dart';
-import '../categories/categoriespage.dart';
+import '../../categories/pages/categoriespage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,9 +1,8 @@
-import 'package:ctrl_real/pages/widgets/piechart.dart';
 import 'package:flutter/material.dart';
-import '../../controllers/themes/darmodcontroller.dart';
+import '../../../../controllers/themes/darmodcontroller.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({super.key});
+class Balances extends StatelessWidget {
+  const Balances({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class Categories extends StatelessWidget {
       child: AnimatedBuilder(
         animation: DarkController.instance,
         builder: (BuildContext context, Widget? child) {
-          return Column(
+          return  Column(
           children: [
             Container(
               decoration: BoxDecoration(
@@ -20,16 +19,9 @@ class Categories extends StatelessWidget {
               boxShadow: kElevationToShadow[0.8],
               borderRadius: BorderRadius.circular(4.0),
               ),
-              width: MediaQuery.of(context).size.width,
-              height: 32,
-              child: 
-                const Center(
-                  child: Text(
-                    "Categorias",
-                    style: TextStyle(fontSize: 24, color:Color(0xdfffffff)),
-                  )
-                ),
-              ),
+            width: MediaQuery.of(context).size.width,
+            height: 32,
+            ),
             const SizedBox(height: 2),
             Container(
               decoration: BoxDecoration(
@@ -37,12 +29,11 @@ class Categories extends StatelessWidget {
               boxShadow: kElevationToShadow[4],
               borderRadius: BorderRadius.circular(4.0),
               ),
-              height: 148,
-              width: MediaQuery.of(context).size.width,
-              child: const PieChartSample2(),
-              ),
-            ],
-          );
+            height: 148,
+            width: MediaQuery.of(context).size.width,
+            ),
+          ],
+        );
         }
       ),
     );

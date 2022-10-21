@@ -1,4 +1,4 @@
-import 'package:ctrl_real/pages/widgets/indicatorpichart.dart';
+import 'package:ctrl_real/src/features/home/widgets/indicatorpichart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
-import 'package:ctrl_real/pages/widgets/balances.dart';
-import 'package:ctrl_real/pages/widgets/categories.dart';
-import 'package:ctrl_real/pages/widgets/spending.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/categories.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
 import 'package:flutter/material.dart';
 
 class HomeBody extends StatelessWidget {

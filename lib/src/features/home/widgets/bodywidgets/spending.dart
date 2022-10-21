@@ -1,4 +1,4 @@
-import 'package:ctrl_real/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -34,17 +34,6 @@ class Speding extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Container(
-                  child: new LinearPercentIndicator(
-                    width: MediaQuery.of(context).size.width - 50,
-                    animation: true,
-                    lineHeight: 30.0,
-                    animationDuration: 2500,
-                    percent: 0.7,
-                    center: Text("70.0%"),
-                    trailing: Icon(Icons.diamond_rounded),
-                    barRadius: const Radius.circular(16),
-                    progressColor: Color.fromARGB(255, 63, 138, 224),
-                  ),
                   decoration: BoxDecoration(
                     color: DarkController.instance.darkmod
                         ? const Color.fromARGB(240, 30, 30, 30)
@@ -54,6 +43,17 @@ class Speding extends StatelessWidget {
                   ),
                   height: 148,
                   width: MediaQuery.of(context).size.width,
+                  child: LinearPercentIndicator(
+                    width: MediaQuery.of(context).size.width - 50,
+                    animation: true,
+                    lineHeight: 30.0,
+                    animationDuration: 2500,
+                    percent: 0.7,
+                    center: const Text("70.0%"),
+                    trailing: const Icon(Icons.diamond_rounded),
+                    barRadius: const Radius.circular(16),
+                    progressColor: const Color.fromARGB(255, 63, 138, 224),
+                  ),
                 ),
               ],
             );

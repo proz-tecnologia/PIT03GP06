@@ -1,5 +1,5 @@
-import 'package:ctrl_real/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/pages/home/homepage.dart';
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/features/home/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
