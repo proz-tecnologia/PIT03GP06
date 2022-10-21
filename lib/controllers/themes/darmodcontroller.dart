@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class DarkController extends ChangeNotifier{
-   bool darkmod = false;
+class DarkController extends ChangeNotifier {
+  bool darkmod = false;
 
-   static DarkController instance = DarkController();
+  static DarkController instance = DarkController();
 
-   changeTheme(){
+  changeTheme() {
     darkmod = !darkmod;
     notifyListeners();
-   }
+  }
 }
 
 class ButtonDark extends StatefulWidget {
@@ -26,7 +26,7 @@ class _ButtonDarkState extends State<ButtonDark> {
       onChanged: (value) {
         setState(() {
           DarkController.instance.changeTheme();
-        });    
+        });
       },
     );
   }

@@ -39,7 +39,7 @@ class PieChart2State extends State {
                   show: false,
                 ),
                 sectionsSpace: 0,
-                centerSpaceRadius: 16,
+                centerSpaceRadius: 26,
                 sections: showingSections(),
               ),
             ),
@@ -53,16 +53,16 @@ class PieChart2State extends State {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const <Widget>[
               Indicator(
-                color: Color(0xff0293ee),
-                text: 'Categories',
+                color: Color(0xff8D32E3),
+                text: 'Alimentação',
                 isSquare: true,
               ),
               SizedBox(
                 height: 4,
               ),
               Indicator(
-                color: Color(0xfff8b250),
-                text: 'Categories2',
+                color: Color(0xffD841E8),
+                text: 'Transporte',
                 isSquare: true,
               ),
               SizedBox(
@@ -70,15 +70,15 @@ class PieChart2State extends State {
               ),
               Indicator(
                 color: Color(0xff845bef),
-                text: 'Categories3',
+                text: 'Prod domésticos',
                 isSquare: true,
               ),
               SizedBox(
                 height: 4,
               ),
               Indicator(
-                color: Color(0xff13d38e),
-                text: 'Categories4',
+                color: Color(0xff4964B8),
+                text: 'Lazer',
                 isSquare: true,
               ),
               SizedBox(
@@ -95,11 +95,11 @@ class PieChart2State extends State {
     return List.generate(4, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
-      final radius = isTouched ? 56.0 : 46.0;
+      final radius = isTouched ? 46.0 : 36.0;
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: const Color(0xff0293ee),
+            color: const Color(0xff4964B8),
             value: 20,
             title: '20%',
             radius: radius,
@@ -111,7 +111,7 @@ class PieChart2State extends State {
           );
         case 1:
           return PieChartSectionData(
-            color: const Color(0xfff8b250),
+            color: const Color(0xffD841E8),
             value: 35,
             title: '35%',
             radius: radius,
@@ -135,7 +135,7 @@ class PieChart2State extends State {
           );
         case 3:
           return PieChartSectionData(
-            color: const Color(0xff13d38e),
+            color: const Color(0xff8D32E3),
             value: 40,
             title: '40%',
             radius: radius,
