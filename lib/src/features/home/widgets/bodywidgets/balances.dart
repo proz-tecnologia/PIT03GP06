@@ -7,7 +7,7 @@ class Balances extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2),
+      padding: const EdgeInsets.only(top: 16, left: 2, right: 2),
       child: AnimatedBuilder(
         animation: DarkController.instance,
         builder: (BuildContext context, Widget? child) {
@@ -15,7 +15,7 @@ class Balances extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-              color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
+              color: DarkController.instance.darkmod ? const Color.fromARGB(255, 9, 9, 9) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[0.8],
               borderRadius: BorderRadius.circular(4.0),
               ),
@@ -25,7 +25,7 @@ class Balances extends StatelessWidget {
             const SizedBox(height: 2),
             Container(
               decoration: BoxDecoration(
-              color: DarkController.instance.darkmod ? const Color.fromARGB(240, 30, 30, 30) : const Color.fromARGB(220, 104, 89, 205),
+              color: DarkController.instance.darkmod ? const Color.fromARGB(255, 9, 9, 9) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[4],
               borderRadius: BorderRadius.circular(4.0),
               ),

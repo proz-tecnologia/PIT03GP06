@@ -1,12 +1,13 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/addcategories/pages/addcategorias.dart';
 import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
-import 'package:ctrl_real/src/features/home/widgets/appbar.dart';
-import 'package:ctrl_real/src/features/home/widgets/bodywidgets/homebody.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
 import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
 import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
 import 'package:flutter/material.dart';
 import '../../categories/pages/categoriespage.dart';
+import '../widgets/bodywidgets/categories.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,25 +40,33 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
       key: _scaffoldKey,
       drawer: const DrawerCuston(),
-      appBar: AppbarCustom(
-        appBar: AppBar(),
+      appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.person_rounded),
+          icon: const Icon(Icons.person_outline),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
-        widgets: const [
-          ButtonDark(),
-        ],
       ),
       body: PageView(
         onPageChanged: _onItemTapped,
         controller: pagesanimated,
-        children: const [
-          HomeBody(),
-          CategoriesPage(),
-          AddCategories(),
-          HistoricPage(),
-          SettingsPage(),
+        children: [
+          SafeArea(
+              child: SizedBox(
+            height: 653,
+            child: SingleChildScrollView(
+              child: Column(
+                children: const [
+                  Balances(),
+                  Categories(),
+                  Speding(),
+                ],
+              ),
+            ),
+          )),
+          const CategoriesPage(),
+          const AddCategories(),
+          const HistoricPage(),
+          const SettingsPage(),
         ],
       ),
       bottomNavigationBar: AnimatedBuilder(
