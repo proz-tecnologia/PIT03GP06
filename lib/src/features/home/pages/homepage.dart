@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             height: 653,
             child: SingleChildScrollView(
               child: Column(
-                children: const [
+                children: [
                   Balances(),
                   Categories(),
                   Speding(),
