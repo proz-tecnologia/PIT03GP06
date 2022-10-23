@@ -38,7 +38,7 @@ class Balances extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Container(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: DarkController.instance.darkmod
                       ? const Color.fromARGB(255, 9, 9, 9)
@@ -55,24 +55,25 @@ class Balances extends StatelessWidget {
                       baselineType: TextBaseline.alphabetic,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text("Renda",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize: 16,
                               )),
                           Text(
-                            "Disponível",
+                            "  Disponível",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 30,
+                              fontSize: 24,
                             ),
                           ),
                           Text(
                             "Saídas",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 24,
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -80,27 +81,27 @@ class Balances extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           incomingValue.formatBRL,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 16,
                           ),
                         ),
                         Text(
                           (incomingValue - outcomingValeu).formatBRL,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 24,
                           ),
                         ),
                         Text(
                           outcomingValeu.formatBRL,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 16,
                           ),
                         ),
                       ],
