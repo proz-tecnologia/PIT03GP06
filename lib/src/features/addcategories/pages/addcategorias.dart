@@ -30,13 +30,16 @@ class AddCategories extends StatelessWidget {
                       return null;
                     },
                     decoration: const InputDecoration(
-                        labelText: 'Item',
-                        labelStyle: TextStyle(
+                      labelText: 'Item',
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(220, 104, 89, 205),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           color: Color.fromARGB(220, 104, 89, 205),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(220, 104, 89, 205))))),
+                      ),
+                    )),
                 TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
@@ -47,24 +50,30 @@ class AddCategories extends StatelessWidget {
                     },
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                        labelText: 'Quantidade',
-                        labelStyle: TextStyle(
+                      labelText: 'Quantidade',
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(220, 104, 89, 205),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
                           color: Color.fromARGB(220, 104, 89, 205),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(220, 104, 89, 205))))),
+                      ),
+                    )),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: TextFormField(
                       decoration: const InputDecoration(
-                          labelText: 'Valor',
-                          labelStyle: TextStyle(
-                            color: Color.fromARGB(220, 104, 89, 205),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 104, 89, 205))))),
+                    labelText: 'Valor',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(220, 104, 89, 205),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(220, 104, 89, 205),
+                      ),
+                    ),
+                  )),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -72,76 +81,29 @@ class AddCategories extends StatelessWidget {
                   ),
                   child: TextFormField(
                       decoration: const InputDecoration(
-                          labelText: 'Marca(opcional)',
-                          labelStyle: TextStyle(
-                            color: Color.fromARGB(220, 104, 89, 205),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 104, 89, 205))))),
+                    labelText: 'Forma de pagamento(opcional)',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(220, 104, 89, 205),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(220, 104, 89, 205),
+                      ),
+                    ),
+                  )),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 26.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 140,
-                              height: 44,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xff8D32E3),
-                                ),
-                                child: const Text('Alimentação'),
-                                onPressed: () {},
-                              ),
-                            ),
-                            SizedBox(
-                              width: 140,
-                              height: 44,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xff4964B8),
-                                ),
-                                child: const Text('Lazer'),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ],
-                        ),
+                  child: SizedBox(
+                    width: 140,
+                    height: 44,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xff8D32E3),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 140,
-                            height: 44,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffD841E8),
-                              ),
-                              child: const Text('Transporte'),
-                              onPressed: () {},
-                            ),
-                          ),
-                          SizedBox(
-                            width: 140,
-                            height: 44,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xff845bef),
-                              ),
-                              child: const Text('Prod domésticos'),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      child: const Text('Alimentação'),
+                      onPressed: () {},
+                    ),
                   ),
                 ),
               ],
