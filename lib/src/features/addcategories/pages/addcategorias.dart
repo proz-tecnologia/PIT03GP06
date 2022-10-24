@@ -71,18 +71,6 @@ class AddCategories extends StatelessWidget {
               onSaved: ((newValue) => value = double.parse(
                   newValue!.replaceAll(".", "").replaceAll(",", "."))),
             ),
-            /*const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Valor',
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(220, 104, 89, 205),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(220, 104, 89, 205))))),
-            ),*/
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: SizedBox(
