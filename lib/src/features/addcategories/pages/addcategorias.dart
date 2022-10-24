@@ -1,7 +1,13 @@
+import 'dart:developer';
+
+import 'package:ctrl_real/src/features/extension/extension_double.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/number_symbols_data.dart';
 
 class AddCategories extends StatelessWidget {
-  const AddCategories({super.key});
+  AddCategories({super.key, this.value});
+  double? value;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,36 @@ class AddCategories extends StatelessWidget {
                           borderSide: BorderSide(
                               color: Color.fromARGB(220, 104, 89, 205))))),
             ),
-            const Padding(
+            TextFormField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                CurrencyTextInputFormatter(
+                    locale: 'pt-BR', decimalDigits: 2, symbol: '')
+              ],
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              decoration: InputDecoration(
+                labelText: "Valor",
+                hintText: "0,00",
+                prefix: Text("R\$"),
+                helperText: "Máximo de 999.999,99 digitos",
+              ),
+              maxLength: 10,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Informe um valor";
+                }
+                ;
+                final valueDouble = double.parse(
+                    value.replaceAll(".", "").replaceAll(",", "."));
+                if (valueDouble == 0) {
+                  return "Informe um valor diferente de 0";
+                }
+                return null;
+              },
+              onSaved: ((newValue) => value = double.parse(
+                  newValue!.replaceAll(".", "").replaceAll(",", "."))),
+            ),
+            /*const Padding(
               padding: EdgeInsets.only(top: 16.0),
               child: TextField(
                   decoration: InputDecoration(
@@ -47,7 +82,7 @@ class AddCategories extends StatelessWidget {
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromARGB(220, 104, 89, 205))))),
-            ),
+            ),*/
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: SizedBox(

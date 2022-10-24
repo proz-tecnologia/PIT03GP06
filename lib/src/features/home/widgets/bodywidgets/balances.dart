@@ -57,13 +57,13 @@ class Balances extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("Renda",
+                          Text("Entradas",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                               )),
                           Text(
-                            "  Disponível",
+                            "Disponível",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,
