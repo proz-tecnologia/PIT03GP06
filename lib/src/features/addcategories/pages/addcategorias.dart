@@ -1,7 +1,9 @@
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
 class AddCategories extends StatelessWidget {
-  const AddCategories({super.key});
+  AddCategories({super.key});
+  double? value;
 
   @override
   Widget build(BuildContext context) {
@@ -63,17 +65,34 @@ class AddCategories extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: TextFormField(
-                      decoration: const InputDecoration(
-                    labelText: 'Valor',
-                    labelStyle: TextStyle(
-                      color: Color.fromARGB(220, 104, 89, 205),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      CurrencyTextInputFormatter(
+                          locale: 'pt-BR', decimalDigits: 2, symbol: '')
+                    ],
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: InputDecoration(
+                      labelText: "Valor",
+                      hintText: "0,00",
+                      prefix: Text("R\$"),
+                      helperText: "Máximo de 999.999,99 digitos",
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(220, 104, 89, 205),
-                      ),
-                    ),
-                  )),
+                    maxLength: 10,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Informe um valor";
+                      }
+                      ;
+                      final valueDouble = double.parse(
+                          value.replaceAll(".", "").replaceAll(",", "."));
+                      if (valueDouble == 0) {
+                        return "Informe um valor diferente de 0";
+                      }
+                      return null;
+                    },
+                    onSaved: ((newValue) => value = double.parse(
+                        newValue!.replaceAll(".", "").replaceAll(",", "."))),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(

@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )),
           const CategoriesPage(),
-          const AddCategories(),
+          AddCategories(),
           const HistoricPage(),
           const SettingsPage(),
         ],
