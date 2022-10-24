@@ -6,68 +6,149 @@ class AddCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adicionar Compras'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const TextField(
-                decoration: InputDecoration(
-                    labelText: 'Quantidade',
-                    labelStyle: TextStyle(
-                      color: Color.fromARGB(220, 104, 89, 205),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(220, 104, 89, 205))))),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Marca',
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(220, 104, 89, 205),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(220, 104, 89, 205))))),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Valor',
-                      labelStyle: TextStyle(
-                        color: Color.fromARGB(220, 104, 89, 205),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(220, 104, 89, 205))))),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: SizedBox(
-                width: 146,
-                height: 44,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(220, 104, 89, 205),
-                  ),
-                  child: const Text('Cadastrar'),
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 80,
-            ),
-          ],
+        body: CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          pinned: false,
+          floating: true,
+          title: Text('Adicionar compras'),
+          centerTitle: true,
         ),
-      ),
-    );
+        const SliverToBoxAdapter(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 24.0),
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    maxLength: 20,
+                    validator: (value) {
+                      if (value!.length < 3 || value.length > 20) {
+                        return "Mínimo 3 e máximo 20 caractéres.";
+                      }
+                      return null;
+                    },
+                    decoration: const InputDecoration(
+                        labelText: 'Item',
+                        labelStyle: TextStyle(
+                          color: Color.fromARGB(220, 104, 89, 205),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(220, 104, 89, 205))))),
+                TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo deve estar prenchido';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                        labelText: 'Quantidade',
+                        labelStyle: TextStyle(
+                          color: Color.fromARGB(220, 104, 89, 205),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(220, 104, 89, 205))))),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'Valor',
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(220, 104, 89, 205),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(220, 104, 89, 205))))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 16.0,
+                  ),
+                  child: TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'Marca(opcional)',
+                          labelStyle: TextStyle(
+                            color: Color.fromARGB(220, 104, 89, 205),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromARGB(220, 104, 89, 205))))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 26.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 140,
+                              height: 44,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff8D32E3),
+                                ),
+                                child: const Text('Alimentação'),
+                                onPressed: () {},
+                              ),
+                            ),
+                            SizedBox(
+                              width: 140,
+                              height: 44,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff4964B8),
+                                ),
+                                child: const Text('Lazer'),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 140,
+                            height: 44,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xffD841E8),
+                              ),
+                              child: const Text('Transporte'),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(
+                            width: 140,
+                            height: 44,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xff845bef),
+                              ),
+                              child: const Text('Prod domésticos'),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ));
   }
 }
