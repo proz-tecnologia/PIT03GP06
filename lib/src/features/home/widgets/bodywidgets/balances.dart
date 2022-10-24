@@ -2,8 +2,17 @@ import 'package:ctrl_real/src/features/extension/extension_double.dart';
 import 'package:flutter/material.dart';
 import '../../../../controllers/themes/darmodcontroller.dart';
 
-class Balances extends StatelessWidget {
+class Balances extends StatefulWidget {
+
+  const Balances({super.key});
+
+  @override
+  State<Balances> createState() => _BalancesState();
+}
+
+class _BalancesState extends State<Balances> {
   double incomingValue = 1000;
+
   double outcomingValeu = 300;
 
   double get total => incomingValue - outcomingValeu;
@@ -26,7 +35,7 @@ class Balances extends StatelessWidget {
                 ),
                 width: MediaQuery.of(context).size.width,
                 height: 32,
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Saldo",
                     style: TextStyle(
@@ -38,7 +47,7 @@ class Balances extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: DarkController.instance.darkmod
                       ? const Color.fromARGB(255, 9, 9, 9)
@@ -56,7 +65,7 @@ class Balances extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Text("Renda",
                               style: TextStyle(
                                 color: Colors.white,
@@ -85,21 +94,21 @@ class Balances extends StatelessWidget {
                       children: [
                         Text(
                           incomingValue.formatBRL,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                           ),
                         ),
                         Text(
                           (incomingValue - outcomingValeu).formatBRL,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
                           ),
                         ),
                         Text(
                           outcomingValeu.formatBRL,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                           ),

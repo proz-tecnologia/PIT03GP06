@@ -19,14 +19,14 @@ class MyApp extends StatelessWidget {
           title: "Crtl'Real",
           theme: ThemeData(
             canvasColor: DarkController.instance.darkmod
-                ? Color.fromARGB(255, 41, 41, 41)
+                ? const Color.fromARGB(255, 41, 41, 41)
                 : const Color.fromARGB(216, 250, 250, 250),
             brightness: DarkController.instance.darkmod
                 ? Brightness.dark
                 : Brightness.light,
             appBarTheme: AppBarTheme(
               backgroundColor: DarkController.instance.darkmod
-                  ? Color.fromARGB(255, 34, 34, 34)
+                  ? const Color.fromARGB(255, 34, 34, 34)
                   : const Color(0xff6959CD),
             ),
           ),
