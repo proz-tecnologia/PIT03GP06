@@ -48,7 +48,6 @@ class _AddCategoriesState extends State<AddCategories> {
                   height: 10,
                 ),
                 DropdownButton<String>(
-                  hint: const Text("Categorias..."),
                   isExpanded: true,
                   value: values,
                   elevation: 16,
@@ -147,16 +146,24 @@ class _AddCategoriesState extends State<AddCategories> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 26.0),
-                  child: IconButton(
-                    iconSize: 38,
-                    icon: const Icon(Icons.save),
-                    color: Colors.green,
-                    onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const ButtomReceitas(),
+                      SizedBox(
+                        width: 130,
+                        height: 40,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 48, 201, 43)),
+                          child: const Text('Salvar'),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: ButtomReceitas()),
               ],
             ),
           ),

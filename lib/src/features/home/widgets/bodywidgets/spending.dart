@@ -10,7 +10,6 @@ class Speding extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 14, left: 2, right: 2),
       child: AnimatedBuilder(
-
           animation: DarkController.instance,
           builder: (BuildContext context, Widget? child) {
             return Column(
@@ -27,7 +26,7 @@ class Speding extends StatelessWidget {
                   height: 32,
                   child: const Center(
                     child: Text(
-                      "Gastos",
+                      "Limite",
                       style: TextStyle(fontSize: 24, color: Color(0xdfffffff)),
                     ),
                   ),
@@ -41,18 +40,36 @@ class Speding extends StatelessWidget {
                     boxShadow: kElevationToShadow[4],
                     borderRadius: BorderRadius.circular(4.0),
                   ),
-                  height: 148,
+                  height: 124,
                   width: MediaQuery.of(context).size.width,
-                  child: LinearPercentIndicator(
-                    width: MediaQuery.of(context).size.width - 50,
-                    animation: true,
-                    lineHeight: 30.0,
-                    animationDuration: 2500,
-                    percent: 0.7,
-                    center: const Text("70.0%"),
-                    trailing: const Icon(Icons.diamond_rounded),
-                    barRadius: const Radius.circular(16),
-                    progressColor: const Color.fromARGB(255, 63, 138, 224),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 34,
+                      ),
+                      LinearPercentIndicator(
+                        width: MediaQuery.of(context).size.width - 50,
+                        animation: true,
+                        lineHeight: 30.0,
+                        animationDuration: 2500,
+                        percent: 0.7,
+                        center: const Text(
+                          "70.0%",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                        ),
+                        trailing: const Icon(Icons.diamond_rounded,
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                        barRadius: const Radius.circular(16),
+                        progressColor: const Color.fromARGB(255, 63, 138, 224),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text('Você tem 30% para o limite total',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255)))
+                    ],
                   ),
                 ),
               ],
