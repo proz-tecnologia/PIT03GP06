@@ -30,8 +30,8 @@ class PieChart2State extends State {
                         touchedIndex = -1;
                         return;
                       }
-                      touchedIndex = pieTouchResponse
-                          .touchedSection!.touchedSectionIndex;
+                      touchedIndex =
+                          pieTouchResponse.touchedSection!.touchedSectionIndex;
                     });
                   },
                 ),
@@ -45,7 +45,6 @@ class PieChart2State extends State {
             ),
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.only(right: 40),
           child: Column(
@@ -54,11 +53,8 @@ class PieChart2State extends State {
             children: const <Widget>[
               Indicator(
                 color: Color(0xff8D32E3),
-                text: 'Alimentação',
+                text: 'Supermercado',
                 isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
               ),
               Indicator(
                 color: Color(0xffD841E8),
@@ -70,7 +66,7 @@ class PieChart2State extends State {
               ),
               Indicator(
                 color: Color(0xff845bef),
-                text: 'Prod domésticos',
+                text: 'Pagamentos',
                 isSquare: true,
               ),
               SizedBox(
@@ -81,9 +77,19 @@ class PieChart2State extends State {
                 text: 'Lazer',
                 isSquare: true,
               ),
-              SizedBox(
-                height: 18,
+              Indicator(
+                color: Color(0xff4964B8),
+                text: 'Farmácia',
+                isSquare: true,
               ),
+              Indicator(
+                color: Color(0xff4964B8),
+                text: 'Gastos extras',
+                isSquare: true,
+              ),
+              SizedBox(
+                height: 4,
+              )
             ],
           ),
         ),
@@ -92,7 +98,7 @@ class PieChart2State extends State {
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
+    return List.generate(6, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 12.0;
       final radius = isTouched ? 46.0 : 36.0;
@@ -113,7 +119,7 @@ class PieChart2State extends State {
           return PieChartSectionData(
             color: const Color(0xffD841E8),
             value: 35,
-            title: '35%',
+            title: '20%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -125,7 +131,7 @@ class PieChart2State extends State {
           return PieChartSectionData(
             color: const Color(0xff845bef),
             value: 25,
-            title: '25%',
+            title: '20%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -137,7 +143,31 @@ class PieChart2State extends State {
           return PieChartSectionData(
             color: const Color(0xff8D32E3),
             value: 40,
-            title: '40%',
+            title: '20%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff),
+            ),
+          );
+        case 4:
+          return PieChartSectionData(
+            color: const Color(0xff8D32E3),
+            value: 40,
+            title: '20%',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff),
+            ),
+          );
+        case 5:
+          return PieChartSectionData(
+            color: const Color(0xff8D32E3),
+            value: 40,
+            title: '20%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
