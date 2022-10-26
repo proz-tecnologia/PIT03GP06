@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: const [
                   Balances(),
-                  Categories(),
                   Speding(),
+                  Categories(),
                 ],
               ),
             ),
