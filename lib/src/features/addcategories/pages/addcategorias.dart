@@ -1,3 +1,4 @@
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/addcategories/widgets/buttonreceitas.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
@@ -39,10 +40,14 @@ class _AddCategoriesState extends State<AddCategories> {
             padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 38.0),
             child: Column(
               children: <Widget>[
-                const Text(
+                Text(
                   'Despesas',
                   style: TextStyle(
-                      fontSize: 20, color: Color.fromARGB(220, 104, 89, 205)),
+                    fontSize: 20,
+                    color: DarkController.instance.darkmod
+                        ? const Color.fromARGB(207, 255, 255, 255)
+                        : const Color.fromARGB(220, 104, 89, 205),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -51,8 +56,11 @@ class _AddCategoriesState extends State<AddCategories> {
                   isExpanded: true,
                   value: values,
                   elevation: 16,
-                  style:
-                      const TextStyle(color: Color.fromARGB(220, 104, 89, 205)),
+                  style: TextStyle(
+                    color: DarkController.instance.darkmod
+                        ? const Color.fromARGB(207, 255, 255, 255)
+                        : const Color.fromARGB(220, 104, 89, 205),
+                  ),
                   onChanged: (String? value) {
                     setState(() {
                       values = value!;
@@ -77,14 +85,16 @@ class _AddCategoriesState extends State<AddCategories> {
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         helperText: "Campo obrigatório",
                         labelText: 'Descrição',
                         hintText: "Compras queijo...",
                         labelStyle: TextStyle(
-                          color: Color.fromARGB(220, 104, 89, 205),
+                          color: DarkController.instance.darkmod
+                              ? const Color.fromARGB(207, 255, 255, 255)
+                              : const Color.fromARGB(220, 104, 89, 205),
                         ),
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: Color.fromARGB(220, 104, 89, 205),
                           ),
@@ -100,10 +110,17 @@ class _AddCategoriesState extends State<AddCategories> {
                           locale: 'pt-BR', decimalDigits: 2, symbol: '')
                     ],
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(220, 104, 89, 205),
+                        ),
+                      ),
                       labelText: "Valor",
                       labelStyle: TextStyle(
-                        color: Color.fromARGB(220, 104, 89, 205),
+                        color: DarkController.instance.darkmod
+                            ? const Color.fromARGB(207, 255, 255, 255)
+                            : const Color.fromARGB(220, 104, 89, 205),
                       ),
                       hintText: "0,00",
                       prefix: Text("R\$"),
@@ -131,13 +148,15 @@ class _AddCategoriesState extends State<AddCategories> {
                     top: 16.0,
                   ),
                   child: TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                     labelText: 'Forma de pagamento(opcional)',
                     hintText: "Pix...",
                     labelStyle: TextStyle(
-                      color: Color.fromARGB(220, 104, 89, 205),
+                      color: DarkController.instance.darkmod
+                          ? const Color.fromARGB(207, 255, 255, 255)
+                          : const Color.fromARGB(220, 104, 89, 205),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color.fromARGB(220, 104, 89, 205),
                       ),

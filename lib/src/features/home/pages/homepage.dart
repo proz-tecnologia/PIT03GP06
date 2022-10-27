@@ -2,6 +2,7 @@ import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/addcategories/pages/addcategorias.dart';
 import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/dicas.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
 import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
 import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const DrawerCuston(),
       appBar: AppbarCustom(
         title: Image.asset(
-          'img/logo.png',
+          'img/logo(1).png',
           height: 110,
           width: 98,
         ),
@@ -60,20 +61,18 @@ class _HomePageState extends State<HomePage> {
         controller: pagesanimated,
         children: [
           SafeArea(
-              child: SizedBox(
-            height: 653,
-            child: SingleChildScrollView(
-              child: Column(
-                children: const [
-                  Balances(),
-                  Speding(),
-                  Categories(),
-                ],
-              ),
-            ),
-          )),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    Balances(),
+                    Speding(),
+                    Categories(),
+                    Dicaswidget()
+                  ],
+                ),
+              )),
           const CategoriesPage(),
-          AddCategories(),
+          const AddCategories(),
           const HistoricPage(),
           const SettingsPage(),
         ],
