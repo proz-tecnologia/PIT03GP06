@@ -8,6 +8,8 @@ import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
 import 'package:flutter/material.dart';
 import '../../categories/pages/categoriespage.dart';
 import '../widgets/bodywidgets/categories.dart';
+import 'package:ctrl_real/src/features/home/widgets/appbar.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -40,11 +42,18 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
       key: _scaffoldKey,
       drawer: const DrawerCuston(),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.person_outline),
-          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      appBar: AppbarCustom(
+        title: Image.asset(
+          'img/logo.png',
+          height: 110,
+          width: 98,
         ),
+        appBar: AppBar(),
+          leading: IconButton(
+            icon: const Icon(Icons.person_outline),
+            onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+          ),
+        
       ),
       body: PageView(
         onPageChanged: _onItemTapped,
