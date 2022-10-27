@@ -78,17 +78,17 @@ class PieChart2State extends State {
                 isSquare: true,
               ),
               Indicator(
-                color: Color(0xff4964B8),
+                color: Color(0xff2C25FA),
                 text: 'Farmácia',
                 isSquare: true,
               ),
               Indicator(
-                color: Color(0xff4964B8),
+                color: Color(0xff8400DB),
                 text: 'Gastos extras',
                 isSquare: true,
               ),
               SizedBox(
-                height: 4,
+                height: 8,
               )
             ],
           ),
@@ -118,7 +118,7 @@ class PieChart2State extends State {
         case 1:
           return PieChartSectionData(
             color: const Color(0xffD841E8),
-            value: 35,
+            value: 20,
             title: '20%',
             radius: radius,
             titleStyle: TextStyle(
@@ -130,7 +130,7 @@ class PieChart2State extends State {
         case 2:
           return PieChartSectionData(
             color: const Color(0xff845bef),
-            value: 25,
+            value: 20,
             title: '20%',
             radius: radius,
             titleStyle: TextStyle(
@@ -142,7 +142,7 @@ class PieChart2State extends State {
         case 3:
           return PieChartSectionData(
             color: const Color(0xff8D32E3),
-            value: 40,
+            value: 20,
             title: '20%',
             radius: radius,
             titleStyle: TextStyle(
@@ -153,9 +153,9 @@ class PieChart2State extends State {
           );
         case 4:
           return PieChartSectionData(
-            color: const Color(0xff8D32E3),
-            value: 40,
-            title: '20%',
+            color: const Color(0xff2C25FA),
+            value: 5,
+            title: '5%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -165,9 +165,9 @@ class PieChart2State extends State {
           );
         case 5:
           return PieChartSectionData(
-            color: const Color(0xff8D32E3),
-            value: 40,
-            title: '20%',
+            color: const Color(0xffFF0095),
+            value: 5,
+            title: '5%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

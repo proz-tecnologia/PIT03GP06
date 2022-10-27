@@ -1,5 +1,6 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           initialRoute: "/",
           routes: {
             "/": (context) => const HomePage(),
+            "/config": (context) => const SettingsPage()
           },
         );
       },

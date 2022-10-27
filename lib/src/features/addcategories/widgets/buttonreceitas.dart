@@ -1,3 +1,4 @@
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
@@ -29,18 +30,23 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
               return SingleChildScrollView(
                 child: Container(
                   height: 640,
-                  color: const Color.fromARGB(187, 255, 255, 255),
+                  color: DarkController.instance.darkmod
+                      ? const Color.fromARGB(255, 41, 41, 41)
+                      : const Color.fromARGB(187, 255, 255, 255),
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20.0, right: 20.0, top: 40),
                       child: Column(
                         children: <Widget>[
-                          const Text(
+                          Text(
                             'Receitas',
                             style: TextStyle(
-                                fontSize: 20,
-                                color: Color.fromARGB(220, 104, 89, 205)),
+                              fontSize: 20,
+                              color: DarkController.instance.darkmod
+                                  ? const Color.fromARGB(207, 255, 255, 255)
+                                  : const Color.fromARGB(220, 104, 89, 205),
+                            ),
                           ),
                           const SizedBox(
                             height: 10,
@@ -57,14 +63,18 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                   }
                                   return null;
                                 },
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
                                   labelText: 'Descrição',
                                   hintText: "Hora extra...",
                                   labelStyle: TextStyle(
-                                    color: Color.fromARGB(220, 104, 89, 205),
+                                    color: DarkController.instance.darkmod
+                                        ? const Color.fromARGB(
+                                            207, 255, 255, 255)
+                                        : const Color.fromARGB(
+                                            220, 104, 89, 205),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color.fromARGB(220, 104, 89, 205),
                                     ),
@@ -83,13 +93,20 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                               ],
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
+                                focusedBorder: const UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color.fromARGB(220, 104, 89, 205),
+                                  ),
+                                ),
                                 labelText: "Valor",
                                 labelStyle: TextStyle(
-                                  color: Color.fromARGB(220, 104, 89, 205),
+                                  color: DarkController.instance.darkmod
+                                      ? const Color.fromARGB(207, 255, 255, 255)
+                                      : const Color.fromARGB(220, 104, 89, 205),
                                 ),
                                 hintText: "0,00",
-                                prefix: Text("R\$"),
+                                prefix: const Text("R\$"),
                                 helperText: "Máximo de 999.999,99 digitos",
                               ),
                               maxLength: 10,
@@ -133,8 +150,8 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                   height: 40,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            Color.fromARGB(255, 48, 201, 43)),
+                                        backgroundColor: const Color.fromARGB(
+                                            255, 48, 201, 43)),
                                     child: const Text('Salvar'),
                                     onPressed: () {},
                                   ),

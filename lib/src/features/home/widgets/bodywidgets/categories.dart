@@ -16,7 +16,7 @@ class Categories extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-              color: DarkController.instance.darkmod ? const Color.fromARGB(255, 9, 9, 9) : const Color.fromARGB(220, 104, 89, 205),
+              color: DarkController.instance.darkmod ? const Color.fromARGB(213, 19, 19, 19) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[0.8],
               borderRadius: BorderRadius.circular(4.0),
               ),
@@ -33,11 +33,11 @@ class Categories extends StatelessWidget {
             const SizedBox(height: 2),
             Container(
               decoration: BoxDecoration(
-              color: DarkController.instance.darkmod ? const Color.fromARGB(255, 9, 9, 9) : const Color.fromARGB(220, 104, 89, 205),
+              color: DarkController.instance.darkmod ? const Color.fromARGB(213, 19, 19, 19) : const Color.fromARGB(220, 104, 89, 205),
               boxShadow: kElevationToShadow[4],
               borderRadius: BorderRadius.circular(4.0),
               ),
-              height: 148,
+              height: 152,
               width: MediaQuery.of(context).size.width,
               child: const PieChartSample2(),
               ),
