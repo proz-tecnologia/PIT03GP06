@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       drawer: const DrawerCuston(),
       appBar: AppBar(
+        centerTitle: true,
         title: Image.asset(
           'img/logo.png',
           height: 110,
@@ -49,7 +50,6 @@ class _HomePageState extends State<HomePage> {
           icon: const Icon(Icons.person_outline),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
-        actions: const [Text('Lvl 1')],
       ),
       body: PageView(
         onPageChanged: _onItemTapped,
