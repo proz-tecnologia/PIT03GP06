@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const DrawerCuston(),
       appBar: AppbarCustom(
         title: Image.asset(
-          'img/logo(1).png',
+          'img/logo.png',
           height: 110,
           width: 98,
         ),

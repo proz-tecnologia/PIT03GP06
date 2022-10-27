@@ -57,7 +57,10 @@ class Dicaswidget extends StatelessWidget {
                             ),
                             children: <Widget>[
                               Text(
-                                  'Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+                                'Crie um controle financeiro: seja por aplicativo ou por planilha, a recomendação é anotar, o máximo que conseguir, o que entrou e saiu da sua conta.',
+                                style: TextStyle(
+                                    color: Color.fromARGB(207, 255, 255, 255)),
+                              )
                             ],
                           ),
                           ExpansionTile(
@@ -74,7 +77,10 @@ class Dicaswidget extends StatelessWidget {
                             ),
                             children: <Widget>[
                               Text(
-                                  'Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+                                'Saiba suas despesas fixas e variáveis: conta de água, luz, internet e até aquele dinheiro emprestado com um amigo. Com isso, você saberá cortar o que não tem necessidade e até encontrar soluções mais em conta',
+                                style: TextStyle(
+                                    color: Color.fromARGB(207, 255, 255, 255)),
+                              ),
                             ],
                           ),
                           ExpansionTile(
@@ -91,8 +97,10 @@ class Dicaswidget extends StatelessWidget {
                             ),
                             children: <Widget>[
                               Text(
-                                'Blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-                              )
+                                'Defina uma meta realista: por fim, mas não menos importante, saiba quanto é preciso ter para chegar na meta que definiu. Considere todas as suas anotações e tente ser realista para não se frustrar, combinado?',
+                                style: TextStyle(
+                                    color: Color.fromARGB(207, 255, 255, 255)),
+                              ),
                             ],
                           ),
                         ],
