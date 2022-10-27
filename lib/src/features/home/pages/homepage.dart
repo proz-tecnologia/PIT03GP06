@@ -4,10 +4,8 @@ import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/dicas.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
-import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
 import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
 import 'package:flutter/material.dart';
-import '../../categories/pages/categoriespage.dart';
 import '../widgets/bodywidgets/categories.dart';
 import 'package:ctrl_real/src/features/home/widgets/appbar.dart';
 
