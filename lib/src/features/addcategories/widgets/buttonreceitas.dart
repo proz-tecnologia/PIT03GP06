@@ -19,7 +19,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
       height: 40,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xff8D32E3),
+          backgroundColor: Color.fromARGB(220, 104, 89, 205),
         ),
         child: const Text('Receita'),
         onPressed: () {
@@ -139,7 +139,8 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                   height: 40,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xff8D32E3),
+                                      backgroundColor:
+                                          Color.fromARGB(220, 104, 89, 205),
                                     ),
                                     child: const Text('Voltar'),
                                     onPressed: () => Navigator.pop(context),
@@ -152,7 +153,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color.fromARGB(
                                             255, 48, 201, 43)),
-                                    child: const Text('Salvar'),
+                                    child: const Text('Registrar'),
                                     onPressed: () {},
                                   ),
                                 ),

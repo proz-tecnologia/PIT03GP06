@@ -88,7 +88,7 @@ class _AddCategoriesState extends State<AddCategories> {
                       decoration: InputDecoration(
                         helperText: "Campo obrigatório",
                         labelText: 'Descrição',
-                        hintText: "Compras queijo...",
+                        hintText: "Descreve sua",
                         labelStyle: TextStyle(
                           color: DarkController.instance.darkmod
                               ? const Color.fromARGB(207, 255, 255, 255)
@@ -165,10 +165,9 @@ class _AddCategoriesState extends State<AddCategories> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 26.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const ButtomReceitas(),
                       SizedBox(
                         width: 130,
                         height: 40,
@@ -176,10 +175,16 @@ class _AddCategoriesState extends State<AddCategories> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(255, 48, 201, 43)),
-                          child: const Text('Salvar'),
+                          child: const Text('Registrar'),
                           onPressed: () {},
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child:
+                            Text("Para registrar uma receita, clique abaixo"),
+                      ),
+                      const ButtomReceitas(),
                     ],
                   ),
                 ),

@@ -11,7 +11,6 @@ import '../../categories/pages/categoriespage.dart';
 import '../widgets/bodywidgets/categories.dart';
 import 'package:ctrl_real/src/features/home/widgets/appbar.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -50,11 +49,10 @@ class _HomePageState extends State<HomePage> {
           width: 98,
         ),
         appBar: AppBar(),
-          leading: IconButton(
-            icon: const Icon(Icons.person_outline),
-            onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-          ),
-        
+        leading: IconButton(
+          icon: const Icon(Icons.person_outline),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        ),
       ),
       body: PageView(
         onPageChanged: _onItemTapped,
@@ -62,19 +60,17 @@ class _HomePageState extends State<HomePage> {
         children: [
           SafeArea(
               child: SingleChildScrollView(
-                child: Column(
-                  children: const [
-                    Balances(),
-                    Speding(),
-                    Categories(),
-                    Dicaswidget()
-                  ],
-                ),
-              )),
-          const CategoriesPage(),
+            child: Column(
+              children: const [
+                Balances(),
+                Speding(),
+                Categories(),
+                Dicaswidget()
+              ],
+            ),
+          )),
           const AddCategories(),
           const HistoricPage(),
-          const SettingsPage(),
         ],
       ),
       bottomNavigationBar: AnimatedBuilder(
@@ -91,18 +87,11 @@ class _HomePageState extends State<HomePage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.category_outlined,
-                  color: Color.fromARGB(220, 104, 89, 205),
-                ),
-                label: 'Categorias',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
                   Icons.add_circle_outline,
                   color: Color.fromARGB(220, 104, 89, 205),
                   size: 40,
                 ),
-                label: 'Add Compras',
+                label: 'Add',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
@@ -110,13 +99,6 @@ class _HomePageState extends State<HomePage> {
                   color: Color.fromARGB(220, 104, 89, 205),
                 ),
                 label: 'Histórico',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: Color.fromARGB(220, 104, 89, 205),
-                ),
-                label: 'Configurações',
               ),
             ],
             currentIndex: _selectedIndex,
