@@ -35,32 +35,51 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                         ? const Color.fromARGB(213, 19, 19, 19)
                         : const Color.fromARGB(207, 255, 255, 255),
                     height: 200,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: 40,
-                          width: 140,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromARGB(180, 244, 67, 54)),
-                              onPressed: () {
-                                Navigator.of(context).pushNamed("/despesas");
-                              },
-                              child: const Text('Despesa')),
+                        Text(
+                          'Registros',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: DarkController.instance.darkmod
+                                ? const Color.fromARGB(207, 255, 255, 255)
+                                : const Color.fromARGB(220, 104, 89, 205),
+                          ),
                         ),
-                        SizedBox(
-                          height: 40,
-                          width: 140,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green),
-                              onPressed: () {
-                                Navigator.of(context).pushNamed("/receitas");
-                              },
-                              child: const Text('Receitas')),
-                        )
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: 40,
+                                width: 140,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromARGB(
+                                            180, 244, 67, 54)),
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pushNamed("/despesas");
+                                    },
+                                    child: const Text('Despesa')),
+                              ),
+                              SizedBox(
+                                height: 40,
+                                width: 140,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green),
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pushNamed("/receitas");
+                                    },
+                                    child: const Text('Receitas')),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

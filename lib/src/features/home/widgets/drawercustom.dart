@@ -17,12 +17,22 @@ class DrawerCuston extends StatelessWidget {
             ),
             accountEmail: const Text("user@mail.com"),
             accountName: const Text("Aysha"),
-            currentAccountPicture: InkWell (
+            currentAccountPicture: InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('/perfil');
               },
-              child: const CircleAvatar(
-                child: Text("AY"),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: const [
+                  SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: CircleAvatar(
+                      child: Text("AY"),
+                    ),
+                  ),
+                  Icon(Icons.add, color: Colors.white,)
+                ],
               ),
             ),
           ),
