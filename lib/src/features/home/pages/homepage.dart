@@ -1,10 +1,11 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/features/addcategories/pages/addcategorias.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/dicas.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
 import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
+import 'package:ctrl_real/src/features/registers/widgets/buttonreceitas.dart';
 import 'package:flutter/material.dart';
 import '../widgets/bodywidgets/categories.dart';
 
@@ -31,24 +32,17 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      key: _scaffoldKey,
       drawer: const DrawerCuston(),
       appBar: AppBar(
         centerTitle: true,
         title: Image.asset(
-          'img/logo.png',
+          'asset/img/logo.png',
           height: 110,
           width: 98,
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.person_outline),
-          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
       ),
       body: PageView(
@@ -66,10 +60,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           )),
-          const AddCategories(),
           const HistoricPage(),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const ButtomReceitas(),
       bottomNavigationBar: AnimatedBuilder(
         animation: DarkController.instance,
         builder: (context, child) {
@@ -78,21 +73,15 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home_outlined,
+                  size: 26,
                   color: Color.fromARGB(220, 104, 89, 205),
                 ),
                 label: 'Início',
               ),
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.add_circle_outline,
-                  color: Color.fromARGB(220, 104, 89, 205),
-                  size: 40,
-                ),
-                label: 'Add',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
                   Icons.history_edu,
+                  size: 26,
                   color: Color.fromARGB(220, 104, 89, 205),
                 ),
                 label: 'Histórico',

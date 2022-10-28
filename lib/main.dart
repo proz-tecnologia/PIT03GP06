@@ -1,6 +1,10 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
+import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
+import 'package:ctrl_real/src/features/sobreapp/pages/sobreapp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -34,7 +38,11 @@ class MyApp extends StatelessWidget {
           initialRoute: "/",
           routes: {
             "/": (context) => const HomePage(),
-            "/config": (context) => const SettingsPage()
+            "/config": (context) => const SettingsPage(),
+            "/receitas":(context) => const ReceitasPage(),
+            "/despesas":(context) => const DespesasPage(),
+            "/perfil":(context) => const PerfilPage(),
+            "/sobreapp":(context) => const SobreApp()
           },
         );
       },

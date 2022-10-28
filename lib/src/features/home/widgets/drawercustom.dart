@@ -11,14 +11,29 @@ class DrawerCuston extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(220, 104, 89, 205),
             ),
-            accountEmail: Text("user@mail.com"),
-            accountName: Text("Aysha"),
-            currentAccountPicture: CircleAvatar(
-              child: Text("AY"),
+            accountEmail: const Text("user@mail.com"),
+            accountName: const Text("Aysha"),
+            currentAccountPicture: InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('/perfil');
+              },
+              child: Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: const [
+                  SizedBox(
+                    height: 80,
+                    width: 80,
+                    child: CircleAvatar(
+                      child: Text("AY"),
+                    ),
+                  ),
+                  Icon(Icons.add, color: Colors.white,)
+                ],
+              ),
             ),
           ),
           const ExpansionTile(
@@ -41,7 +56,9 @@ class DrawerCuston extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.info_outline_rounded),
             title: const Text('Sobre o app'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed('/sobreapp');
+            },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
