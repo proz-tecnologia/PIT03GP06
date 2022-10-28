@@ -42,10 +42,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Image.asset(
-          'img/logo.png',
+          'asset/img/logo.png',
           height: 110,
           width: 98,
         ),
+        centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.person_outline),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
