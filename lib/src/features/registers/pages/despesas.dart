@@ -108,7 +108,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                           : const Color.fromARGB(220, 104, 89, 205),
                     ),
                     hintText: "0,00",
-                    prefix: Text("R\$"),
+                    prefix: const Text("R\$"),
                     helperText: "Máximo de 999.999,99 digitos",
                   ),
                   maxLength: 10,
@@ -135,12 +135,6 @@ class _AddCategoriesState extends State<DespesasPage> {
                 child: TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     maxLength: 20,
-                    validator: (value) {
-                      if (value!.length < 3 || value.length > 20) {
-                        return "Informe uma descrição";
-                      }
-                      return null;
-                    },
                     decoration: InputDecoration(
                       labelText: 'Forma de pagamento(opcional)',
                       hintText: "Pix...",
