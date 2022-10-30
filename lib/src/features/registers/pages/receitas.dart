@@ -94,7 +94,6 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                 if (value!.isEmpty) {
                                   return "Informe um valor";
                                 }
-                                ;
                                 final valueDouble = double.parse(value
                                     .replaceAll(".", "")
                                     .replaceAll(",", "."));

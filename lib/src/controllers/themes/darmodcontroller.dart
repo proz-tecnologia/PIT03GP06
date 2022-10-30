@@ -22,6 +22,7 @@ class _ButtonDarkState extends State<ButtonDark> {
   @override
   Widget build(BuildContext context) {
     return Switch(
+      activeColor: const Color.fromARGB(220, 104, 89, 205),
       value: DarkController.instance.darkmod,
       onChanged: (value) {
         setState(() {

@@ -74,7 +74,6 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(
                   Icons.home_outlined,
                   size: 26,
-                  color: Color.fromARGB(220, 104, 89, 205),
                 ),
                 label: 'Início',
               ),
@@ -82,7 +81,6 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(
                   Icons.history_edu,
                   size: 26,
-                  color: Color.fromARGB(220, 104, 89, 205),
                 ),
                 label: 'Histórico',
               ),

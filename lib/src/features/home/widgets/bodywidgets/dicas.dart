@@ -32,34 +32,40 @@ class Dicaswidget extends StatelessWidget {
                 const SizedBox(height: 2),
                 Column(
                   children: [
-                    ExpansionTile(
-                      collapsedBackgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
-                      backgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
-                      iconColor: Colors.white,
-                      collapsedIconColor: Colors.white,
-                      leading: const Icon(
-                        Icons.lightbulb,
-                        color: Colors.yellow,
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4)),
+                      child: ExpansionTile(
+                        collapsedBackgroundColor:
+                            DarkController.instance.darkmod
+                                ? const Color.fromARGB(213, 19, 19, 19)
+                                : const Color.fromARGB(220, 104, 89, 205),
+                        backgroundColor: DarkController.instance.darkmod
+                            ? const Color.fromARGB(213, 19, 19, 19)
+                            : const Color.fromARGB(220, 104, 89, 205),
+                        iconColor: Colors.white,
+                        collapsedIconColor: Colors.white,
+                        leading: const Icon(
+                          Icons.lightbulb,
+                          color: Colors.yellow,
+                        ),
+                        title: const Text(
+                          'Controle Financeiro',
+                          style: TextStyle(
+                              color: Color.fromARGB(207, 255, 255, 255)),
+                        ),
+                        children: const <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Crie um controle financeiro: seja por aplicativo ou por planilha, a recomendação é anotar, o máximo que conseguir, o que entrou e saiu da sua conta.',
+                              style: TextStyle(
+                                  color: Color.fromARGB(207, 255, 255, 255)),
+                            ),
+                          )
+                        ],
                       ),
-                      title: const Text(
-                        'Controle Financeiro',
-                        style: TextStyle(
-                            color: Color.fromARGB(207, 255, 255, 255)),
-                      ),
-                      children: const <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Crie um controle financeiro: seja por aplicativo ou por planilha, a recomendação é anotar, o máximo que conseguir, o que entrou e saiu da sua conta.',
-                            style: TextStyle(
-                                color: Color.fromARGB(207, 255, 255, 255)),
-                          ),
-                        )
-                      ],
                     ),
                     ExpansionTile(
                       collapsedBackgroundColor: DarkController.instance.darkmod
@@ -90,34 +96,40 @@ class Dicaswidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    ExpansionTile(
-                      collapsedBackgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
-                      backgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
-                      iconColor: Colors.white,
-                      collapsedIconColor: Colors.white,
-                      leading: const Icon(
-                        Icons.lightbulb,
-                        color: Colors.yellow,
-                      ),
-                      title: const Text(
-                        'Meta Realista',
-                        style: TextStyle(
-                            color: Color.fromARGB(207, 255, 255, 255)),
-                      ),
-                      children: const <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Defina uma meta realista: por fim, mas não menos importante, saiba quanto é preciso ter para chegar na meta que definiu. Considere todas as suas anotações e tente ser realista para não se frustrar, combinado?',
-                            style: TextStyle(
-                                color: Color.fromARGB(207, 255, 255, 255)),
-                          ),
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(4),
+                          bottomRight: Radius.circular(4)),
+                      child: ExpansionTile(
+                        collapsedBackgroundColor:
+                            DarkController.instance.darkmod
+                                ? const Color.fromARGB(213, 19, 19, 19)
+                                : const Color.fromARGB(220, 104, 89, 205),
+                        backgroundColor: DarkController.instance.darkmod
+                            ? const Color.fromARGB(213, 19, 19, 19)
+                            : const Color.fromARGB(220, 104, 89, 205),
+                        iconColor: Colors.white,
+                        collapsedIconColor: Colors.white,
+                        leading: const Icon(
+                          Icons.lightbulb,
+                          color: Colors.yellow,
                         ),
-                      ],
+                        title: const Text(
+                          'Meta Realista',
+                          style: TextStyle(
+                              color: Color.fromARGB(207, 255, 255, 255)),
+                        ),
+                        children: const <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Defina uma meta realista: por fim, mas não menos importante, saiba quanto é preciso ter para chegar na meta que definiu. Considere todas as suas anotações e tente ser realista para não se frustrar, combinado?',
+                              style: TextStyle(
+                                  color: Color.fromARGB(207, 255, 255, 255)),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

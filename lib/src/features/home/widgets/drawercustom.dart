@@ -31,12 +31,14 @@ class DrawerCuston extends StatelessWidget {
                       child: Text("AY"),
                     ),
                   ),
-                  Icon(Icons.add, color: Colors.white,)
+                  Icon(Icons.add , color: Colors.white,)
                 ],
               ),
             ),
           ),
           const ExpansionTile(
+            textColor: Color.fromARGB(220, 104, 89, 205),
+            iconColor: Color.fromARGB(220, 104, 89, 205),
             leading: Icon(Icons.color_lens),
             title: Text('Temas'),
             children: <Widget>[
