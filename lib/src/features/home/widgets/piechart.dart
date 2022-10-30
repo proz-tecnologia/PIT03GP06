@@ -61,16 +61,10 @@ class PieChart2State extends State {
                 text: 'Transporte',
                 isSquare: true,
               ),
-              SizedBox(
-                height: 4,
-              ),
               Indicator(
                 color: Color(0xff845bef),
                 text: 'Pagamentos',
                 isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
               ),
               Indicator(
                 color: Color(0xff4964B8),
