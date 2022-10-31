@@ -20,7 +20,7 @@ class _BalancesState extends State<Balances> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 12, right: 12),
+      padding: const EdgeInsets.only(top: 14, left: 16, right: 16),
       child: AnimatedBuilder(
           animation: DarkController.instance,
           builder: (BuildContext context, Widget? child) {
