@@ -48,7 +48,7 @@ class Speding extends StatelessWidget {
                         height: 34,
                       ),
                       LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 10,
+                        width: MediaQuery.of(context).size.width - 40,
                         animation: true,
                         lineHeight: 30.0,
                         animationDuration: 2500,
