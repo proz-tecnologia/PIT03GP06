@@ -25,6 +25,16 @@ class _AddCategoriesState extends State<DespesasPage> {
   String values = categorieslist.first;
   String form = formlist.first;
 
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2050),
+      locale: Locale("pt", "BR"),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,6 +181,22 @@ class _AddCategoriesState extends State<DespesasPage> {
                     child: Text(value),
                   );
                 }).toList(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 32.0),
+                child: Text(
+                  "Informe a data",
+                  style: TextStyle(
+                    color: DarkController.instance.darkmod
+                        ? const Color.fromARGB(207, 255, 255, 255)
+                        : const Color.fromARGB(220, 104, 89, 205),
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: _showDatePicker,
+                icon: Icon(Icons.date_range,
+                    color: const Color.fromARGB(220, 104, 89, 205)),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 26.0),
