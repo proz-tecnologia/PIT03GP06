@@ -11,6 +11,8 @@ const List<String> categorieslist = <String>[
   'Gastos extras'
 ];
 
+const List<String> formlist = <String>['Dinheiro', 'Pix', 'Débito', 'Crédito'];
+
 class DespesasPage extends StatefulWidget {
   const DespesasPage({super.key});
 
@@ -21,6 +23,7 @@ class DespesasPage extends StatefulWidget {
 class _AddCategoriesState extends State<DespesasPage> {
   double? value;
   String values = categorieslist.first;
+  String form = formlist.first;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,18 @@ class _AddCategoriesState extends State<DespesasPage> {
         child: Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 38.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
                 height: 10,
+              ),
+              Text(
+                "Categoria: ",
+                style: TextStyle(
+                  color: DarkController.instance.darkmod
+                      ? const Color.fromARGB(207, 255, 255, 255)
+                      : const Color.fromARGB(220, 104, 89, 205),
+                ),
               ),
               DropdownButton<String>(
                 isExpanded: true,
@@ -60,7 +72,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                 }).toList(),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     maxLength: 40,
@@ -129,44 +141,51 @@ class _AddCategoriesState extends State<DespesasPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 16.0,
+                padding: const EdgeInsets.only(top: 32),
+                child: Text(
+                  "Forma de pagamento: ",
+                  style: TextStyle(
+                    color: DarkController.instance.darkmod
+                        ? const Color.fromARGB(207, 255, 255, 255)
+                        : const Color.fromARGB(220, 104, 89, 205),
+                  ),
                 ),
-                child: TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    maxLength: 20,
-                    decoration: InputDecoration(
-                      labelText: 'Forma de pagamento(opcional)',
-                      hintText: "Pix...",
-                      labelStyle: TextStyle(
-                        color: DarkController.instance.darkmod
-                            ? const Color.fromARGB(207, 255, 255, 255)
-                            : const Color.fromARGB(220, 104, 89, 205),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(220, 104, 89, 205),
-                        ),
-                      ),
-                    )),
+              ),
+              DropdownButton<String>(
+                isExpanded: true,
+                value: form,
+                elevation: 16,
+                style: TextStyle(
+                  color: DarkController.instance.darkmod
+                      ? const Color.fromARGB(207, 255, 255, 255)
+                      : const Color.fromARGB(220, 104, 89, 205),
+                ),
+                onChanged: (String? value) {
+                  setState(() {
+                    form = value!;
+                  });
+                },
+                items: formlist.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 26.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 130,
-                      height: 40,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 48, 201, 43)),
-                        child: const Text('Registrar'),
-                        onPressed: () {},
-                      ),
+                child: Center(
+                  child: SizedBox(
+                    width: 130,
+                    height: 40,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 48, 201, 43)),
+                      child: const Text('Registrar'),
+                      onPressed: () {},
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],

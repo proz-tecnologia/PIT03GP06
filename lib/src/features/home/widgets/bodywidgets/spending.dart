@@ -48,7 +48,7 @@ class Speding extends StatelessWidget {
                         height: 34,
                       ),
                       LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 50,
+                        width: MediaQuery.of(context).size.width - 10,
                         animation: true,
                         lineHeight: 30.0,
                         animationDuration: 2500,
@@ -58,8 +58,6 @@ class Speding extends StatelessWidget {
                           style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255)),
                         ),
-                        trailing: const Icon(Icons.diamond_rounded,
-                            color: Color.fromARGB(255, 255, 255, 255)),
                         barRadius: const Radius.circular(16),
                         progressColor: const Color.fromARGB(255, 63, 138, 224),
                       ),
