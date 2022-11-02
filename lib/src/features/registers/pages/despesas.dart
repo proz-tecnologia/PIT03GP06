@@ -1,4 +1,5 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _AddCategoriesState extends State<DespesasPage> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2050),
-      locale: Locale("pt", "BR"),
+      locale: const Locale("pt", "BR"),
     );
   }
 
@@ -52,11 +53,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                 height: 10,
               ),
               Text(
-                "Categoria: ",
+                Strings.nameImputCategoriesForm,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
               ),
               DropdownButton<String>(
@@ -64,9 +63,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                 value: values,
                 elevation: 16,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -94,12 +91,10 @@ class _AddCategoriesState extends State<DespesasPage> {
                     },
                     decoration: InputDecoration(
                       helperText: "Campo obrigatório",
-                      labelText: 'Descrição',
+                      labelText: Strings.nameImputDescriptionForm,
                       hintText: "Descreve sua",
                       labelStyle: TextStyle(
-                        color: DarkController.instance.darkmod
-                            ? const Color.fromARGB(207, 255, 255, 255)
-                            : const Color.fromARGB(220, 104, 89, 205),
+                        color: darkFunctionTexts(),
                       ),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -123,11 +118,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                         color: Color.fromARGB(220, 104, 89, 205),
                       ),
                     ),
-                    labelText: "Valor",
+                    labelText: Strings.nameImputValorForm,
                     labelStyle: TextStyle(
-                      color: DarkController.instance.darkmod
-                          ? const Color.fromARGB(207, 255, 255, 255)
-                          : const Color.fromARGB(220, 104, 89, 205),
+                      color: darkFunctionTexts(),
                     ),
                     hintText: "0,00",
                     prefix: const Text("R\$"),
@@ -138,7 +131,6 @@ class _AddCategoriesState extends State<DespesasPage> {
                     if (value!.isEmpty) {
                       return "Informe um valor";
                     }
-                    ;
                     final valueDouble = double.parse(
                         value.replaceAll(".", "").replaceAll(",", "."));
                     if (valueDouble == 0) {
@@ -153,11 +145,9 @@ class _AddCategoriesState extends State<DespesasPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: Text(
-                  "Forma de pagamento: ",
+                  Strings.nameImputPaymentForm,
                   style: TextStyle(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(207, 255, 255, 255)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
@@ -166,9 +156,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                 value: form,
                 elevation: 16,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -183,20 +171,20 @@ class _AddCategoriesState extends State<DespesasPage> {
                 }).toList(),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 32.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: Text(
-                  "Informe a data",
+                  Strings.nameImputDate,
                   style: TextStyle(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(207, 255, 255, 255)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
               IconButton(
                 onPressed: _showDatePicker,
-                icon: Icon(Icons.date_range,
-                    color: const Color.fromARGB(220, 104, 89, 205)),
+                icon: Icon(
+                  Icons.date_range,
+                  color: darkFunctionTexts(),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 26.0),

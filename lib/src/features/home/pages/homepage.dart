@@ -1,9 +1,8 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/balances.dart';
 import 'package:ctrl_real/src/features/home/widgets/bodywidgets/dicas.dart';
-import 'package:ctrl_real/src/features/home/widgets/bodywidgets/spending.dart';
+import 'package:ctrl_real/src/features/home/widgets/bodywidgets/limit.dart';
 import 'package:ctrl_real/src/features/home/widgets/drawercustom.dart';
 import 'package:ctrl_real/src/features/registers/widgets/buttonreceitas.dart';
 import 'package:flutter/material.dart';
