@@ -1,4 +1,6 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
 class ButtomReceitas extends StatefulWidget {
@@ -39,12 +41,9 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Registros',
+                          Strings.nameRegisterForm,
                           style: TextStyle(
-                            fontSize: 20,
-                            color: DarkController.instance.darkmod
-                                ? const Color.fromARGB(207, 255, 255, 255)
-                                : const Color.fromARGB(220, 104, 89, 205),
+                            color: darkFunctionTexts(),
                           ),
                         ),
                         Padding(

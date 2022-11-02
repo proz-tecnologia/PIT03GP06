@@ -1,4 +1,6 @@
 import 'package:ctrl_real/src/features/extension/extension_double.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import '../../../../controllers/themes/darmodcontroller.dart';
 
@@ -27,9 +29,7 @@ class _BalancesState extends State<Balances> {
             return Column(children: [
               Container(
                 decoration: BoxDecoration(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(213, 19, 19, 19)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionWidgets(),
                   boxShadow: kElevationToShadow[0.8],
                   borderRadius: BorderRadius.circular(4.0),
                 ),
@@ -37,7 +37,7 @@ class _BalancesState extends State<Balances> {
                 height: 32,
                 child: const Center(
                   child: Text(
-                    "Saldo",
+                    Strings.nameBalancesContainer,
                     style: TextStyle(
                       fontSize: 24,
                       color: Color(0xdfffffff),
@@ -49,9 +49,7 @@ class _BalancesState extends State<Balances> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(213, 19, 19, 19)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionWidgets(),
                   boxShadow: kElevationToShadow[4],
                   borderRadius: BorderRadius.circular(4.0),
                 ),

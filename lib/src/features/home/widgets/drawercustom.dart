@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
 class DrawerCuston extends StatelessWidget {
@@ -31,7 +32,10 @@ class DrawerCuston extends StatelessWidget {
                       child: Text("AY"),
                     ),
                   ),
-                  Icon(Icons.add , color: Colors.white,)
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  )
                 ],
               ),
             ),
@@ -40,31 +44,31 @@ class DrawerCuston extends StatelessWidget {
             textColor: Color.fromARGB(220, 104, 89, 205),
             iconColor: Color.fromARGB(220, 104, 89, 205),
             leading: Icon(Icons.color_lens),
-            title: Text('Temas'),
+            title: Text(Strings.nameThemesDrawer),
             children: <Widget>[
               ListTile(
-                title: Text('Dark'),
+                title: Text(Strings.nameThemesDarkDrawer),
                 trailing: ButtonDark(),
               ),
             ],
           ),
           ListTile(
             leading: const Icon(Icons.settings),
-            title: const Text('Configurações'),
+            title: const Text(Strings.nameConfigDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/config');
             },
           ),
           ListTile(
             leading: const Icon(Icons.info_outline_rounded),
-            title: const Text('Sobre o app'),
+            title: const Text(Strings.nameSobreAppDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/sobreapp');
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
-            title: const Text('Sair'),
+            title: const Text(Strings.nameExitDrawer),
             onTap: () {},
           ),
         ],

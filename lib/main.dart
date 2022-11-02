@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
       animation: DarkController.instance,
       builder: (context, child) {
         return MaterialApp(
-          localizationsDelegates: [
+          localizationsDelegates: const [
             GlobalWidgetsLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
           ],
-          supportedLocales: [
+          supportedLocales: const [
             Locale("pt", "BR"),
           ],
           debugShowCheckedModeBanner: false,
