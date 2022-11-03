@@ -10,31 +10,33 @@ class DrawerCuston extends StatelessWidget {
     return Drawer(
       width: 268,
       child: ListView(
-        padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
-              color: Color.fromARGB(220, 104, 89, 205),
+              color: Color.fromARGB(193, 104, 89, 205),
             ),
-            accountEmail: const Text("user@mail.com"),
-            accountName: const Text("Aysha"),
+            accountName: Text("Aysha"),
+            accountEmail: Text('30 / 150 Xp'),
             currentAccountPicture: InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('/perfil');
               },
               child: Stack(
                 alignment: AlignmentDirectional.bottomEnd,
-                children: const [
-                  SizedBox(
-                    height: 80,
-                    width: 80,
-                    child: CircleAvatar(
-                      child: Text("AY"),
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Container(
+                      color: const Color.fromARGB(140, 255, 255, 255),
+                      height: 100,
+                      width: 100,
+                      child: const Icon(Icons.person_outline, size: 40, color: Color.fromARGB(129, 0, 0, 0),),
                     ),
                   ),
                   Icon(
                     Icons.add,
                     color: Colors.white,
+                    size: 20,
                   )
                 ],
               ),
