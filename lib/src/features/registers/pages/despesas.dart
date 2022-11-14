@@ -1,19 +1,14 @@
+import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
+import 'package:ctrl_real/src/model/transections_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-const List<String> categorieslist = <String>[
-  'Supermercado',
-  'Lazer',
-  'Transporte',
-  'Farmacia',
-  'Pagamentos',
-  'Gastos extras'
-];
+import '../../../controllers/providercontrolers/transections_controller.dart';
 
 const List<String> formlist = <String>['Dinheiro', 'Pix', 'Débito', 'Crédito'];
-
 
 class DespesasPage extends StatefulWidget {
   const DespesasPage({super.key});
@@ -22,12 +17,10 @@ class DespesasPage extends StatefulWidget {
   State<DespesasPage> createState() => _AddCategoriesState();
 }
 
-class _AddCategoriesState extends State<DespesasPage> {
+final TransactionController controller = TransactionController();
 
-  String values = categorieslist.first;
+class _AddCategoriesState extends State<DespesasPage> {
   String form = formlist.first;
-  String desc = "";
-  double valor = 0;
 
   void _showDatePicker() {
     showDatePicker(
@@ -61,25 +54,25 @@ class _AddCategoriesState extends State<DespesasPage> {
                   color: darkFunctionTexts(),
                 ),
               ),
-             DropdownButton<String>(
+              DropdownButton<String>(
                 isExpanded: true,
-                value: values,
+                value: controller.categoryname,
                 elevation: 16,
                 style: TextStyle(
                   color: darkFunctionTexts(),
                 ),
-                onChanged: (String? value) {
-                  setState(() {
-                    values = value!;
-                  });
+                onChanged: (a) {
+                  controller.categoryname = a ?? '';
+                  setState(() {});
                 },
-                items: categorieslist
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                items: controller.categoryList
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList(),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
@@ -106,7 +99,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                     ),
                   ),
                   onChanged: (value) {
-                    desc = value;
+                    controller.descri = value;
                   },
                 ),
               ),
@@ -146,7 +139,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                     return null;
                   },
                   onChanged: (value) {
-                    valor = double.parse(
+                    controller.valor = double.parse(
                         value.replaceAll(".", "").replaceAll(",", "."));
                   },
                 ),
@@ -199,16 +192,64 @@ class _AddCategoriesState extends State<DespesasPage> {
                 padding: const EdgeInsets.only(top: 26.0),
                 child: Center(
                   child: SizedBox(
-                    width: 130,
-                    height: 40,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 48, 201, 43)),
-                        child: const Text('Registrar'),
-                        onPressed: () {
-                        }),
-                  ),
+                      width: 130,
+                      height: 40,
+                      child: Consumer<HistoryController>(
+                          builder: (context, historyController, _) {
+                        return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 48, 201, 43)),
+                            child: const Text('Registrar'),
+                            onPressed: () {
+                              var trans = Transaction(
+                                  valor: controller.valor,
+                                  descri: controller.descri,
+                                  categoryname: controller.categoryname,
+                                  formPag: controller.formpag);
+                              historyController.setTransAction(trans);
+                              if (controller.categoryname == 'Supermercado') {
+                                historyController.supermerc += controller.valor;
+                                historyController.supermerc =
+                                    historyController.supermerc *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname == 'Lazer') {
+                                historyController.lazer += controller.valor;
+                                historyController.lazer =
+                                    historyController.lazer *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Transporte') {
+                                historyController.transpor += controller.valor;
+                                historyController.transpor =
+                                    historyController.transpor *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Farmacia') {
+                                historyController.farmac += controller.valor;
+                                historyController.farmac =
+                                    historyController.farmac *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Pagamentos') {
+                                historyController.pagament += controller.valor;
+                                historyController.farmac =
+                                    historyController.farmac *
+                                        100 /
+                                        historyController.saldo;
+                              } else {
+                                historyController.gastosex += controller.valor;
+                                historyController.gastosex +=
+                                    historyController.gastosex *
+                                        100 /
+                                        historyController.saldo;
+                              }
+                            });
+                      })),
                 ),
               ),
             ],

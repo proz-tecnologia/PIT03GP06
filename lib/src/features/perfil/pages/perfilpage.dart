@@ -110,6 +110,7 @@ class _PerfilPageState extends State<PerfilPage> {
             trailing: Icon(Icons.delete),
             onTap: () {},
           )
+          
         ]),
       ),
     );

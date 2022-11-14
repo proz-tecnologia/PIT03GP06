@@ -1,4 +1,4 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/categoriesprovider.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
 import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: ((context) => CategoriesController()),
+          create: ((context) => HistoryController()),
         ),
       ],
       child: AnimatedBuilder(
