@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
 class DrawerCuston extends StatelessWidget {
@@ -9,29 +10,34 @@ class DrawerCuston extends StatelessWidget {
     return Drawer(
       width: 268,
       child: ListView(
-        padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
-              color: Color.fromARGB(220, 104, 89, 205),
+              color: Color.fromARGB(193, 104, 89, 205),
             ),
-            accountEmail: const Text("user@mail.com"),
-            accountName: const Text("Aysha"),
+            accountName: Text("Aysha"),
+            accountEmail: Text('30 / 150 Xp'),
             currentAccountPicture: InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('/perfil');
               },
               child: Stack(
                 alignment: AlignmentDirectional.bottomEnd,
-                children: const [
-                  SizedBox(
-                    height: 80,
-                    width: 80,
-                    child: CircleAvatar(
-                      child: Text("AY"),
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Container(
+                      color: const Color.fromARGB(140, 255, 255, 255),
+                      height: 100,
+                      width: 100,
+                      child: const Icon(Icons.person_outline, size: 40, color: Color.fromARGB(129, 0, 0, 0),),
                     ),
                   ),
-                  Icon(Icons.add , color: Colors.white,)
+                  Icon(
+                    Icons.add,
+                    color: Colors.white,
+                    size: 20,
+                  )
                 ],
               ),
             ),
@@ -40,31 +46,31 @@ class DrawerCuston extends StatelessWidget {
             textColor: Color.fromARGB(220, 104, 89, 205),
             iconColor: Color.fromARGB(220, 104, 89, 205),
             leading: Icon(Icons.color_lens),
-            title: Text('Temas'),
+            title: Text(Strings.nameThemesDrawer),
             children: <Widget>[
               ListTile(
-                title: Text('Dark'),
+                title: Text(Strings.nameThemesDarkDrawer),
                 trailing: ButtonDark(),
               ),
             ],
           ),
           ListTile(
             leading: const Icon(Icons.settings),
-            title: const Text('Configurações'),
+            title: const Text(Strings.nameConfigDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/config');
             },
           ),
           ListTile(
             leading: const Icon(Icons.info_outline_rounded),
-            title: const Text('Sobre o app'),
+            title: const Text(Strings.nameSobreAppDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/sobreapp');
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
-            title: const Text('Sair'),
+            title: const Text(Strings.nameExitDrawer),
             onTap: () {},
           ),
         ],

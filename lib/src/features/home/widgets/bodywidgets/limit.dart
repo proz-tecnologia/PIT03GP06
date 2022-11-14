@@ -1,4 +1,6 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -17,16 +19,14 @@ class Speding extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(213, 19, 19, 19)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionWidgets(),
                     boxShadow: kElevationToShadow[0.8],
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   height: 32,
                   child: const Center(
                     child: Text(
-                      "Limite",
+                      Strings.nameLimitContainer,
                       style: TextStyle(fontSize: 24, color: Color(0xdfffffff)),
                     ),
                   ),
@@ -34,9 +34,7 @@ class Speding extends StatelessWidget {
                 const SizedBox(height: 2),
                 Container(
                   decoration: BoxDecoration(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(213, 19, 19, 19)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionWidgets(),
                     boxShadow: kElevationToShadow[4],
                     borderRadius: BorderRadius.circular(4.0),
                   ),

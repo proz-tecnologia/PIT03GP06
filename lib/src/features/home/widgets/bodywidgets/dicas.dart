@@ -1,4 +1,6 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
 class Dicaswidget extends StatelessWidget {
@@ -15,9 +17,7 @@ class Dicaswidget extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(213, 19, 19, 19)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionWidgets(),
                     boxShadow: kElevationToShadow[0.8],
                     borderRadius: BorderRadius.circular(4.0),
                   ),
@@ -25,7 +25,7 @@ class Dicaswidget extends StatelessWidget {
                   height: 32,
                   child: const Center(
                       child: Text(
-                    "Dicas",
+                    Strings.nameDicasContainer,
                     style: TextStyle(fontSize: 24, color: Color(0xdfffffff)),
                   )),
                 ),
@@ -37,13 +37,8 @@ class Dicaswidget extends StatelessWidget {
                           topLeft: Radius.circular(4),
                           topRight: Radius.circular(4)),
                       child: ExpansionTile(
-                        collapsedBackgroundColor:
-                            DarkController.instance.darkmod
-                                ? const Color.fromARGB(213, 19, 19, 19)
-                                : const Color.fromARGB(220, 104, 89, 205),
-                        backgroundColor: DarkController.instance.darkmod
-                            ? const Color.fromARGB(213, 19, 19, 19)
-                            : const Color.fromARGB(220, 104, 89, 205),
+                        collapsedBackgroundColor: darkFunctionWidgets(),
+                        backgroundColor: darkFunctionWidgets(),
                         iconColor: Colors.white,
                         collapsedIconColor: Colors.white,
                         leading: const Icon(
@@ -68,12 +63,8 @@ class Dicaswidget extends StatelessWidget {
                       ),
                     ),
                     ExpansionTile(
-                      collapsedBackgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
-                      backgroundColor: DarkController.instance.darkmod
-                          ? const Color.fromARGB(213, 19, 19, 19)
-                          : const Color.fromARGB(220, 104, 89, 205),
+                      collapsedBackgroundColor: darkFunctionWidgets(),
+                      backgroundColor: darkFunctionWidgets(),
                       iconColor: Colors.white,
                       collapsedIconColor: Colors.white,
                       leading: const Icon(
@@ -101,13 +92,8 @@ class Dicaswidget extends StatelessWidget {
                           bottomLeft: Radius.circular(4),
                           bottomRight: Radius.circular(4)),
                       child: ExpansionTile(
-                        collapsedBackgroundColor:
-                            DarkController.instance.darkmod
-                                ? const Color.fromARGB(213, 19, 19, 19)
-                                : const Color.fromARGB(220, 104, 89, 205),
-                        backgroundColor: DarkController.instance.darkmod
-                            ? const Color.fromARGB(213, 19, 19, 19)
-                            : const Color.fromARGB(220, 104, 89, 205),
+                        collapsedBackgroundColor: darkFunctionWidgets(),
+                        backgroundColor: darkFunctionWidgets(),
                         iconColor: Colors.white,
                         collapsedIconColor: Colors.white,
                         leading: const Icon(

@@ -1,4 +1,5 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2050),
-      locale: Locale("pt", "BR"),
+      locale: const Locale("pt", "BR"),
     );
   }
 
@@ -54,9 +55,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                       labelText: 'Descrição',
                       hintText: "Hora extra...",
                       labelStyle: TextStyle(
-                        color: DarkController.instance.darkmod
-                            ? const Color.fromARGB(207, 255, 255, 255)
-                            : const Color.fromARGB(220, 104, 89, 205),
+                        color: darkFunctionTexts(),
                       ),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -80,11 +79,9 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         color: Color.fromARGB(220, 104, 89, 205),
                       ),
                     ),
-                    labelText: "Valor",
+                    labelText: Strings.nameImputValorForm,
                     labelStyle: TextStyle(
-                      color: DarkController.instance.darkmod
-                          ? const Color.fromARGB(207, 255, 255, 255)
-                          : const Color.fromARGB(220, 104, 89, 205),
+                      color: darkFunctionTexts(),
                     ),
                     hintText: "0,00",
                     prefix: const Text("R\$"),
@@ -107,20 +104,20 @@ class _ReceitasPageState extends State<ReceitasPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 32.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: Text(
-                  "Informe a data",
+                  Strings.nameImputDate,
                   style: TextStyle(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(207, 255, 255, 255)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
               IconButton(
                 onPressed: _showDatePicker,
-                icon: Icon(Icons.date_range,
-                    color: const Color.fromARGB(220, 104, 89, 205)),
+                icon: Icon(
+                  Icons.date_range,
+                  color: darkFunctionTexts(),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
@@ -143,6 +140,5 @@ class _ReceitasPageState extends State<ReceitasPage> {
         ),
       ),
     );
-    ;
   }
 }

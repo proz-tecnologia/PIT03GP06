@@ -1,15 +1,12 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
+import 'package:ctrl_real/src/model/transections_model.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-const List<String> categorieslist = <String>[
-  'Supermercado',
-  'Lazer',
-  'Transporte',
-  'Farmacia',
-  'Pagamentos',
-  'Gastos extras'
-];
+import '../../../controllers/providercontrolers/transections_controller.dart';
 
 const List<String> formlist = <String>['Dinheiro', 'Pix', 'Débito', 'Crédito'];
 
@@ -20,9 +17,9 @@ class DespesasPage extends StatefulWidget {
   State<DespesasPage> createState() => _AddCategoriesState();
 }
 
+final TransactionController controller = TransactionController();
+
 class _AddCategoriesState extends State<DespesasPage> {
-  double? value;
-  String values = categorieslist.first;
   String form = formlist.first;
 
   void _showDatePicker() {
@@ -31,7 +28,7 @@ class _AddCategoriesState extends State<DespesasPage> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2050),
-      locale: Locale("pt", "BR"),
+      locale: const Locale("pt", "BR"),
     );
   }
 
@@ -52,61 +49,59 @@ class _AddCategoriesState extends State<DespesasPage> {
                 height: 10,
               ),
               Text(
-                "Categoria: ",
+                Strings.nameImputCategoriesForm,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
               ),
               DropdownButton<String>(
                 isExpanded: true,
-                value: values,
+                value: controller.categoryname,
                 elevation: 16,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
-                onChanged: (String? value) {
-                  setState(() {
-                    values = value!;
-                  });
+                onChanged: (a) {
+                  controller.categoryname = a ?? '';
+                  setState(() {});
                 },
-                items: categorieslist
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                items: controller.categoryList
+                    .map(
+                      (e) => DropdownMenuItem<String>(
+                        value: e,
+                        child: Text(e),
+                      ),
+                    )
+                    .toList(),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    maxLength: 40,
-                    validator: (value) {
-                      if (value!.length < 3 || value.length > 40) {
-                        return "Informe uma descrição";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      helperText: "Campo obrigatório",
-                      labelText: 'Descrição',
-                      hintText: "Descreve sua",
-                      labelStyle: TextStyle(
-                        color: DarkController.instance.darkmod
-                            ? const Color.fromARGB(207, 255, 255, 255)
-                            : const Color.fromARGB(220, 104, 89, 205),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  maxLength: 40,
+                  validator: (value) {
+                    if (value!.length < 3 || value.length > 40) {
+                      return "Informe uma descrição";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    helperText: "Campo obrigatório",
+                    labelText: Strings.nameImputDescriptionForm,
+                    hintText: "Descreve sua",
+                    labelStyle: TextStyle(
+                      color: darkFunctionTexts(),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(220, 104, 89, 205),
                       ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(220, 104, 89, 205),
-                        ),
-                      ),
-                    )),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    controller.descri = value;
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
@@ -123,11 +118,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                         color: Color.fromARGB(220, 104, 89, 205),
                       ),
                     ),
-                    labelText: "Valor",
+                    labelText: Strings.nameImputValorForm,
                     labelStyle: TextStyle(
-                      color: DarkController.instance.darkmod
-                          ? const Color.fromARGB(207, 255, 255, 255)
-                          : const Color.fromARGB(220, 104, 89, 205),
+                      color: darkFunctionTexts(),
                     ),
                     hintText: "0,00",
                     prefix: const Text("R\$"),
@@ -138,7 +131,6 @@ class _AddCategoriesState extends State<DespesasPage> {
                     if (value!.isEmpty) {
                       return "Informe um valor";
                     }
-                    ;
                     final valueDouble = double.parse(
                         value.replaceAll(".", "").replaceAll(",", "."));
                     if (valueDouble == 0) {
@@ -146,18 +138,18 @@ class _AddCategoriesState extends State<DespesasPage> {
                     }
                     return null;
                   },
-                  onSaved: ((newValue) => value = double.parse(
-                      newValue!.replaceAll(".", "").replaceAll(",", "."))),
+                  onChanged: (value) {
+                    controller.valor = double.parse(
+                        value.replaceAll(".", "").replaceAll(",", "."));
+                  },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
                 child: Text(
-                  "Forma de pagamento: ",
+                  Strings.nameImputPaymentForm,
                   style: TextStyle(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(207, 255, 255, 255)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
@@ -166,9 +158,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                 value: form,
                 elevation: 16,
                 style: TextStyle(
-                  color: DarkController.instance.darkmod
-                      ? const Color.fromARGB(207, 255, 255, 255)
-                      : const Color.fromARGB(220, 104, 89, 205),
+                  color: darkFunctionTexts(),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -183,35 +173,83 @@ class _AddCategoriesState extends State<DespesasPage> {
                 }).toList(),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 32.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: Text(
-                  "Informe a data",
+                  Strings.nameImputDate,
                   style: TextStyle(
-                    color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(207, 255, 255, 255)
-                        : const Color.fromARGB(220, 104, 89, 205),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
               IconButton(
                 onPressed: _showDatePicker,
-                icon: Icon(Icons.date_range,
-                    color: const Color.fromARGB(220, 104, 89, 205)),
+                icon: Icon(
+                  Icons.date_range,
+                  color: darkFunctionTexts(),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 26.0),
                 child: Center(
                   child: SizedBox(
-                    width: 130,
-                    height: 40,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 48, 201, 43)),
-                      child: const Text('Registrar'),
-                      onPressed: () {},
-                    ),
-                  ),
+                      width: 130,
+                      height: 40,
+                      child: Consumer<HistoryController>(
+                          builder: (context, historyController, _) {
+                        return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 48, 201, 43)),
+                            child: const Text('Registrar'),
+                            onPressed: () {
+                              var trans = Transaction(
+                                  valor: controller.valor,
+                                  descri: controller.descri,
+                                  categoryname: controller.categoryname,
+                                  formPag: controller.formpag);
+                              historyController.setTransAction(trans);
+                              if (controller.categoryname == 'Supermercado') {
+                                historyController.supermerc += controller.valor;
+                                historyController.supermerc =
+                                    historyController.supermerc *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname == 'Lazer') {
+                                historyController.lazer += controller.valor;
+                                historyController.lazer =
+                                    historyController.lazer *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Transporte') {
+                                historyController.transpor += controller.valor;
+                                historyController.transpor =
+                                    historyController.transpor *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Farmacia') {
+                                historyController.farmac += controller.valor;
+                                historyController.farmac =
+                                    historyController.farmac *
+                                        100 /
+                                        historyController.saldo;
+                              } else if (controller.categoryname ==
+                                  'Pagamentos') {
+                                historyController.pagament += controller.valor;
+                                historyController.farmac =
+                                    historyController.farmac *
+                                        100 /
+                                        historyController.saldo;
+                              } else {
+                                historyController.gastosex += controller.valor;
+                                historyController.gastosex +=
+                                    historyController.gastosex *
+                                        100 /
+                                        historyController.saldo;
+                              }
+                            });
+                      })),
                 ),
               ),
             ],
