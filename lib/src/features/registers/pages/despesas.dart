@@ -14,6 +14,7 @@ const List<String> categorieslist = <String>[
 
 const List<String> formlist = <String>['Dinheiro', 'Pix', 'Débito', 'Crédito'];
 
+
 class DespesasPage extends StatefulWidget {
   const DespesasPage({super.key});
 
@@ -22,9 +23,11 @@ class DespesasPage extends StatefulWidget {
 }
 
 class _AddCategoriesState extends State<DespesasPage> {
-  double? value;
+
   String values = categorieslist.first;
   String form = formlist.first;
+  String desc = "";
+  double valor = 0;
 
   void _showDatePicker() {
     showDatePicker(
@@ -58,7 +61,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                   color: darkFunctionTexts(),
                 ),
               ),
-              DropdownButton<String>(
+             DropdownButton<String>(
                 isExpanded: true,
                 value: values,
                 elevation: 16,
@@ -81,27 +84,31 @@ class _AddCategoriesState extends State<DespesasPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    maxLength: 40,
-                    validator: (value) {
-                      if (value!.length < 3 || value.length > 40) {
-                        return "Informe uma descrição";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      helperText: "Campo obrigatório",
-                      labelText: Strings.nameImputDescriptionForm,
-                      hintText: "Descreve sua",
-                      labelStyle: TextStyle(
-                        color: darkFunctionTexts(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  maxLength: 40,
+                  validator: (value) {
+                    if (value!.length < 3 || value.length > 40) {
+                      return "Informe uma descrição";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    helperText: "Campo obrigatório",
+                    labelText: Strings.nameImputDescriptionForm,
+                    hintText: "Descreve sua",
+                    labelStyle: TextStyle(
+                      color: darkFunctionTexts(),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(220, 104, 89, 205),
                       ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(220, 104, 89, 205),
-                        ),
-                      ),
-                    )),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    desc = value;
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
@@ -138,8 +145,10 @@ class _AddCategoriesState extends State<DespesasPage> {
                     }
                     return null;
                   },
-                  onSaved: ((newValue) => value = double.parse(
-                      newValue!.replaceAll(".", "").replaceAll(",", "."))),
+                  onChanged: (value) {
+                    valor = double.parse(
+                        value.replaceAll(".", "").replaceAll(",", "."));
+                  },
                 ),
               ),
               Padding(
@@ -193,12 +202,12 @@ class _AddCategoriesState extends State<DespesasPage> {
                     width: 130,
                     height: 40,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 48, 201, 43)),
-                      child: const Text('Registrar'),
-                      onPressed: () {},
-                    ),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 48, 201, 43)),
+                        child: const Text('Registrar'),
+                        onPressed: () {
+                        }),
                   ),
                 ),
               ),

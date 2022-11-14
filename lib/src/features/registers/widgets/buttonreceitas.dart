@@ -34,8 +34,8 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                       topRight: Radius.circular(4)),
                   child: Container(
                     color: DarkController.instance.darkmod
-                        ? const Color.fromARGB(213, 19, 19, 19)
-                        : const Color.fromARGB(207, 255, 255, 255),
+                        ? Color.fromARGB(181, 19, 19, 19)
+                        : Color.fromARGB(162, 255, 255, 255),
                     height: 200,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +44,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                           Strings.nameRegisterForm,
                           style: TextStyle(
                             color: darkFunctionTexts(),
+                            fontSize: 20,
                           ),
                         ),
                         Padding(
