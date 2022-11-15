@@ -16,27 +16,4 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  double supermercPorcent() {
-    return supermerc += supermerc * 100 / saldo;
-  }
-
-  double lazerPorcent() {
-    return lazer += lazer * 100 / saldo;
-  }
-
-  double trasnporPorcent() {
-    return transpor += transpor * 100 / saldo;
-  }
-
-  double gastosexPorcent() {
-    return gastosex += gastosex * 100/ saldo;
-  }
-
-  double pagamentPorcent() {
-    return pagament += pagament * 100 / saldo;
-  }
-
-  double farmacPorcent() {
-    return farmac += farmac * 100 / saldo;
-  }
 }
