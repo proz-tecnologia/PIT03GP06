@@ -4,7 +4,7 @@ abstract class Strings {
   static const String nameImputDescriptionForm = "Descrição:";
   static const String nameImputValorForm = "Valor:";
   static const String nameImputCategoriesForm = "Categorias:";
-  static const String nameImputPaymentForm = "Forma de pagamento:";
+  static const String nameImputPaymentForm = "Forma de pagamento(opcional):";
   static const String nameImputDate = "Infomre a data:";
 
   //Drawer List Tile

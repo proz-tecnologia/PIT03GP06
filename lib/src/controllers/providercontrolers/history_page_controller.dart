@@ -17,25 +17,43 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  double porcentSupermerc(double result){
+  double addValueCategory(double result, String categorynames) {
+    if (categorynames == 'Supermercado') {
+      return supermerc += result;
+    } else if (categorynames == 'Lazer') {
+      return lazer += result;
+    } else if (categorynames == 'Transporte') {
+      return transpor += result;
+    } else if (categorynames == 'Farmacia') {
+      return farmac += result;
+    } else if (categorynames == 'Pagamentos') {
+      return pagament += result;
+    } else {
+      return gastosex += result;
+    }
+  }
+
+  double porcentSupermerc(double result) {
     return result = supermerc * 100 / saldo;
   }
 
-  double porcentLazer(double result){
+  double porcentLazer(double result) {
     return result = lazer * 100 / saldo;
   }
 
-  double porcentTranspor(double result){
+  double porcentTranspor(double result) {
     return result = transpor * 100 / saldo;
   }
-    double porcentGastosex(double result){
+
+  double porcentGastosex(double result) {
     return result = gastosex * 100 / saldo;
   }
-    double porcentPagament(double result){
+
+  double porcentPagament(double result) {
     return result = pagament * 100 / saldo;
   }
-    double porcentFarmac(double result){
+
+  double porcentFarmac(double result) {
     return result = farmac * 100 / saldo;
   }
-
 }
