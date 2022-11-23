@@ -71,14 +71,14 @@ class PieChart2State extends State {
             PieChartData(
               centerSpaceRadius: 26,
               sections: List.generate(6, (i) {
-                const fontSize = 12.0;
+                const fontSize = 8.0;
                 const radius = 42.0;
                 switch (i) {
                   case 0:
                     return PieChartSectionData(
                       color: const Color(0xff8D32E3),
                       value: controle.supermerc != 0 ? controle.supermerc : 0.001,
-                      title: controle.supermerc.toString() != '0' ? '${controle.supermerc.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.supermerc.toString() != '0' ? '${controle.porcentSupermerc(controle.supermerc).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: const TextStyle(
                         fontSize: fontSize,
@@ -90,7 +90,7 @@ class PieChart2State extends State {
                     return PieChartSectionData(
                       color: const Color(0xffD841E8),
                       value: controle.transpor != 0 ? controle.transpor : 0.001,
-                      title: controle.transpor.toString() != '0' ? '${controle.transpor.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.transpor.toString() != '0' ? '${controle.porcentTranspor(controle.transpor).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: TextStyle(
                         fontSize: fontSize,
@@ -102,7 +102,7 @@ class PieChart2State extends State {
                     return PieChartSectionData(
                       color: const Color(0xff845bef),
                       value: controle.pagament != 0 ? controle.pagament : 0.001,
-                      title: controle.pagament.toString() != '0' ? '${controle.pagament.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.pagament.toString() != '0' ? '${controle.porcentPagament(controle.pagament).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: TextStyle(
                         fontSize: fontSize,
@@ -114,7 +114,7 @@ class PieChart2State extends State {
                     return PieChartSectionData(
                       color: const Color(0xff4964B8),
                       value: controle.lazer != 0 ? controle.lazer : 0.001,
-                      title: controle.lazer.toString() != '0' ? '${controle.lazer.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.lazer.toString() != '0' ? '${controle.porcentLazer(controle.lazer).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: TextStyle(
                         fontSize: fontSize,
@@ -126,7 +126,7 @@ class PieChart2State extends State {
                     return PieChartSectionData(
                       color: const Color(0xff2C25FA),
                       value: controle.pagament != 0 ? controle.farmac : 0.001,
-                      title: controle.farmac.toString() != '0' ? '${controle.farmac.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.farmac.toString() != '0' ? '${controle.porcentFarmac(controle.farmac).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: TextStyle(
                         fontSize: fontSize,
@@ -138,7 +138,7 @@ class PieChart2State extends State {
                     return PieChartSectionData(
                       color: const Color.fromARGB(255, 91, 0, 152),
                       value: controle.gastosex != 0 ? controle.gastosex : 0.001,
-                      title: controle.gastosex.toString() != '0' ? '${controle.gastosex.toStringAsFixed(1)}%' : '0.0',
+                      title: controle.gastosex.toString() != '0' ? '${controle.porcentGastosex(controle.gastosex).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: TextStyle(
                         fontSize: fontSize,

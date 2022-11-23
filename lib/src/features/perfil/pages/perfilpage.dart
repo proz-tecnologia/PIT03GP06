@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -53,32 +56,65 @@ class _PerfilPageState extends State<PerfilPage> {
                     ],
                   ),
                   onTap: () {
-                    galeryImage();
-                  },
-                ),
-                TextButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'Tire uma foto',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 104, 89, 205),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Icon(
-                        Icons.photo_camera_rounded,
-                        size: 20,
-                        color: Color.fromARGB(255, 104, 89, 205),
-                      )
-                    ],
-                  ),
-                  onPressed: () => {
-                    cameraImage(),
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          color: DarkController.instance.darkmod
+                              ? Color.fromARGB(181, 19, 19, 19)
+                              : Color.fromARGB(162, 255, 255, 255),
+                          height: 500,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 24),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      height: 80,
+                                      width: 80,
+                                      color: Color.fromARGB(33, 0, 0, 0),
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.photo_camera,
+                                          size: 60,
+                                        ),
+                                        onPressed: () {
+                                          cameraImage();
+                                        },
+                                      ),
+                                    ),
+                                    Text('Camera')
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      height: 80,
+                                      width: 80,
+                                      color: Color.fromARGB(33, 0, 0, 0),
+                                      child: IconButton(
+                                        icon: const Icon(
+                                          Icons.photo,
+                                          size: 60,
+                                        ),
+                                        onPressed: () {
+                                          galeryImage();
+                                        },
+                                      ),
+                                    ),
+                                    Text('Galeria')
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
                 const Text("@kawaii_Aysha"),
@@ -110,7 +146,6 @@ class _PerfilPageState extends State<PerfilPage> {
             trailing: Icon(Icons.delete),
             onTap: () {},
           )
-          
         ]),
       ),
     );
@@ -126,7 +161,7 @@ class _PerfilPageState extends State<PerfilPage> {
     }
   }
 
-    cameraImage() async {
+  cameraImage() async {
     final XFile? temporaryImage =
         await imagePicker.pickImage(source: ImageSource.camera);
     if (temporaryImage != null) {

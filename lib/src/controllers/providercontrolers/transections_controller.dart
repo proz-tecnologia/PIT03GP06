@@ -1,5 +1,5 @@
 class TransactionController {
-  final List<String> categoryList = [
+  final List<String> categoryList = <String>[
     'Supermercado',
     'Lazer',
     'Transporte',
@@ -8,8 +8,22 @@ class TransactionController {
     'Gastos extras'
   ];
 
-  String categoryname = 'Supermercado';
+  final List<String> formlist = <String>[
+    'Dinheiro',
+    'Pix',
+    'Débito',
+    'Crédito'
+  ];
+
+    final List<String> historicform = <String>[
+    'Todos',
+    'Categorias',
+    'Apenas despesas',
+    'Apenas receita'
+  ];
+
+  String categoryname = '';
   String descri = '';
   double valor = 0;
-  String? formpag;
+  String formpag = '';
 }
