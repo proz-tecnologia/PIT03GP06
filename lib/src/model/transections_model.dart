@@ -1,14 +1,15 @@
 class Transaction {
   final double valor;
-  final String descri;
-  final String? formPag;
+  final String descricao;
+  final String formPag;
   final String categoryname;
-  
+  final DateTime dateTime;
 
   Transaction({
-    this.formPag,
+    required this.formPag,
     required this.valor,
-    required this.descri,
+    required this.descricao,
     required this.categoryname,
+    required this.dateTime,
   });
 }
