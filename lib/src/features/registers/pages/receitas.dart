@@ -5,11 +5,11 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../controllers/providercontrolers/transections_despe_controller.dart';
+import 'package:provider/provider.dart';
 
 class ReceitasPage extends StatefulWidget {
-  const ReceitasPage({super.key});
+  ReceitasPage({super.key});
 
   @override
   State<ReceitasPage> createState() => _ReceitasPageState();
@@ -30,6 +30,9 @@ class _ReceitasPageState extends State<ReceitasPage> {
     );
   }
 
+  double? value;
+  final TransactionController controllerReceita = TransactionController();
+  final _txtDateTimeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,7 +79,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        controller.descri = value;
+                        controller.descricao = value;
                       },
                     ),
                   ),
@@ -130,12 +133,32 @@ class _ReceitasPageState extends State<ReceitasPage> {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: _showDatePicker,
-                    icon: Icon(
-                      Icons.date_range,
-                      color: darkFunctionTexts(),
-                    ),
+                  TextFormField(
+                  controller: _txtDateTimeController,
+                  keyboardType: TextInputType.datetime,
+                  decoration:
+                      const InputDecoration(labelText: "Data da Operação"),
+                  maxLength: 10,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Informe uma data.";
+                    }
+                    return null;
+                  },
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? date = await showDatePicker(
+                        context: context,
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 360)),
+                        lastDate: DateTime.now(),
+                        initialDate: controllerReceita.dateTime);
+                    controllerReceita.dateTime =
+                        date ?? controllerReceita.dateTime;
+                    _txtDateTimeController.text =
+                        "${controllerReceita.dateTime.day}/${controllerReceita.dateTime.month}/${controllerReceita.dateTime.year}";
+                  },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
@@ -165,7 +188,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                   var trans = TotalandCategory(
                                       type: 'Receita',
                                       valor: controller.valor,
-                                      descri: controller.descri,
+                                      descri: controller.descricao,
                                       formPag: 'Ganho',
                                       icon: const Icon(
                                         Icons.arrow_upward_outlined,

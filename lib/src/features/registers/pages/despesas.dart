@@ -16,18 +16,10 @@ class DespesasPage extends StatefulWidget {
 
 final TransactionController controller = TransactionController();
 
+final _txtDateTimeController = TextEditingController();
+
 class _AddCategoriesState extends State<DespesasPage> {
   final _formKey = GlobalKey<FormState>();
-
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2050),
-      locale: const Locale("pt", "BR"),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +105,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        controller.descri = value;
+                        controller.descricao = value;
                       },
                     ),
                   ),
@@ -204,12 +196,31 @@ class _AddCategoriesState extends State<DespesasPage> {
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: _showDatePicker,
-                    icon: Icon(
-                      Icons.date_range,
-                      color: darkFunctionTexts(),
-                    ),
+                  TextFormField(
+                    controller: _txtDateTimeController,
+                    keyboardType: TextInputType.datetime,
+                    decoration:
+                        const InputDecoration(labelText: "Data da Operação"),
+                    maxLength: 10,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Informe uma data.";
+                      }
+                      return null;
+                    },
+                    onTap: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      DateTime? date = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime.now()
+                              .subtract(const Duration(days: 360)),
+                          lastDate: DateTime.now(),
+                          initialDate: controller.dateTime);
+                      controller.dateTime = date ?? controller.dateTime;
+                      _txtDateTimeController.text =
+                          "${controller.dateTime.day}/${controller.dateTime.month}/${controller.dateTime.year}";
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 26.0),
@@ -228,7 +239,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 1),
+                                        duration: Duration(seconds: 2),
                                         backgroundColor:
                                             Color.fromARGB(220, 104, 89, 205),
                                         content: Text(
@@ -239,7 +250,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   var trans = TotalandCategory(
                                     type: 'Despesa',
                                       valor: controller.valor,
-                                      descri: controller.descri,
+                                      descri: controller.descricao,
                                       categoryname: controller.categoryname,
                                       formPag: 'Forma: ${controller.formpag}',
                                       icon: Icon(Icons.arrow_downward_outlined, color: Colors.red,),
