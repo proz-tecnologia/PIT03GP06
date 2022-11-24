@@ -15,7 +15,7 @@ class TransactionController {
     'Crédito'
   ];
 
-    final List<String> historicform = <String>[
+  final List<String> historicform = <String>[
     'Todos',
     'Categorias',
     'Apenas despesas',
@@ -23,7 +23,8 @@ class TransactionController {
   ];
 
   String categoryname = '';
-  String descri = '';
+  String descricao = '';
   double valor = 0;
   String formpag = '';
+  var dateTime = DateTime.now();
 }

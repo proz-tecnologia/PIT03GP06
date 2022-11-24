@@ -1,3 +1,4 @@
+import 'package:ctrl_real/src/features/extension/extension_double.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/providercontrolers/history_page_controller.dart';
@@ -56,36 +57,37 @@ class _HistoricPageState extends State<HistoricPage> {
                                 padding: const EdgeInsets.only(
                                     top: 4, left: 8, right: 8),
                                 child: Card(
-                                color:
-                                    const Color.fromARGB(220, 104, 89, 205),
-                                child: ListTile(
-                                  title: Text(
-                                    e.formPag,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff),),
-                                  ),
-                                  subtitle: Text(
-                                    e.descri,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff)),
-                                  ),
-                                  trailing: Text(
-                                    '${e.valor} R\$',
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff)),
-                                  ),
-                                  leading: Padding(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      e.categoryname,
+                                  color:
+                                      const Color.fromARGB(220, 104, 89, 205),
+                                  child: ListTile(
+                                    title: Text(
+                                      e.formPag,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Color(0xdfffffff),
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      e.descricao,
+                                      textAlign: TextAlign.center,
                                       style:
                                           TextStyle(color: Color(0xdfffffff)),
                                     ),
+                                    trailing: Text(
+                                      '\R\$ ${e.valor.formatBRL}',
+                                      style:
+                                          TextStyle(color: Color(0xdfffffff)),
+                                    ),
+                                    leading: Padding(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        e.categoryname,
+                                        style:
+                                            TextStyle(color: Color(0xdfffffff)),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                  ),
                               ))
                           .toList()
                       : menuName == 'Apenas despesas'
@@ -97,7 +99,7 @@ class _HistoricPageState extends State<HistoricPage> {
                                           TextStyle(color: Color(0xdfffffff)),
                                     ),
                                     subtitle: Text(
-                                      e.descri,
+                                      e.descricao,
                                       style:
                                           TextStyle(color: Color(0xdfffffff)),
                                     ),
@@ -122,7 +124,7 @@ class _HistoricPageState extends State<HistoricPage> {
                                               color: Color(0xdfffffff)),
                                         ),
                                         subtitle: Text(
-                                          e.descri,
+                                          e.descricao,
                                           style: const TextStyle(
                                               color: Color(0xdfffffff)),
                                         ),
@@ -146,7 +148,7 @@ class _HistoricPageState extends State<HistoricPage> {
                                               color: Color(0xdfffffff)),
                                         ),
                                         subtitle: Text(
-                                          e.descri,
+                                          e.descricao,
                                           style: const TextStyle(
                                               color: Color(0xdfffffff)),
                                         ),

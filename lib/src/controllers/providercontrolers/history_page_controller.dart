@@ -1,10 +1,10 @@
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/model/transections_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
-
   final List<Transaction> transactionList = [];
-  double saldo = 5000;
+  double saldo = controller.valor;
   double supermerc = 0;
   double lazer = 0;
   double transpor = 0;

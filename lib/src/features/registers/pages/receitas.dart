@@ -1,10 +1,15 @@
+import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/transections_controller.dart';
+import 'package:ctrl_real/src/model/transections_model.dart';
+
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ReceitasPage extends StatefulWidget {
-  const ReceitasPage({super.key});
+  ReceitasPage({super.key});
 
   @override
   State<ReceitasPage> createState() => _ReceitasPageState();
@@ -12,17 +17,9 @@ class ReceitasPage extends StatefulWidget {
 
 class _ReceitasPageState extends State<ReceitasPage> {
   double? value;
-
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2050),
-      locale: const Locale("pt", "BR"),
-    );
-  }
-
+  final TransactionController controllerReceita = TransactionController();
+  final _txtDateTimeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -113,12 +110,32 @@ class _ReceitasPageState extends State<ReceitasPage> {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: _showDatePicker,
-                  icon: Icon(
-                    Icons.date_range,
-                    color: darkFunctionTexts(),
-                  ),
+                TextFormField(
+                  controller: _txtDateTimeController,
+                  keyboardType: TextInputType.datetime,
+                  decoration:
+                      const InputDecoration(labelText: "Data da Operação"),
+                  maxLength: 10,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Informe uma data.";
+                    }
+                    return null;
+                  },
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? date = await showDatePicker(
+                        context: context,
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 360)),
+                        lastDate: DateTime.now(),
+                        initialDate: controllerReceita.dateTime);
+                    controllerReceita.dateTime =
+                        date ?? controllerReceita.dateTime;
+                    _txtDateTimeController.text =
+                        "${controllerReceita.dateTime.day}/${controllerReceita.dateTime.month}/${controllerReceita.dateTime.year}";
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
@@ -126,12 +143,41 @@ class _ReceitasPageState extends State<ReceitasPage> {
                     child: SizedBox(
                       width: 130,
                       height: 40,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 48, 201, 43)),
-                        child: const Text('Registrar'),
-                        onPressed: () {},
+                      child: Consumer<HistoryController>(
+                        builder: (context, historyController, _) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 48, 201, 43)),
+                            child: const Text('Registrar'),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      duration: Duration(seconds: 2),
+                                      backgroundColor:
+                                          Color.fromARGB(220, 104, 89, 205),
+                                      content: Text(
+                                        'Registrado!',
+                                        textAlign: TextAlign.center,
+                                      )),
+                                );
+                                var trans = Transaction(
+                                    categoryname:
+                                        controllerReceita.categoryname,
+                                    descricao: controllerReceita.descricao,
+                                    valor: controllerReceita.valor,
+                                    formPag: controllerReceita.formpag,
+                                    dateTime: controllerReceita.dateTime);
+
+                                historyController.setTransAction(trans);
+                                historyController.addValueCategory(
+                                    controllerReceita.valor,
+                                    controllerReceita.categoryname);
+                              }
+                            },
+                          );
+                        },
                       ),
                     ),
                   ),
