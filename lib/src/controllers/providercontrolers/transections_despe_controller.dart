@@ -17,7 +17,6 @@ class TransactionController {
 
     final List<String> historicform = <String>[
     'Todos',
-    'Categorias',
     'Apenas despesas',
     'Apenas receita'
   ];
