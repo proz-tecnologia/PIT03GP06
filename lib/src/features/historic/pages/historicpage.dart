@@ -168,10 +168,13 @@ class _HistoricPageState extends State<HistoricPage> {
                                                     color: Color(0xdfffffff),
                                                   ),
                                                 ),
-                                                Text(
-                                                  e.categoryname ?? '',
-                                                  style: TextStyle(
-                                                      color: Color(0xdfffffff)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right: 12),
+                                                  child: Text(
+                                                    e.categoryname ?? '',
+                                                    style: TextStyle(
+                                                        color: Color(0xdfffffff)),
+                                                  ),
                                                 ),
                                               ],
                                             ),
