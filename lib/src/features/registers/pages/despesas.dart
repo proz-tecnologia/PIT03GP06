@@ -1,11 +1,11 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
-import 'package:ctrl_real/src/model/transections_model.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../controllers/providercontrolers/transections_controller.dart';
+import '../../../controllers/providercontrolers/transections_despe_controller.dart';
 
 class DespesasPage extends StatefulWidget {
   const DespesasPage({super.key});
@@ -82,9 +82,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      maxLength: 54,
+                      maxLength: 52,
                       validator: (value) {
-                        if (value!.length < 3 || value.length > 54) {
+                        if (value!.length < 3 || value.length > 52) {
                           return "Informe uma descrição";
                         }
                         return null;
@@ -247,14 +247,15 @@ class _AddCategoriesState extends State<DespesasPage> {
                                           textAlign: TextAlign.center,
                                         )),
                                   );
-                                  var trans = Transaction(
-                                      categoryname: controller.categoryname,
-                                      descricao: controller.descricao,
+                                  var trans = TotalandCategory(
+                                    type: 'Despesa',
                                       valor: controller.valor,
-                                      formPag: controller.formpag,
-                                      dateTime: controller.dateTime);
-
-                                  historyController.setTransAction(trans);
+                                      descri: controller.descricao,
+                                      categoryname: controller.categoryname,
+                                      formPag: 'Forma: ${controller.formpag}',
+                                      icon: Icon(Icons.arrow_downward_outlined, color: Colors.red,),
+                                      );
+                                      historyController.addTotaltransection(trans);
                                   historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);

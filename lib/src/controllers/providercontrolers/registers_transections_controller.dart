@@ -1,10 +1,10 @@
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
-import 'package:ctrl_real/src/model/transections_model.dart';
+import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
-  final List<Transaction> transactionList = [];
-  double saldo = controller.valor;
+  final List<TotalandCategory> registersList = [];
+
+  double saldo = 5000;
   double supermerc = 0;
   double lazer = 0;
   double transpor = 0;
@@ -12,8 +12,13 @@ class HistoryController extends ChangeNotifier {
   double pagament = 0;
   double farmac = 0;
 
-  setTransAction(Transaction trans) {
-    transactionList.add(trans);
+  addTotaltransection(TotalandCategory trans) {
+    registersList.add(trans);
+    notifyListeners();
+  }
+
+  removePosition(int index) {
+    registersList.removeAt(index);
     notifyListeners();
   }
 
