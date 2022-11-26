@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class TotalandCategory {
+  final String id = const Uuid().v4();
   final String type;
   final Icon icon;
   final double valor;
