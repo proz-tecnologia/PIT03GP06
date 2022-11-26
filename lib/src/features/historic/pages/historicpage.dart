@@ -49,172 +49,40 @@ class _HistoricPageState extends State<HistoricPage> {
         body: Consumer<HistoryController>(builder: (context, controller, __) {
           return SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
-              child: menuName == 'Todos'
-                  ? ListView.builder(
-                      itemCount: controller.registersList.length,
-                      itemBuilder: (_, index) => Dismissible(
-                            key: ValueKey<TotalandCategory>(
-                                controller.registersList[index]),
-                            direction: DismissDirection.endToStart,
-                            background: Padding(
-                              padding: EdgeInsets.only(top: 4),
-                              child: Container(
-                                  color: Color.fromARGB(162, 244, 67, 54)),
-                            ),
-                            onDismissed: (direction) =>
-                                controller.removePosition(index),
-                            child: ItemTransec(
-                              controller.registersList[index],
-                              key: ValueKey<int>(index),
-                            ),
-                          ))
-                  : menuName == 'Apenas despesas'
-                      ? ListView(
-                          children: controller.registersList
-                              .where((element) => element.type == 'Despesa')
-                              .map((e) => Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 4, left: 8, right: 8),
-                                    child: Card(
-                                      color: const Color.fromARGB(
-                                          220, 104, 89, 205),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  e.formPag,
-                                                  style: TextStyle(
-                                                    color: Color(0xdfffffff),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 12),
-                                                  child: Text(
-                                                    e.categoryname ?? '',
-                                                    style: TextStyle(
-                                                        color: Color(0xdfffffff)),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.all(8),
-                                              child: Divider(
-                                                height: 4,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  '${e.valor} R\$',
-                                                  style: TextStyle(
-                                                      color: Color(0xdfffffff)),
-                                                ),
-                                                e.icon,
-                                                SizedBox(
-                                                  width: 220,
-                                                  child: Text(
-                                                    e.descri,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color:
-                                                            Color(0xdfffffff)),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                        )
-                      : ListView(
-                          children: controller.registersList
-                              .where((element) => element.type == 'Receita')
-                              .map((e) => Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 4, left: 8, right: 8),
-                                    child: Card(
-                                      color: const Color.fromARGB(
-                                          220, 104, 89, 205),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  e.formPag,
-                                                  style: TextStyle(
-                                                    color: Color(0xdfffffff),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: 12),
-                                                  child: Text(
-                                                    e.categoryname ?? '',
-                                                    style: TextStyle(
-                                                        color: Color(0xdfffffff)),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.all(8),
-                                              child: Divider(
-                                                height: 4,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  '${e.valor} R\$',
-                                                  style: TextStyle(
-                                                      color: Color(0xdfffffff)),
-                                                ),
-                                                e.icon,
-                                                SizedBox(
-                                                  width: 220,
-                                                  child: Text(
-                                                    e.descri,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color:
-                                                            Color(0xdfffffff)),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ))
-                              .toList(),
-                        ));
+              child: ListView.builder(
+                  itemCount: controller.registersList
+                      .where((element) =>
+                          element.type ==
+                          (menuName == 'Todos' ? element.type : menuName))
+                      .length,
+                  itemBuilder: (context, index) => Dismissible(
+                        key: ValueKey<TotalandCategory>(
+                            controller.registersList[index]),
+                        direction: DismissDirection.endToStart,
+                        background: Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Container(
+                              color: Color.fromARGB(162, 244, 67, 54)),
+                        ),
+                        onDismissed: (direction) {
+                          var id = controller.registersList
+                            .where((element) =>
+                            element.type ==
+                            (menuName == 'Todos' ? element.type : menuName)).toList()[index].id;
+                          controller.removePorcentChart(id);
+                          controller.removeByID(id);
+                        },
+                        child: ItemTransec(
+                          controller.registersList
+                              .where((element) =>
+                                  element.type ==
+                                  (menuName == 'Todos'
+                                      ? element.type
+                                      : menuName))
+                              .toList()[index],
+                          key: ValueKey<int>(index),
+                        ),
+                      )));
         }),
       ),
     );

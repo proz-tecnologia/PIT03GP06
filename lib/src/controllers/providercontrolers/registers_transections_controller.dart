@@ -17,11 +17,15 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  removePosition(int index) {
-    registersList.removeAt(index);
+    void removeByID(String id) {
+    registersList.removeWhere((e) => e.id == id);
     notifyListeners();
   }
 
+  removePorcentChart(String index) {
+    var element = registersList.where((element) => element.id == index).first;
+        menosValueCategory(element.valor, element.categoryname ?? '');
+    }
   double addValueCategory(double result, String categorynames) {
     if (categorynames == 'Supermercado') {
       return supermerc += result;
@@ -35,6 +39,24 @@ class HistoryController extends ChangeNotifier {
       return pagament += result;
     } else {
       return gastosex += result;
+    }
+  }
+
+  double menosValueCategory(double result, String categorynames) {
+    if (categorynames == 'Supermercado') {
+      return supermerc -= result;
+    } else if (categorynames == 'Lazer') {
+      return lazer -= result;
+    } else if (categorynames == 'Transporte') {
+      return transpor -= result;
+    } else if (categorynames == 'Farmacia') {
+      return farmac -= result;
+    } else if (categorynames == 'Pagamentos') {
+      return pagament -= result;
+    } else if (categorynames == 'Gastos extras') {
+      return gastosex -= result;
+    } else {
+      return supermerc -= 0;
     }
   }
 
