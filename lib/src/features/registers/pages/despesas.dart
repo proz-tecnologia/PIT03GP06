@@ -249,16 +249,24 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   );
                                   var trans = TotalandCategory(
                                     type: 'Despesa',
-                                      valor: controller.valor,
-                                      descri: controller.descricao,
-                                      categoryname: controller.categoryname,
-                                      formPag: 'Forma: ${controller.formpag}',
-                                      icon: Icon(Icons.arrow_downward_outlined, color: Colors.red,),
-                                      );
-                                      historyController.addTotaltransection(trans);
+                                    valor: controller.valor,
+                                    descri: controller.descricao,
+                                    categoryname: controller.categoryname,
+                                    formPag: 'Forma: ${controller.formpag}',
+                                    icon: Icon(
+                                      Icons.arrow_downward_outlined,
+                                      color: Colors.red,
+                                    ),
+                                  );
+                                  historyController.addTotaltransection(trans);
                                   historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);
+
+                                  historyController
+                                      .novoSaldoSaida(controller.valor);
+                                  historyController
+                                      .totalSaida(controller.valor);
                                 }
                               },
                             );

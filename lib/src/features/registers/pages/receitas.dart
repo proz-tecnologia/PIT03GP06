@@ -134,31 +134,31 @@ class _ReceitasPageState extends State<ReceitasPage> {
                     ),
                   ),
                   TextFormField(
-                  controller: _txtDateTimeController,
-                  keyboardType: TextInputType.datetime,
-                  decoration:
-                      const InputDecoration(labelText: "Data da Operação"),
-                  maxLength: 10,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Informe uma data.";
-                    }
-                    return null;
-                  },
-                  onTap: () async {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    DateTime? date = await showDatePicker(
-                        context: context,
-                        firstDate:
-                            DateTime.now().subtract(const Duration(days: 360)),
-                        lastDate: DateTime.now(),
-                        initialDate: controllerReceita.dateTime);
-                    controllerReceita.dateTime =
-                        date ?? controllerReceita.dateTime;
-                    _txtDateTimeController.text =
-                        "${controllerReceita.dateTime.day}/${controllerReceita.dateTime.month}/${controllerReceita.dateTime.year}";
-                  },
+                    controller: _txtDateTimeController,
+                    keyboardType: TextInputType.datetime,
+                    decoration:
+                        const InputDecoration(labelText: "Data da Operação"),
+                    maxLength: 10,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Informe uma data.";
+                      }
+                      return null;
+                    },
+                    onTap: () async {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      DateTime? date = await showDatePicker(
+                          context: context,
+                          firstDate: DateTime.now()
+                              .subtract(const Duration(days: 360)),
+                          lastDate: DateTime.now(),
+                          initialDate: controllerReceita.dateTime);
+                      controllerReceita.dateTime =
+                          date ?? controllerReceita.dateTime;
+                      _txtDateTimeController.text =
+                          "${controllerReceita.dateTime.day}/${controllerReceita.dateTime.month}/${controllerReceita.dateTime.year}";
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
@@ -189,12 +189,15 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                       type: 'Receita',
                                       valor: controller.valor,
                                       descri: controller.descricao,
-                                      formPag: 'Ganho',
+                                      formPag: 'Renda extra',
                                       icon: const Icon(
                                         Icons.arrow_upward_outlined,
                                         color: Colors.green,
                                       ));
                                   historyController.addTotaltransection(trans);
+                                  historyController.novaRenda(controller.valor);
+                                  historyController
+                                      .novoSaldoEntrada(controller.valor);
                                 }
                               },
                             );
