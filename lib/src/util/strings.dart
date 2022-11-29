@@ -21,5 +21,5 @@ abstract class Strings {
   static const String nameDicasContainer = "Dicas";
 
   //About
-  static const String nameApp = "Ctrl'Real";
+  static const String appName = "Ctrl'Real";
 }
