@@ -30,7 +30,7 @@ class SobreApp extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.fromLTRB(4, 0, 0, 10),
                 child: const Text(
-                  Strings.nameApp,
+                  Strings.appName,
                   selectionColor: Color(0xff2fd82c),
                   //to do
                 ),
