@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           SafeArea(
               child: SingleChildScrollView(
             child: Column(
-              children: const [
+              children:  [
                 Balances(),
                 Speding(),
                 Categories(),

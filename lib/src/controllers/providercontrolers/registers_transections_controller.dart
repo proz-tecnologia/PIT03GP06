@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 class HistoryController extends ChangeNotifier {
   final List<TotalandCategory> registersList = [];
 
+  double valorLimite = 0;
   double renda = 0;
   double saldoDisponivel = 0;
   double saida = 0;
@@ -27,6 +28,10 @@ class HistoryController extends ChangeNotifier {
   removePorcentChart(String index) {
     var element = registersList.where((element) => element.id == index).first;
     menosValueCategory(element.valor, element.categoryname ?? '');
+  }
+
+  double atualizarLimite(double result) {
+    return (valorLimite += result) * 100 / renda;
   }
 
   double novaRenda(double result) {
@@ -101,5 +106,17 @@ class HistoryController extends ChangeNotifier {
 
   double porcentFarmac(double result) {
     return result = farmac * 100 / renda;
+  }
+
+  double porcentSaida(double result) {
+    return result = (saida * 100 / renda) / 100;
+  }
+
+  double porcentAtualizar(double result) {
+    return result = saida * 100 / renda;
+  }
+
+  double porcentAtualizardisp(double result) {
+    return result = saldoDisponivel * 100 / renda;
   }
 }

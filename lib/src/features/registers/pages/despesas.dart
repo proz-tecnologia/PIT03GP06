@@ -267,6 +267,12 @@ class _AddCategoriesState extends State<DespesasPage> {
                                       .novoSaldoSaida(controller.valor);
                                   historyController
                                       .totalSaida(controller.valor);
+                                  historyController
+                                      .porcentSaida(controller.valor);
+                                  historyController
+                                      .atualizarLimite(controller.valor);
+                                  historyController
+                                      .porcentAtualizardisp(controller.valor);
                                 }
                               },
                             );
