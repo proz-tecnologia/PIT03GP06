@@ -1,6 +1,6 @@
-Equipe: Júlia Lucena, Paulo César, Janiele Justino e Polyana Patrícia.
+Equipe: Júlia Lucena, Paulo César, Janiele Justino e Angelina Ottoni.
 
-Projeto
+# Projeto
 Marca: Ctrl' Real
 Logo: Imagotipo
 Arquétipo: Inovação - Criação

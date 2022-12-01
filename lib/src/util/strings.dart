@@ -20,10 +20,17 @@ abstract class Strings {
   static const String nameCategoriesContainer = "Categorias";
   static const String nameDicasContainer = "Dicas";
 
+  //About
+  static const String appName = "Ctrl'Real";
+<<<<<<< HEAD
   //new register
   static const String userNome = "Nome";
   static const String userEmail = "Email";
   static const String userRenda = "Renda";
   static const String userSenha = "Senha";
   static const String userConfSenha = "Confirmar senha";
+=======
+  //About
+  static const String appName = "Ctrl'Real";
+>>>>>>> 08f8eaf14d171f4d7c31ab3cc3236ce056559990
 }
