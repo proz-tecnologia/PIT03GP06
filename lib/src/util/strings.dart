@@ -19,4 +19,7 @@ abstract class Strings {
   static const String nameLimitContainer = "Limite";
   static const String nameCategoriesContainer = "Categorias";
   static const String nameDicasContainer = "Dicas";
+
+  //About
+  static const String appName = "Ctrl'Real";
 }
