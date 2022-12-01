@@ -1,7 +1,9 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/history_page_controller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/features/login/loginpage.dart';
 import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
+import 'package:ctrl_real/src/features/user/registration/new_register.dart';
 import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
@@ -55,9 +57,11 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: "/",
             routes: {
-              "/": (context) => const HomePage(),
+              "/": (context) => const LoginUser(),
+              "/cadastro": (context) => const NewRegister(),
+              "/home": (context) => const HomePage(),
               "/config": (context) => const SettingsPage(),
-              "/receitas": (context) => const ReceitasPage(),
+              "/receitas": (context) => ReceitasPage(),
               "/despesas": (context) => const DespesasPage(),
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp()

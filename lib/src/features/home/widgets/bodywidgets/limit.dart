@@ -1,11 +1,15 @@
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class Speding extends StatelessWidget {
-  const Speding({super.key});
+  Speding({super.key});
+  final TransactionController controller = TransactionController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +49,33 @@ class Speding extends StatelessWidget {
                       const SizedBox(
                         height: 34,
                       ),
-                      LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 40,
-                        animation: true,
-                        lineHeight: 30.0,
-                        animationDuration: 2500,
-                        percent: 0.7,
-                        center: const Text(
-                          "70.0%",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255)),
+                      Consumer<HistoryController>(
+                        builder: (context, historyController, _) =>
+                            LinearPercentIndicator(
+                          width: MediaQuery.of(context).size.width - 40,
+                          animation: true,
+                          lineHeight: 30.0,
+                          animationDuration: 2500,
+                          percent:
+                              historyController.porcentSaida(controller.valor),
+                          center: Text(
+                            "${historyController.atualizarLimite(controller.valor).toString()} %",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255)),
+                          ),
+                          barRadius: const Radius.circular(16),
+                          progressColor:
+                              const Color.fromARGB(255, 63, 138, 224),
                         ),
-                        barRadius: const Radius.circular(16),
-                        progressColor: const Color.fromARGB(255, 63, 138, 224),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      const Text('Você tem 30% para o limite total',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 255, 255, 255)))
+                      Consumer<HistoryController>(
+                          builder: (context, historyController, _) => Text(
+                              'Você tem ${historyController.porcentAtualizardisp(controller.valor).toString()}% para o limite total',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255)))),
                     ],
                   ),
                 ),

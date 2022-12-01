@@ -1,7 +1,9 @@
+import 'package:ctrl_real/src/features/historic/widgets/totaltransection.dart';
+import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../controllers/providercontrolers/history_page_controller.dart';
-import '../../../controllers/providercontrolers/transections_controller.dart';
+import '../../../controllers/providercontrolers/registers_transections_controller.dart';
+import '../../../controllers/providercontrolers/transections_despe_controller.dart';
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
@@ -15,7 +17,7 @@ String menuName = 'Todos';
 class _HistoricPageState extends State<HistoricPage> {
   @override
   Widget build(BuildContext context) {
-    final TransactionController controller = TransactionController();
+    final TransactionController drop = TransactionController();
 
     return SafeArea(
       child: Scaffold(
@@ -33,7 +35,7 @@ class _HistoricPageState extends State<HistoricPage> {
                 'Listar por',
                 style: TextStyle(color: Color(0xdfffffff)),
               ),
-              items: controller.historicform
+              items: drop.historicform
                   .map((e) => DropdownMenuItem<String>(
                         value: e,
                         child: Text(e),
@@ -45,127 +47,42 @@ class _HistoricPageState extends State<HistoricPage> {
               },
             )),
         body: Consumer<HistoryController>(builder: (context, controller, __) {
-          return Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.7,
-                child: ListView(
-                  children: menuName == 'Todos'
-                      ? controller.transactionList
-                          .map((e) => Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 4, left: 8, right: 8),
-                                child: Card(
-                                color:
-                                    const Color.fromARGB(220, 104, 89, 205),
-                                child: ListTile(
-                                  title: Text(
-                                    e.formPag,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff),),
-                                  ),
-                                  subtitle: Text(
-                                    e.descri,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff)),
-                                  ),
-                                  trailing: Text(
-                                    '${e.valor} R\$',
-                                    style:
-                                        TextStyle(color: Color(0xdfffffff)),
-                                  ),
-                                  leading: Padding(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      e.categoryname,
-                                      style:
-                                          TextStyle(color: Color(0xdfffffff)),
-                                    ),
-                                  ),
-                                ),
-                                  ),
-                              ))
-                          .toList()
-                      : menuName == 'Apenas despesas'
-                          ? controller.transactionList
-                              .map((e) => ListTile(
-                                    title: Text(
-                                      e.categoryname,
-                                      style:
-                                          TextStyle(color: Color(0xdfffffff)),
-                                    ),
-                                    subtitle: Text(
-                                      e.descri,
-                                      style:
-                                          TextStyle(color: Color(0xdfffffff)),
-                                    ),
-                                    trailing: Text(
-                                      '${e.valor} R\$',
-                                      style:
-                                          TextStyle(color: Color(0xdfffffff)),
-                                    ),
-                                    leading: Text(
-                                      e.formPag,
-                                      style:
-                                          TextStyle(color: Color(0xdfffffff)),
-                                    ),
-                                  ))
-                              .toList()
-                          : menuName == 'Apenas receita'
-                              ? controller.transactionList
-                                  .map((e) => ListTile(
-                                        title: Text(
-                                          e.categoryname,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        subtitle: Text(
-                                          e.descri,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        trailing: Text(
-                                          '${e.valor} R\$',
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        leading: Text(
-                                          e.formPag,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                      ))
-                                  .toList()
-                              : controller.transactionList
-                                  .map((e) => ListTile(
-                                        title: Text(
-                                          e.categoryname,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        subtitle: Text(
-                                          e.descri,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        trailing: Text(
-                                          '${e.valor} R\$',
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                        leading: Text(
-                                          e.formPag,
-                                          style: const TextStyle(
-                                              color: Color(0xdfffffff)),
-                                        ),
-                                      ))
-                                  .toList(),
-                ),
-              ),
-            ],
-          );
+          return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: ListView.builder(
+                  itemCount: controller.registersList
+                      .where((element) =>
+                          element.type ==
+                          (menuName == 'Todos' ? element.type : menuName))
+                      .length,
+                  itemBuilder: (context, index) => Dismissible(
+                        key: ValueKey<TotalandCategory>(
+                            controller.registersList[index]),
+                        direction: DismissDirection.endToStart,
+                        background: Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Container(
+                              color: Color.fromARGB(162, 244, 67, 54)),
+                        ),
+                        onDismissed: (direction) {
+                          var id = controller.registersList
+                            .where((element) =>
+                            element.type ==
+                            (menuName == 'Todos' ? element.type : menuName)).toList()[index].id;
+                          controller.removePorcentChart(id);
+                          controller.removeByID(id);
+                        },
+                        child: ItemTransec(
+                          controller.registersList
+                              .where((element) =>
+                                  element.type ==
+                                  (menuName == 'Todos'
+                                      ? element.type
+                                      : menuName))
+                              .toList()[index],
+                          key: ValueKey<int>(index),
+                        ),
+                      )));
         }),
       ),
     );
