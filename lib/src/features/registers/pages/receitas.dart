@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
@@ -15,20 +16,10 @@ class ReceitasPage extends StatefulWidget {
   State<ReceitasPage> createState() => _ReceitasPageState();
 }
 
-final TransactionController controller = TransactionController();
+final TransactionController controllerReceita = TransactionController();
 
 class _ReceitasPageState extends State<ReceitasPage> {
   final _formKey = GlobalKey<FormState>();
-
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2050),
-      locale: const Locale("pt", "BR"),
-    );
-  }
 
   double? value;
   final TransactionController controllerReceita = TransactionController();

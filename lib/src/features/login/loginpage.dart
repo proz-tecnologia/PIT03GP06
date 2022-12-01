@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/features/user/registration/new_register.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -39,7 +40,8 @@ class _LoginUserState extends State<LoginUser> {
                 padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(40),
+                    padding:
+                        const EdgeInsets.only(left: 40, right: 40, top: 20),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -55,16 +57,20 @@ class _LoginUserState extends State<LoginUser> {
                                     AutovalidateMode.onUserInteraction,
                                 maxLength: 20,
                                 validator: (value) {
-                                  if (value!.length < 3 || value.length > 52) {
-                                    return "Informe seu email";
+                                  if (value!.length < 10 || value.length > 20) {
+                                    return "Informe o email cadastrado";
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
+                                  helperStyle: TextStyle(
+                                    color: darkFunctionTextUser(),
+                                  ),
                                   labelText: Strings.userEmail,
                                   hintText: "abcd@gmail.com",
-                                  hintStyle: TextStyle(fontSize: 12),
+                                  hintStyle: TextStyle(
+                                      fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
                                     color: darkFunctionTextUser(),
@@ -75,9 +81,6 @@ class _LoginUserState extends State<LoginUser> {
                                     ),
                                   ),
                                 ),
-                                onChanged: (value) {
-                                  controller.nome = value;
-                                },
                               ),
                             ),
                             Padding(
@@ -94,9 +97,13 @@ class _LoginUserState extends State<LoginUser> {
                                 },
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
+                                  helperStyle: TextStyle(
+                                    color: darkFunctionTextUser(),
+                                  ),
                                   labelText: Strings.userSenha,
-                                  hintText: "Senha",
-                                  hintStyle: TextStyle(fontSize: 12),
+                                  hintText: "*******",
+                                  hintStyle: TextStyle(
+                                      fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
                                     color: darkFunctionTextUser(),
@@ -119,6 +126,11 @@ class _LoginUserState extends State<LoginUser> {
                                   width: 130,
                                   height: 40,
                                   child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<
+                                              Color>(
+                                          Color.fromARGB(220, 104, 89, 205)),
+                                    ),
                                     onPressed: () {
                                       Navigator.push(
                                         context,
@@ -127,7 +139,7 @@ class _LoginUserState extends State<LoginUser> {
                                         ),
                                       );
                                     },
-                                    child: const Text("Cadastrar"),
+                                    child: const Text("Login"),
                                   ),
                                 ),
                               ),
@@ -139,6 +151,11 @@ class _LoginUserState extends State<LoginUser> {
                                   width: 130,
                                   height: 40,
                                   child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<
+                                              Color>(
+                                          Color.fromARGB(220, 104, 89, 205)),
+                                    ),
                                     onPressed: () {
                                       Navigator.push(
                                         context,

@@ -14,9 +14,25 @@ class HistoryController extends ChangeNotifier {
   double gastosex = 0;
   double pagament = 0;
   double farmac = 0;
-  String? nome;
-  String? email;
-  String? senha;
+  String nome = "";
+  String email = "";
+  String senha = "";
+
+  String nomeUser(String user) {
+    return nome = user;
+  }
+
+  String emailUser(String emailUser) {
+    return email = emailUser;
+  }
+
+  String senhaUser(String senhaUser) {
+    return senha = senhaUser;
+  }
+
+  double rendaInicial(double rendaInicial) {
+    return renda = rendaInicial;
+  }
 
   addTotaltransection(TotalandCategory trans) {
     registersList.add(trans);
