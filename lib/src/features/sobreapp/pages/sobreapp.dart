@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/util/strings.dart';
 
 class SobreApp extends StatelessWidget {
   const SobreApp({super.key});
@@ -25,31 +23,35 @@ class SobreApp extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 17),
                 width: 150,
                 height: 158,
-                child: Image.asset('asset/img/icone5_1.png'),
-              ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(4, 0, 0, 10),
-                child: const Text(
-                  Strings.appName,
-                  selectionColor: Color(0xff2fd82c),
-                  //to do
-                ),
+                child: Image.asset('asset/img/logo-about-2@2x.png'),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 11),
-                child: const Text(
+                child: Text(
                   '1.0',
-                  textAlign: TextAlign.center,
-                  selectionColor: Color(0xffffffff),
-                  //to do
+                  textAlign:  TextAlign.center,
+                  style:  GoogleFonts.karma(
+                    fontSize:  14,
+                    fontWeight:  FontWeight.w400,
+                    height:  1.4525,
+                    color:  const Color(0xffffffff)
+                  ),
                 ),
               ),
               Container(
-                margin:  const EdgeInsets.fromLTRB(3, 0, 0, 0),
-                child:
-                const Text(
-                  'Desenvolvido por...',
-                  selectionColor: Color(0xffffffff),
+                margin: const EdgeInsets.fromLTRB(11, 0, 0, 0),
+                constraints: const BoxConstraints(
+                  maxWidth: 108,
+                ),
+                child: Text(
+                  'Desenvolvido por Angelina Ottoni, Janiele Justino, Júlia Lucena & Paulo César',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.karma(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    height: 1.4525,
+                    color: const Color(0xffffffff),
+                  ),
                 ),
               ),
             ],
