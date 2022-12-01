@@ -1,6 +1,7 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/features/login/loginpage.dart';
 import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
 import 'package:ctrl_real/src/features/user/registration/new_register.dart';
 import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: "/",
             routes: {
-              "/": (context) => const NewRegister(),
+              "/": (context) => const LoginUser(),
+              "/cadastro": (context) => const NewRegister(),
               "/home": (context) => const HomePage(),
               "/config": (context) => const SettingsPage(),
               "/receitas": (context) => ReceitasPage(),

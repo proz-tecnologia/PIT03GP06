@@ -19,4 +19,11 @@ abstract class Strings {
   static const String nameLimitContainer = "Limite";
   static const String nameCategoriesContainer = "Categorias";
   static const String nameDicasContainer = "Dicas";
+
+  //new register
+  static const String userNome = "Nome";
+  static const String userEmail = "Email";
+  static const String userRenda = "Renda";
+  static const String userSenha = "Senha";
+  static const String userConfSenha = "Confirmar senha";
 }
