@@ -53,6 +53,9 @@ class _LoginUserState extends State<LoginUser> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 maxLength: 20,
@@ -86,11 +89,14 @@ class _LoginUserState extends State<LoginUser> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 maxLength: 8,
                                 validator: (value) {
-                                  if (value!.length < 3 || value.length > 52) {
+                                  if (value!.length < 3 || value.length > 8) {
                                     return "Informe a senha";
                                   }
                                   return null;

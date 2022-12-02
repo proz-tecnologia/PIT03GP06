@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
@@ -47,11 +49,14 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 25) {
                                 return "Informe seu nome";
                               }
                               return null;
@@ -83,11 +88,14 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 20,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 20) {
                                 return "Informe seu email";
                               }
                               return null;
@@ -119,6 +127,9 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               CurrencyTextInputFormatter(
@@ -157,11 +168,14 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 8,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 8) {
                                 return "Informe sua Senha";
                               }
                               return null;
@@ -193,11 +207,14 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 8,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 8) {
                                 return "As senhas precisam ser idênticas";
                               }
                               return null;
