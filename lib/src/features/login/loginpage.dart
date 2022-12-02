@@ -32,17 +32,17 @@ class _LoginUserState extends State<LoginUser> {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(bottom: 17),
-                width: 150,
-                height: 158,
-                child: Image.asset('asset/img/logo.png'),
+                padding: const EdgeInsets.only(top: 30),
+                width: 180,
+                height: 240,
+                child: Image.asset('asset/img/iconelogin.png'),
               ),
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(5),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 40, right: 40, top: 20),
+                        const EdgeInsets.only(left: 40, right: 40, top: 10),
                     child: Form(
                       key: _formKey,
                       child: Column(
