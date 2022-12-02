@@ -142,6 +142,6 @@ class HistoryController extends ChangeNotifier {
   }
 
   double porcentAtualizardisp(double result) {
-    return result = saldoDisponivel * 100 / renda;
+    return result = renda * 100 / renda;
   }
 }

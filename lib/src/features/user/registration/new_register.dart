@@ -7,7 +7,6 @@ import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:password_strength_checker/password_strength_checker.dart';
 import 'package:provider/provider.dart';
 
 class NewRegister extends StatefulWidget {
@@ -24,7 +23,7 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
-    final passNotifier = ValueNotifier<PasswordStrength?>(null);
+    final passNotifier = ValueNotifier(null);
 
     return SafeArea(
       child: Scaffold(
@@ -160,11 +159,10 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             maxLength: 10,
-                            onChanged: (value) {
-                              controllerEntradas.valor = double.parse(value
-                                  .replaceAll(".", "")
-                                  .replaceAll(",", "."));
-                            },
+                            onChanged: ((newValue) => controllerEntradas.valor =
+                                double.parse(newValue
+                                    .replaceAll(".", "")
+                                    .replaceAll(",", "."))),
                           ),
                         ),
                         Padding(
@@ -247,13 +245,8 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                             onChanged: (value) {
                               controllerEntradas.senha = value;
-                              passNotifier.value =
-                                  PasswordStrength.calculate(text: value);
                             },
                           ),
-                        ),
-                        PasswordStrengthChecker(
-                          strength: passNotifier,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
