@@ -1,7 +1,6 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -16,7 +15,7 @@ class NewRegister extends StatefulWidget {
   @override
   State<NewRegister> createState() => _NewRegisterState();
 
-  final TransactionController controllerReceita = TransactionController();
+  final TransactionController controllerEntradas = TransactionController();
 }
 
 class _NewRegisterState extends State<NewRegister> {
@@ -77,7 +76,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.nome = value;
                             },
                           ),
                         ),
@@ -113,7 +112,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.email = value;
                             },
                           ),
                         ),
@@ -148,20 +147,8 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             maxLength: 10,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Informe um valor";
-                              }
-                              final valueDouble = double.parse(value
-                                  .replaceAll(".", "")
-                                  .replaceAll(",", "."));
-                              if (valueDouble == 0) {
-                                return "Informe um valor diferente de 0";
-                              }
-                              return null;
-                            },
                             onChanged: (value) {
-                              controller.valor = double.parse(value
+                              controllerEntradas.valor = double.parse(value
                                   .replaceAll(".", "")
                                   .replaceAll(",", "."));
                             },
@@ -199,7 +186,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
                             },
                           ),
                         ),
@@ -235,7 +222,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
                             },
                           ),
                         ),
@@ -265,29 +252,31 @@ class _NewRegisterState extends State<NewRegister> {
                                                 textAlign: TextAlign.center,
                                               )),
                                         );
-                                        var trans = TotalandCategory(
+                                        var user = TotalandCategory(
                                           type: 'Cadastro',
-                                          nome: controller.nome,
-                                          email: controller.email,
-                                          senha: controller.senha,
-                                          valor: controller.valor,
-                                          descri: controller.descricao,
-                                          categoryname: controller.categoryname,
+                                          nome: controllerEntradas.nome,
+                                          email: controllerEntradas.email,
+                                          valor: controllerEntradas.valor,
+                                          senha: controllerEntradas.senha,
+                                          descri: controllerEntradas.descricao,
+                                          categoryname:
+                                              controllerEntradas.categoryname,
                                           formPag:
-                                              'Forma: ${controller.formpag}',
+                                              'Forma: ${controllerEntradas.formpag}',
                                           icon: Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
                                           ),
                                         );
+                                        historyController.addNewUser(user);
                                         historyController
-                                            .nomeUser(controller.nome);
-                                        historyController
-                                            .emailUser(controller.email);
-                                        historyController
-                                            .senhaUser(controller.senha);
-                                        historyController
-                                            .rendaInicial(controller.valor);
+                                            .nomeUser(controllerEntradas.nome);
+                                        historyController.emailUser(
+                                            controllerEntradas.email);
+                                        historyController.senhaUser(
+                                            controllerEntradas.senha);
+                                        historyController.rendaInicial(
+                                            controllerEntradas.valor);
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
