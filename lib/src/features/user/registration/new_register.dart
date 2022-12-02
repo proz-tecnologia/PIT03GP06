@@ -9,6 +9,7 @@ import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:password_strength_checker/password_strength_checker.dart';
 import 'package:provider/provider.dart';
 
 class NewRegister extends StatefulWidget {
@@ -25,6 +26,8 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
+    final passNotifier = ValueNotifier<PasswordStrength?>(null);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -47,7 +50,7 @@ class _NewRegisterState extends State<NewRegister> {
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: TextStyle(
                               color: Colors.white,
@@ -86,7 +89,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: TextStyle(
                               color: Colors.white,
@@ -125,7 +128,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: TextStyle(
                               color: Colors.white,
@@ -166,25 +169,34 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "A senha deve conter:\n ° Pelo menos 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 8,
+                            maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 8) {
-                                return "Informe sua Senha";
+                              if (value!.length < 3 || value.length > 25) {
+                                return "Defina sua senha";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
-                              ),
                               labelText: Strings.userSenha,
                               hintText: "*******",
                               hintStyle:
@@ -205,26 +217,22 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 8,
+                            maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 8) {
-                                return "As senhas precisam ser idênticas";
+                              if (value!.length < 3 || value.length > 25) {
+                                return "Confirme sua senha";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
-                              ),
-                              labelText: "Confirmar Senha",
+                              labelText: "Confirmar Senha*",
                               hintText: "*******",
                               hintStyle:
                                   TextStyle(fontSize: 12, color: Colors.white),
@@ -240,8 +248,13 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                             onChanged: (value) {
                               controllerEntradas.senha = value;
+                              passNotifier.value =
+                                  PasswordStrength.calculate(text: value);
                             },
                           ),
+                        ),
+                        PasswordStrengthChecker(
+                          strength: passNotifier,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
@@ -294,6 +307,7 @@ class _NewRegisterState extends State<NewRegister> {
                                             controllerEntradas.senha);
                                         historyController.rendaInicial(
                                             controllerEntradas.valor);
+
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
