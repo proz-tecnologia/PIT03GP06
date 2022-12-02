@@ -1,11 +1,12 @@
+import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/features/user/registration/new_register.dart';
+import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginUser extends StatefulWidget {
   const LoginUser({super.key});
@@ -53,6 +54,9 @@ class _LoginUserState extends State<LoginUser> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 maxLength: 20,
@@ -81,16 +85,22 @@ class _LoginUserState extends State<LoginUser> {
                                     ),
                                   ),
                                 ),
+                                onChanged: (value) {
+                                  controllerEntradas.email = value;
+                                },
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 maxLength: 8,
                                 validator: (value) {
-                                  if (value!.length < 3 || value.length > 52) {
+                                  if (value!.length < 3 || value.length > 8) {
                                     return "Informe a senha";
                                   }
                                   return null;
@@ -115,7 +125,7 @@ class _LoginUserState extends State<LoginUser> {
                                   ),
                                 ),
                                 onChanged: (value) {
-                                  controller.descricao = value;
+                                  controllerEntradas.senha = value;
                                 },
                               ),
                             ),
@@ -125,21 +135,47 @@ class _LoginUserState extends State<LoginUser> {
                                 child: SizedBox(
                                   width: 130,
                                   height: 40,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<
-                                              Color>(
-                                          Color.fromARGB(220, 104, 89, 205)),
+                                  child: Consumer<HistoryController>(
+                                    builder: (context, historyController, _) =>
+                                        ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll<Color>(
+                                                Color.fromARGB(
+                                                    220, 104, 89, 205)),
+                                      ),
+                                      child: const Text("Login"),
+                                      onPressed: () {
+                                        var user = TotalandCategory(
+                                          type: 'Login',
+                                          nome: controllerEntradas.nome,
+                                          email: controllerEntradas.email,
+                                          valor: controllerEntradas.valor,
+                                          senha: controllerEntradas.senha,
+                                          descri: controllerEntradas.descricao,
+                                          categoryname:
+                                              controllerEntradas.categoryname,
+                                          formPag:
+                                              'Forma: ${controllerEntradas.formpag}',
+                                          icon: Icon(
+                                            Icons.arrow_downward_outlined,
+                                            color: Colors.red,
+                                          ),
+                                        );
+                                        historyController.addNewUser(user);
+                                        historyController.emailUser(
+                                            controllerEntradas.email);
+                                        historyController.senhaUser(
+                                            controllerEntradas.senha);
+
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => HomePage(),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => HomePage(),
-                                        ),
-                                      );
-                                    },
-                                    child: const Text("Login"),
                                   ),
                                 ),
                               ),

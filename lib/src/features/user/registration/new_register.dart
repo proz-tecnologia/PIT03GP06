@@ -1,13 +1,15 @@
+import 'dart:ui';
+
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:password_strength_checker/password_strength_checker.dart';
 import 'package:provider/provider.dart';
 
 class NewRegister extends StatefulWidget {
@@ -16,7 +18,7 @@ class NewRegister extends StatefulWidget {
   @override
   State<NewRegister> createState() => _NewRegisterState();
 
-  final TransactionController controllerReceita = TransactionController();
+  final TransactionController controllerEntradas = TransactionController();
 }
 
 class _NewRegisterState extends State<NewRegister> {
@@ -24,6 +26,8 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
+    final passNotifier = ValueNotifier<PasswordStrength?>(null);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -46,13 +50,16 @@ class _NewRegisterState extends State<NewRegister> {
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 25) {
                                 return "Informe seu nome";
                               }
                               return null;
@@ -77,18 +84,21 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.nome = value;
                             },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 20,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
+                              if (value!.length < 3 || value.length > 20) {
                                 return "Informe seu email";
                               }
                               return null;
@@ -113,13 +123,16 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.email = value;
                             },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               CurrencyTextInputFormatter(
@@ -148,42 +161,42 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             maxLength: 10,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Informe um valor";
-                              }
-                              final valueDouble = double.parse(value
-                                  .replaceAll(".", "")
-                                  .replaceAll(",", "."));
-                              if (valueDouble == 0) {
-                                return "Informe um valor diferente de 0";
-                              }
-                              return null;
-                            },
                             onChanged: (value) {
-                              controller.valor = double.parse(value
+                              controllerEntradas.valor = double.parse(value
                                   .replaceAll(".", "")
                                   .replaceAll(",", "."));
                             },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "A senha deve conter:\n ° Pelo menos 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 8,
+                            maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
-                                return "Informe sua Senha";
+                              if (value!.length < 3 || value.length > 25) {
+                                return "Defina sua senha";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
-                              ),
                               labelText: Strings.userSenha,
                               hintText: "*******",
                               hintStyle:
@@ -199,28 +212,27 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
                             },
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 8,
+                            maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 52) {
-                                return "As senhas precisam ser idênticas";
+                              if (value!.length < 3 || value.length > 25) {
+                                return "Confirme sua senha";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
-                              ),
-                              labelText: "Confirmar Senha",
+                              labelText: "Confirmar Senha*",
                               hintText: "*******",
                               hintStyle:
                                   TextStyle(fontSize: 12, color: Colors.white),
@@ -235,9 +247,14 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
+                              passNotifier.value =
+                                  PasswordStrength.calculate(text: value);
                             },
                           ),
+                        ),
+                        PasswordStrengthChecker(
+                          strength: passNotifier,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
@@ -265,29 +282,32 @@ class _NewRegisterState extends State<NewRegister> {
                                                 textAlign: TextAlign.center,
                                               )),
                                         );
-                                        var trans = TotalandCategory(
+                                        var user = TotalandCategory(
                                           type: 'Cadastro',
-                                          nome: controller.nome,
-                                          email: controller.email,
-                                          senha: controller.senha,
-                                          valor: controller.valor,
-                                          descri: controller.descricao,
-                                          categoryname: controller.categoryname,
+                                          nome: controllerEntradas.nome,
+                                          email: controllerEntradas.email,
+                                          valor: controllerEntradas.valor,
+                                          senha: controllerEntradas.senha,
+                                          descri: controllerEntradas.descricao,
+                                          categoryname:
+                                              controllerEntradas.categoryname,
                                           formPag:
-                                              'Forma: ${controller.formpag}',
+                                              'Forma: ${controllerEntradas.formpag}',
                                           icon: Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
                                           ),
                                         );
+                                        historyController.addNewUser(user);
                                         historyController
-                                            .nomeUser(controller.nome);
-                                        historyController
-                                            .emailUser(controller.email);
-                                        historyController
-                                            .senhaUser(controller.senha);
-                                        historyController
-                                            .rendaInicial(controller.valor);
+                                            .nomeUser(controllerEntradas.nome);
+                                        historyController.emailUser(
+                                            controllerEntradas.email);
+                                        historyController.senhaUser(
+                                            controllerEntradas.senha);
+                                        historyController.rendaInicial(
+                                            controllerEntradas.valor);
+
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
