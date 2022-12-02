@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
@@ -35,7 +33,8 @@ class _NewRegisterState extends State<NewRegister> {
           centerTitle: true,
         ),
         body: Container(
-          color: Color.fromARGB(220, 104, 89, 205),
+          color: darkFunctionWidgets(),
+          height: double.infinity,
           child: Container(
             padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
@@ -173,7 +172,7 @@ class _NewRegisterState extends State<NewRegister> {
                           child: Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "A senha deve conter:\n ° Pelo menos 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
+                              "A senha deve conter:\n ° Até 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12,
