@@ -22,7 +22,7 @@ class TransactionController {
   double valor = 0;
   String formpag = '';
   var dateTime = DateTime.now();
-  String? nome;
-  String? email;
-  String? senha;
+  String nome = '';
+  String email = '';
+  String senha = '';
 }

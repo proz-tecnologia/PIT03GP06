@@ -1,16 +1,21 @@
-import 'package:ctrl_real/src/features/home/pages/homepage.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
+import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NewRegister extends StatefulWidget {
-  const NewRegister({super.key});
+  NewRegister({super.key});
 
   @override
   State<NewRegister> createState() => _NewRegisterState();
+
+  final TransactionController controllerEntradas = TransactionController();
 }
 
 class _NewRegisterState extends State<NewRegister> {
@@ -53,9 +58,13 @@ class _NewRegisterState extends State<NewRegister> {
                             },
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
-                              hintStyle: TextStyle(fontSize: 12),
+                              hintStyle:
+                                  TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -67,7 +76,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.nome = value;
                             },
                           ),
                         ),
@@ -85,9 +94,13 @@ class _NewRegisterState extends State<NewRegister> {
                             },
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
                               labelText: Strings.userEmail,
                               hintText: "abcd@gmail.com",
-                              hintStyle: TextStyle(fontSize: 12),
+                              hintStyle:
+                                  TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -99,7 +112,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.nome = value;
+                              controllerEntradas.email = value;
                             },
                           ),
                         ),
@@ -120,9 +133,13 @@ class _NewRegisterState extends State<NewRegister> {
                                 color: darkFunctionTextUser(),
                               ),
                               hintText: "0,00",
-                              hintStyle: TextStyle(fontSize: 12),
+                              hintStyle:
+                                  TextStyle(fontSize: 12, color: Colors.white),
                               prefix: const Text("R\$"),
                               helperText: "Máximo de 999.999,99 digitos",
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color.fromARGB(220, 248, 248, 248),
@@ -130,20 +147,8 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             maxLength: 10,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Informe um valor";
-                              }
-                              final valueDouble = double.parse(value
-                                  .replaceAll(".", "")
-                                  .replaceAll(",", "."));
-                              if (valueDouble == 0) {
-                                return "Informe um valor diferente de 0";
-                              }
-                              return null;
-                            },
                             onChanged: (value) {
-                              controller.valor = double.parse(value
+                              controllerEntradas.valor = double.parse(value
                                   .replaceAll(".", "")
                                   .replaceAll(",", "."));
                             },
@@ -163,9 +168,13 @@ class _NewRegisterState extends State<NewRegister> {
                             },
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
                               labelText: Strings.userSenha,
-                              hintText: "Senha",
-                              hintStyle: TextStyle(fontSize: 12),
+                              hintText: "*******",
+                              hintStyle:
+                                  TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -177,7 +186,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
                             },
                           ),
                         ),
@@ -195,9 +204,13 @@ class _NewRegisterState extends State<NewRegister> {
                             },
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
-                              labelText: Strings.userSenha,
-                              hintText: "Senha",
-                              hintStyle: TextStyle(fontSize: 12),
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
+                              labelText: "Confirmar Senha",
+                              hintText: "*******",
+                              hintStyle:
+                                  TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -209,7 +222,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                             ),
                             onChanged: (value) {
-                              controller.descricao = value;
+                              controllerEntradas.senha = value;
                             },
                           ),
                         ),
@@ -219,17 +232,60 @@ class _NewRegisterState extends State<NewRegister> {
                             child: SizedBox(
                               width: 130,
                               height: 40,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginUser(),
-                                    ),
-                                  );
-                                },
-                                child: const Text("Cadastrar"),
-                              ),
+                              child: Consumer<HistoryController>(
+                                  builder: (context, historyController, _) {
+                                return ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(220, 104, 89, 205)),
+                                    child: const Text("Cadastrar"),
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              duration: Duration(seconds: 2),
+                                              backgroundColor: Color.fromARGB(
+                                                  220, 104, 89, 205),
+                                              content: Text(
+                                                'Cadastro Realizado com sucesso!',
+                                                textAlign: TextAlign.center,
+                                              )),
+                                        );
+                                        var user = TotalandCategory(
+                                          type: 'Cadastro',
+                                          nome: controllerEntradas.nome,
+                                          email: controllerEntradas.email,
+                                          valor: controllerEntradas.valor,
+                                          senha: controllerEntradas.senha,
+                                          descri: controllerEntradas.descricao,
+                                          categoryname:
+                                              controllerEntradas.categoryname,
+                                          formPag:
+                                              'Forma: ${controllerEntradas.formpag}',
+                                          icon: Icon(
+                                            Icons.arrow_downward_outlined,
+                                            color: Colors.red,
+                                          ),
+                                        );
+                                        historyController.addNewUser(user);
+                                        historyController
+                                            .nomeUser(controllerEntradas.nome);
+                                        historyController.emailUser(
+                                            controllerEntradas.email);
+                                        historyController.senhaUser(
+                                            controllerEntradas.senha);
+                                        historyController.rendaInicial(
+                                            controllerEntradas.valor);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => LoginUser(),
+                                          ),
+                                        );
+                                      }
+                                    });
+                              }),
                             ),
                           ),
                         ),

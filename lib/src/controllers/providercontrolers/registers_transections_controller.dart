@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
   final List<TotalandCategory> registersList = [];
+  final List<TotalandCategory> registerUser = [];
 
   double valorLimite = 0;
   double renda = 0;
@@ -14,9 +15,30 @@ class HistoryController extends ChangeNotifier {
   double gastosex = 0;
   double pagament = 0;
   double farmac = 0;
-  String? nome;
-  String? email;
-  String? senha;
+  String nome = "";
+  String email = "";
+  String senha = "";
+
+  String nomeUser(String user) {
+    return nome = user;
+  }
+
+  String emailUser(String emailUser) {
+    return email = emailUser;
+  }
+
+  String senhaUser(String senhaUser) {
+    return senha = senhaUser;
+  }
+
+  double rendaInicial(double rendaInicial) {
+    return renda = rendaInicial;
+  }
+
+  addNewUser(TotalandCategory user) {
+    registerUser.add(user);
+    notifyListeners();
+  }
 
   addTotaltransection(TotalandCategory trans) {
     registersList.add(trans);

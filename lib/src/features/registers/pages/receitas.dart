@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
@@ -6,33 +7,23 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/providercontrolers/transections_despe_controller.dart';
-import 'package:provider/provider.dart';
 
 class ReceitasPage extends StatefulWidget {
-  ReceitasPage({super.key});
+  const ReceitasPage({super.key});
 
   @override
   State<ReceitasPage> createState() => _ReceitasPageState();
 }
 
-final TransactionController controller = TransactionController();
+final TransactionController controllerEntradas = TransactionController();
 
 class _ReceitasPageState extends State<ReceitasPage> {
   final _formKey = GlobalKey<FormState>();
 
-  void _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2050),
-      locale: const Locale("pt", "BR"),
-    );
-  }
-
   double? value;
   final TransactionController controllerReceita = TransactionController();
   final _txtDateTimeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +70,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        controller.descricao = value;
+                        controllerEntradas.descricao = value;
                       },
                     ),
                   ),
@@ -120,8 +111,10 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         }
                         return null;
                       },
-                      onChanged: ((newValue) => controller.valor = double.parse(
-                          newValue.replaceAll(".", "").replaceAll(",", "."))),
+                      onChanged: ((newValue) => controllerEntradas.valor =
+                          double.parse(newValue
+                              .replaceAll(".", "")
+                              .replaceAll(",", "."))),
                     ),
                   ),
                   Padding(
@@ -153,11 +146,11 @@ class _ReceitasPageState extends State<ReceitasPage> {
                           firstDate: DateTime.now()
                               .subtract(const Duration(days: 360)),
                           lastDate: DateTime.now(),
-                          initialDate: controllerReceita.dateTime);
-                      controllerReceita.dateTime =
-                          date ?? controllerReceita.dateTime;
+                          initialDate: controllerEntradas.dateTime);
+                      controllerEntradas.dateTime =
+                          date ?? controllerEntradas.dateTime;
                       _txtDateTimeController.text =
-                          "${controllerReceita.dateTime.day}/${controllerReceita.dateTime.month}/${controllerReceita.dateTime.year}";
+                          "${controllerEntradas.dateTime.day}/${controllerEntradas.dateTime.month}/${controllerEntradas.dateTime.year}";
                     },
                   ),
                   Padding(
@@ -187,17 +180,18 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                   );
                                   var trans = TotalandCategory(
                                       type: 'Receita',
-                                      valor: controller.valor,
-                                      descri: controller.descricao,
+                                      valor: controllerEntradas.valor,
+                                      descri: controllerEntradas.descricao,
                                       formPag: 'Renda extra',
                                       icon: const Icon(
                                         Icons.arrow_upward_outlined,
                                         color: Colors.green,
                                       ));
                                   historyController.addTotaltransection(trans);
-                                  historyController.novaRenda(controller.valor);
                                   historyController
-                                      .novoSaldoEntrada(controller.valor);
+                                      .novaRenda(controllerEntradas.valor);
+                                  historyController.novoSaldoEntrada(
+                                      controllerEntradas.valor);
                                 }
                               },
                             );
