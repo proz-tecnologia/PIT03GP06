@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/util/darkfunction.dart';
-import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -62,8 +60,8 @@ class _PerfilPageState extends State<PerfilPage> {
                       builder: (BuildContext context) {
                         return Container(
                           color: DarkController.instance.darkmod
-                              ? Color.fromARGB(181, 19, 19, 19)
-                              : Color.fromARGB(162, 255, 255, 255),
+                              ? const Color.fromARGB(181, 19, 19, 19)
+                              : const Color.fromARGB(162, 255, 255, 255),
                           height: 500,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 24),
@@ -76,7 +74,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                     Container(
                                       height: 80,
                                       width: 80,
-                                      color: Color.fromARGB(33, 0, 0, 0),
+                                      color: const Color.fromARGB(33, 0, 0, 0),
                                       child: IconButton(
                                         icon: const Icon(
                                           Icons.photo_camera,
@@ -87,7 +85,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                         },
                                       ),
                                     ),
-                                    Text('Camera')
+                                    const Text('Camera')
                                   ],
                                 ),
                                 Column(
@@ -95,7 +93,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                     Container(
                                       height: 80,
                                       width: 80,
-                                      color: Color.fromARGB(33, 0, 0, 0),
+                                      color: const Color.fromARGB(33, 0, 0, 0),
                                       child: IconButton(
                                         icon: const Icon(
                                           Icons.photo,
@@ -106,7 +104,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                         },
                                       ),
                                     ),
-                                    Text('Galeria')
+                                    const Text('Galeria')
                                   ],
                                 )
                               ],
@@ -124,26 +122,26 @@ class _PerfilPageState extends State<PerfilPage> {
             ),
           ),
           ListTile(
-            title: Text("E-mail"),
-            subtitle: Text("user@mail.com"),
-            trailing: Icon(Icons.edit),
+            title: const Text("E-mail"),
+            subtitle: const Text("user@mail.com"),
+            trailing: const Icon(Icons.edit),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Senha"),
-            subtitle: Text("***********"),
-            trailing: Icon(Icons.edit),
+            title: const Text("Senha"),
+            subtitle: const Text("***********"),
+            trailing: const Icon(Icons.edit),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Nome"),
-            subtitle: Text("Kawaii_Aysha"),
-            trailing: Icon(Icons.edit),
+            title: const Text("Nome"),
+            subtitle: const Text("Kawaii_Aysha"),
+            trailing: const Icon(Icons.edit),
             onTap: () {},
           ),
           ListTile(
-            title: Text("Deletar conta"),
-            trailing: Icon(Icons.delete),
+            title: const Text("Deletar conta"),
+            trailing: const Icon(Icons.delete),
             onTap: () {},
           )
         ]),
@@ -173,7 +171,7 @@ class _PerfilPageState extends State<PerfilPage> {
 
   Widget imageFunction() {
     if (perfilImage == null) {
-      return Icon(
+      return const Icon(
         Icons.person_outline,
         size: 60,
         color: Color.fromARGB(129, 0, 0, 0),

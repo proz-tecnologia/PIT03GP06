@@ -1,5 +1,4 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
@@ -58,7 +57,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         helperText: "Campo obrigatório",
                         labelText: Strings.nameImputDescriptionForm,
                         hintText: "Hora extra...",
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: const TextStyle(fontSize: 12),
                         labelStyle: TextStyle(
                           color: darkFunctionTexts(),
                           fontSize: 14,
@@ -95,7 +94,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                           fontSize: 14,
                         ),
                         hintText: "0,00",
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: const TextStyle(fontSize: 12),
                         prefix: const Text("R\$"),
                         helperText: "Máximo de 999.999,99 digitos",
                       ),

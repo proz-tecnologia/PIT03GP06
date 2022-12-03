@@ -30,8 +30,8 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
               builder: (BuildContext context) {
                 return Container(
                   color: DarkController.instance.darkmod
-                      ? Color.fromARGB(181, 19, 19, 19)
-                      : Color.fromARGB(162, 255, 255, 255),
+                      ? const Color.fromARGB(181, 19, 19, 19)
+                      : const Color.fromARGB(162, 255, 255, 255),
                   height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
