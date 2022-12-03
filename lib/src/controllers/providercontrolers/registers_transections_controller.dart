@@ -6,7 +6,7 @@ class HistoryController extends ChangeNotifier {
   final List<TotalandCategory> registerUser = [];
 
   double valorLimite = 0;
-  double renda = 0;
+  double renda = 5000;
   double saldoDisponivel = 0;
   double saida = 0;
   double supermerc = 0;
