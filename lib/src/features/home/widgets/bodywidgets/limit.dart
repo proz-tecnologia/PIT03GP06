@@ -57,7 +57,7 @@ class Speding extends StatelessWidget {
                           lineHeight: 30.0,
                           animationDuration: 2500,
                           percent:
-                              historyController.porcentSaida(controller.valor),
+                              historyController.porcentSaida(controller.valor == 0 ? 1 : controller.valor),
                           center: Text(
                             "${historyController.atualizarLimite(controller.valor).toString()} %",
                             style: const TextStyle(
