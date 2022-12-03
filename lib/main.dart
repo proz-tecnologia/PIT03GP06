@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
               "/cadastro": (context) => NewRegister(),
               "/home": (context) => const HomePage(),
               "/config": (context) => const SettingsPage(),
-              "/receitas": (context) => ReceitasPage(),
+              "/receitas": (context) => const ReceitasPage(),
               "/despesas": (context) => const DespesasPage(),
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp()

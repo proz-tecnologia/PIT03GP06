@@ -15,8 +15,8 @@ class DrawerCuston extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Color.fromARGB(193, 104, 89, 205),
             ),
-            accountName: Text("Aysha"),
-            accountEmail: Text('30 / 150 Xp'),
+            accountName: const Text("Aysha"),
+            accountEmail: const Text('30 / 150 Xp'),
             currentAccountPicture: InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('/perfil');
@@ -33,7 +33,7 @@ class DrawerCuston extends StatelessWidget {
                       child: const Icon(Icons.person_outline, size: 40, color: Color.fromARGB(129, 0, 0, 0),),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.add,
                     color: Colors.white,
                     size: 20,

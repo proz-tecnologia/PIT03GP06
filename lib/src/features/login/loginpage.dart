@@ -27,7 +27,7 @@ class _LoginUserState extends State<LoginUser> {
           centerTitle: true,
         ),
         body: Container(
-          color: Color.fromARGB(220, 104, 89, 205),
+          color: const Color.fromARGB(220, 104, 89, 205),
           width: double.infinity,
           child: Column(
             children: [
@@ -54,7 +54,7 @@ class _LoginUserState extends State<LoginUser> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                                 autovalidateMode:
@@ -73,7 +73,7 @@ class _LoginUserState extends State<LoginUser> {
                                   ),
                                   labelText: Strings.userEmail,
                                   hintText: "abcd@gmail.com",
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
@@ -93,7 +93,7 @@ class _LoginUserState extends State<LoginUser> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: TextFormField(
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                                 autovalidateMode:
@@ -112,7 +112,7 @@ class _LoginUserState extends State<LoginUser> {
                                   ),
                                   labelText: Strings.userSenha,
                                   hintText: "*******",
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
@@ -138,7 +138,7 @@ class _LoginUserState extends State<LoginUser> {
                                   child: Consumer<HistoryController>(
                                     builder: (context, historyController, _) =>
                                         ElevatedButton(
-                                      style: ButtonStyle(
+                                      style: const ButtonStyle(
                                         backgroundColor:
                                             MaterialStatePropertyAll<Color>(
                                                 Color.fromARGB(
@@ -157,7 +157,7 @@ class _LoginUserState extends State<LoginUser> {
                                               controllerEntradas.categoryname,
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
                                           ),
@@ -171,7 +171,7 @@ class _LoginUserState extends State<LoginUser> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => HomePage(),
+                                            builder: (context) => const HomePage(),
                                           ),
                                         );
                                       },
@@ -187,7 +187,7 @@ class _LoginUserState extends State<LoginUser> {
                                   width: 130,
                                   height: 40,
                                   child: ElevatedButton(
-                                    style: ButtonStyle(
+                                    style: const ButtonStyle(
                                       backgroundColor: MaterialStatePropertyAll<
                                               Color>(
                                           Color.fromARGB(220, 104, 89, 205)),

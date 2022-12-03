@@ -25,13 +25,13 @@ class _HistoricPageState extends State<HistoricPage> {
             toolbarHeight: 40,
             centerTitle: true,
             title: DropdownButtonFormField(
-              iconEnabledColor: Color(0xdfffffff),
+              iconEnabledColor: const Color(0xdfffffff),
               dropdownColor: const Color.fromARGB(220, 104, 89, 205),
               elevation: 16,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xdfffffff),
               ),
-              hint: Text(
+              hint: const Text(
                 'Listar por',
                 style: TextStyle(color: Color(0xdfffffff)),
               ),
@@ -60,9 +60,9 @@ class _HistoricPageState extends State<HistoricPage> {
                             controller.registersList[index]),
                         direction: DismissDirection.endToStart,
                         background: Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: const EdgeInsets.only(top: 4),
                           child: Container(
-                              color: Color.fromARGB(162, 244, 67, 54)),
+                              color: const Color.fromARGB(162, 244, 67, 54)),
                         ),
                         onDismissed: (direction) {
                           var id = controller.registersList
