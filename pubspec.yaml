@@ -46,7 +46,7 @@ dependencies:
   provider: ^6.0.4
   uuid: ^3.0.7
   google_fonts: ^3.0.1
-  password_strength_checker: ^1.2.0
+  brasil_fields: ^1.8.0
 
 dev_dependencies:
   flutter_test:

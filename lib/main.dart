@@ -1,13 +1,13 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/features/home/pages/homepage.dart';
-import 'package:ctrl_real/src/features/login/loginpage.dart';
-import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
-import 'package:ctrl_real/src/features/user/registration/new_register.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
-import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
-import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
-import 'package:ctrl_real/src/features/sobreapp/pages/sobreapp.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/view/login/loginpage.dart';
+import 'package:ctrl_real/src/view/perfil/pages/perfilpage.dart';
+import 'package:ctrl_real/src/view/user/registration/new_register.dart';
+import 'package:ctrl_real/src/view/registers/pages/despesas.dart';
+import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
+import 'package:ctrl_real/src/view/settings/pages/settingspage.dart';
+import 'package:ctrl_real/src/view/sobreapp/pages/sobreapp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
               "/cadastro": (context) => NewRegister(),
               "/home": (context) => const HomePage(),
               "/config": (context) => const SettingsPage(),
-              "/receitas": (context) => ReceitasPage(),
+              "/receitas": (context) => const ReceitasPage(),
               "/despesas": (context) => const DespesasPage(),
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp()
