@@ -60,7 +60,7 @@ class Speding extends StatelessWidget {
                               historyController.porcentSaida(controller.valor),
                           center: Text(
                             "${historyController.atualizarLimite(controller.valor).toString()} %",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 255)),
                           ),
                           barRadius: const Radius.circular(16),
@@ -68,13 +68,13 @@ class Speding extends StatelessWidget {
                               const Color.fromARGB(255, 63, 138, 224),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Consumer<HistoryController>(
                           builder: (context, historyController, _) => Text(
                               'Você tem ${historyController.porcentAtualizardisp(controller.valor).toString()}% para o limite total',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromARGB(255, 255, 255, 255)))),
                     ],
                   ),

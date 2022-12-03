@@ -23,7 +23,6 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
-    final passNotifier = ValueNotifier(null);
 
     return SafeArea(
       child: Scaffold(
@@ -50,7 +49,7 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
@@ -70,7 +69,7 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
                               hintStyle:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                                  const TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -89,7 +88,7 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
@@ -109,7 +108,7 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: Strings.userEmail,
                               hintText: "abcd@gmail.com",
                               hintStyle:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                                  const TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -128,7 +127,7 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                             keyboardType: TextInputType.number,
@@ -146,7 +145,7 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                               hintText: "0,00",
                               hintStyle:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                                  const TextStyle(fontSize: 12, color: Colors.white),
                               prefix: const Text("R\$"),
                               helperText: "Máximo de 999.999,99 digitos",
                               helperStyle: TextStyle(
@@ -169,7 +168,7 @@ class _NewRegisterState extends State<NewRegister> {
                           padding: const EdgeInsets.only(top: 8),
                           child: Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               "A senha deve conter:\n ° Até 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
                               style: TextStyle(
                                 color: Colors.white,
@@ -181,7 +180,7 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
@@ -197,7 +196,7 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: Strings.userSenha,
                               hintText: "*******",
                               hintStyle:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                                  const TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -216,7 +215,7 @@ class _NewRegisterState extends State<NewRegister> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                             autovalidateMode:
@@ -232,7 +231,7 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: "Confirmar Senha*",
                               hintText: "*******",
                               hintStyle:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                                  const TextStyle(fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -259,7 +258,7 @@ class _NewRegisterState extends State<NewRegister> {
                                 return ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            Color.fromARGB(220, 104, 89, 205)),
+                                            const Color.fromARGB(220, 104, 89, 205)),
                                     child: const Text("Cadastrar"),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
@@ -285,7 +284,7 @@ class _NewRegisterState extends State<NewRegister> {
                                               controllerEntradas.categoryname,
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
                                           ),
@@ -303,7 +302,7 @@ class _NewRegisterState extends State<NewRegister> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => LoginUser(),
+                                            builder: (context) => const LoginUser(),
                                           ),
                                         );
                                       }

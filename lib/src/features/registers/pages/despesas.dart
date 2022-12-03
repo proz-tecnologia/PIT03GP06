@@ -93,7 +93,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                         helperText: "Campo obrigatório",
                         labelText: Strings.nameImputDescriptionForm,
                         hintText: "Descreva sua compra",
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: const TextStyle(fontSize: 12),
                         labelStyle: TextStyle(
                           fontSize: 14,
                           color: darkFunctionTexts(),
@@ -125,7 +125,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                           color: darkFunctionTexts(),
                         ),
                         hintText: "0,00",
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: const TextStyle(fontSize: 12),
                         prefix: const Text("R\$"),
                         helperText: "Máximo de 999.999,99 digitos",
                         focusedBorder: const UnderlineInputBorder(
@@ -253,7 +253,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                     descri: controller.descricao,
                                     categoryname: controller.categoryname,
                                     formPag: 'Forma: ${controller.formpag}',
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.arrow_downward_outlined,
                                       color: Colors.red,
                                     ),

@@ -52,10 +52,10 @@ class _HomePageState extends State<HomePage> {
               child: SingleChildScrollView(
             child: Column(
               children:  [
-                Balances(),
+                const Balances(),
                 Speding(),
-                Categories(),
-                Dicaswidget()
+                const Categories(),
+                const Dicaswidget()
               ],
             ),
           )),

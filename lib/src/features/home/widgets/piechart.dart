@@ -77,7 +77,7 @@ class PieChart2State extends State {
                   case 0:
                     return PieChartSectionData(
                       color: const Color(0xff8D32E3),
-                      value: controle.supermerc != 0 ? controle.supermerc : 0.001,
+                      value: controle.supermerc != 0 ? controle.supermerc : 5,
                       title: controle.supermerc.toString() != '0' ? '${controle.porcentSupermerc(controle.supermerc).toStringAsFixed(1)}%' : '0',
                       radius: radius,
                       titleStyle: const TextStyle(
@@ -89,61 +89,61 @@ class PieChart2State extends State {
                   case 1:
                     return PieChartSectionData(
                       color: const Color(0xffD841E8),
-                      value: controle.transpor != 0 ? controle.transpor : 0.001,
+                      value: controle.transpor != 0 ? controle.transpor : 5,
                       title: controle.transpor.toString() != '0' ? '${controle.porcentTranspor(controle.transpor).toStringAsFixed(1)}%' : '0',
                       radius: radius,
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     );
                   case 2:
                     return PieChartSectionData(
                       color: const Color(0xff845bef),
-                      value: controle.pagament != 0 ? controle.pagament : 0.001,
+                      value: controle.pagament != 0 ? controle.pagament : 5,
                       title: controle.pagament.toString() != '0' ? '${controle.porcentPagament(controle.pagament).toStringAsFixed(1)}%' : '0',
                       radius: radius,
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     );
                   case 3:
                     return PieChartSectionData(
                       color: const Color(0xff4964B8),
-                      value: controle.lazer != 0 ? controle.lazer : 0.001,
+                      value: controle.lazer != 0 ? controle.lazer : 5,
                       title: controle.lazer.toString() != '0' ? '${controle.porcentLazer(controle.lazer).toStringAsFixed(1)}%' : '0',
                       radius: radius,
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     );
                   case 4:
                     return PieChartSectionData(
                       color: const Color(0xff2C25FA),
-                      value: controle.pagament != 0 ? controle.farmac : 0.001,
+                      value: controle.pagament != 0 ? controle.farmac : 5,
                       title: controle.farmac.toString() != '0' ? '${controle.porcentFarmac(controle.farmac).toStringAsFixed(1)}%' : '0',
                       radius: radius,
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     );
                   case 5:
                     return PieChartSectionData(
                       color: const Color.fromARGB(255, 91, 0, 152),
-                      value: controle.gastosex != 0 ? controle.gastosex : 0.001,
+                      value: controle.gastosex != 0 ? controle.gastosex : 5,
                       title: controle.gastosex.toString() != '0' ? '${controle.porcentGastosex(controle.gastosex).toStringAsFixed(1)}%' : '0',
                       radius: radius,
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     );
                   default:
