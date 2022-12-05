@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,7 +22,7 @@ class _PerfilPageState extends State<PerfilPage> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Gerenciar perfil"),
+          title: const Text("Perfil"),
         ),
         body: Column(children: [
           Container(
@@ -115,35 +116,18 @@ class _PerfilPageState extends State<PerfilPage> {
                     );
                   },
                 ),
-                const Text("@kawaii_Aysha"),
-                const Text("Nome completo de Aysha"),
-                const Text("Level 5"),
+                const Text("kawaii_Aysha"),
+                const Text("Email"),
               ],
             ),
           ),
-          ListTile(
-            title: const Text("E-mail"),
-            subtitle: const Text("user@mail.com"),
-            trailing: const Icon(Icons.edit),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text("Senha"),
-            subtitle: const Text("***********"),
-            trailing: const Icon(Icons.edit),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text("Nome"),
-            subtitle: const Text("Kawaii_Aysha"),
-            trailing: const Icon(Icons.edit),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text("Deletar conta"),
-            trailing: const Icon(Icons.delete),
-            onTap: () {},
-          )
+          const Padding(
+              padding: EdgeInsets.only(top: 80),
+              child: Center(
+                  child: Text(
+                'Lvl 5',
+                style: TextStyle(fontSize: 40),
+              )))
         ]),
       ),
     );

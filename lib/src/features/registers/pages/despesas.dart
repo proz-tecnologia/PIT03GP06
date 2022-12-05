@@ -248,6 +248,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                         )),
                                   );
                                   var trans = TotalandCategory(
+                                    date: _txtDateTimeController.text,
                                     type: 'Despesa',
                                     valor: controller.valor,
                                     descri: controller.descricao,

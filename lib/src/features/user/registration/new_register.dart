@@ -1,6 +1,7 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
+import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -274,6 +275,7 @@ class _NewRegisterState extends State<NewRegister> {
                                               )),
                                         );
                                         var user = TotalandCategory(
+                                          date: '',
                                           type: 'Cadastro',
                                           nome: controllerEntradas.nome,
                                           email: controllerEntradas.email,

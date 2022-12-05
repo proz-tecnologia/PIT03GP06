@@ -2,6 +2,7 @@ import 'package:ctrl_real/src/controllers/providercontrolers/registers_transecti
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:ctrl_real/src/features/home/pages/homepage.dart';
 import 'package:ctrl_real/src/features/login/loginpage.dart';
+import 'package:ctrl_real/src/features/perfil/pages/editperfilpage.dart';
 import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
 import 'package:ctrl_real/src/features/user/registration/new_register.dart';
 import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
                     ? const Color.fromARGB(255, 34, 34, 34)
                     : const Color(0xff6959CD),
               ),
+              cardColor: DarkController.instance.darkmod
+                  ? const Color.fromARGB(255, 34, 34, 34)
+                  : const Color(0xff6959CD),
             ),
             initialRoute: "/",
             routes: {
@@ -64,7 +68,8 @@ class MyApp extends StatelessWidget {
               "/receitas": (context) => const ReceitasPage(),
               "/despesas": (context) => const DespesasPage(),
               "/perfil": (context) => const PerfilPage(),
-              "/sobreapp": (context) => const SobreApp()
+              "/sobreapp": (context) => const SobreApp(),
+              "/editcount":(context) => const EditAccount()
             },
           );
         },

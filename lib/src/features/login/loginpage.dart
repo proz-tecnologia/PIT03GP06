@@ -147,6 +147,7 @@ class _LoginUserState extends State<LoginUser> {
                                       child: const Text("Login"),
                                       onPressed: () {
                                         var user = TotalandCategory(
+                                          date: '',
                                           type: 'Login',
                                           nome: controllerEntradas.nome,
                                           email: controllerEntradas.email,
@@ -168,7 +169,7 @@ class _LoginUserState extends State<LoginUser> {
                                         historyController.senhaUser(
                                             controllerEntradas.senha);
 
-                                        Navigator.push(
+                                        Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => const HomePage(),

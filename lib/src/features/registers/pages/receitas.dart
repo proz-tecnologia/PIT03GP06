@@ -178,6 +178,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                         )),
                                   );
                                   var trans = TotalandCategory(
+                                    date: _txtDateTimeController.text,
                                       type: 'Receita',
                                       valor: controllerEntradas.valor,
                                       descri: controllerEntradas.descricao,

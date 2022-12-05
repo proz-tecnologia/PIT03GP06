@@ -3,6 +3,7 @@ import 'package:uuid/uuid.dart';
 
 class TotalandCategory {
   final String id = const Uuid().v4();
+  final String date;
   final String type;
   final Icon icon;
   final double valor;
@@ -15,6 +16,7 @@ class TotalandCategory {
   final String? senha;
 
   TotalandCategory({
+    required this.date,
     required this.type,
     required this.icon,
     required this.formPag,
