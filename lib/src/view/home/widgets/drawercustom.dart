@@ -57,22 +57,26 @@ class DrawerCuston extends StatelessWidget {
             iconColor: darkFunctionSelected(),
             leading: const Icon(Icons.color_lens),
             title: const Text(Strings.nameThemesDrawer),
-            children: const <Widget>[
-              ListTile(
+            children: <Widget>[
+              const ListTile(
                 title: Text(Strings.nameThemesDarkDrawer),
                 trailing: ButtonDark(),
               ),
-              ListTile(
-                title: Text('Blue'),
+              const ListTile(
+                title: Text('Céu'),
                 trailing: ButtonBlue(),
               ),
-              ListTile(
-                title: Text('Green'),
+              const ListTile(
+                title: Text('Money'),
                 trailing: ButtonGreen(),
               ),
-              ListTile(
-                title: Text('Red'),
+              const ListTile(
+                title: Text('Natal'),
                 trailing: ButtonRed(),
+              ),
+              ListTile(
+                title: const Text('Mais temas',textAlign: TextAlign.center,),
+                onTap: () => Navigator.of(context).pushNamed("/editthemes")
               ),
             ],
           ),

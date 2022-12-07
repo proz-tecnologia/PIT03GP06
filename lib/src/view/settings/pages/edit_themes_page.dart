@@ -18,15 +18,15 @@ class EditThemesPage extends StatelessWidget {
           trailing: ButtonDark(),
         ),
         ListTile(
-          title: Text('Blue'),
+          title: Text('Céu'),
           trailing: ButtonBlue(),
         ),
         ListTile(
-          title: Text('Green'),
+          title: Text('Money'),
           trailing: ButtonGreen(),
         ),
         ListTile(
-          title: Text('Red'),
+          title: Text('Natal'),
           trailing: ButtonRed(),
         ),
       ]),
