@@ -1,14 +1,17 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/features/home/pages/homepage.dart';
-import 'package:ctrl_real/src/features/login/loginpage.dart';
-import 'package:ctrl_real/src/features/perfil/pages/editperfilpage.dart';
-import 'package:ctrl_real/src/features/perfil/pages/perfilpage.dart';
-import 'package:ctrl_real/src/features/user/registration/new_register.dart';
-import 'package:ctrl_real/src/features/registers/pages/despesas.dart';
-import 'package:ctrl_real/src/features/registers/pages/receitas.dart';
-import 'package:ctrl_real/src/features/settings/pages/settingspage.dart';
-import 'package:ctrl_real/src/features/sobreapp/pages/sobreapp.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/view/login/loginpage.dart';
+import 'package:ctrl_real/src/view/perfil/pages/editperfilpage.dart';
+import 'package:ctrl_real/src/view/perfil/pages/perfilpage.dart';
+import 'package:ctrl_real/src/view/settings/pages/edit_themes_page.dart';
+import 'package:ctrl_real/src/view/user/registration/new_register.dart';
+import 'package:ctrl_real/src/view/registers/pages/despesas.dart';
+import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
+import 'package:ctrl_real/src/view/settings/pages/settingspage.dart';
+import 'package:ctrl_real/src/view/sobreapp/pages/sobreapp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +32,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: ((context) => HistoryController()),
         ),
+        ChangeNotifierProvider(
+          create: ((context) => LvlSystem()),
+        ),
       ],
       child: AnimatedBuilder(
         animation: DarkController.instance,
@@ -44,20 +50,14 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "Crtl'Real",
             theme: ThemeData(
-              canvasColor: DarkController.instance.darkmod
-                  ? const Color.fromARGB(255, 41, 41, 41)
-                  : const Color.fromARGB(216, 250, 250, 250),
               brightness: DarkController.instance.darkmod
                   ? Brightness.dark
                   : Brightness.light,
               appBarTheme: AppBarTheme(
-                backgroundColor: DarkController.instance.darkmod
-                    ? const Color.fromARGB(255, 34, 34, 34)
-                    : const Color(0xff6959CD),
+                backgroundColor: darkFunctionWidgets(),
               ),
-              cardColor: DarkController.instance.darkmod
-                  ? const Color.fromARGB(255, 34, 34, 34)
-                  : const Color(0xff6959CD),
+              cardColor: darkFunctionWidgets(),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: darkFunctionFloat()),
             ),
             initialRoute: "/",
             routes: {
@@ -69,7 +69,8 @@ class MyApp extends StatelessWidget {
               "/despesas": (context) => const DespesasPage(),
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp(),
-              "/editcount":(context) => const EditAccount()
+              "/editcount": (context) => const EditAccount(),
+              "/editthemes":(context) => const EditThemesPage()
             },
           );
         },

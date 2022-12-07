@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class DarkController extends ChangeNotifier {
   bool darkmod = false;
+  bool bluemod = false;
+  bool redmod = false;
+  bool greenmod = false;
 
   static DarkController instance = DarkController();
 
@@ -9,26 +12,19 @@ class DarkController extends ChangeNotifier {
     darkmod = !darkmod;
     notifyListeners();
   }
-}
 
-class ButtonDark extends StatefulWidget {
-  const ButtonDark({super.key});
+  changeThemeBlue() {
+    bluemod = !bluemod;
+    notifyListeners();
+  }
 
-  @override
-  State<ButtonDark> createState() => _ButtonDarkState();
-}
+  changeThemeRed() {
+    redmod = !redmod;
+    notifyListeners();
+  }
 
-class _ButtonDarkState extends State<ButtonDark> {
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-      activeColor: const Color.fromARGB(220, 104, 89, 205),
-      value: DarkController.instance.darkmod,
-      onChanged: (value) {
-        setState(() {
-          DarkController.instance.changeTheme();
-        });
-      },
-    );
+  changeThemeGreen() {
+    greenmod = !greenmod;
+    notifyListeners();
   }
 }
