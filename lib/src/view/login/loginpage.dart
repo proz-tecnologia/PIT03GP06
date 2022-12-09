@@ -5,6 +5,7 @@ import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,9 @@ class LoginUser extends StatefulWidget {
 
 class _LoginUserState extends State<LoginUser> {
   final _formKey = GlobalKey<FormState>();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  final _fireAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +63,9 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 20,
+                                maxLength: 30,
                                 validator: (value) {
-                                  if (value!.length < 10 || value.length > 20) {
+                                  if (value!.length < 10 || value.length > 30) {
                                     return "Informe o email cadastrado";
                                   }
                                   return null;
@@ -88,6 +92,7 @@ class _LoginUserState extends State<LoginUser> {
                                 onChanged: (value) {
                                   controllerEntradas.email = value;
                                 },
+                                controller: _email,
                               ),
                             ),
                             Padding(
@@ -127,6 +132,7 @@ class _LoginUserState extends State<LoginUser> {
                                 onChanged: (value) {
                                   controllerEntradas.senha = value;
                                 },
+                                controller: _password,
                               ),
                             ),
                             Padding(
@@ -168,13 +174,7 @@ class _LoginUserState extends State<LoginUser> {
                                             controllerEntradas.email);
                                         historyController.senhaUser(
                                             controllerEntradas.senha);
-
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => const HomePage(),
-                                          ),
-                                        );
+                                        login();
                                       },
                                     ),
                                   ),
@@ -216,5 +216,23 @@ class _LoginUserState extends State<LoginUser> {
         ),
       ),
     );
+  }
+
+  login() async {
+    try {
+      UserCredential userr = await _fireAuth.signInWithEmailAndPassword(
+          email: _email.text, password: _password.text);
+      if (userr != null) {
+        Navigator.of(context).pushReplacementNamed("/home");
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Usuário não encontrado')));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Senha invalida')));
+      }
+    }
   }
 }

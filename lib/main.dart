@@ -1,3 +1,4 @@
+import 'package:ctrl_real/firebase_options.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
@@ -12,11 +13,14 @@ import 'package:ctrl_real/src/view/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/view/settings/pages/settingspage.dart';
 import 'package:ctrl_real/src/view/sobreapp/pages/sobreapp.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     const MyApp(),
   );
