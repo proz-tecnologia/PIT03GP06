@@ -6,6 +6,7 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 import '../../../controllers/providercontrolers/transections_despe_controller.dart';
 
 class ReceitasPage extends StatefulWidget {
@@ -184,10 +185,10 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                       valor: controllerEntradas.valor,
                                       descri: controllerEntradas.descricao,
                                       formPag: 'Renda extra',
-                                      icon: const Icon(
+                                      /*icon: const Icon(
                                         Icons.arrow_upward_outlined,
                                         color: Colors.green,
-                                      ));
+                                      )*/);
                                   historyController.addTotaltransection(trans);
                                   historyController
                                       .novaRenda(controllerEntradas.valor);

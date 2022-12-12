@@ -56,7 +56,6 @@ class _ItemTransecState extends State<ItemTransec> {
                     widget.itens.valor.obterReal(),
                     style: const TextStyle(color: Color(0xdfffffff)),
                   ),
-                  widget.itens.icon,
                   Column(
                     children: [
                       Text(

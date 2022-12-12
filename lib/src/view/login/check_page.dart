@@ -1,31 +1,26 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/view/login/loginpage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CheckPage extends StatefulWidget {
+class CheckPage extends StatelessWidget {
   const CheckPage({super.key});
 
   @override
-  State<CheckPage> createState() => _CheckPageState();
-}
-
-class _CheckPageState extends State<CheckPage> {
-  @override
-  void initState() {
-    FirebaseAuth.instance
-  .authStateChanges()
-  .listen((User? user) {
-    if (user == null) {
-      Navigator.of(context).pushReplacementNamed("/login");
-    } else {
-      Navigator.of(context).pushReplacementNamed("/home");
-    }
-  });
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
+    UsersService auth = Provider.of<UsersService>(context);
+    if (auth.isloading) {
+      return loading();
+    }else if(auth.usuario == null){
+      return const LoginUser();
+    }else{
+      return const HomePage();
+    }
+  }
+  loading(){
     return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+      body:  Center(child: CircularProgressIndicator())
     );
   }
 }

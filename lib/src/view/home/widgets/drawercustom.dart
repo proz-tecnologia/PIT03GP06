@@ -2,11 +2,19 @@ import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_contro
 import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DrawerCuston extends StatelessWidget {
+class DrawerCuston extends StatefulWidget {
   const DrawerCuston({super.key});
+
+  @override
+  State<DrawerCuston> createState() => _DrawerCustonState();
+}
+
+class _DrawerCustonState extends State<DrawerCuston> {
+  final _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +83,11 @@ class DrawerCuston extends StatelessWidget {
                 trailing: ButtonRed(),
               ),
               ListTile(
-                title: const Text('Mais temas',textAlign: TextAlign.center,),
-                onTap: () => Navigator.of(context).pushNamed("/editthemes")
-              ),
+                  title: const Text(
+                    'Mais temas',
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushNamed("/editthemes")),
             ],
           ),
           ListTile(
@@ -92,15 +102,23 @@ class DrawerCuston extends StatelessWidget {
             title: const Text(Strings.nameSobreAppDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/sobreapp');
+              print(_firebaseAuth.currentUser!.displayName);
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text(Strings.nameExitDrawer),
-            onTap: () {},
+            onTap: () {
+              exit();
+            },
           ),
         ],
       ),
     );
+  }
+  exit() async {
+    await _firebaseAuth
+        .signOut()
+        .then((user) => Navigator.of(context).pushNamed("/"));
   }
 }

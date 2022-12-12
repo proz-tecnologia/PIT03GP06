@@ -2,8 +2,10 @@ import 'package:ctrl_real/firebase_options.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/view/login/check_page.dart';
 import 'package:ctrl_real/src/view/login/loginpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/editperfilpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/perfilpage.dart';
@@ -34,10 +36,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: ((context) => HistoryController()),
+          create: ((context) => UsersService()),
         ),
         ChangeNotifierProvider(
           create: ((context) => LvlSystem()),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) =>
+              HistoryController(authentinc: context.read<UsersService>())),
         ),
       ],
       child: AnimatedBuilder(
@@ -61,11 +67,13 @@ class MyApp extends StatelessWidget {
                 backgroundColor: darkFunctionWidgets(),
               ),
               cardColor: darkFunctionWidgets(),
-              floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: darkFunctionFloat()),
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                  backgroundColor: darkFunctionFloat()),
             ),
             initialRoute: "/",
             routes: {
-              "/": (context) => const LoginUser(),
+              "/": (context) => const CheckPage(),
+              "/login": (context) => const LoginUser(),
               "/cadastro": (context) => NewRegister(),
               "/home": (context) => const HomePage(),
               "/config": (context) => const SettingsPage(),
@@ -74,7 +82,7 @@ class MyApp extends StatelessWidget {
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp(),
               "/editcount": (context) => const EditAccount(),
-              "/editthemes":(context) => const EditThemesPage()
+              "/editthemes": (context) => const EditThemesPage()
             },
           );
         },

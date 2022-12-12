@@ -1,5 +1,5 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
@@ -164,10 +164,10 @@ class _LoginUserState extends State<LoginUser> {
                                               controllerEntradas.categoryname,
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
-                                          icon: const Icon(
+                                          /*icon: const Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
-                                          ),
+                                          ),*/
                                         );
                                         historyController.addNewUser(user);
                                         historyController.emailUser(
@@ -220,19 +220,9 @@ class _LoginUserState extends State<LoginUser> {
 
   login() async {
     try {
-      UserCredential userr = await _fireAuth.signInWithEmailAndPassword(
-          email: _email.text, password: _password.text);
-      if (userr != null) {
-        Navigator.of(context).pushReplacementNamed("/home");
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Usuário não encontrado')));
-      } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Senha invalida')));
-      }
+      await context.read<UsersService>().login(_email.text, _password.text);
+    } on ExceptionUsers catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 }
