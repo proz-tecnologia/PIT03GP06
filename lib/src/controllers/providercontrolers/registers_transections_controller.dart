@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/databases/firestore_database.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
@@ -16,7 +15,7 @@ class HistoryController extends ChangeNotifier {
 
   _initdataFire() async {
     await _firebaserepository();
-    await _transactionsread();
+    //await transactionsread();
   }
 
   _firebaserepository() {
@@ -78,13 +77,14 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _transactionsread() async {
+  Future<void> transactionsread() async {
     if (authentinc.usuario != null && registersList.isEmpty) {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
           .get();
       read.docs.forEach((element) {
         TotalandCategory lista = TotalandCategory(
+          id: element.id,
             date: element.get('date'),
             descri: element.get('descricao'),
             formPag: element.get('formapag'),

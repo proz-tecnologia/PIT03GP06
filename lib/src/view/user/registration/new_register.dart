@@ -274,6 +274,7 @@ class _NewRegisterState extends State<NewRegister> {
                                               )),
                                         );
                                         var user = TotalandCategory(
+                                          id: '',
                                           date: '',
                                           type: 'Cadastro',
                                           nome: controllerEntradas.nome,

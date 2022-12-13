@@ -251,7 +251,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                         )),
                                   );
                                   var trans = TotalandCategory(
-                                    //id: const Uuid().v4(),
+                                    id: const Uuid().v4(),
                                     date: _txtDateTimeController.text,
                                     type: 'Despesa',
                                     valor: controller.valor,

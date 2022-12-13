@@ -12,7 +12,7 @@ class HistoricPage extends StatefulWidget {
   @override
   State<HistoricPage> createState() => _HistoricPageState();
 }
-final db = FirebaseFirestore.instance;
+
 String menuName = 'Todos';
 
 class _HistoricPageState extends State<HistoricPage> {
@@ -49,48 +49,53 @@ class _HistoricPageState extends State<HistoricPage> {
               },
             )),
         body: Consumer<HistoryController>(builder: (context, controller, __) {
-          return SizedBox(
-              height: MediaQuery.of(context).size.height * 0.7,
-              child: ListView.builder(
-                  itemCount: controller.registersList
-                      .where((element) =>
-                          element.type ==
-                          (menuName == 'Todos' ? element.type : menuName))
-                      .length,
-                  itemBuilder: (context, index) => Dismissible(
-                        key: UniqueKey(),
-                        direction: DismissDirection.endToStart,
-                        background: Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Container(
-                              color: const Color.fromARGB(162, 244, 67, 54)),
-                        ),
-                        onDismissed: (direction) {
-                          var id = controller.registersList
-                              .where((element) =>
-                                  element.type ==
-                                  (menuName == 'Todos'
-                                      ? element.type
-                                      : menuName))
-                              .toList()[index]
-                              .id;
-                          controller.removePorcentChart(id);
-                          controller.removeByID(id);
-                        },
-                        child: ItemTransec(
-                          controller.registersList
-                              .where((element) =>
-                                  element.type ==
-                                  (menuName == 'Todos'
-                                      ? element.type
-                                      : menuName))
-                              .toList()[index],
-                          key: ValueKey<int>(index),
-                        ),
-                      )));
+          return controller.registersList.isEmpty
+              ? Center(
+                  child: IconButton(
+                      onPressed: () => controller.transactionsread(),
+                      icon: const Icon(Icons.refresh), iconSize: 50,))
+              : SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ListView.builder(
+                      itemCount: controller.registersList
+                          .where((element) =>
+                              element.type ==
+                              (menuName == 'Todos' ? element.type : menuName))
+                          .length,
+                      itemBuilder: (context, index) => Dismissible(
+                            key: UniqueKey(),
+                            direction: DismissDirection.endToStart,
+                            background: Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Container(
+                                  color:
+                                      const Color.fromARGB(162, 244, 67, 54)),
+                            ),
+                            onDismissed: (direction) {
+                              var id = controller.registersList
+                                  .where((element) =>
+                                      element.type ==
+                                      (menuName == 'Todos'
+                                          ? element.type
+                                          : menuName))
+                                  .toList()[index]
+                                  .id;
+                              controller.removePorcentChart(id);
+                              controller.removeByID(id);
+                            },
+                            child: ItemTransec(
+                              controller.registersList
+                                  .where((element) =>
+                                      element.type ==
+                                      (menuName == 'Todos'
+                                          ? element.type
+                                          : menuName))
+                                  .toList()[index],
+                              key: ValueKey<int>(index),
+                            ),
+                          )));
         }),
       ),
     );
   }
 }
-                                

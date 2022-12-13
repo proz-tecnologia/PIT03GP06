@@ -153,6 +153,7 @@ class _LoginUserState extends State<LoginUser> {
                                       child: const Text("Login"),
                                       onPressed: () {
                                         var user = TotalandCategory(
+                                          id: '',
                                           date: '',
                                           type: 'Login',
                                           nome: controllerEntradas.nome,

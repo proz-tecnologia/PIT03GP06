@@ -180,7 +180,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                         )),
                                   );
                                   var trans = TotalandCategory(
-                                    //id: const Uuid().v4(),
+                                    id: const Uuid().v4(),
                                     date: _txtDateTimeController.text,
                                       type: 'Receita',
                                       valor: controllerEntradas.valor,
