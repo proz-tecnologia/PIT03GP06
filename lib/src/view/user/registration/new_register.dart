@@ -274,6 +274,7 @@ class _NewRegisterState extends State<NewRegister> {
                                               )),
                                         );
                                         var user = TotalandCategory(
+                                          id: '',
                                           date: '',
                                           type: 'Cadastro',
                                           nome: controllerEntradas.nome,
@@ -285,10 +286,10 @@ class _NewRegisterState extends State<NewRegister> {
                                               controllerEntradas.categoryname,
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
-                                          icon: const Icon(
+                                          /*icon: const Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
-                                          ),
+                                          ),*/
                                         );
                                         historyController.addNewUser(user);
                                         historyController

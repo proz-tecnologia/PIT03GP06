@@ -47,6 +47,10 @@ dependencies:
   uuid: ^3.0.7
   google_fonts: ^3.0.1
   brasil_fields: 1.8.0
+  firebase_core: ^2.4.0
+  firebase_auth: ^4.2.0
+  cloud_firestore: ^4.2.0
+  firebase_database: ^10.0.7
 
 dev_dependencies:
   flutter_test:

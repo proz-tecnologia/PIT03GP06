@@ -1,10 +1,11 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,9 @@ class LoginUser extends StatefulWidget {
 
 class _LoginUserState extends State<LoginUser> {
   final _formKey = GlobalKey<FormState>();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  final _fireAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +63,9 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 20,
+                                maxLength: 30,
                                 validator: (value) {
-                                  if (value!.length < 10 || value.length > 20) {
+                                  if (value!.length < 10 || value.length > 30) {
                                     return "Informe o email cadastrado";
                                   }
                                   return null;
@@ -88,6 +92,7 @@ class _LoginUserState extends State<LoginUser> {
                                 onChanged: (value) {
                                   controllerEntradas.email = value;
                                 },
+                                controller: _email,
                               ),
                             ),
                             Padding(
@@ -127,6 +132,7 @@ class _LoginUserState extends State<LoginUser> {
                                 onChanged: (value) {
                                   controllerEntradas.senha = value;
                                 },
+                                controller: _password,
                               ),
                             ),
                             Padding(
@@ -147,6 +153,7 @@ class _LoginUserState extends State<LoginUser> {
                                       child: const Text("Login"),
                                       onPressed: () {
                                         var user = TotalandCategory(
+                                          id: '',
                                           date: '',
                                           type: 'Login',
                                           nome: controllerEntradas.nome,
@@ -158,23 +165,17 @@ class _LoginUserState extends State<LoginUser> {
                                               controllerEntradas.categoryname,
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
-                                          icon: const Icon(
+                                          /*icon: const Icon(
                                             Icons.arrow_downward_outlined,
                                             color: Colors.red,
-                                          ),
+                                          ),*/
                                         );
                                         historyController.addNewUser(user);
                                         historyController.emailUser(
                                             controllerEntradas.email);
                                         historyController.senhaUser(
                                             controllerEntradas.senha);
-
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => const HomePage(),
-                                          ),
-                                        );
+                                        login();
                                       },
                                     ),
                                   ),
@@ -216,5 +217,13 @@ class _LoginUserState extends State<LoginUser> {
         ),
       ),
     );
+  }
+
+  login() async {
+    try {
+      await context.read<UsersService>().login(_email.text, _password.text);
+    } on ExceptionUsers catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 }

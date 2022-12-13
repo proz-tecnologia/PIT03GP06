@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class TotalandCategory {
-  final String id = const Uuid().v4();
+  final String id;//const Uuid().v4();
   final String date;
   final String type;
-  final Icon icon;
+  //final Icon icon;
   final double valor;
   final String descri;
   final String formPag;
@@ -16,9 +16,10 @@ class TotalandCategory {
   final String? senha;
 
   TotalandCategory({
+    required this.id,
     required this.date,
     required this.type,
-    required this.icon,
+    //required this.icon,
     required this.formPag,
     required this.valor,
     required this.descri,
@@ -28,4 +29,5 @@ class TotalandCategory {
     this.renda,
     this.senha,
   });
+
 }

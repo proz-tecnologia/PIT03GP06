@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483870613068",
+    "project_id": "projectpi-ctrlreal",
+    "storage_bucket": "projectpi-ctrlreal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483870613068:android:15c85c51d8bb3249fc9ee9",
+        "android_client_info": {
+          "package_name": "com.example.ctrl_real"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483870613068-aa2q0t8tttdio5049rhtf9trd4aojiqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC4BWukiJYsfqaCbXkPeyegyv2tXm9Hus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483870613068-aa2q0t8tttdio5049rhtf9trd4aojiqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

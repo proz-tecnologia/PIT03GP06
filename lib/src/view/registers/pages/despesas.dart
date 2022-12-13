@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 import '../../../controllers/providercontrolers/transections_despe_controller.dart';
 
 class DespesasPage extends StatefulWidget {
@@ -24,7 +27,7 @@ class _AddCategoriesState extends State<DespesasPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+        return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Despesas'),
@@ -248,16 +251,17 @@ class _AddCategoriesState extends State<DespesasPage> {
                                         )),
                                   );
                                   var trans = TotalandCategory(
+                                    id: const Uuid().v4(),
                                     date: _txtDateTimeController.text,
                                     type: 'Despesa',
                                     valor: controller.valor,
                                     descri: controller.descricao,
                                     categoryname: controller.categoryname,
                                     formPag: 'Forma: ${controller.formpag}',
-                                    icon: const Icon(
+                                    /*icon: const Icon(
                                       Icons.arrow_downward_outlined,
                                       color: Colors.red,
-                                    ),
+                                    ),*/
                                   );
                                   historyController.addTotaltransection(trans);
                                   historyController.addValueCategory(

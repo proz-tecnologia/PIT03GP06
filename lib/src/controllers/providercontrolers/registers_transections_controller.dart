@@ -1,8 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/view/databases/firestore_database.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
   final List<TotalandCategory> registersList = [];
+  late FirebaseFirestore datb;
+  late UsersService authentinc;
+
+  HistoryController({required this.authentinc}) {
+    _initdataFire();
+  }
+
+  _initdataFire() async {
+    await _firebaserepository();
+    //await transactionsread();
+  }
+
+  _firebaserepository() {
+    datb = FireStoreDb.get();
+  }
+
   final List<TotalandCategory> registerUser = [];
 
   double valorLimite = 0;
@@ -40,12 +59,49 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  addTotaltransection(TotalandCategory trans) {
+  addTotaltransection(TotalandCategory trans) async {
+    await datb
+        .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
+        .doc(trans.id)
+        .set({
+      'id': trans.id,
+      'date': trans.date,
+      'descricao': trans.descri,
+      'valor': trans.valor,
+      'categoria': trans.categoryname,
+      'formapag': trans.formPag,
+      //'icone': trans.icon.toString(),
+      'tipo': trans.type
+    });
     registersList.add(trans);
     notifyListeners();
   }
 
-  void removeByID(String id) {
+  Future<void> transactionsread() async {
+    if (authentinc.usuario != null && registersList.isEmpty) {
+      QuerySnapshot read = await datb
+          .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
+          .get();
+      read.docs.forEach((element) {
+        TotalandCategory lista = TotalandCategory(
+          id: element.id,
+            date: element.get('date'),
+            descri: element.get('descricao'),
+            formPag: element.get('formapag'),
+            categoryname: element.get('categoria'),
+            type: element.get('tipo'),
+            valor: element.get('valor'));
+        registersList.add(lista);
+      });
+    }
+    notifyListeners();
+  }
+
+  void removeByID(String id) async {
+    await datb
+        .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
+        .doc(id)
+        .delete();
     registersList.removeWhere((e) => e.id == id);
     notifyListeners();
   }
