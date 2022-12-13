@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
-
 class TotalandCategory {
   final String id;//const Uuid().v4();
   final String date;
