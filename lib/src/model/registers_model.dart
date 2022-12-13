@@ -28,4 +28,5 @@ class TotalandCategory {
     this.renda,
     this.senha,
   });
+
 }

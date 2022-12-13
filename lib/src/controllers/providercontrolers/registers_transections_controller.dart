@@ -16,7 +16,7 @@ class HistoryController extends ChangeNotifier {
 
   _initdataFire() async {
     await _firebaserepository();
-    //await _transactionsread();
+    await _transactionsread();
   }
 
   _firebaserepository() {
@@ -63,9 +63,10 @@ class HistoryController extends ChangeNotifier {
   addTotaltransection(TotalandCategory trans) async {
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
-        .doc()
+        .doc(trans.id)
         .set({
-      'data': trans.date,
+      'id': trans.id,
+      'date': trans.date,
       'descricao': trans.descri,
       'valor': trans.valor,
       'categoria': trans.categoryname,
@@ -77,23 +78,24 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*Future<void> _transactionsread() async {
-
+  Future<void> _transactionsread() async {
     if (authentinc.usuario != null && registersList.isEmpty) {
-
-      final read = await datb
-          .collection('usuarios/${authentinc.usuario!.uid}').doc('transacoes')
+      QuerySnapshot read = await datb
+          .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
           .get();
-      read.forEach((element) {
-        var lista =  element.get('categoria');
+      read.docs.forEach((element) {
+        TotalandCategory lista = TotalandCategory(
+            date: element.get('date'),
+            descri: element.get('descricao'),
+            formPag: element.get('formapag'),
+            categoryname: element.get('categoria'),
+            type: element.get('tipo'),
+            valor: element.get('valor'));
         registersList.add(lista);
       });
-      //final lista = read.get('transacoes'); //? read.data()!.length : null;
-
-      //final lst = lista;
     }
     notifyListeners();
-  }*/
+  }
 
   void removeByID(String id) async {
     await datb

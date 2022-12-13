@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/widgets/totaltransection.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class HistoricPage extends StatefulWidget {
   @override
   State<HistoricPage> createState() => _HistoricPageState();
 }
-
+final db = FirebaseFirestore.instance;
 String menuName = 'Todos';
 
 class _HistoricPageState extends State<HistoricPage> {
@@ -34,8 +35,7 @@ class _HistoricPageState extends State<HistoricPage> {
               ),
               hint: const Text(
                 'Listar por',
-                style:
-                    TextStyle(color:Color.fromARGB(207, 255, 255, 255)),
+                style: TextStyle(color: Color.fromARGB(207, 255, 255, 255)),
               ),
               items: drop.historicform
                   .map((e) => DropdownMenuItem<String>(
@@ -93,3 +93,4 @@ class _HistoricPageState extends State<HistoricPage> {
     );
   }
 }
+                                
