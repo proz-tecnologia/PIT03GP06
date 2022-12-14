@@ -1,5 +1,7 @@
+import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
 
 class SobreApp extends StatelessWidget {
   const SobreApp({super.key});
@@ -15,7 +17,7 @@ class SobreApp extends StatelessWidget {
         body: Container(
           padding: const EdgeInsets.only(top: 24),
           width: double.infinity,
-          color: const Color.fromARGB(220, 104, 89, 205),
+          color: darkFunctionWidgets(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -34,7 +36,7 @@ class SobreApp extends StatelessWidget {
                     fontSize:  14,
                     fontWeight:  FontWeight.w400,
                     height:  1.4525,
-                    color:  const Color(0xffffffff)
+                    color:  darkFunctionTexts()
                   ),
                 ),
               ),
@@ -50,7 +52,7 @@ class SobreApp extends StatelessWidget {
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     height: 1.4525,
-                    color: const Color(0xffffffff),
+                    color: darkFunctionTexts(),
                   ),
                 ),
               ),
