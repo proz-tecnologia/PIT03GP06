@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/widgets/totaltransection.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import '../../../controllers/providercontrolers/transections_despe_controller.da
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
+  
 
   @override
   State<HistoricPage> createState() => _HistoricPageState();
@@ -16,6 +16,7 @@ class HistoricPage extends StatefulWidget {
 String menuName = 'Todos';
 
 class _HistoricPageState extends State<HistoricPage> {
+
   @override
   Widget build(BuildContext context) {
     final TransactionController drop = TransactionController();
@@ -52,7 +53,10 @@ class _HistoricPageState extends State<HistoricPage> {
           return controller.registersList.isEmpty
               ? Center(
                   child: IconButton(
-                      onPressed: () => controller.transactionsread(),
+                      onPressed: () {
+                        controller.transactionsread();
+                        controller.transaction();
+                      },
                       icon: const Icon(Icons.refresh), iconSize: 50,))
               : SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,

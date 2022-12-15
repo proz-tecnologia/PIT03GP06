@@ -1,7 +1,6 @@
 import 'package:uuid/uuid.dart';
 
 class CategoriesModel {
-  final String id = const Uuid().v4();
   final double supermerc;
   final double lazer;
   final double transpor;
