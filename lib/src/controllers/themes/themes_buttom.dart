@@ -74,7 +74,7 @@ class ButtonGreen extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed('/home');
                 }
               : () {},
-          child: value.lvl == 10
+          child: value.lvl >= 10
               ? Text(DarkController.instance.greenmod ? 'Desativar' : 'Atitvar')
               : const Text('Nível 10'),
         ),
@@ -94,7 +94,7 @@ class ButtonRed extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(220, 219, 37, 27)),
-          onPressed: value.lvl == 15
+          onPressed: value.lvl >= 15
               ? () {
                   DarkController.instance.changeThemeRed();
                   DarkController.instance.darkmod = false;
@@ -103,7 +103,7 @@ class ButtonRed extends StatelessWidget {
                   Navigator.of(context).pushReplacementNamed('/home');
                 }
               : () {},
-          child: value.lvl == 15
+          child: value.lvl >= 15
               ? Text(DarkController.instance.redmod ? 'Desativar' : 'Atitvar')
               : const Text('Nível 15'),
         ),

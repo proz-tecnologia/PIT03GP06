@@ -18,7 +18,7 @@ class LvlSystem extends ChangeNotifier {
   }
 
     recXpAdd() {
-    if (lvl == 15) {
+    if (lvl >= 15) {
       lvl = 15;
     } else {
       xp += 40;
