@@ -264,10 +264,11 @@ class _AddCategoriesState extends State<DespesasPage> {
                                     ),*/
                                   );
                                   historyController.addTotaltransection(trans);
-                                  historyController.addValueCategory(
+                                  setState(() {
+                                    historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);
-
+                                  });
                                   historyController
                                       .novoSaldoSaida(controller.valor);
                                   historyController

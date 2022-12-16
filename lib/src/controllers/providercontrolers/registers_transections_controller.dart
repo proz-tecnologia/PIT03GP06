@@ -15,7 +15,6 @@ class HistoryController extends ChangeNotifier {
 
   _initdataFire() async {
     await _firebaserepository();
-    //await transactionsread();
   }
 
   _firebaserepository() {
@@ -70,10 +69,110 @@ class HistoryController extends ChangeNotifier {
       'valor': trans.valor,
       'categoria': trans.categoryname,
       'formapag': trans.formPag,
-      //'icone': trans.icon.toString(),
       'tipo': trans.type
     });
     registersList.add(trans);
+    notifyListeners();
+  }
+
+  addValueCategory(double result, String categorynames) async {
+    String id = 'categoriesid';
+    if (categorynames == 'Supermercado') {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc + result,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      supermerc += result;
+    } else if (categorynames == 'Lazer') {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer + result,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      lazer += result;
+    } else if (categorynames == 'Transporte') {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor + result,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      transpor += result;
+    } else if (categorynames == 'Farmacia') {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac + result,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      farmac += result;
+    } else if (categorynames == 'Pagamentos') {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament + result,
+        'gastosex': gastosex,
+      });
+      pagament += result;
+    } else {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex + result,
+      });
+      gastosex += result;
+    }
+    notifyListeners();
+  }
+
+  Future<void> transaction() async {
+    if (authentinc.usuario != null) {
+      QuerySnapshot read = await datb
+          .collection('usuarios/${authentinc.usuario!.uid}/categories')
+          .get();
+      read.docs.forEach((element) {
+        supermerc = element.get('supermercado');
+        lazer = element.get('lazer');
+        transpor = element.get('transporte');
+        farmac = element.get('farmacia');
+        pagament = element.get('pagamentos');
+        gastosex = element.get('gastosex');
+      });
+    }
     notifyListeners();
   }
 
@@ -84,7 +183,7 @@ class HistoryController extends ChangeNotifier {
           .get();
       read.docs.forEach((element) {
         TotalandCategory lista = TotalandCategory(
-          id: element.id,
+            id: element.id,
             date: element.get('date'),
             descri: element.get('descricao'),
             formPag: element.get('formapag'),
@@ -131,38 +230,88 @@ class HistoryController extends ChangeNotifier {
     return saida += result;
   }
 
-  double addValueCategory(double result, String categorynames) {
+  menosValueCategory(double result, String categorynames) async {
+    String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
-      return supermerc += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc - result,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      supermerc -= result;
     } else if (categorynames == 'Lazer') {
-      return lazer += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer - result,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      lazer -= result;
     } else if (categorynames == 'Transporte') {
-      return transpor += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor - result,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      transpor -= result;
     } else if (categorynames == 'Farmacia') {
-      return farmac += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac - result,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
+      farmac -= result;
     } else if (categorynames == 'Pagamentos') {
-      return pagament += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament - result,
+        'gastosex': gastosex,
+      });
+      pagament -= result;
     } else {
-      return gastosex += result;
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex - result,
+      });
+      gastosex -= result;
     }
-  }
-
-  double menosValueCategory(double result, String categorynames) {
-    if (categorynames == 'Supermercado') {
-      return supermerc -= result;
-    } else if (categorynames == 'Lazer') {
-      return lazer -= result;
-    } else if (categorynames == 'Transporte') {
-      return transpor -= result;
-    } else if (categorynames == 'Farmacia') {
-      return farmac -= result;
-    } else if (categorynames == 'Pagamentos') {
-      return pagament -= result;
-    } else if (categorynames == 'Gastos extras') {
-      return gastosex -= result;
-    } else {
-      return supermerc -= 0;
-    }
+    notifyListeners();
   }
 
   double porcentSupermerc(double result) {

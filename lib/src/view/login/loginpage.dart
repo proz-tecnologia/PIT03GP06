@@ -223,7 +223,8 @@ class _LoginUserState extends State<LoginUser> {
     try {
       await context.read<UsersService>().login(_email.text, _password.text);
     } on ExceptionUsers catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
     }
   }
 }
