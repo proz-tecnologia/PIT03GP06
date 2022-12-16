@@ -15,8 +15,6 @@ class HistoryController extends ChangeNotifier {
 
   _initdataFire() async {
     await _firebaserepository();
-    //await transaction();
-    //await transactionsread();
   }
 
   _firebaserepository() {
@@ -71,7 +69,6 @@ class HistoryController extends ChangeNotifier {
       'valor': trans.valor,
       'categoria': trans.categoryname,
       'formapag': trans.formPag,
-      //'icone': trans.icon.toString(),
       'tipo': trans.type
     });
     registersList.add(trans);
@@ -159,57 +156,6 @@ class HistoryController extends ChangeNotifier {
       });
       gastosex += result;
     }
-
-    /*final String id;
-    if (categorynames == 'Supermercado') {
-      id = 'supermercadid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'supermercado': supermerc + result,
-      });
-    } else if (categorynames == 'Lazer') {
-      id = 'lazerid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'lazer': lazer + result,
-      });
-    } else if (categorynames == 'Transporte') {
-      id = 'transporid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'transporte': transpor + result,
-      });
-    } else if (categorynames == 'Farmacia') {
-      id = 'farmacdid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'farmacia': farmac + result,
-      });
-    } else if (categorynames == 'Pagamentos') {
-      id = 'pagid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'pagamentos': pagament + result,
-      });
-    } else {
-      id = 'gastosexid';
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'gastosex': gastosex + result,
-      });
-    }*/
     notifyListeners();
   }
 
@@ -283,22 +229,6 @@ class HistoryController extends ChangeNotifier {
   double totalSaida(double result) {
     return saida += result;
   }
-
-  /*double addValueCategory(double result, String categorynames) {
-    if (categorynames == 'Supermercado') {
-      return supermerc += result;
-    } else if (categorynames == 'Lazer') {
-      return lazer += result;
-    } else if (categorynames == 'Transporte') {
-      return transpor += result;
-    } else if (categorynames == 'Farmacia') {
-      return farmac += result;
-    } else if (categorynames == 'Pagamentos') {
-      return pagament += result;
-    } else {
-      return gastosex += result;
-    }
-  }*/
 
   menosValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
