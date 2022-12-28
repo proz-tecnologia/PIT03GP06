@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class LvlSystem extends ChangeNotifier {
   int xp = 0;
   int finalxp = 100;
-  int lvl = 1;
+  int lvl = 14;
 
   despXpAdd() {
     if (lvl == 15) {

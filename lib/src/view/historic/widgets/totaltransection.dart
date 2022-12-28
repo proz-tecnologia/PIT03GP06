@@ -28,7 +28,7 @@ class _ItemTransecState extends State<ItemTransec> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.itens.formPag,
+                    widget.itens.formPag!,
                     style: const TextStyle(
                       color: Color(0xdfffffff),
                     ),
@@ -59,13 +59,13 @@ class _ItemTransecState extends State<ItemTransec> {
                   Column(
                     children: [
                       Text(
-                        widget.itens.date,
+                        widget.itens.date!,
                         style: const TextStyle(color: Color(0xdfffffff)),
                       ),
                       SizedBox(
                         width: 220,
                         child: Text(
-                          widget.itens.descri,
+                          widget.itens.descri!,
                           textAlign: TextAlign.center,
                           style: const TextStyle(color: Color(0xdfffffff)),
                         ),

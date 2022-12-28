@@ -12,17 +12,16 @@ class CheckPage extends StatelessWidget {
     UsersService auth = Provider.of<UsersService>(context);
     if (auth.isloading) {
       return loading();
-    }else if(auth.usuario == null){
+    } else if (auth.usuario == null) {
       return const LoginUser();
-    }else{
+    } else {
       context.read<HistoryController>().transaction();
       context.read<HistoryController>().transactionsread();
       return const HomePage();
     }
   }
-  loading(){
-    return const Scaffold(
-      body:  Center(child: CircularProgressIndicator())
-    );
+
+  loading() {
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }

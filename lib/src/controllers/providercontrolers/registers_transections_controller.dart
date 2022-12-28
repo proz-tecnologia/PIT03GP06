@@ -62,17 +62,24 @@ class HistoryController extends ChangeNotifier {
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(trans.id)
-        .set({
-      'id': trans.id,
-      'date': trans.date,
-      'descricao': trans.descri,
-      'valor': trans.valor,
-      'categoria': trans.categoryname,
-      'formapag': trans.formPag,
-      'tipo': trans.type
-    });
+        .set(trans.toMap());
     registersList.add(trans);
     notifyListeners();
+  }
+
+    addCategoriesPrimary()async{
+    String id = 'categoriesid';
+    await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .set({
+        'supermercado': supermerc,
+        'lazer': lazer,
+        'transporte': transpor,
+        'farmacia': farmac,
+        'pagamentos': pagament,
+        'gastosex': gastosex,
+      });
   }
 
   addValueCategory(double result, String categorynames) async {
@@ -81,77 +88,47 @@ class HistoryController extends ChangeNotifier {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
+          .update({
         'supermercado': supermerc + result,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       supermerc += result;
     } else if (categorynames == 'Lazer') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
+          .update({
         'lazer': lazer + result,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       lazer += result;
     } else if (categorynames == 'Transporte') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
+          .update({
         'transporte': transpor + result,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       transpor += result;
     } else if (categorynames == 'Farmacia') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
+          .update({
         'farmacia': farmac + result,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       farmac += result;
     } else if (categorynames == 'Pagamentos') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
+          .update({
         'pagamentos': pagament + result,
-        'gastosex': gastosex,
       });
       pagament += result;
     } else {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
+          .update({
         'gastosex': gastosex + result,
       });
       gastosex += result;
@@ -182,18 +159,10 @@ class HistoryController extends ChangeNotifier {
           .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
           .get();
       read.docs.forEach((element) {
-        TotalandCategory lista = TotalandCategory(
-            id: element.id,
-            date: element.get('date'),
-            descri: element.get('descricao'),
-            formPag: element.get('formapag'),
-            categoryname: element.get('categoria'),
-            type: element.get('tipo'),
-            valor: element.get('valor'));
+        TotalandCategory lista = TotalandCategory.fromFirestore(element.data() as Map<String, dynamic>);
         registersList.add(lista);
       });
     }
-    notifyListeners();
   }
 
   void removeByID(String id) async {

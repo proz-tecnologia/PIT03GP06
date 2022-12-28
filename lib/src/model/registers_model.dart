@@ -1,22 +1,20 @@
 class TotalandCategory {
-  final String id;//const Uuid().v4();
-  final String date;
-  final String type;
-  //final Icon icon;
-  final double valor;
-  final String descri;
-  final String formPag;
-  final String? categoryname;
-  final String? nome;
-  final String? email;
-  final double? renda;
-  final String? senha;
+  String? id;
+  String? date;
+  String? type;
+  late double valor;
+  String? descri;
+  String? formPag;
+  String? categoryname;
+  String? nome;
+  String? email;
+  double? renda;
+  String? senha;
 
   TotalandCategory({
     required this.id,
     required this.date,
     required this.type,
-    //required this.icon,
     required this.formPag,
     required this.valor,
     required this.descri,
@@ -27,4 +25,25 @@ class TotalandCategory {
     this.senha,
   });
 
+  TotalandCategory.fromFirestore(Map<String, dynamic> map) {
+    id = map["id"] ?? "";
+    date = map["date"] ?? "";
+    type = map["tipo"] ?? "";
+    formPag = map["formapag"] ?? "";
+    valor = map["valor"] ?? 0.0;
+    descri = map["descricao"] ?? "";
+    categoryname = map["categoria"] ?? "";
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "id": id,
+      "date": date,
+      "tipo": type,
+      "formapag": formPag,
+      "valor": valor,
+      "descricao": descri,
+      "categoria": categoryname
+    };
+  }
 }
