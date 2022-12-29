@@ -60,20 +60,20 @@ class _BalancesState extends State<Balances> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Renda ${value.renda.formatBRL}",
+                      Text("Renda total ${value.renda.formatBRL}",
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                           )),
                       Text(
-                        "Disponível ${(value.renda - value.saida).formatBRL}",
+                        "Gasto total ${value.saida.formatBRL}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        "Saídas ${value.saida.formatBRL}",
+                        "Saldo total ${(value.renda - value.saida).formatBRL}",
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
