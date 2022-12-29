@@ -55,7 +55,7 @@ class _BalancesState extends State<Balances> {
                     boxShadow: kElevationToShadow[4],
                     borderRadius: BorderRadius.circular(4.0),
                   ),
-                  height: 148,
+                  height: 110,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
