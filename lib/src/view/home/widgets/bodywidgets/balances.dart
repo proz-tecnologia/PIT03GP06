@@ -58,62 +58,26 @@ class _BalancesState extends State<Balances> {
                   height: 148,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Baseline(
-                        baseline: 30,
-                        baselineType: TextBaseline.alphabetic,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: const [
-                            Text("Renda",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                )),
-                            Text(
-                              "  Disponível",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                              ),
-                            ),
-                            Text(
-                              "Saídas",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
+                      Text("Renda ${value.renda.formatBRL}",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          )),
+                      Text(
+                        "Disponível ${(value.renda - value.saida).formatBRL}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            value.renda.formatBRL,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            (value.renda - value.saida).formatBRL,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                            ),
-                          ),
-                          Text(
-                            value.saida.formatBRL,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        "Saídas ${value.saida.formatBRL}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
                     ],
                   ),
