@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      drawer:  DrawerCuston(),
+      drawer: const DrawerCuston(),
       appBar: AppBar(
         centerTitle: true,
         title: Image.asset(
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           SafeArea(
               child: SingleChildScrollView(
             child: Column(
-              children:  [
+              children: [
                 const Balances(),
                 Speding(),
                 const Categories(),
