@@ -64,13 +64,6 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 30,
-                                validator: (value) {
-                                  if (value!.length < 10 || value.length > 30) {
-                                    return "Informe o email cadastrado";
-                                  }
-                                  return null;
-                                },
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
                                   helperStyle: TextStyle(
