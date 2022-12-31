@@ -73,7 +73,7 @@ class _LoginUserState extends State<LoginUser> {
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
                                   helperStyle: TextStyle(
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   labelText: Strings.userEmail,
                                   hintText: "abcd@gmail.com",
@@ -81,7 +81,7 @@ class _LoginUserState extends State<LoginUser> {
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -113,7 +113,7 @@ class _LoginUserState extends State<LoginUser> {
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
                                   helperStyle: TextStyle(
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   labelText: Strings.userSenha,
                                   hintText: "*******",
@@ -121,7 +121,7 @@ class _LoginUserState extends State<LoginUser> {
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
