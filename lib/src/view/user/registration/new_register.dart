@@ -27,6 +27,7 @@ class _NewRegisterState extends State<NewRegister> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Cadastro'),
+          backgroundColor: const Color.fromARGB(220, 104, 89, 205),
           centerTitle: true,
         ),
         body: Container(
