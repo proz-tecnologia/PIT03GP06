@@ -179,6 +179,10 @@ class _NewRegisterState extends State<NewRegister> {
                               return null;
                             },
                             decoration: InputDecoration(
+                              helperText: "Campo obrigatório",
+                              helperStyle: TextStyle(
+                                color: darkFunctionTextUser(),
+                              ),
                               labelText: Strings.userSenha,
                               hintText: "*******",
                               hintStyle: const TextStyle(
