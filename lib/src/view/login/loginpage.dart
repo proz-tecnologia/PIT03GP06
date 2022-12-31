@@ -28,6 +28,7 @@ class _LoginUserState extends State<LoginUser> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
+          backgroundColor: const Color.fromARGB(220, 104, 89, 205),
           centerTitle: true,
         ),
         body: Container(
