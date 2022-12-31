@@ -173,7 +173,7 @@ class _NewRegisterState extends State<NewRegister> {
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 25) {
+                              if (value!.length < 8 || value.length > 25) {
                                 return "Defina sua senha";
                               }
                               return null;
