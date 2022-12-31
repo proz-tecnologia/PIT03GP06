@@ -65,7 +65,7 @@ class _LoginUserState extends State<LoginUser> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
-                                  labelText: Strings.userEmail,
+                                  labelText: "Email",
                                   hintText: "abcd@abcd.com",
                                   hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
@@ -94,7 +94,7 @@ class _LoginUserState extends State<LoginUser> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
-                                  labelText: Strings.userSenha,
+                                  labelText: "Senha",
                                   hintText: "*******",
                                   hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
