@@ -13,10 +13,8 @@ Color darkFunctionTexts() {
                   : const Color.fromARGB(220, 104, 89, 205);
 }
 
-Color darkFunctionTextUser() {
-  return DarkController.instance.darkmod
-      ? const Color.fromARGB(207, 255, 255, 255)
-      : const Color.fromARGB(207, 255, 255, 255);
+Color textUser() {
+  return const Color.fromARGB(207, 255, 255, 255);
 }
 
 Color darkFunctionWidgets() {
