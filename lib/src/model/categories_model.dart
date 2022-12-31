@@ -1,5 +1,3 @@
-import 'package:uuid/uuid.dart';
-
 class CategoriesModel {
   final double supermerc;
   final double lazer;

@@ -23,15 +23,15 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Cadastro'),
+          backgroundColor: const Color.fromARGB(220, 104, 89, 205),
           centerTitle: true,
         ),
         body: Container(
-          color: darkFunctionWidgets(),
+          color: const Color.fromARGB(220, 104, 89, 205),
           height: double.infinity,
           child: Container(
             padding: const EdgeInsets.all(20),
@@ -64,15 +64,15 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -93,9 +93,9 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 20,
+                            maxLength: 50,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 20) {
+                              if (value!.length < 3 || value.length > 50) {
                                 return "Informe seu email";
                               }
                               return null;
@@ -103,15 +103,15 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               labelText: Strings.userEmail,
-                              hintText: "abcd@gmail.com",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintText: "abcd@abcd.com",
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -141,15 +141,15 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: Strings.userRenda,
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               hintText: "0,00",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               prefix: const Text("R\$"),
                               helperText: "Máximo de 999.999,99 digitos",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -166,19 +166,6 @@ class _NewRegisterState extends State<NewRegister> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            child: const Text(
-                              "A senha deve conter:\n ° Até 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: const TextStyle(
                               color: Colors.white,
@@ -187,54 +174,23 @@ class _NewRegisterState extends State<NewRegister> {
                                 AutovalidateMode.onUserInteraction,
                             maxLength: 25,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 25) {
+                              if (value!.length < 8 || value.length > 25) {
                                 return "Defina sua senha";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
+                              helperText: "Campo obrigatório",
+                              helperStyle: TextStyle(
+                                color: textUser(),
+                              ),
                               labelText: Strings.userSenha,
                               hintText: "*******",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
-                              ),
-                            ),
-                            onChanged: (value) {
-                              controllerEntradas.senha = value;
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: 25,
-                            validator: (value) {
-                              if (value!.length < 3 || value.length > 25) {
-                                return "Confirme sua senha";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              labelText: "Confirmar Senha*",
-                              hintText: "*******",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -257,8 +213,8 @@ class _NewRegisterState extends State<NewRegister> {
                                   builder: (context, historyController, _) {
                                 return ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color.fromARGB(220, 104, 89, 205)),
+                                        backgroundColor: const Color.fromARGB(
+                                            220, 104, 89, 205)),
                                     child: const Text("Cadastrar"),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
@@ -304,7 +260,8 @@ class _NewRegisterState extends State<NewRegister> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => const LoginUser(),
+                                            builder: (context) =>
+                                                const LoginUser(),
                                           ),
                                         );
                                       }

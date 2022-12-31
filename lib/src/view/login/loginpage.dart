@@ -28,6 +28,7 @@ class _LoginUserState extends State<LoginUser> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
+          backgroundColor: const Color.fromARGB(220, 104, 89, 205),
           centerTitle: true,
         ),
         body: Container(
@@ -63,25 +64,14 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 30,
-                                validator: (value) {
-                                  if (value!.length < 10 || value.length > 30) {
-                                    return "Informe o email cadastrado";
-                                  }
-                                  return null;
-                                },
                                 decoration: InputDecoration(
-                                  helperText: "Campo obrigatório",
-                                  helperStyle: TextStyle(
-                                    color: darkFunctionTextUser(),
-                                  ),
-                                  labelText: Strings.userEmail,
-                                  hintText: "abcd@gmail.com",
+                                  labelText: "Email",
+                                  hintText: "abcd@abcd.com",
                                   hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -103,25 +93,14 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 8,
-                                validator: (value) {
-                                  if (value!.length < 3 || value.length > 8) {
-                                    return "Informe a senha";
-                                  }
-                                  return null;
-                                },
                                 decoration: InputDecoration(
-                                  helperText: "Campo obrigatório",
-                                  helperStyle: TextStyle(
-                                    color: darkFunctionTextUser(),
-                                  ),
-                                  labelText: Strings.userSenha,
+                                  labelText: "Senha",
                                   hintText: "*******",
                                   hintStyle: const TextStyle(
                                       fontSize: 12, color: Colors.white),
                                   labelStyle: TextStyle(
                                     fontSize: 14,
-                                    color: darkFunctionTextUser(),
+                                    color: textUser(),
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
