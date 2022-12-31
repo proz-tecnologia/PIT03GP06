@@ -63,7 +63,7 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
@@ -71,7 +71,7 @@ class _NewRegisterState extends State<NewRegister> {
                                   fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -102,7 +102,7 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               labelText: Strings.userEmail,
                               hintText: "abcd@abcd.com",
@@ -110,7 +110,7 @@ class _NewRegisterState extends State<NewRegister> {
                                   fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -140,7 +140,7 @@ class _NewRegisterState extends State<NewRegister> {
                               labelText: Strings.userRenda,
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               hintText: "0,00",
                               hintStyle: const TextStyle(
@@ -148,7 +148,7 @@ class _NewRegisterState extends State<NewRegister> {
                               prefix: const Text("R\$"),
                               helperText: "Máximo de 999.999,99 digitos",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -181,7 +181,7 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               labelText: Strings.userSenha,
                               hintText: "*******",
@@ -189,7 +189,7 @@ class _NewRegisterState extends State<NewRegister> {
                                   fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
-                                color: darkFunctionTextUser(),
+                                color: textUser(),
                               ),
                               focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(
