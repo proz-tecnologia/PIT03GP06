@@ -199,41 +199,6 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: 25,
-                            validator: (value) {
-                              if (value!.length < 3 || value.length > 25) {
-                                return "Confirme sua senha";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              labelText: "Confirmar Senha*",
-                              hintText: "*******",
-                              hintStyle: const TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: darkFunctionTextUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
-                              ),
-                            ),
-                            onChanged: (value) {
-                              controllerEntradas.senha = value;
-                            },
-                          ),
-                        ),
-                        Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: Center(
                             child: SizedBox(
