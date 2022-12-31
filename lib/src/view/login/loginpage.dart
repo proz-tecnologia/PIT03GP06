@@ -93,13 +93,6 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
-                                maxLength: 8,
-                                validator: (value) {
-                                  if (value!.length < 3 || value.length > 8) {
-                                    return "Informe a senha";
-                                  }
-                                  return null;
-                                },
                                 decoration: InputDecoration(
                                   helperText: "Campo obrigatório",
                                   helperStyle: TextStyle(
