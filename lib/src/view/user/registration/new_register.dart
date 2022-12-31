@@ -30,7 +30,7 @@ class _NewRegisterState extends State<NewRegister> {
           centerTitle: true,
         ),
         body: Container(
-          color: darkFunctionWidgets(),
+          color: const Color.fromARGB(220, 104, 89, 205),
           height: double.infinity,
           child: Container(
             padding: const EdgeInsets.all(20),
