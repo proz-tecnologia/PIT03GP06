@@ -165,19 +165,6 @@ class _NewRegisterState extends State<NewRegister> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
-                          child: Container(
-                            alignment: Alignment.centerLeft,
-                            child: const Text(
-                              "A senha deve conter:\n ° Até 8 caracteres\n ° Uma letra maiúscula\n ° Uma letra minúscula\n ° Um caractere especial\n ° Um número",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
                           child: TextFormField(
                             style: const TextStyle(
                               color: Colors.white,
