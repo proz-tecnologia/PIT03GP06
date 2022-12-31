@@ -65,10 +65,6 @@ class _LoginUserState extends State<LoginUser> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 decoration: InputDecoration(
-                                  helperText: "Campo obrigatório",
-                                  helperStyle: TextStyle(
-                                    color: textUser(),
-                                  ),
                                   labelText: Strings.userEmail,
                                   hintText: "abcd@gmail.com",
                                   hintStyle: const TextStyle(
