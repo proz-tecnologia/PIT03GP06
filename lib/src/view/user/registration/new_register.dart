@@ -23,7 +23,6 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -68,8 +67,8 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -93,9 +92,9 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 20,
+                            maxLength: 50,
                             validator: (value) {
-                              if (value!.length < 3 || value.length > 20) {
+                              if (value!.length < 3 || value.length > 50) {
                                 return "Informe seu email";
                               }
                               return null;
@@ -107,8 +106,8 @@ class _NewRegisterState extends State<NewRegister> {
                               ),
                               labelText: Strings.userEmail,
                               hintText: "abcd@gmail.com",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -144,8 +143,8 @@ class _NewRegisterState extends State<NewRegister> {
                                 color: darkFunctionTextUser(),
                               ),
                               hintText: "0,00",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               prefix: const Text("R\$"),
                               helperText: "Máximo de 999.999,99 digitos",
                               helperStyle: TextStyle(
@@ -195,8 +194,8 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               labelText: Strings.userSenha,
                               hintText: "*******",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -230,8 +229,8 @@ class _NewRegisterState extends State<NewRegister> {
                             decoration: InputDecoration(
                               labelText: "Confirmar Senha*",
                               hintText: "*******",
-                              hintStyle:
-                                  const TextStyle(fontSize: 12, color: Colors.white),
+                              hintStyle: const TextStyle(
+                                  fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: darkFunctionTextUser(),
@@ -257,8 +256,8 @@ class _NewRegisterState extends State<NewRegister> {
                                   builder: (context, historyController, _) {
                                 return ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color.fromARGB(220, 104, 89, 205)),
+                                        backgroundColor: const Color.fromARGB(
+                                            220, 104, 89, 205)),
                                     child: const Text("Cadastrar"),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
@@ -304,7 +303,8 @@ class _NewRegisterState extends State<NewRegister> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => const LoginUser(),
+                                            builder: (context) =>
+                                                const LoginUser(),
                                           ),
                                         );
                                       }
