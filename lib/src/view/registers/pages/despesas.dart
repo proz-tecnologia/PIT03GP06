@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -27,7 +25,7 @@ class _AddCategoriesState extends State<DespesasPage> {
 
   @override
   Widget build(BuildContext context) {
-        return SafeArea(
+    return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Despesas'),
@@ -266,8 +264,8 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   historyController.addTotaltransection(trans);
                                   setState(() {
                                     historyController.addValueCategory(
-                                      controller.valor,
-                                      controller.categoryname);
+                                        controller.valor,
+                                        controller.categoryname);
                                   });
                                   historyController
                                       .novoSaldoSaida(controller.valor);
