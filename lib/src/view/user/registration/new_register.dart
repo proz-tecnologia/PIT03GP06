@@ -105,7 +105,7 @@ class _NewRegisterState extends State<NewRegister> {
                                 color: darkFunctionTextUser(),
                               ),
                               labelText: Strings.userEmail,
-                              hintText: "abcd@gmail.com",
+                              hintText: "abcd@abcd.com",
                               hintStyle: const TextStyle(
                                   fontSize: 12, color: Colors.white),
                               labelStyle: TextStyle(
