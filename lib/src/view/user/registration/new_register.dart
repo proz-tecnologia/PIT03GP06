@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/view/login/loginpage.dart';
@@ -8,6 +10,7 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 class NewRegister extends StatefulWidget {
   NewRegister({super.key});
@@ -52,20 +55,11 @@ class _NewRegisterState extends State<NewRegister> {
                             style: const TextStyle(
                               color: Colors.white,
                             ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: 25,
-                            validator: (value) {
-                              if (value!.length < 3 || value.length > 25) {
-                                return "Informe seu nome";
-                              }
-                              return null;
-                            },
+                            validator: Validatorless.multiple([
+                              Validatorless.required("Informe seu nome"),
+                              Validatorless.onlyCharacters("Apenas letras"),
+                            ]),
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: textUser(),
-                              ),
                               labelText: Strings.userNome,
                               hintText: "Nome e sobrenome",
                               hintStyle: const TextStyle(
@@ -91,20 +85,11 @@ class _NewRegisterState extends State<NewRegister> {
                             style: const TextStyle(
                               color: Colors.white,
                             ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: 50,
-                            validator: (value) {
-                              if (value!.length < 3 || value.length > 50) {
-                                return "Informe seu email";
-                              }
-                              return null;
-                            },
+                            validator: Validatorless.multiple([
+                              Validatorless.required("Informe seu e-mail"),
+                              Validatorless.email("E-mail inválido"),
+                            ]),
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
-                              helperStyle: TextStyle(
-                                color: textUser(),
-                              ),
                               labelText: Strings.userEmail,
                               hintText: "abcd@abcd.com",
                               hintStyle: const TextStyle(
@@ -135,19 +120,17 @@ class _NewRegisterState extends State<NewRegister> {
                               CurrencyTextInputFormatter(
                                   locale: 'pt-BR', decimalDigits: 2, symbol: '')
                             ],
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
                             decoration: InputDecoration(
                               labelText: Strings.userRenda,
                               labelStyle: TextStyle(
                                 fontSize: 14,
                                 color: textUser(),
                               ),
+                              prefix: const Text("R\$"),
                               hintText: "0,00",
                               hintStyle: const TextStyle(
                                   fontSize: 12, color: Colors.white),
-                              prefix: const Text("R\$"),
-                              helperText: "Máximo de 999.999,99 digitos",
+                              helperText: "Máximo de 10 dígitos",
                               helperStyle: TextStyle(
                                 color: textUser(),
                               ),
@@ -172,15 +155,16 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            maxLength: 25,
-                            validator: (value) {
-                              if (value!.length < 8 || value.length > 25) {
-                                return "Defina sua senha";
-                              }
-                              return null;
-                            },
+                            maxLength: 10,
+                            validator: Validatorless.multiple([
+                              Validatorless.required("Defina sua senha"),
+                              Validatorless.regex(
+                                RegExp(
+                                    r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])([0-9a-zA-Z$*&@#]){6,}$'),
+                                "A senha precisa ter:\nMínimo de 6 dígitos\nUm número\nUma letra maiúscula\nUma letra minúscula\nUm caracter especial \$*&@#",
+                              ),
+                            ]),
                             decoration: InputDecoration(
-                              helperText: "Campo obrigatório",
                               helperStyle: TextStyle(
                                 color: textUser(),
                               ),
