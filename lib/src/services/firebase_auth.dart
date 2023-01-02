@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExceptionUsers {
+class ExceptionUsers implements Exception {
   String message;
 
   ExceptionUsers(this.message);
@@ -28,6 +28,20 @@ class UsersService extends ChangeNotifier {
   _userlogin() {
     usuario = _auth.currentUser;
     notifyListeners();
+  }
+
+  registerUser(String email, String senha) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      _userlogin();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        throw ExceptionUsers("Senha fraca, siga as orientações de senha!");
+      } else if (e.code == 'email-already-in-use') {
+        throw ExceptionUsers(
+            "E-mail já cadastrado, informe outro email ou recupere a senha.");
+      }
+    }
   }
 
   login(String email, String senha) async {
