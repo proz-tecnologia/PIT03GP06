@@ -49,209 +49,193 @@ class _NewRegisterState extends State<NewRegister> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            validator: Validatorless.multiple([
-                              Validatorless.required("Informe seu nome"),
-                              Validatorless.onlyCharacters("Apenas letras"),
-                            ]),
-                            decoration: InputDecoration(
-                              labelText: Strings.userNome,
-                              hintText: "Nome e sobrenome",
-                              hintStyle: const TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: textUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
-                              ),
-                            ),
-                            onChanged: (value) {
-                              controllerEntradas.nome = value;
-                            },
+                        TextFormField(
+                          style: const TextStyle(
+                            color: Colors.white,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Informe seu nome"),
+                            Validatorless.onlyCharacters("Apenas letras"),
+                          ]),
+                          decoration: InputDecoration(
+                            labelText: Strings.userNome,
+                            hintText: "Nome e sobrenome",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
                             ),
-                            validator: Validatorless.multiple([
-                              Validatorless.required("Informe seu e-mail"),
-                              Validatorless.email("E-mail inválido"),
-                            ]),
-                            decoration: InputDecoration(
-                              labelText: Strings.userEmail,
-                              hintText: "abcd@abcd.com",
-                              hintStyle: const TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: textUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
                               ),
                             ),
-                            onChanged: (value) {
-                              controllerEntradas.email = value;
-                            },
                           ),
+                          onChanged: (value) {
+                            controllerEntradas.nome = value;
+                          },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              CurrencyTextInputFormatter(
-                                  locale: 'pt-BR', decimalDigits: 2, symbol: '')
-                            ],
-                            decoration: InputDecoration(
-                              labelText: Strings.userRenda,
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: textUser(),
-                              ),
-                              prefix: const Text("R\$"),
-                              hintText: "0,00",
-                              hintStyle: const TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              helperText: "Máximo de 10 dígitos",
-                              helperStyle: TextStyle(
-                                color: textUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
-                              ),
-                            ),
-                            maxLength: 10,
-                            onChanged: ((newValue) => controllerEntradas.valor =
-                                double.parse(newValue
-                                    .replaceAll(".", "")
-                                    .replaceAll(",", "."))),
+                        TextFormField(
+                          style: const TextStyle(
+                            color: Colors.white,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Informe seu e-mail"),
+                            Validatorless.email("E-mail inválido"),
+                          ]),
+                          decoration: InputDecoration(
+                            labelText: Strings.userEmail,
+                            hintText: "abcd@abcd.com",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
                             ),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: 10,
-                            validator: Validatorless.multiple([
-                              Validatorless.required("Defina sua senha"),
-                              Validatorless.regex(
-                                RegExp(
-                                    r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])([0-9a-zA-Z$*&@#]){6,}$'),
-                                "A senha precisa ter:\nMínimo de 6 dígitos\nUm número\nUma letra maiúscula\nUma letra minúscula\nUm caracter especial \$*&@#",
-                              ),
-                            ]),
-                            decoration: InputDecoration(
-                              helperStyle: TextStyle(
-                                color: textUser(),
-                              ),
-                              labelText: Strings.userSenha,
-                              hintText: "*******",
-                              hintStyle: const TextStyle(
-                                  fontSize: 12, color: Colors.white),
-                              labelStyle: TextStyle(
-                                fontSize: 14,
-                                color: textUser(),
-                              ),
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(220, 248, 248, 248),
-                                ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
                               ),
                             ),
-                            onChanged: (value) {
-                              controllerEntradas.senha = value;
-                            },
                           ),
+                          onChanged: (value) {
+                            controllerEntradas.email = value;
+                          },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: Center(
-                            child: SizedBox(
-                              width: 130,
-                              height: 40,
-                              child: Consumer<HistoryController>(
-                                  builder: (context, historyController, _) {
-                                return ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color.fromARGB(
-                                            220, 104, 89, 205)),
-                                    child: const Text("Cadastrar"),
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          const SnackBar(
-                                              duration: Duration(seconds: 2),
-                                              backgroundColor: Color.fromARGB(
-                                                  220, 104, 89, 205),
-                                              content: Text(
-                                                'Cadastro Realizado com sucesso!',
-                                                textAlign: TextAlign.center,
-                                              )),
-                                        );
-                                        var user = TotalandCategory(
-                                          id: '',
-                                          date: '',
-                                          type: 'Cadastro',
-                                          nome: controllerEntradas.nome,
-                                          email: controllerEntradas.email,
-                                          valor: controllerEntradas.valor,
-                                          senha: controllerEntradas.senha,
-                                          descri: controllerEntradas.descricao,
-                                          categoryname:
-                                              controllerEntradas.categoryname,
-                                          formPag:
-                                              'Forma: ${controllerEntradas.formpag}',
-                                          /*icon: const Icon(
-                                            Icons.arrow_downward_outlined,
-                                            color: Colors.red,
-                                          ),*/
-                                        );
-                                        historyController.addNewUser(user);
-                                        historyController
-                                            .nomeUser(controllerEntradas.nome);
-                                        historyController.emailUser(
-                                            controllerEntradas.email);
-                                        historyController.senhaUser(
-                                            controllerEntradas.senha);
-                                        historyController.rendaInicial(
-                                            controllerEntradas.valor);
+                        TextFormField(
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            CurrencyTextInputFormatter(
+                                locale: 'pt-BR', decimalDigits: 2, symbol: '')
+                          ],
+                          decoration: InputDecoration(
+                            labelText: Strings.userRenda,
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
+                            ),
+                            prefix: const Text("R\$"),
+                            hintText: "0,00",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            helperText: "Máximo de 10 dígitos",
+                            helperStyle: TextStyle(
+                              color: textUser(),
+                            ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
+                              ),
+                            ),
+                          ),
+                          maxLength: 10,
+                          onChanged: ((newValue) => controllerEntradas.valor =
+                              double.parse(newValue
+                                  .replaceAll(".", "")
+                                  .replaceAll(",", "."))),
+                        ),
+                        TextFormField(
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          maxLength: 10,
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Defina sua senha"),
+                            Validatorless.regex(
+                              RegExp(
+                                  r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])([0-9a-zA-Z$*&@#]){6,}$'),
+                              "A senha precisa ter:\nMínimo de 6 dígitos\nUm número\nUma letra maiúscula\nUma letra minúscula\nUm caracter especial \$*&@#\n",
+                            ),
+                          ]),
+                          decoration: InputDecoration(
+                            helperStyle: TextStyle(
+                              color: textUser(),
+                            ),
+                            labelText: Strings.userSenha,
+                            hintText: "*******",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
+                            ),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
+                              ),
+                            ),
+                          ),
+                          onChanged: (value) {
+                            controllerEntradas.senha = value;
+                          },
+                        ),
+                        Center(
+                          child: SizedBox(
+                            width: 130,
+                            height: 40,
+                            child: Consumer<HistoryController>(
+                                builder: (context, historyController, _) {
+                              return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          220, 104, 89, 205)),
+                                  child: const Text("Cadastrar"),
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            duration: Duration(seconds: 2),
+                                            backgroundColor: Color.fromARGB(
+                                                220, 104, 89, 205),
+                                            content: Text(
+                                              'Cadastro Realizado com sucesso!',
+                                              textAlign: TextAlign.center,
+                                            )),
+                                      );
+                                      var user = TotalandCategory(
+                                        id: '',
+                                        date: '',
+                                        type: 'Cadastro',
+                                        nome: controllerEntradas.nome,
+                                        email: controllerEntradas.email,
+                                        valor: controllerEntradas.valor,
+                                        senha: controllerEntradas.senha,
+                                        descri: controllerEntradas.descricao,
+                                        categoryname:
+                                            controllerEntradas.categoryname,
+                                        formPag:
+                                            'Forma: ${controllerEntradas.formpag}',
+                                        /*icon: const Icon(
+                                          Icons.arrow_downward_outlined,
+                                          color: Colors.red,
+                                        ),*/
+                                      );
+                                      historyController.addNewUser(user);
+                                      historyController
+                                          .nomeUser(controllerEntradas.nome);
+                                      historyController
+                                          .emailUser(controllerEntradas.email);
+                                      historyController
+                                          .senhaUser(controllerEntradas.senha);
+                                      historyController.rendaInicial(
+                                          controllerEntradas.valor);
 
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const LoginUser(),
-                                          ),
-                                        );
-                                      }
-                                    });
-                              }),
-                            ),
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginUser(),
+                                        ),
+                                      );
+                                    }
+                                  });
+                            }),
                           ),
                         ),
                       ]),
