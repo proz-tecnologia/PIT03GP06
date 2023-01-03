@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
