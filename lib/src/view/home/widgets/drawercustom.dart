@@ -102,7 +102,7 @@ class _DrawerCustonState extends State<DrawerCuston> {
             title: const Text(Strings.nameSobreAppDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/sobreapp');
-              print(_firebaseAuth.currentUser!.displayName);
+              debugPrint(_firebaseAuth.currentUser!.displayName);
             },
           ),
           ListTile(
@@ -116,6 +116,7 @@ class _DrawerCustonState extends State<DrawerCuston> {
       ),
     );
   }
+
   exit() async {
     await _firebaseAuth
         .signOut()

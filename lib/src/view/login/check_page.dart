@@ -7,9 +7,11 @@ import 'package:provider/provider.dart';
 
 class CheckPage extends StatelessWidget {
   const CheckPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     UsersService auth = Provider.of<UsersService>(context);
+
     if (auth.isloading) {
       return loading();
     } else if (auth.usuario == null) {

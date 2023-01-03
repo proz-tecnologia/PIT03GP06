@@ -24,9 +24,8 @@ abstract class Strings {
   static const String appName = "Ctrl'Real";
 
   //new register
-  static const String userNome = "Nome*";
-  static const String userEmail = "Email*";
+  static const String userNome = "Nome(obrigatório)*";
+  static const String userEmail = "Email(obrigatório)*";
   static const String userRenda = "Renda(Opcional)";
-  static const String userSenha = "Senha*";
-  static const String userConfSenha = "Confirmar senha*";
+  static const String userSenha = "Senha(obrigatório)*";
 }

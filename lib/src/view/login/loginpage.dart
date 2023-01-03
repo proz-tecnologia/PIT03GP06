@@ -4,8 +4,6 @@ import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
-import 'package:ctrl_real/src/util/strings.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +18,6 @@ class _LoginUserState extends State<LoginUser> {
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _password = TextEditingController();
-  final _fireAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {

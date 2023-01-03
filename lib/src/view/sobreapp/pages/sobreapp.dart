@@ -1,4 +1,3 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -31,13 +30,12 @@ class SobreApp extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 11),
                 child: Text(
                   '1.0',
-                  textAlign:  TextAlign.center,
-                  style:  GoogleFonts.karma(
-                    fontSize:  14,
-                    fontWeight:  FontWeight.w400,
-                    height:  1.4525,
-                    color:  darkFunctionTexts()
-                  ),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.karma(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 1.4525,
+                      color: darkFunctionTexts()),
                 ),
               ),
               Container(
