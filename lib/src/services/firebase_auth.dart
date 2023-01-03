@@ -35,13 +35,12 @@ class UsersService extends ChangeNotifier {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
       _userlogin();
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        throw ExceptionUsers("Senha fraca, siga as orientações de senha!");
-      } else if (e.code == 'email-already-in-use') {
+      if (e.code == 'email-already-in-use') {
         throw ExceptionUsers(
             "E-mail já cadastrado, informe outro email ou recupere a senha.");
       }
     }
+    notifyListeners();
   }
 
   login(String email, String senha) async {

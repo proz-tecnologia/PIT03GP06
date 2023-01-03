@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
-import 'package:ctrl_real/src/view/login/loginpage.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -23,6 +24,10 @@ class NewRegister extends StatefulWidget {
 
 class _NewRegisterState extends State<NewRegister> {
   final _formKey = GlobalKey<FormState>();
+  final _name = TextEditingController();
+  final _email = TextEditingController();
+  final _income = TextEditingController();
+  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +55,7 @@ class _NewRegisterState extends State<NewRegister> {
                           height: 10,
                         ),
                         TextFormField(
+                          controller: _name,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -77,6 +83,7 @@ class _NewRegisterState extends State<NewRegister> {
                           },
                         ),
                         TextFormField(
+                          controller: _email,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -104,6 +111,7 @@ class _NewRegisterState extends State<NewRegister> {
                           },
                         ),
                         TextFormField(
+                          controller: _income,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -139,6 +147,7 @@ class _NewRegisterState extends State<NewRegister> {
                                   .replaceAll(",", "."))),
                         ),
                         TextFormField(
+                          controller: _password,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -226,13 +235,7 @@ class _NewRegisterState extends State<NewRegister> {
                                       historyController.rendaInicial(
                                           controllerEntradas.valor);
 
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginUser(),
-                                        ),
-                                      );
+                                      registerUser();
                                     }
                                   });
                             }),
@@ -246,5 +249,16 @@ class _NewRegisterState extends State<NewRegister> {
         ),
       ),
     );
+  }
+
+  registerUser() async {
+    try {
+      await context
+          .read<UsersService>()
+          .registerUser(_email.text, _password.text);
+    } on ExceptionUsers catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 }
