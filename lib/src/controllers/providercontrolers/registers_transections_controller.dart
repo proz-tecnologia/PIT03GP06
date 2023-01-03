@@ -67,19 +67,19 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-    addCategoriesPrimary()async{
+  addCategoriesPrimary() async {
     String id = 'categoriesid';
     await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
-      });
+        .collection("usuarios/${authentinc.usuario!.uid}/categories")
+        .doc(id)
+        .set({
+      'supermercado': supermerc,
+      'lazer': lazer,
+      'transporte': transpor,
+      'farmacia': farmac,
+      'pagamentos': pagament,
+      'gastosex': gastosex,
+    });
   }
 
   addValueCategory(double result, String categorynames) async {
@@ -141,14 +141,14 @@ class HistoryController extends ChangeNotifier {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/categories')
           .get();
-      read.docs.forEach((element) {
+      for (var element in read.docs) {
         supermerc = element.get('supermercado');
         lazer = element.get('lazer');
         transpor = element.get('transporte');
         farmac = element.get('farmacia');
         pagament = element.get('pagamentos');
         gastosex = element.get('gastosex');
-      });
+      }
     }
     notifyListeners();
   }
@@ -158,10 +158,11 @@ class HistoryController extends ChangeNotifier {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
           .get();
-      read.docs.forEach((element) {
-        TotalandCategory lista = TotalandCategory.fromFirestore(element.data() as Map<String, dynamic>);
+      for (var element in read.docs) {
+        TotalandCategory lista = TotalandCategory.fromFirestore(
+            element.data() as Map<String, dynamic>);
         registersList.add(lista);
-      });
+      }
     }
   }
 
