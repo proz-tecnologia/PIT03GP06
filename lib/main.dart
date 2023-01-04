@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp(),
               "/editcount": (context) => const EditAccount(),
-              "/editthemes": (context) => const EditThemesPage()
+              "/editthemes": (context) => const EditThemesPage(),
             },
           );
         },
