@@ -206,77 +206,47 @@ class HistoryController extends ChangeNotifier {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
+          .update({
         'supermercado': supermerc - result,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       supermerc -= result;
     } else if (categorynames == 'Lazer') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
+          .update({
         'lazer': lazer - result,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       lazer -= result;
     } else if (categorynames == 'Transporte') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
+          .update({
         'transporte': transpor - result,
-        'farmacia': farmac,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       transpor -= result;
     } else if (categorynames == 'Farmacia') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
+          .update({
         'farmacia': farmac - result,
-        'pagamentos': pagament,
-        'gastosex': gastosex,
       });
       farmac -= result;
     } else if (categorynames == 'Pagamentos') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
+          .update({
         'pagamentos': pagament - result,
-        'gastosex': gastosex,
       });
       pagament -= result;
     } else {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .set({
-        'supermercado': supermerc,
-        'lazer': lazer,
-        'transporte': transpor,
-        'farmacia': farmac,
-        'pagamentos': pagament,
+          .update({
         'gastosex': gastosex - result,
       });
       gastosex -= result;

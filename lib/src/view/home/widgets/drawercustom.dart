@@ -120,6 +120,6 @@ class _DrawerCustonState extends State<DrawerCuston> {
   exit() async {
     await _firebaseAuth
         .signOut()
-        .then((user) => Navigator.of(context).pushNamed("/"));
+        .then((user) => Navigator.of(context).pushReplacementNamed("/"));
   }
 }

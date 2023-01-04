@@ -7,7 +7,6 @@ import '../../../controllers/providercontrolers/transections_despe_controller.da
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
-  
 
   @override
   State<HistoricPage> createState() => _HistoricPageState();
@@ -16,7 +15,6 @@ class HistoricPage extends StatefulWidget {
 String menuName = 'Todos';
 
 class _HistoricPageState extends State<HistoricPage> {
-
   @override
   Widget build(BuildContext context) {
     final TransactionController drop = TransactionController();
@@ -52,12 +50,8 @@ class _HistoricPageState extends State<HistoricPage> {
         body: Consumer<HistoryController>(builder: (context, controller, __) {
           return controller.registersList.isEmpty
               ? Center(
-                  child: IconButton(
-                      onPressed: () {
-                        controller.transactionsread();
-                        controller.transaction();
-                      },
-                      icon: const Icon(Icons.refresh), iconSize: 50,))
+                  child: Text('Não há transações',
+                      style: TextStyle(color: darkFunctionTexts())))
               : SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
                   child: ListView.builder(
