@@ -28,6 +28,11 @@ class _AddCategoriesState extends State<DespesasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed('/home'),
+          ),
           title: const Text('Despesas'),
           centerTitle: true,
         ),

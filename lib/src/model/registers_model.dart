@@ -32,7 +32,7 @@ class TotalandCategory {
     formPag = map["formapag"] ?? "";
     valor = map["valor"] ?? 0.0;
     descri = map["descricao"] ?? "";
-    categoryname = map["categoria"] ?? "";
+    categoryname = map["categoria"];
   }
 
   Map<String, dynamic> toMap() {
