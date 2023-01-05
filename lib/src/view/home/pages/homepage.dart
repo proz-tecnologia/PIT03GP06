@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               child: Consumer<LvlSystem>(
                   builder: (context, value, child) => Column(
                         children: [
-                          Text(value.lvl.toString()),
+                          Text("Nível ${value.lvl.toString()}"),
                           value.lvl < 15
                               ? Text('${value.xp} / ${value.finalxp} Xp')
                               : const Text('Nível max')
