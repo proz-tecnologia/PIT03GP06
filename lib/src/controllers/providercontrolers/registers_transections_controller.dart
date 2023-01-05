@@ -58,7 +58,7 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  addTotaltransection(TotalandCategory trans) async {
+  Future<void>addTotaltransection(TotalandCategory trans) async {
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(trans.id)
@@ -67,7 +67,7 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  addCategoriesPrimary() async {
+  Future<void>addCategoriesPrimary() async {
     String id = 'categoriesid';
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/categories")
@@ -82,7 +82,7 @@ class HistoryController extends ChangeNotifier {
     });
   }
 
-  addValueCategory(double result, String categorynames) async {
+  Future<void>addValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
       await datb
@@ -136,7 +136,7 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> transaction() async {
+  Future<void> chartRead() async {
     if (authentinc.usuario != null) {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/categories')
@@ -153,7 +153,7 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> transactionsread() async {
+  Future<void>transactionsread() async {
     if (authentinc.usuario != null && registersList.isEmpty) {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
@@ -166,7 +166,7 @@ class HistoryController extends ChangeNotifier {
     }
   }
 
-  void removeByID(String id) async {
+  Future<void>removeByID(String id) async {
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(id)
@@ -200,7 +200,7 @@ class HistoryController extends ChangeNotifier {
     return saida += result;
   }
 
-  menosValueCategory(double result, String categorynames) async {
+  Future<void>menosValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
       await datb

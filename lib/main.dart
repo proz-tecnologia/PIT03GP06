@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           create: ((context) => UsersService()),
         ),
         ChangeNotifierProvider(
-          create: ((context) => LvlSystem()),
+          create: ((context) => LvlSystem(authentinc: context.read<UsersService>())),
         ),
         ChangeNotifierProvider(
           create: ((context) =>
