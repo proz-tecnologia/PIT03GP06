@@ -255,27 +255,27 @@ class HistoryController extends ChangeNotifier {
   }
 
   double porcentSupermerc(double result) {
-    return result = supermerc * 100 / renda;
+    return result = supermerc * 100 / saida;
   }
 
   double porcentLazer(double result) {
-    return result = lazer * 100 / renda;
+    return result = lazer * 100 / saida;
   }
 
   double porcentTranspor(double result) {
-    return result = transpor * 100 / renda;
+    return result = transpor * 100 / saida;
   }
 
   double porcentGastosex(double result) {
-    return result = gastosex * 100 / renda;
+    return result = gastosex * 100 / saida;
   }
 
   double porcentPagament(double result) {
-    return result = pagament * 100 / renda;
+    return result = pagament * 100 / saida;
   }
 
   double porcentFarmac(double result) {
-    return result = farmac * 100 / renda;
+    return result = farmac * 100 / saida;
   }
 
   double porcentSaida(double result) {

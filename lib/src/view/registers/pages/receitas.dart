@@ -33,7 +33,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () =>
-                Navigator.of(context).pushReplacementNamed('/home'),
+                Navigator.of(context).pop(),
           ),
           title: const Text('Receitas'),
           centerTitle: true,
