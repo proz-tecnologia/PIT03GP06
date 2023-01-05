@@ -56,7 +56,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                           180, 244, 67, 54)),
                                   onPressed: () {
                                     Navigator.of(context)
-                                        .pushReplacementNamed("/despesas");
+                                        .pushNamed("/despesas");
                                   },
                                   child: const Text('Despesa')),
                             ),
@@ -68,7 +68,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                       backgroundColor: Colors.green),
                                   onPressed: () {
                                     Navigator.of(context)
-                                        .pushReplacementNamed("/receitas");
+                                        .pushNamed("/receitas");
                                   },
                                   child: const Text('Receitas')),
                             )

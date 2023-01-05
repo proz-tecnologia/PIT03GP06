@@ -9,6 +9,7 @@ import 'package:ctrl_real/src/view/login/check_page.dart';
 import 'package:ctrl_real/src/view/login/loginpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/editperfilpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/perfilpage.dart';
+import 'package:ctrl_real/src/view/registers/widgets/buttonreceitas.dart';
 import 'package:ctrl_real/src/view/settings/pages/edit_themes_page.dart';
 import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/view/registers/pages/despesas.dart';
