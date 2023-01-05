@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -22,42 +24,52 @@ class _DrawerCustonState extends State<DrawerCuston> {
       width: 268,
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
+          Container(
             decoration: BoxDecoration(
               color: darkFunctionWidgets(),
             ),
-            accountName: const Text("Aysha"),
-            accountEmail: Consumer<LvlSystem>(
-                builder: (context, value, child) => value.lvl != 20
-                    ? Text('${value.xp} / ${value.finalxp} Xp')
-                    : const Text('Nível max')),
-            currentAccountPicture: InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('/perfil');
-              },
-              child: Stack(
-                alignment: AlignmentDirectional.bottomEnd,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Container(
-                      color: const Color.fromARGB(140, 255, 255, 255),
-                      height: 100,
-                      width: 100,
-                      child: const Icon(
-                        Icons.person_outline,
-                        size: 40,
-                        color: Color.fromARGB(129, 0, 0, 0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/perfil');
+                      },
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Container(
+                              color: const Color.fromARGB(140, 255, 255, 255),
+                              height: 100,
+                              width: 100,
+                              child: const Icon(
+                                Icons.person_outline,
+                                size: 40,
+                                color: Color.fromARGB(129, 0, 0, 0),
+                              ),
+                            ),
+                          ),
+                          const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Center(
+                    child: Text("Aysha", style: TextStyle(color: Colors.white),),
+                  ),
+                )
+              ],
             ),
           ),
           ExpansionTile(

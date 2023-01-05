@@ -30,6 +30,11 @@ class _ReceitasPageState extends State<ReceitasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed('/home'),
+          ),
           title: const Text('Receitas'),
           centerTitle: true,
         ),
@@ -182,21 +187,22 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                   var trans = TotalandCategory(
                                     id: const Uuid().v4(),
                                     date: _txtDateTimeController.text,
-                                      type: 'Receita',
-                                      valor: controllerEntradas.valor,
-                                      descri: controllerEntradas.descricao,
-                                      formPag: 'Renda extra',
-                                      /*icon: const Icon(
+                                    type: 'Receita',
+                                    valor: controllerEntradas.valor,
+                                    descri: controllerEntradas.descricao,
+                                    formPag: 'Renda extra',
+                                    /*icon: const Icon(
                                         Icons.arrow_upward_outlined,
                                         color: Colors.green,
-                                      )*/);
+                                      )*/
+                                  );
                                   historyController.addTotaltransection(trans);
                                   historyController
                                       .novaRenda(controllerEntradas.valor);
                                   historyController.novoSaldoEntrada(
                                       controllerEntradas.valor);
-                                      lvlsystem.recXpAdd();
-                                      lvlsystem.xpFinal();
+                                  lvlsystem.recXpAdd();
+                                  lvlsystem.xpFinal();
                                 }
                               },
                             );
