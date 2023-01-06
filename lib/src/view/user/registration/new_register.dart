@@ -1,6 +1,7 @@
 import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
+import 'package:ctrl_real/src/model/usersmodel.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
@@ -9,6 +10,7 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 import 'package:validatorless/validatorless.dart';
 
 class NewRegister extends StatefulWidget {
@@ -29,6 +31,7 @@ class _NewRegisterState extends State<NewRegister> {
 
   @override
   Widget build(BuildContext context) {
+    UsersService valuee = Provider.of<UsersService>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -78,6 +81,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                           onChanged: (value) {
                             controllerEntradas.nome = value;
+                            valuee.name = value;
                           },
                         ),
                         TextFormField(
@@ -106,6 +110,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                           onChanged: (value) {
                             controllerEntradas.email = value;
+                            valuee.email = value;
                           },
                         ),
                         TextFormField(
@@ -185,8 +190,8 @@ class _NewRegisterState extends State<NewRegister> {
                           child: SizedBox(
                             width: 130,
                             height: 40,
-                            child: Consumer<HistoryController>(
-                                builder: (context, historyController, _) {
+                            child: Consumer2<HistoryController, UsersService>(
+                                builder: (context, historyController, value, _) {
                               return ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(
@@ -232,7 +237,6 @@ class _NewRegisterState extends State<NewRegister> {
                                           .senhaUser(controllerEntradas.senha);
                                       historyController.rendaInicial(
                                           controllerEntradas.valor);
-
                                       registerUser();
                                     }
                                   });

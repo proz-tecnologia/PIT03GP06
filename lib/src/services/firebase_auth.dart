@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ctrl_real/src/model/usersmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ class UsersService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? usuario;
   bool isloading = true;
+  final FirebaseFirestore datb = FirebaseFirestore.instance;
+  String name = "";
+  String email = "";
 
   UsersService() {
     _authCheck();
@@ -59,5 +64,17 @@ class UsersService extends ChangeNotifier {
   logout() async {
     await _auth.signOut();
     _userlogin();
+  }
+
+  Future<void> addUser() async {
+    String id = "userid";
+    await datb
+        .collection("usuarios/${usuario!.uid}/user")
+        .doc(id)
+        .set({
+          "name": name,
+          "email": email 
+        });
+    notifyListeners();
   }
 }

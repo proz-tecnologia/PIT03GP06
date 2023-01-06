@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,8 +66,9 @@ class _DrawerCustonState extends State<DrawerCuston> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(12),
-                  child: Center(
-                    child: Text("Aysha", style: TextStyle(color: Colors.white),),
+                  child: Consumer<UsersService>(builder: (context, value, child) => Center(
+                      child: Text(value.usuario!.displayName ?? "", style: TextStyle(color: Colors.white),),
+                    ),
                   ),
                 )
               ],

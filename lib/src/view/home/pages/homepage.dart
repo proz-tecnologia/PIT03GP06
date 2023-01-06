@@ -1,5 +1,6 @@
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/balances.dart';
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     pagesanimated = PageController(initialPage: _selectedIndex);
+    context.read<UsersService>().addUser();
   }
 
   void _onItemTapped(value) {
