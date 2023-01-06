@@ -29,6 +29,8 @@ void main() async {
   );
 }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -40,7 +42,8 @@ class MyApp extends StatelessWidget {
           create: ((context) => UsersService()),
         ),
         ChangeNotifierProvider(
-          create: ((context) => LvlSystem(authentinc: context.read<UsersService>())),
+          create: ((context) =>
+              LvlSystem(authentinc: context.read<UsersService>())),
         ),
         ChangeNotifierProvider(
           create: ((context) =>
@@ -51,6 +54,7 @@ class MyApp extends StatelessWidget {
         animation: DarkController.instance,
         builder: (context, child) {
           return MaterialApp(
+            navigatorKey: navigatorKey,
             localizationsDelegates: const [
               GlobalWidgetsLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
