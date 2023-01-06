@@ -26,6 +26,7 @@ class _NewRegisterState extends State<NewRegister> {
   final _email = TextEditingController();
   final _income = TextEditingController();
   final _password = TextEditingController();
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +192,9 @@ class _NewRegisterState extends State<NewRegister> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(
                                           220, 104, 89, 205)),
-                                  child: const Text("Cadastrar"),
+                                  child: (loading)
+                                      ? const CircularProgressIndicator()
+                                      : const Text("Cadastrar"),
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       ScaffoldMessenger.of(context)
@@ -251,9 +254,16 @@ class _NewRegisterState extends State<NewRegister> {
 
   registerUser() async {
     try {
+      setState(() {
+        loading = true;
+      });
       await context
           .read<UsersService>()
           .registerUser(_email.text, _password.text);
+      setState(() {
+        loading = false;
+      });
+      navigatorKey.currentState!.pushNamed('/');
     } on ExceptionUsers catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
