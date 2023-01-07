@@ -81,7 +81,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                           onChanged: (value) {
                             controllerEntradas.nome = value;
-                            valuee.name = value;
+                            //valuee.name = value;
                           },
                         ),
                         TextFormField(
@@ -110,7 +110,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ),
                           onChanged: (value) {
                             controllerEntradas.email = value;
-                            valuee.email = value;
+                            //valuee.email = value;
                           },
                         ),
                         TextFormField(
@@ -257,7 +257,7 @@ class _NewRegisterState extends State<NewRegister> {
     try {
       await context
           .read<UsersService>()
-          .registerUser(_email.text, _password.text);
+          .registerUser(_email.text, _password.text, _name.text);
     } on ExceptionUsers catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));

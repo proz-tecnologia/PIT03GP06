@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     pagesanimated = PageController(initialPage: _selectedIndex);
-    context.read<UsersService>().addUser();
   }
 
   void _onItemTapped(value) {

@@ -167,11 +167,11 @@ class HistoryController extends ChangeNotifier {
   }
 
   Future<void>removeByID(String id) async {
+    registersList.removeWhere((e) => e.id == id);
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(id)
         .delete();
-    registersList.removeWhere((e) => e.id == id);
     notifyListeners();
   }
 

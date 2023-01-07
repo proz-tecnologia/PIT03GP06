@@ -15,8 +15,8 @@ class UsersService extends ChangeNotifier {
   User? usuario;
   bool isloading = true;
   final FirebaseFirestore datb = FirebaseFirestore.instance;
-  String name = "";
-  String email = "";
+  //String name = "";
+  //String email = "";
 
   UsersService() {
     _authCheck();
@@ -35,9 +35,10 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
-  registerUser(String email, String senha) async {
+  registerUser(String email, String senha, String name) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+       addUser(name, email);
       _userlogin();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -66,7 +67,7 @@ class UsersService extends ChangeNotifier {
     _userlogin();
   }
 
-  Future<void> addUser() async {
+  Future<void> addUser(String name, String email) async {
     String id = "userid";
     await datb
         .collection("usuarios/${usuario!.uid}/user")
