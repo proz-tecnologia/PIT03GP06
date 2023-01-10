@@ -1,4 +1,5 @@
 import 'package:ctrl_real/firebase_options.dart';
+import 'package:ctrl_real/src/controllers/notifications/button_switch_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
@@ -10,6 +11,7 @@ import 'package:ctrl_real/src/view/login/loginpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/editperfilpage.dart';
 import 'package:ctrl_real/src/view/perfil/pages/perfilpage.dart';
 import 'package:ctrl_real/src/view/settings/pages/edit_themes_page.dart';
+import 'package:ctrl_real/src/view/settings/pages/edit_notifications_page.dart';
 import 'package:ctrl_real/src/view/user/registration/new_register.dart';
 import 'package:ctrl_real/src/view/registers/pages/despesas.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: ((context) =>
               HistoryController(authentinc: context.read<UsersService>())),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => ButtonSwitchController()),
         ),
       ],
       child: AnimatedBuilder(
@@ -82,7 +87,8 @@ class MyApp extends StatelessWidget {
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp(),
               "/editcount": (context) => const EditAccount(),
-              "/editthemes": (context) => const EditThemesPage()
+              "/editthemes": (context) => const EditThemesPage(),
+              "/editnotifications": (context) => const EditNotificationsPage()
             },
           );
         },
