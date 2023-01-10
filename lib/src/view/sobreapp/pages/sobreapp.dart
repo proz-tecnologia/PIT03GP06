@@ -24,7 +24,7 @@ class SobreApp extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 17),
                 width: 150,
                 height: 158,
-                child: Image.asset('asset/img/logo-about-2@2x.png'),
+                child: Image.asset('asset/img/iconelogin.png'),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 11),

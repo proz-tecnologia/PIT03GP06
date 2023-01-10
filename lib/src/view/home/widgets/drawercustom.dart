@@ -31,7 +31,7 @@ class _DrawerCustonState extends State<DrawerCuston> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Center(
                     child: InkWell(
                       onTap: () {
@@ -62,8 +62,8 @@ class _DrawerCustonState extends State<DrawerCuston> {
                       ),
                     ),
                   ),
-                ),
-                Padding(
+                ),                
+                const Padding(
                   padding: EdgeInsets.all(12),
                   child: Center(
                     child: Text("Aysha", style: TextStyle(color: Colors.white),),

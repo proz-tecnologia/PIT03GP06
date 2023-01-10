@@ -71,11 +71,10 @@ class Speding extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Consumer<HistoryController>(
-                          builder: (context, historyController, _) => Text(
-                              'Você tem ${historyController.porcentAtualizardisp(controller.valor).toString()}% para o limite total',
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255)))),
+                      const Text(
+                              'Esse é seu limite atual',
+                              style:TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 255))),
                     ],
                   ),
                 ),
