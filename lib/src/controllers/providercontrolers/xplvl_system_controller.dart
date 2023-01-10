@@ -40,8 +40,9 @@ class LvlSystem extends ChangeNotifier {
         xpusers = element.get('xpusers');
         datefirst = element.get('dayxp');
       }
+      notifyListeners();
     }
-    notifyListeners();
+    //notifyListeners();
   }
 
   Future<void> addlvlfire() async {

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -118,8 +119,18 @@ class _PerfilPageState extends State<PerfilPage> {
                     );
                   },
                 ),
-                const Text("kawaii_Aysha"),
-                const Text("Email"),
+                Consumer<UsersService>(
+                  builder: (context, value, child) => Text(
+                    value.name ?? "",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+                Consumer<UsersService>(
+                  builder: (context, value, child) => Text(
+                    value.email ?? "",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
               ],
             ),
           ),
@@ -128,13 +139,16 @@ class _PerfilPageState extends State<PerfilPage> {
             child: Center(
               child: Column(
                 children: [
-                  const Text('Nível', style: TextStyle(fontSize: 40),),
-                  Consumer<LvlSystem>(
-                  builder: (context, value, child) => Text(
-                    value.lvl.toString(),
-                    style: const TextStyle(fontSize: 40),
+                  const Text(
+                    'Nível',
+                    style: TextStyle(fontSize: 40),
                   ),
-                ),
+                  Consumer<LvlSystem>(
+                    builder: (context, value, child) => Text(
+                      value.lvl.toString(),
+                      style: const TextStyle(fontSize: 40),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -32,7 +29,7 @@ class _DrawerCustonState extends State<DrawerCuston> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Center(
                     child: InkWell(
                       onTap: () {
@@ -65,9 +62,9 @@ class _DrawerCustonState extends State<DrawerCuston> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Consumer<UsersService>(builder: (context, value, child) => Center(
-                      child: Text(value.usuario!.displayName ?? "", style: TextStyle(color: Colors.white),),
+                      child: Text(value.name ?? "", style: const TextStyle(color: Colors.white),),
                     ),
                   ),
                 )
@@ -123,17 +120,11 @@ class _DrawerCustonState extends State<DrawerCuston> {
             leading: const Icon(Icons.exit_to_app),
             title: const Text(Strings.nameExitDrawer),
             onTap: () {
-              exit();
+              context.read<UsersService>().logout();
             },
           ),
         ],
       ),
     );
-  }
-
-  exit() async {
-    await _firebaseAuth
-        .signOut()
-        .then((user) => Navigator.of(context).pushReplacementNamed("/"));
   }
 }

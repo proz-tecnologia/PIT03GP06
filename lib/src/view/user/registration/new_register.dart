@@ -1,7 +1,6 @@
 import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
-import 'package:ctrl_real/src/model/usersmodel.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
@@ -10,7 +9,6 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:validatorless/validatorless.dart';
 
 class NewRegister extends StatefulWidget {
@@ -28,10 +26,10 @@ class _NewRegisterState extends State<NewRegister> {
   final _email = TextEditingController();
   final _income = TextEditingController();
   final _password = TextEditingController();
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
-    UsersService valuee = Provider.of<UsersService>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -191,55 +189,64 @@ class _NewRegisterState extends State<NewRegister> {
                             width: 130,
                             height: 40,
                             child: Consumer2<HistoryController, UsersService>(
-                                builder: (context, historyController, value, _) {
+                                builder:
+                                    (context, historyController, value, _) {
                               return ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(
                                           220, 104, 89, 205)),
-                                  child: const Text("Cadastrar"),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            duration: Duration(seconds: 2),
-                                            backgroundColor: Color.fromARGB(
-                                                220, 104, 89, 205),
-                                            content: Text(
-                                              'Cadastro Realizado com sucesso!',
-                                              textAlign: TextAlign.center,
-                                            )),
-                                      );
-                                      var user = TotalandCategory(
-                                        id: '',
-                                        date: '',
-                                        type: 'Cadastro',
-                                        nome: controllerEntradas.nome,
-                                        email: controllerEntradas.email,
-                                        valor: controllerEntradas.valor,
-                                        senha: controllerEntradas.senha,
-                                        descri: controllerEntradas.descricao,
-                                        categoryname:
-                                            controllerEntradas.categoryname,
-                                        formPag:
-                                            'Forma: ${controllerEntradas.formpag}',
-                                        /*icon: const Icon(
+                                  child: (loading)
+                                      ? const CircularProgressIndicator()
+                                      : const Text("Cadastrar"),
+                                  onPressed: (loading)
+                                      ? () {}
+                                      : () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  duration:
+                                                      Duration(seconds: 2),
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          220, 104, 89, 205),
+                                                  content: Text(
+                                                    'Cadastro Realizado com sucesso!',
+                                                    textAlign: TextAlign.center,
+                                                  )),
+                                            );
+                                            var user = TotalandCategory(
+                                              id: '',
+                                              date: '',
+                                              type: 'Cadastro',
+                                              nome: controllerEntradas.nome,
+                                              email: controllerEntradas.email,
+                                              valor: controllerEntradas.valor,
+                                              senha: controllerEntradas.senha,
+                                              descri:
+                                                  controllerEntradas.descricao,
+                                              categoryname: controllerEntradas
+                                                  .categoryname,
+                                              formPag:
+                                                  'Forma: ${controllerEntradas.formpag}',
+                                              /*icon: const Icon(
                                           Icons.arrow_downward_outlined,
                                           color: Colors.red,
                                         ),*/
-                                      );
-                                      historyController.addNewUser(user);
-                                      historyController
-                                          .nomeUser(controllerEntradas.nome);
-                                      historyController
-                                          .emailUser(controllerEntradas.email);
-                                      historyController
-                                          .senhaUser(controllerEntradas.senha);
-                                      historyController.rendaInicial(
-                                          controllerEntradas.valor);
-                                      registerUser();
-                                    }
-                                  });
+                                            );
+                                            historyController.addNewUser(user);
+                                            historyController.nomeUser(
+                                                controllerEntradas.nome);
+                                            historyController.emailUser(
+                                                controllerEntradas.email);
+                                            historyController.senhaUser(
+                                                controllerEntradas.senha);
+                                            historyController.rendaInicial(
+                                                controllerEntradas.valor);
+                                            registerUser();
+                                          }
+                                        });
                             }),
                           ),
                         ),
@@ -255,9 +262,16 @@ class _NewRegisterState extends State<NewRegister> {
 
   registerUser() async {
     try {
+      setState(() {
+        loading = true;
+      });
       await context
           .read<UsersService>()
           .registerUser(_email.text, _password.text, _name.text);
+      setState(() {
+        loading = false;
+      });
+      navigatorKey.currentState!.pushReplacementNamed("/");
     } on ExceptionUsers catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));

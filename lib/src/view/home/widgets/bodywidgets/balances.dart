@@ -14,7 +14,7 @@ class Balances extends StatefulWidget {
 }
 
 class _BalancesState extends State<Balances> {
-  double renda = 0;
+  double renda = 5000;
 
   double saida = 0;
 

@@ -28,11 +28,6 @@ class _AddCategoriesState extends State<DespesasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () =>
-                Navigator.of(context).pop(),
-          ),
           title: const Text('Despesas'),
           centerTitle: true,
         ),
@@ -267,11 +262,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                                     ),*/
                                   );
                                   historyController.addTotaltransection(trans);
-                                  setState(() {
                                     historyController.addValueCategory(
                                         controller.valor,
                                         controller.categoryname);
-                                  });
                                   historyController
                                       .novoSaldoSaida(controller.valor);
                                   historyController

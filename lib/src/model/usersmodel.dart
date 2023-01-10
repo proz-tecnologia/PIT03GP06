@@ -1,5 +1,3 @@
-import 'package:uuid/uuid.dart';
-
 class UsersModel {
   String? id;
   String? name;
