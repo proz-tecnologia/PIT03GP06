@@ -2,7 +2,7 @@ import 'package:ctrl_real/src/view/home/widgets/piechart.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
-import '../../../../controllers/themes/darmodcontroller.dart';
+import '../../../../controllers/themes_controller.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});

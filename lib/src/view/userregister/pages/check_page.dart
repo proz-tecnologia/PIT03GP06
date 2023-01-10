@@ -1,9 +1,8 @@
-import 'package:ctrl_real/main.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/view/home/pages/homepage.dart';
-import 'package:ctrl_real/src/view/login/loginpage.dart';
+import 'package:ctrl_real/src/view/userregister/pages/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

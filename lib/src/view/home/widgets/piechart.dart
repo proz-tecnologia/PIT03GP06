@@ -1,4 +1,4 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/home/widgets/indicatorpichart.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -58,7 +58,7 @@ class PieChart2State extends State {
                 text: 'Gastos extras',
                 isSquare: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               )
             ],

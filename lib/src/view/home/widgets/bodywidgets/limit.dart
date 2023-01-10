@@ -1,6 +1,6 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_form_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class Speding extends StatelessWidget {
                         height: 34,
                       ),
                       Consumer<HistoryController>(
-                        builder: (context, historyController, _) => historyController.saida == 0 ?  Text('Erro') :
+                        builder: (context, historyController, _) => historyController.saida == 0 ? const Text('Ainda não houve gastos', style: TextStyle(color: Colors.white),) :
                             LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width - 40,
                           animation: true,

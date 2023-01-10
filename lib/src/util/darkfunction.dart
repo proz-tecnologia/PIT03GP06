@@ -1,4 +1,4 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
 import 'package:flutter/material.dart';
 
 Color darkFunctionTexts() {
@@ -15,6 +15,22 @@ Color darkFunctionTexts() {
 
 Color textUser() {
   return const Color.fromARGB(207, 255, 255, 255);
+}
+
+Color textCardColors(String? cor) {
+  return DarkController.instance.darkmod
+      ? cor == null
+          ? const Color.fromARGB(255, 20, 195, 26)
+          : Colors.red
+      : DarkController.instance.bluemod
+          ? const Color.fromARGB(207, 255, 255, 255)
+          : DarkController.instance.redmod
+              ? const Color.fromARGB(207, 255, 255, 255)
+              : DarkController.instance.greenmod
+                  ? const Color.fromARGB(207, 255, 255, 255)
+                  : cor == null
+                      ? const Color.fromARGB(255, 20, 195, 26)
+                      : Colors.red;
 }
 
 Color darkFunctionWidgets() {
@@ -124,5 +140,3 @@ Color gastosexColorIndicator() {
                   ? const Color.fromARGB(255, 65, 132, 27)
                   : const Color.fromARGB(255, 91, 0, 152);
 }
-
-

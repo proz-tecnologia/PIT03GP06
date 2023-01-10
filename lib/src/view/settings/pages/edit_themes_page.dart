@@ -1,4 +1,4 @@
-import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
+import 'package:ctrl_real/src/view/settings/widgets/themes/themes_buttom.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +9,10 @@ class EditThemesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed("/home"),
+            icon: const Icon(Icons.arrow_back)),
         title: const Text('Editar tema'),
         centerTitle: true,
       ),

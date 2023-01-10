@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/databases/firestore_database.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/database/firestore_database.dart';
 import 'package:flutter/cupertino.dart';
 
 class HistoryController extends ChangeNotifier {
@@ -157,11 +157,11 @@ class HistoryController extends ChangeNotifier {
   }
 
   Future<void> removeByID(String id) async {
+    registersList.removeWhere((e) => e.id == id);
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(id)
         .delete();
-    registersList.removeWhere((e) => e.id == id);
     notifyListeners();
   }
 

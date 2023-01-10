@@ -2,8 +2,8 @@ import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/widgets/totaltransection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../controllers/providercontrolers/registers_transections_controller.dart';
-import '../../../controllers/providercontrolers/transections_despe_controller.dart';
+import '../../../controllers/transactions_controller.dart';
+import '../../../controllers/transactions_form_controller.dart';
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
@@ -47,7 +47,7 @@ class _HistoricPageState extends State<HistoricPage> {
                 setState(() {});
               },
             )),
-        body: Consumer<HistoryController>(builder: (context, controller, __) {
+        body: Consumer<HistoryController>(builder: (context, controller, _) {
           return controller.registersList.isEmpty
               ? Center(
                   child: Text('Não há transações',
@@ -61,7 +61,14 @@ class _HistoricPageState extends State<HistoricPage> {
                               (menuName == 'Todos' ? element.type : menuName))
                           .length,
                       itemBuilder: (context, index) => Dismissible(
-                            key: UniqueKey(),
+                            key: ValueKey(controller.registersList
+                                  .where((element) =>
+                                      element.type ==
+                                      (menuName == 'Todos'
+                                          ? element.type
+                                          : menuName))
+                                  .toList()[index]
+                                  .id),
                             direction: DismissDirection.endToStart,
                             background: Padding(
                               padding: const EdgeInsets.only(top: 4),
@@ -78,8 +85,8 @@ class _HistoricPageState extends State<HistoricPage> {
                                           : menuName))
                                   .toList()[index]
                                   .id;
-                              controller.removePorcentChart(id!);
-                              controller.removeByID(id);
+                              controller.removeByID(id!);
+                              controller.removePorcentChart(id);
                             },
                             child: ItemTransec(
                               controller.registersList

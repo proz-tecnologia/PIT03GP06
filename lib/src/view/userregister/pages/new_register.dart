@@ -1,8 +1,8 @@
 import 'package:ctrl_real/main.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_form_controller.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
@@ -195,9 +195,6 @@ class _NewRegisterState extends State<NewRegister> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(
                                           220, 104, 89, 205)),
-                                  child: (loading)
-                                      ? const CircularProgressIndicator()
-                                      : const Text("Cadastrar"),
                                   onPressed: (loading)
                                       ? () {}
                                       : () {
@@ -246,7 +243,10 @@ class _NewRegisterState extends State<NewRegister> {
                                                 controllerEntradas.valor);
                                             registerUser();
                                           }
-                                        });
+                                        },
+                                  child: (loading)
+                                      ? const CircularProgressIndicator()
+                                      : const Text("Cadastrar"));
                             }),
                           ),
                         ),

@@ -1,5 +1,5 @@
-import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/view/settings/widgets/themes/themes_buttom.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -98,14 +98,14 @@ class _DrawerCustonState extends State<DrawerCuston> {
                     'Mais temas',
                     textAlign: TextAlign.center,
                   ),
-                  onTap: () => Navigator.of(context).pushNamed("/editthemes")),
+                  onTap: () => Navigator.of(context).pushReplacementNamed("/editthemes")),
             ],
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text(Strings.nameConfigDrawer),
             onTap: () {
-              Navigator.of(context).pushNamed('/config');
+              Navigator.of(context).pushReplacementNamed('/config');
             },
           ),
           ListTile(
