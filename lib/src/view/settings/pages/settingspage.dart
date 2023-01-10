@@ -50,16 +50,22 @@ class SettingsPage extends StatelessWidget {
                             Icons.edit_notifications_outlined,
                           ),
                         ),
-                        Text(
-                          // notificaes
-                          'Notificações',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.karma(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            height: 1.4525,
-                            color: darkFunctionTexts(),
+                        TextButton(
+                          //notificações
+                          child: Text(
+                            'Notificações',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.karma(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              height: 1.4525,
+                              color: darkFunctionTexts(),
+                            ),
                           ),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed("/editnotifications");
+                          },
                         ),
                       ],
                     ),
