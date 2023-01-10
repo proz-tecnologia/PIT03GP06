@@ -1,27 +1,40 @@
 import 'package:flutter/material.dart';
 
-class SwitchOnOff extends StatefulWidget {
-  const SwitchOnOff({super.key});
+class ButtonSwitchController extends ChangeNotifier {
+  bool isNotificationEnabled = true;
+  bool isSoundEnabled = true;
 
-  @override
-  State<SwitchOnOff> createState() => _SwitchOnOffState();
-}
+  changeNotificationState() {
+    isNotificationEnabled = !isNotificationEnabled;
+    notifyListeners();
+  }
 
-class _SwitchOnOffState extends State<SwitchOnOff> {
-  bool light = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-      // This bool value toggles the switch.
-      value: light,
-      activeColor: Colors.deepPurple,
-      onChanged: (bool value) {
-        // This is called when the user toggles the switch.
-        setState(() {
-          light = value;
-        });
-      },
-    );
+  changeSoundState() {
+    isSoundEnabled = !isSoundEnabled;
+    notifyListeners();
   }
 }
+
+
+
+
+
+// import 'package:flutter/material.dart';
+//
+// class ButtonSwitchController extends ChangeNotifier {
+//   bool isNotificationEnabled = true;
+//   bool isSoundEnabled = true;
+//
+//   changeNotificationState(value) {
+//     value = !isNotificationEnabled;
+//     notifyListeners();
+//   }
+//
+//   changeButtonSound(value) {
+//     value = !isSoundEnabled;
+//     if (isNotificationEnabled == false) {
+//       isSoundEnabled == false;
+//     }
+//     notifyListeners();
+//   }
+// }
