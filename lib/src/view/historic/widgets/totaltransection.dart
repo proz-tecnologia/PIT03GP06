@@ -1,4 +1,5 @@
 import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 
@@ -54,7 +55,7 @@ class _ItemTransecState extends State<ItemTransec> {
                 children: [
                   Text(
                     widget.itens.valor.obterReal(),
-                    style: TextStyle(color: widget.itens.categoryname == null ? const Color.fromARGB(255, 20, 195, 26) :Colors.red),
+                    style: TextStyle(color: textCardColors(widget.itens.categoryname)),
                   ),
                   Column(
                     children: [

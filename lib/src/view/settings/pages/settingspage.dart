@@ -10,6 +10,10 @@ class SettingsPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () =>
+                  Navigator.of(context).pushReplacementNamed("/home"),
+              icon: const Icon(Icons.arrow_back)),
           centerTitle: true,
           title: const Text('Configurações'),
         ),
@@ -89,7 +93,8 @@ class SettingsPage extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.of(context).pushNamed("/editthemes");
+                            Navigator.of(context)
+                                .pushReplacementNamed("/editthemes");
                           },
                         ),
                       ],

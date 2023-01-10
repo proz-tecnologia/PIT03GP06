@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

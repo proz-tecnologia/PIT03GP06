@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/main.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +17,6 @@ class UsersService extends ChangeNotifier {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
   String? name;
   String? email;
-  double supermerc = 0;
-  double lazer = 0;
-  double transpor = 0;
-  double gastosex = 0;
-  double pagament = 0;
-  double farmac = 0;
-  int datefirst = DateTime.now().day;
-  int xpusers = 0;
-  int xp = 0;
-  int finalxp = 100;
-  int lvl = 1;
 
   UsersService() {
     _authCheck();
@@ -71,7 +59,7 @@ class UsersService extends ChangeNotifier {
       if (e.code == 'user-not-found') {
         throw ExceptionUsers("Usuário não encontrado!");
       } else if (e.code == 'wrong-password') {
-        throw ExceptionUsers("Senha invalida!");
+        throw ExceptionUsers("Olgo deu errado!");
       }
     }
   }
@@ -92,6 +80,32 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateNameUser(String name2) async {
+    String id = "userid";
+    await datb
+        .collection("usuarios/${usuario!.uid}/user")
+        .doc(id)
+        .update({"name": name2});
+    name = name2;
+    notifyListeners();
+  }
+
+  updateEmailUser(String email2) async {
+    String id = "userid";
+    await usuario!.updateEmail(email2);
+    await datb
+        .collection("usuarios/${usuario!.uid}/user")
+        .doc(id)
+        .update({"email": email2});
+    email = email2;
+    notifyListeners();
+  }
+
+  updateSenhaUser(String senha2) async {
+    await usuario!.updatePassword(senha2);
+    notifyListeners();
+  }
+
   Future<void> userRead() async {
     if (usuario != null) {
       QuerySnapshot read =
@@ -107,23 +121,23 @@ class UsersService extends ChangeNotifier {
   Future<void> addCategoriesPrimary() async {
     String id = 'categoriesid';
     await datb.collection("usuarios/${usuario!.uid}/categories").doc(id).set({
-      'supermercado': supermerc,
-      'lazer': lazer,
-      'transporte': transpor,
-      'farmacia': farmac,
-      'pagamentos': pagament,
-      'gastosex': gastosex,
+      'supermercado': 0,
+      'lazer': 0,
+      'transporte': 0,
+      'farmacia': 0,
+      'pagamentos': 0,
+      'gastosex': 0,
     });
   }
 
   Future<void> addlvlfire() async {
     String id = 'nivelsystem';
     await datb.collection("usuarios/${usuario!.uid}/nivel").doc(id).set({
-      'xp': xp,
-      'finalxp': finalxp,
-      'lvl': lvl,
-      'xpusers': xpusers,
-      'dayxp': datefirst
+      'xp': 0,
+      'finalxp': 100,
+      'lvl': 1,
+      'xpusers': 0,
+      'dayxp': DateTime.now().day
     });
   }
 }

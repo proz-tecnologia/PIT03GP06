@@ -1,8 +1,7 @@
-import 'package:ctrl_real/main.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/registers/pages/receitas.dart';
-import 'package:ctrl_real/src/view/user/registration/new_register.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
+import 'package:ctrl_real/src/view/userregister/pages/new_register.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';

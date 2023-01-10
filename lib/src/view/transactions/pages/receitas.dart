@@ -1,5 +1,5 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/registers_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
@@ -7,7 +7,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
-import '../../../controllers/providercontrolers/transections_despe_controller.dart';
+import '../../../controllers/transactions_form_controller.dart';
 
 class ReceitasPage extends StatefulWidget {
   const ReceitasPage({super.key});
