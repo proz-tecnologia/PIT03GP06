@@ -1,3 +1,4 @@
+import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
 import 'package:ctrl_real/src/services/firebase_auth.dart';
 import 'package:ctrl_real/src/view/registers/pages/receitas.dart';

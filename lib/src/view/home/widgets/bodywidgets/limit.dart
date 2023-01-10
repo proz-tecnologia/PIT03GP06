@@ -50,7 +50,7 @@ class Speding extends StatelessWidget {
                         height: 34,
                       ),
                       Consumer<HistoryController>(
-                        builder: (context, historyController, _) =>
+                        builder: (context, historyController, _) => historyController.saida == 0 ?  Text('Erro') :
                             LinearPercentIndicator(
                           width: MediaQuery.of(context).size.width - 40,
                           animation: true,
