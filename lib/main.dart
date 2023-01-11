@@ -91,8 +91,8 @@ class MyApp extends StatelessWidget {
               "/perfil": (context) => const PerfilPage(),
               "/sobreapp": (context) => const SobreApp(),
               "/editcount": (context) => EditAccount(),
-              "/editthemes": (context) => const EditThemesPage(),
-              "/editnotifications": (context) => const EditNotificationsPage()
+              "/editnotifications": (context) => const EditNotificationsPage(),
+              "/editthemes": (context) => const EditThemesPage()
             },
           );
         },
