@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     pagesanimated = PageController(initialPage: _selectedIndex);
     context.read<HistoryController>().transactionsread();
+    //context.read<UsersService>().imageRead();
     super.initState();
   }
 

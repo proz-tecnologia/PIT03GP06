@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -118,15 +120,28 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
+  imageAdd(String images) {
+    if (usuario != null) {
+      usuario!.updatePhotoURL(images);
+    }
+    notifyListeners();
+  }
+
   Future<void> addCategoriesPrimary() async {
+    double supermerc = 0;
+    double lazer = 0;
+    double transpor = 0;
+    double gastosex = 0;
+    double pagament = 0;
+    double farmac = 0;
     String id = 'categoriesid';
     await datb.collection("usuarios/${usuario!.uid}/categories").doc(id).set({
-      'supermercado': 0,
-      'lazer': 0,
-      'transporte': 0,
-      'farmacia': 0,
-      'pagamentos': 0,
-      'gastosex': 0,
+      'supermercado': supermerc,
+      'lazer': lazer,
+      'transporte': transpor,
+      'farmacia': farmac,
+      'pagamentos': pagament,
+      'gastosex': gastosex,
     });
   }
 

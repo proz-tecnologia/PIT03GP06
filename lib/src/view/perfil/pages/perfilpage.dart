@@ -1,10 +1,13 @@
 import 'dart:io';
+import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes_controller.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class PerfilPage extends StatefulWidget {
@@ -16,7 +19,8 @@ class PerfilPage extends StatefulWidget {
 
 class _PerfilPageState extends State<PerfilPage> {
   File? perfilImage;
-
+  final storage = FirebaseStorage.instance;
+  final UsersService user = UsersService();
   ImagePicker imagePicker = ImagePicker();
 
   @override
@@ -24,6 +28,11 @@ class _PerfilPageState extends State<PerfilPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                context, '/home', ModalRoute.withName('/perfil')),
+          ),
           centerTitle: true,
           title: const Text("Perfil"),
         ),
@@ -47,7 +56,9 @@ class _PerfilPageState extends State<PerfilPage> {
                           height: 120,
                           width: 120,
                           color: const Color.fromARGB(140, 255, 255, 255),
-                          child: imageFunction(),
+                          child: Consumer<UsersService>(
+                              builder: (context, value, child) =>
+                                  Image.network(user.usuario!.photoURL!)),
                         ),
                       ),
                       const Icon(
@@ -158,23 +169,41 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  galeryImage() async {
+  Future galeryImage() async {
     final XFile? temporaryImage =
         await imagePicker.pickImage(source: ImageSource.gallery);
     if (temporaryImage != null) {
       setState(() {
         perfilImage = File(temporaryImage.path);
+        uploadFile();
       });
     }
   }
 
-  cameraImage() async {
+  Future cameraImage() async {
     final XFile? temporaryImage =
         await imagePicker.pickImage(source: ImageSource.camera);
     if (temporaryImage != null) {
       setState(() {
         perfilImage = File(temporaryImage.path);
+        uploadFile();
       });
+    }
+  }
+
+  Future uploadFile() async {
+    if (perfilImage == null) return;
+    final fileName = basename(perfilImage!.path);
+    final destination = 'files/${user.usuario!.uid}';
+    try {
+      final ref = storage.ref(destination).child(fileName);
+      await ref.putFile(perfilImage!);
+      String image = await ref.getDownloadURL();
+      //user.addImage(image);
+      //user.usuario!.updatePhotoURL(image);
+      //user.imageReadd(image);
+    } catch (e) {
+      print('error occured');
     }
   }
 

@@ -33,22 +33,24 @@ class _DrawerCustonState extends State<DrawerCuston> {
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/perfil');
+                        Navigator.pushNamedAndRemoveUntil(context, '/perfil', ModalRoute.withName('/home'));
                       },
                       child: Stack(
                         alignment: AlignmentDirectional.bottomEnd,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Container(
-                              color: const Color.fromARGB(140, 255, 255, 255),
-                              height: 100,
-                              width: 100,
-                              child: const Icon(
-                                Icons.person_outline,
-                                size: 40,
-                                color: Color.fromARGB(129, 0, 0, 0),
-                              ),
+                            child: Consumer<UsersService>(
+                              builder: (context, value, child) => Container(
+                                color: const Color.fromARGB(140, 255, 255, 255),
+                                height: 100,
+                                width: 100,
+                                child: value.usuario!.photoURL == null ? const Icon(
+                                  Icons.person_outline,
+                                  size: 40,
+                                  color: Color.fromARGB(129, 0, 0, 0),
+                                ) : Image.network(value.usuario!.photoURL!),
+                              )
                             ),
                           ),
                           const Icon(
