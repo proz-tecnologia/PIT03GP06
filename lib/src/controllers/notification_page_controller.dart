@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ButtonSwitchController extends ChangeNotifier {
+class NotificationPageController extends ChangeNotifier {
   bool isNotificationEnabled = true;
   bool isSoundEnabled = true;
+
+  static NotificationPageController instance = NotificationPageController();
 
   changeNotificationState() {
     isNotificationEnabled = !isNotificationEnabled;
