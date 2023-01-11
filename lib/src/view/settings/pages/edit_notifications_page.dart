@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ctrl_real/src/view/settings/widgets/button_switch.dart';
+import 'package:ctrl_real/src/view/settings/widgets/notifications/notification_buttons.dart';
 
 class EditNotificationsPage extends StatelessWidget {
   const EditNotificationsPage({super.key});
@@ -14,14 +14,14 @@ class EditNotificationsPage extends StatelessWidget {
       body: ListView(children: const [
           ListTile(
               title: Text('Receber notificações'),
-              trailing: SwitchButton()),
+              trailing: NotificationButton()),
           // const ListTile(
           //   title: Text('Frequência diária'),
           //   trailing:
           // ),
           ListTile(
               title: Text('Habilitar som'),
-              trailing: SwitchButton()),
+              trailing: SoundButton()),
         ]),
       );
   }
