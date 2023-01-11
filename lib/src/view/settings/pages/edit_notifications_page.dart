@@ -8,21 +8,23 @@ class EditNotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.of(context)
+                .pushReplacementNamed("/config"),
+            icon: const Icon(Icons.arrow_back)),
         title: const Text('Editar notificações'),
         centerTitle: true,
       ),
-      body: ListView(children: const [
-          ListTile(
-              title: Text('Receber notificações'),
-              trailing: NotificationButton()),
-          // const ListTile(
-          //   title: Text('Frequência diária'),
-          //   trailing:
-          // ),
-          ListTile(
-              title: Text('Habilitar som'),
-              trailing: SoundButton()),
-        ]),
-      );
+      body: ListView(children: [
+        const ListTile(
+            title: Text('Receber notificações'),
+            trailing: NotificationButton()),
+        const ListTile(title: Text('Habilitar som'), trailing: SoundButton()),
+        ListTile(
+          title: const Text('Frequência diária'),
+          trailing: FrequencyButton(),
+        )
+      ]),
+    );
   }
 }
