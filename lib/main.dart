@@ -6,6 +6,7 @@ import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/controllers/notification_page_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/home/pages/homepage.dart';
+import 'package:ctrl_real/src/view/tutorial/onboarding.dart';
 import 'package:ctrl_real/src/view/userregister/pages/check_page.dart';
 import 'package:ctrl_real/src/view/userregister/pages/loginpage.dart';
 import 'package:ctrl_real/src/view/settings/pages/editperfilpage.dart';
@@ -21,6 +22,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +34,23 @@ void main() async {
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _ativo = false;
+  final String _ativoVar = 'ativo';
+
+  @override
+  void initState() {
+    _initAppVerificaSeEstaAtivo();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +98,8 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: "/",
             routes: {
-              "/": (context) => const CheckPage(),
+              "/": (context) =>
+                  _ativo ? const CheckPage() : const OnBoardingApp(),
               "/login": (context) => const LoginUser(),
               "/cadastro": (context) => NewRegister(),
               "/home": (context) => const HomePage(),
@@ -98,5 +116,14 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
+  }
+
+  _initAppVerificaSeEstaAtivo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final ativo = prefs.getBool(_ativoVar) ?? false;
+
+    setState(() {
+      _ativo = ativo;
+    });
   }
 }
