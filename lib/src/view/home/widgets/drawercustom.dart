@@ -44,10 +44,8 @@ class _DrawerCustonState extends State<DrawerCuston> {
                               color: const Color.fromARGB(140, 255, 255, 255),
                               height: 100,
                               width: 100,
-                              child: const Icon(
-                                Icons.person_outline,
-                                size: 40,
-                                color: Color.fromARGB(129, 0, 0, 0),
+                              child: Consumer<UsersService>(builder: (context, value, child) =>
+                                Image.network(value.usuario!.photoURL!),
                               ),
                             ),
                           ),

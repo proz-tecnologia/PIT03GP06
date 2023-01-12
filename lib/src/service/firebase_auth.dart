@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ctrl_real/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class ExceptionUsers implements Exception {
   String message;
@@ -17,6 +20,8 @@ class UsersService extends ChangeNotifier {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
   String? name;
   String? email;
+  File? perfilImage;
+  final storage = FirebaseStorage.instance;
 
   UsersService() {
     _authCheck();
@@ -101,6 +106,11 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> addImage(String image) async {
+    await usuario!.updatePhotoURL(image);
+    notifyListeners();
+  }
+
   updateSenhaUser(String senha2) async {
     await usuario!.updatePassword(senha2);
     notifyListeners();
@@ -139,5 +149,30 @@ class UsersService extends ChangeNotifier {
       'xpusers': 0,
       'dayxp': DateTime.now().day
     });
+  }
+
+    image(File images) {
+    perfilImage = images;
+    notifyListeners();
+  }
+
+    Widget imageFunctionn() {
+    if (perfilImage == null && usuario!.photoURL == null) {
+      return const Icon(
+        Icons.person_outline,
+        size: 60,
+        color: Color.fromARGB(129, 0, 0, 0),
+      );
+    } else if (perfilImage == null) {
+      return const Icon(
+        Icons.person_outline,
+        size: 60,
+        color: Color.fromARGB(129, 0, 0, 0),
+      );
+    } else if (perfilImage != null) {
+      return Image.file(perfilImage!);
+    } else {
+      return Image.network(usuario!.photoURL!);
+    }
   }
 }
