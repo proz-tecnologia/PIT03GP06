@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: ((context) =>
-              HistoryController(authentinc: context.read<UsersService>())),
+              TransactionsController(authentinc: context.read<UsersService>())),
         ),
         ChangeNotifierProvider(
           create: ((context) => NotificationPageController()),

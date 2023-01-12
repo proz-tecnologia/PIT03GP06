@@ -21,7 +21,7 @@ class EditAccount extends StatelessWidget {
         title: const Text('Editar conta'),
         centerTitle: true,
       ),
-      body: Consumer2<UsersService, HistoryController>(
+      body: Consumer2<UsersService, TransactionsController>(
         builder: (context, value, value2, child) => ListView(children: [
           ListTile(
             title: const Text("Renda"),
@@ -76,7 +76,7 @@ class EditAccount extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                 if (_formKey.currentState!.validate()) {
+                                if (_formKey.currentState!.validate()) {
                                   try {
                                     value.updateNameUser(name);
                                   } catch (e) {

@@ -27,7 +27,7 @@ class _BalancesState extends State<Balances> {
       child: AnimatedBuilder(
           animation: DarkController.instance,
           builder: (BuildContext context, Widget? child) {
-            return Consumer<HistoryController>(
+            return Consumer<TransactionsController>(
               builder: (context, value, child) => Column(children: [
                 Container(
                   decoration: BoxDecoration(

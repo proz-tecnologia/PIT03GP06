@@ -15,14 +15,16 @@ class PieChartSample2 extends StatefulWidget {
 class PieChart2State extends State {
   @override
   Widget build(BuildContext context) {
-    return Consumer<HistoryController>(
+    return Consumer<TransactionsController>(
       builder: (context, value, child) => Row(
         children: [
           value.saida == 0
               ? const Padding(
                   padding: EdgeInsets.only(right: 32, left: 16),
-                  child: Text('Não há despesas', style: TextStyle(color: Colors.white),)
-                )
+                  child: Text(
+                    'Não há despesas',
+                    style: TextStyle(color: Colors.white),
+                  ))
               : loadGrafico(),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -73,7 +75,7 @@ class PieChart2State extends State {
       padding: const EdgeInsets.only(right: 32, left: 12),
       child: AspectRatio(
         aspectRatio: 1,
-        child: Consumer<HistoryController>(
+        child: Consumer<TransactionsController>(
           builder: (context, controle, __) => (PieChart(
             PieChartData(
               centerSpaceRadius: 26,

@@ -25,7 +25,7 @@ class _CheckPageState extends State<CheckPage> {
     } else {
       context.read<UsersService>().userRead();
       context.read<LvlSystem>().lvlRead();
-      context.read<HistoryController>().chartRead();
+      context.read<TransactionsController>().chartRead();
       //context.read<HistoryController>().transactionsread();
       return const HomePage();
     }

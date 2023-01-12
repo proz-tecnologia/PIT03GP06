@@ -47,7 +47,8 @@ class _HistoricPageState extends State<HistoricPage> {
                 setState(() {});
               },
             )),
-        body: Consumer<HistoryController>(builder: (context, controller, _) {
+        body:
+            Consumer<TransactionsController>(builder: (context, controller, _) {
           return controller.registersList.isEmpty
               ? Center(
                   child: Text('Não há transações',
@@ -62,13 +63,13 @@ class _HistoricPageState extends State<HistoricPage> {
                           .length,
                       itemBuilder: (context, index) => Dismissible(
                             key: ValueKey(controller.registersList
-                                  .where((element) =>
-                                      element.type ==
-                                      (menuName == 'Todos'
-                                          ? element.type
-                                          : menuName))
-                                  .toList()[index]
-                                  .id),
+                                .where((element) =>
+                                    element.type ==
+                                    (menuName == 'Todos'
+                                        ? element.type
+                                        : menuName))
+                                .toList()[index]
+                                .id),
                             direction: DismissDirection.endToStart,
                             background: Padding(
                               padding: const EdgeInsets.only(top: 4),

@@ -2,7 +2,7 @@ import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
 import 'package:ctrl_real/src/view/userregister/pages/new_register.dart';
-import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -117,7 +117,7 @@ class _LoginUserState extends State<LoginUser> {
                                 child: SizedBox(
                                   width: 130,
                                   height: 40,
-                                  child: Consumer<HistoryController>(
+                                  child: Consumer<TransactionsController>(
                                     builder: (context, historyController, _) =>
                                         ElevatedButton(
                                       style: const ButtonStyle(
