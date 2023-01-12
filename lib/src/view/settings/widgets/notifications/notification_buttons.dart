@@ -16,8 +16,6 @@ class NotificationButton extends StatelessWidget {
             : 'Ativar'),
         onPressed: () {
           NotificationPageController.instance.changeNotificationState();
-          // NotificationPageController.instance.isNotificationEnabled = true;
-          // NotificationPageController.instance.isSoundEnabled = true;
         },
       ),
     );
@@ -39,8 +37,6 @@ class SoundButton extends StatelessWidget {
               : 'Ativar'),
           onPressed: () {
             NotificationPageController.instance.changeSoundState();
-            // NotificationPageController.instance.isNotificationEnabled = true;
-            // NotificationPageController.instance.isSoundEnabled = true;
           },
         ),
       ),
@@ -48,20 +44,12 @@ class SoundButton extends StatelessWidget {
   }
 }
 
-//const List<String> list = <String>['01', '02', '03'];
 
 class FrequencyButton extends StatelessWidget {
   final frequencyValue = ValueNotifier('');
   final frequencyOptions = ['01', '02', '03'];
 
   FrequencyButton({super.key});
-
-//   @override
-//   State<FrequencyButton> createState() => _FrequencyButtonState();
-// }
-
-// class _FrequencyButtonState extends State<FrequencyButton> {
-//   String dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {
@@ -83,27 +71,5 @@ class FrequencyButton extends StatelessWidget {
             );
           }),
     );
-    //   DropdownButton<String>(
-    //   value: frequencyValue,
-    //   icon: const Icon(Icons.arrow_downward),
-    //   elevation: 18,
-    //   style: const TextStyle(color: Colors.deepPurple),
-    //   underline: Container(
-    //     height: 2,
-    //     color: Colors.deepPurpleAccent,
-    //   ),
-    //   onChanged: (String? value) {
-    //     // This is called when the user selects an item.
-    //     setState(() {
-    //       dropdownValue = value!;
-    //     });
-    //   },
-    //   items: list.map<DropdownMenuItem<String>>((String value) {
-    //     return DropdownMenuItem<String>(
-    //       value: value,
-    //       child: Text(value),
-    //     );
-    //   }).toList(),
-    // );
   }
 }
