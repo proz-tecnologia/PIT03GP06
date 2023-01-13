@@ -265,12 +265,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);
-                                  historyController
-                                      .novoSaldoSaida(controller.valor);
-                                  historyController
-                                      .totalSaida(controller.valor);
-                                  historyController
-                                      .porcentSaida(controller.valor);
+                                  historyController.addsaidafire(controller.valor);
                                   historyController
                                       .atualizarLimite(controller.valor);
                                   historyController

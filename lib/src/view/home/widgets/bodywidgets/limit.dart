@@ -56,7 +56,10 @@ class Speding extends StatelessWidget {
                                     'Ainda não houve gastos',
                                     style: TextStyle(color: Colors.white),
                                   )
-                                : LinearPercentIndicator(
+                                : historyController.saida > historyController.renda ? const Text(
+                                    'Você ultrapassou seu limite!',
+                                    style: TextStyle(color: Colors.white),
+                                  ) : LinearPercentIndicator(
                                     width:
                                         MediaQuery.of(context).size.width - 40,
                                     animation: true,
@@ -65,7 +68,7 @@ class Speding extends StatelessWidget {
                                     percent: historyController
                                         .porcentSaida(controller.valor),
                                     center: Text(
-                                      "${historyController.atualizarLimite(controller.valor).toString()} %",
+                                      "${historyController.atualizarLimite(controller.valor).toStringAsFixed(1)} %",
                                       style: const TextStyle(
                                           color: Color.fromARGB(
                                               255, 255, 255, 255)),
