@@ -168,8 +168,8 @@ class SettingsPage extends StatelessWidget {
                             Icons.delete_outlined,
                           ),
                         ),
-                        Text(
-                          // excluirconta
+                        TextButton(child: Text(
+                          // excluir conta
                           'Excluir conta',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.karma(
@@ -178,6 +178,10 @@ class SettingsPage extends StatelessWidget {
                             height: 1.4525,
                             color: darkFunctionTexts(),
                           ),
+                        ),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("/deleteaccount");
+                          },
                         ),
                       ],
                     ),

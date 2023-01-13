@@ -15,6 +15,7 @@ import 'package:ctrl_real/src/view/userregister/pages/new_register.dart';
 import 'package:ctrl_real/src/view/transactions/pages/despesas.dart';
 import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
 import 'package:ctrl_real/src/view/settings/pages/edit_notifications_page.dart';
+import 'package:ctrl_real/src/view/settings/pages/delete_account_page.dart';
 import 'package:ctrl_real/src/view/settings/pages/settingspage.dart';
 import 'package:ctrl_real/src/view/sobreapp/pages/sobreapp.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,7 +93,8 @@ class MyApp extends StatelessWidget {
               "/sobreapp": (context) => const SobreApp(),
               "/editcount": (context) => EditAccount(),
               "/editnotifications": (context) => const EditNotificationsPage(),
-              "/editthemes": (context) => const EditThemesPage()
+              "/editthemes": (context) => const EditThemesPage(),
+              "/deleteaccount": (context) => const DeleteAccountPage()
             },
           );
         },
