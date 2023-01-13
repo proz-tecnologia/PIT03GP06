@@ -1,6 +1,6 @@
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/transections_despe_controller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/transactions_form_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
@@ -49,32 +49,41 @@ class Speding extends StatelessWidget {
                       const SizedBox(
                         height: 34,
                       ),
-                      Consumer<HistoryController>(
+                      Consumer<TransactionsController>(
                         builder: (context, historyController, _) =>
-                            LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width - 40,
-                          animation: true,
-                          lineHeight: 30.0,
-                          animationDuration: 2500,
-                          percent:
-                              historyController.porcentSaida(controller.valor),
-                          center: Text(
-                            "${historyController.atualizarLimite(controller.valor).toString()} %",
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          barRadius: const Radius.circular(16),
-                          progressColor:
-                              const Color.fromARGB(255, 63, 138, 224),
-                        ),
+                            historyController.saida == 0
+                                ? const Text(
+                                    'Ainda não houve gastos',
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                : LinearPercentIndicator(
+                                    width:
+                                        MediaQuery.of(context).size.width - 40,
+                                    animation: true,
+                                    lineHeight: 30.0,
+                                    animationDuration: 2500,
+                                    percent: historyController
+                                        .porcentSaida(controller.valor),
+                                    center: Text(
+                                      "${historyController.atualizarLimite(controller.valor).toString()} %",
+                                      style: const TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255)),
+                                    ),
+                                    barRadius: const Radius.circular(16),
+                                    progressColor:
+                                        const Color.fromARGB(255, 63, 138, 224),
+                                  ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
+
                       const Text(
                               'Esse é seu limite atual',
                               style:TextStyle(
                                   color: Color.fromARGB(255, 255, 255, 255))),
+
                     ],
                   ),
                 ),

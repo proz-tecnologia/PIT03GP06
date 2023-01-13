@@ -1,46 +1,39 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
-import '../../../controllers/providercontrolers/transections_despe_controller.dart';
+import '../../../controllers/transactions_form_controller.dart';
 
-class ReceitasPage extends StatefulWidget {
-  const ReceitasPage({super.key});
+class DespesasPage extends StatefulWidget {
+  const DespesasPage({super.key});
 
   @override
-  State<ReceitasPage> createState() => _ReceitasPageState();
+  State<DespesasPage> createState() => _AddCategoriesState();
 }
 
-final TransactionController controllerEntradas = TransactionController();
+final TransactionController controller = TransactionController();
 
-class _ReceitasPageState extends State<ReceitasPage> {
+final _txtDateTimeController = TextEditingController();
+
+class _AddCategoriesState extends State<DespesasPage> {
   final _formKey = GlobalKey<FormState>();
-
-  double? value;
-  final TransactionController controllerReceita = TransactionController();
-  final _txtDateTimeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () =>
-                Navigator.of(context).pop(),
-          ),
-          title: const Text('Receitas'),
+          title: const Text('Despesas'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 40),
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 38.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -48,6 +41,43 @@ class _ReceitasPageState extends State<ReceitasPage> {
                 children: <Widget>[
                   const SizedBox(
                     height: 10,
+                  ),
+                  DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(220, 104, 89, 205),
+                        ),
+                      ),
+                    ),
+                    hint: Text(
+                      Strings.nameImputCategoriesForm,
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == '' || value == null) {
+                        return "Informe uma categoria";
+                      }
+                      return null;
+                    },
+                    elevation: 16,
+                    style: TextStyle(
+                      color: darkFunctionTexts(),
+                    ),
+                    onChanged: (a) {
+                      controller.categoryname = a ?? '';
+                      setState(() {});
+                    },
+                    items: controller.categoryList
+                        .map(
+                          (e) => DropdownMenuItem<String>(
+                            value: e,
+                            child: Text(e),
+                          ),
+                        )
+                        .toList(),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
@@ -63,11 +93,11 @@ class _ReceitasPageState extends State<ReceitasPage> {
                       decoration: InputDecoration(
                         helperText: "Campo obrigatório",
                         labelText: Strings.nameImputDescriptionForm,
-                        hintText: "Hora extra...",
+                        hintText: "Descreva sua compra",
                         hintStyle: const TextStyle(fontSize: 12),
                         labelStyle: TextStyle(
-                          color: darkFunctionTexts(),
                           fontSize: 14,
+                          color: darkFunctionTexts(),
                         ),
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -76,7 +106,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        controllerEntradas.descricao = value;
+                        controller.descricao = value;
                       },
                     ),
                   ),
@@ -90,20 +120,20 @@ class _ReceitasPageState extends State<ReceitasPage> {
                       ],
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(220, 104, 89, 205),
-                          ),
-                        ),
                         labelText: Strings.nameImputValorForm,
                         labelStyle: TextStyle(
-                          color: darkFunctionTexts(),
                           fontSize: 14,
+                          color: darkFunctionTexts(),
                         ),
                         hintText: "0,00",
                         hintStyle: const TextStyle(fontSize: 12),
                         prefix: const Text("R\$"),
                         helperText: "Máximo de 999.999,99 digitos",
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(220, 104, 89, 205),
+                          ),
+                        ),
                       ),
                       maxLength: 10,
                       validator: (value) {
@@ -117,10 +147,45 @@ class _ReceitasPageState extends State<ReceitasPage> {
                         }
                         return null;
                       },
-                      onChanged: ((newValue) => controllerEntradas.valor =
-                          double.parse(newValue
-                              .replaceAll(".", "")
-                              .replaceAll(",", "."))),
+                      onChanged: (value) {
+                        controller.valor = double.parse(
+                            value.replaceAll(".", "").replaceAll(",", "."));
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: DropdownButtonFormField<String>(
+                      isExpanded: true,
+                      decoration: const InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(220, 104, 89, 205),
+                          ),
+                        ),
+                      ),
+                      hint: Text(
+                        Strings.nameImputPaymentForm,
+                        style: TextStyle(
+                          color: darkFunctionTexts(),
+                        ),
+                      ),
+                      elevation: 16,
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                      ),
+                      onChanged: (a) {
+                        controller.formpag = a ?? '';
+                        setState(() {});
+                      },
+                      items: controller.formlist
+                          .map(
+                            (e) => DropdownMenuItem<String>(
+                              value: e,
+                              child: Text(e),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                   Padding(
@@ -152,21 +217,20 @@ class _ReceitasPageState extends State<ReceitasPage> {
                           firstDate: DateTime.now()
                               .subtract(const Duration(days: 360)),
                           lastDate: DateTime.now(),
-                          initialDate: controllerEntradas.dateTime);
-                      controllerEntradas.dateTime =
-                          date ?? controllerEntradas.dateTime;
+                          initialDate: controller.dateTime);
+                      controller.dateTime = date ?? controller.dateTime;
                       _txtDateTimeController.text =
-                          "${controllerEntradas.dateTime.day}/${controllerEntradas.dateTime.month}/${controllerEntradas.dateTime.year}";
+                          "${controller.dateTime.day}/${controller.dateTime.month}/${controller.dateTime.year}";
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 26.0),
                     child: Center(
                       child: SizedBox(
                         width: 130,
                         height: 40,
-                        child: Consumer2<HistoryController, LvlSystem>(
-                          builder: (context, historyController, lvlsystem, __) {
+                        child: Consumer2<TransactionsController, LvlSystem>(
+                          builder: (context, historyController, lvlsystem, _) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor:
@@ -176,7 +240,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 1),
+                                        duration: Duration(seconds: 2),
                                         backgroundColor:
                                             Color.fromARGB(220, 104, 89, 205),
                                         content: Text(
@@ -187,21 +251,31 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                   var trans = TotalandCategory(
                                     id: const Uuid().v4(),
                                     date: _txtDateTimeController.text,
-                                    type: 'Receita',
-                                    valor: controllerEntradas.valor,
-                                    descri: controllerEntradas.descricao,
-                                    formPag: 'Renda extra',
+                                    type: 'Despesa',
+                                    valor: controller.valor,
+                                    descri: controller.descricao,
+                                    categoryname: controller.categoryname,
+                                    formPag: 'Forma: ${controller.formpag}',
                                     /*icon: const Icon(
-                                        Icons.arrow_upward_outlined,
-                                        color: Colors.green,
-                                      )*/
+                                      Icons.arrow_downward_outlined,
+                                      color: Colors.red,
+                                    ),*/
                                   );
                                   historyController.addTotaltransection(trans);
+                                  historyController.addValueCategory(
+                                      controller.valor,
+                                      controller.categoryname);
                                   historyController
-                                      .novaRenda(controllerEntradas.valor);
-                                  historyController.novoSaldoEntrada(
-                                      controllerEntradas.valor);
-                                  lvlsystem.recXpAdd();
+                                      .novoSaldoSaida(controller.valor);
+                                  historyController
+                                      .totalSaida(controller.valor);
+                                  historyController
+                                      .porcentSaida(controller.valor);
+                                  historyController
+                                      .atualizarLimite(controller.valor);
+                                  historyController
+                                      .porcentAtualizardisp(controller.valor);
+                                  lvlsystem.despXpAdd();
                                   lvlsystem.xpFinal();
                                 }
                               },

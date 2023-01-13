@@ -1,5 +1,5 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +18,7 @@ class ButtonDark extends StatelessWidget {
             DarkController.instance.bluemod = false;
             DarkController.instance.redmod = false;
             DarkController.instance.greenmod = false;
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacementNamed("/home");
         },
       ),
     );
@@ -42,7 +42,7 @@ class ButtonBlue extends StatelessWidget {
                   DarkController.instance.darkmod = false;
                   DarkController.instance.redmod = false;
                   DarkController.instance.greenmod = false;
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed("/home");
                 }
               : () {},
           child: value.lvl >= 2
@@ -71,7 +71,7 @@ class ButtonGreen extends StatelessWidget {
                   DarkController.instance.darkmod = false;
                   DarkController.instance.bluemod = false;
                   DarkController.instance.redmod = false;
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed("/home");
                 }
               : () {},
           child: value.lvl >= 10
@@ -100,7 +100,7 @@ class ButtonRed extends StatelessWidget {
                   DarkController.instance.darkmod = false;
                   DarkController.instance.bluemod = false;
                   DarkController.instance.greenmod = false;
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed("/home");
                 }
               : () {},
           child: value.lvl >= 15

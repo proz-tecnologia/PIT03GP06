@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctrl_real/src/model/registers_model.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/databases/firestore_database.dart';
+import 'package:ctrl_real/src/model/totallandcategory_model.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/database/firestore_database.dart';
 import 'package:flutter/cupertino.dart';
 
-class HistoryController extends ChangeNotifier {
-  final List<TotalandCategory> registersList = [];
+class TransactionsController extends ChangeNotifier {
+  List<TotalandCategory> registersList = [];
   late FirebaseFirestore datb;
   late UsersService authentinc;
 
-  HistoryController({required this.authentinc}) {
+  TransactionsController({required this.authentinc}) {
     _initdataFire();
   }
 
@@ -24,7 +24,7 @@ class HistoryController extends ChangeNotifier {
   final List<TotalandCategory> registerUser = [];
 
   double valorLimite = 0;
-  double renda = 5000;
+  double renda = 0;
   double saldoDisponivel = 0;
   double saida = 0;
   double supermerc = 0;
@@ -58,31 +58,16 @@ class HistoryController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void>addTotaltransection(TotalandCategory trans) async {
+  Future<void> addTotaltransection(TotalandCategory trans) async {
+    registersList.add(trans);
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(trans.id)
         .set(trans.toMap());
-    registersList.add(trans);
     notifyListeners();
   }
 
-  Future<void>addCategoriesPrimary() async {
-    String id = 'categoriesid';
-    await datb
-        .collection("usuarios/${authentinc.usuario!.uid}/categories")
-        .doc(id)
-        .set({
-      'supermercado': supermerc,
-      'lazer': lazer,
-      'transporte': transpor,
-      'farmacia': farmac,
-      'pagamentos': pagament,
-      'gastosex': gastosex,
-    });
-  }
-
-  Future<void>addValueCategory(double result, String categorynames) async {
+  Future<void> addValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
       await datb
@@ -149,11 +134,14 @@ class HistoryController extends ChangeNotifier {
         pagament = element.get('pagamentos');
         gastosex = element.get('gastosex');
       }
+      notifyListeners();
     }
-    notifyListeners();
+    renda = 5000;
+    //notifyListeners();
   }
 
-  Future<void>transactionsread() async {
+  Future<void> transactionsread() async {
+    registersList = [];
     if (authentinc.usuario != null && registersList.isEmpty) {
       QuerySnapshot read = await datb
           .collection('usuarios/${authentinc.usuario!.uid}/transacoes')
@@ -163,15 +151,17 @@ class HistoryController extends ChangeNotifier {
             element.data() as Map<String, dynamic>);
         registersList.add(lista);
       }
+      //notifyListeners();
     }
+    notifyListeners();
   }
 
-  Future<void>removeByID(String id) async {
+  Future<void> removeByID(String id) async {
+    registersList.removeWhere((e) => e.id == id);
     await datb
         .collection("usuarios/${authentinc.usuario!.uid}/transacoes")
         .doc(id)
         .delete();
-    registersList.removeWhere((e) => e.id == id);
     notifyListeners();
   }
 
@@ -200,7 +190,7 @@ class HistoryController extends ChangeNotifier {
     return saida += result;
   }
 
-  Future<void>menosValueCategory(double result, String categorynames) async {
+  Future<void> menosValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
       await datb

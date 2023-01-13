@@ -1,7 +1,5 @@
-import 'dart:ui';
-
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/controllers/themes/themes_buttom.dart';
+import 'package:ctrl_real/src/view/settings/widgets/themes/themes_buttom.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,11 +60,13 @@ class _DrawerCustonState extends State<DrawerCuston> {
                       ),
                     ),
                   ),
-                ),                
-                const Padding(
-                  padding: EdgeInsets.all(12),
-                  child: Center(
-                    child: Text("Aysha", style: TextStyle(color: Colors.white),),
+
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Consumer<UsersService>(builder: (context, value, child) => Center(
+                      child: Text(value.name ?? "", style: const TextStyle(color: Colors.white),),
+                    ),
                   ),
                 )
               ],
@@ -99,14 +99,14 @@ class _DrawerCustonState extends State<DrawerCuston> {
                     'Mais temas',
                     textAlign: TextAlign.center,
                   ),
-                  onTap: () => Navigator.of(context).pushNamed("/editthemes")),
+                  onTap: () => Navigator.of(context).pushReplacementNamed("/editthemes")),
             ],
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text(Strings.nameConfigDrawer),
             onTap: () {
-              Navigator.of(context).pushNamed('/config');
+              Navigator.of(context).pushReplacementNamed('/config');
             },
           ),
           ListTile(
@@ -121,17 +121,11 @@ class _DrawerCustonState extends State<DrawerCuston> {
             leading: const Icon(Icons.exit_to_app),
             title: const Text(Strings.nameExitDrawer),
             onTap: () {
-              exit();
+              context.read<UsersService>().logout();
             },
           ),
         ],
       ),
     );
-  }
-
-  exit() async {
-    await _firebaseAuth
-        .signOut()
-        .then((user) => Navigator.of(context).pushReplacementNamed("/"));
   }
 }

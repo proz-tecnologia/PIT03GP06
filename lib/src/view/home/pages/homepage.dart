@@ -1,12 +1,13 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/controllers/themes/darmodcontroller.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
+import 'package:ctrl_real/src/controllers/themes_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/balances.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/dicas.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/limit.dart';
 import 'package:ctrl_real/src/view/home/widgets/drawercustom.dart';
-import 'package:ctrl_real/src/view/registers/widgets/buttonreceitas.dart';
+import 'package:ctrl_real/src/view/transactions/widgets/buttonreceitas.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bodywidgets/categories.dart';
@@ -24,8 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     pagesanimated = PageController(initialPage: _selectedIndex);
+    context.read<TransactionsController>().transactionsread();
+    super.initState();
   }
 
   void _onItemTapped(value) {

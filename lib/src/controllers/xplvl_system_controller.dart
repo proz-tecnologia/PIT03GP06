@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctrl_real/src/services/firebase_auth.dart';
-import 'package:ctrl_real/src/view/databases/firestore_database.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/database/firestore_database.dart';
 import 'package:flutter/material.dart';
 
 class LvlSystem extends ChangeNotifier {
@@ -40,8 +39,9 @@ class LvlSystem extends ChangeNotifier {
         xpusers = element.get('xpusers');
         datefirst = element.get('dayxp');
       }
+      notifyListeners();
     }
-    notifyListeners();
+    //notifyListeners();
   }
 
   Future<void> addlvlfire() async {
@@ -58,15 +58,15 @@ class LvlSystem extends ChangeNotifier {
   }
 
   Future<void> despXpAdd() async {
-    if (datefirst == datelate) {
+    if (datefirst <= datelate) {
       if (xpusers < 5) {
         xpusers++;
         await datb
-              .collection("usuarios/${authentinc.usuario!.uid}/nivel")
-              .doc(id)
-              .update({
-            'xpusers': xpusers,
-          });
+            .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+            .doc(id)
+            .update({
+          'xpusers': xpusers,
+        });
         if (lvl == 15) {
           lvl = 15;
           await datb
@@ -98,43 +98,59 @@ class LvlSystem extends ChangeNotifier {
           await datb
               .collection("usuarios/${authentinc.usuario!.uid}/nivel")
               .doc(id)
-              .update({
-            'xpusers': xpusers,
-            'dayxp': datefirst
-          });
+              .update({'xpusers': xpusers, 'dayxp': datefirst});
         }
-        notifyListeners();
       }
+      notifyListeners();
     }
   }
 
   Future<void> recXpAdd() async {
-    if (lvl >= 15) {
-      lvl = 15;
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/nivel")
-          .doc(id)
-          .update({
-        'lvl': lvl,
-      });
-    } else {
-      xp += 40;
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/nivel")
-          .doc(id)
-          .update({
-        'xp': xp,
-      });
+    if (datefirst <= datelate) {
+      if (xpusers < 5) {
+        xpusers++;
+        await datb
+            .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+            .doc(id)
+            .update({
+          'xpusers': xpusers,
+        });
+        if (lvl == 15) {
+          lvl = 15;
+          await datb
+              .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+              .doc(id)
+              .set({
+            'lvl': lvl,
+          });
+        } else {
+          xp += 40;
+          await datb
+              .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+              .doc(id)
+              .update({
+            'xp': xp,
+          });
+        }
+        if (xp >= finalxp) {
+          lvl++;
+          xp = xp - finalxp;
+          await datb
+              .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+              .doc(id)
+              .update({'lvl': lvl, 'xp': xp});
+        }
+        if (xpusers == 5) {
+          xpusers = 0;
+          datefirst = datelate + 1;
+          await datb
+              .collection("usuarios/${authentinc.usuario!.uid}/nivel")
+              .doc(id)
+              .update({'xpusers': xpusers, 'dayxp': datefirst});
+        }
+      }
+      notifyListeners();
     }
-    if (xp >= finalxp) {
-      lvl++;
-      xp = xp - finalxp;
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/nivel")
-          .doc(id)
-          .update({'lvl': lvl, 'xp': xp});
-    }
-    notifyListeners();
   }
 
   Future<void> xpFinal() async {

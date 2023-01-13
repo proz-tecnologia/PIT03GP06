@@ -1,10 +1,10 @@
-import 'package:ctrl_real/src/controllers/providercontrolers/registers_transections_controller.dart';
-import 'package:ctrl_real/src/view/extension/extension_double.dart';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
+import 'package:ctrl_real/src/extension/extension_double.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../controllers/themes/darmodcontroller.dart';
+import '../../../../controllers/themes_controller.dart';
 
 class Balances extends StatefulWidget {
   const Balances({super.key});
@@ -14,7 +14,7 @@ class Balances extends StatefulWidget {
 }
 
 class _BalancesState extends State<Balances> {
-  double renda = 0;
+  double renda = 5000;
 
   double saida = 0;
 
@@ -27,7 +27,7 @@ class _BalancesState extends State<Balances> {
       child: AnimatedBuilder(
           animation: DarkController.instance,
           builder: (BuildContext context, Widget? child) {
-            return Consumer<HistoryController>(
+            return Consumer<TransactionsController>(
               builder: (context, value, child) => Column(children: [
                 Container(
                   decoration: BoxDecoration(
