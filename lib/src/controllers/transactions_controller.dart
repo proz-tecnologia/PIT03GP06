@@ -133,10 +133,10 @@ class TransactionsController extends ChangeNotifier {
         farmac = element.get('farmacia');
         pagament = element.get('pagamentos');
         gastosex = element.get('gastosex');
+        saida = element.get('saida');
       }
       notifyListeners();
     }
-    renda = 5000;
     //notifyListeners();
   }
 
@@ -190,56 +190,62 @@ class TransactionsController extends ChangeNotifier {
     return saida += result;
   }
 
+  Future<void> addsaidafire(double result) async {
+    String id = 'categoriesid';
+    await datb
+        .collection("usuarios/${authentinc.usuario!.uid}/categories")
+        .doc(id)
+        .update({
+      'saida': saida += result,
+    });
+    saida += result;
+  }
+
   Future<void> menosValueCategory(double result, String categorynames) async {
     String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'supermercado': supermerc - result,
-      });
+          .update(
+              {'supermercado': supermerc - result, 'saida': saida -= result});
       supermerc -= result;
+      saida -= result;
     } else if (categorynames == 'Lazer') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'lazer': lazer - result,
-      });
+          .update({'lazer': lazer - result, 'saida': saida -= result});
       lazer -= result;
+      saida -= result;
     } else if (categorynames == 'Transporte') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'transporte': transpor - result,
-      });
+          .update({'transporte': transpor - result, 'saida': saida -= result});
       transpor -= result;
+      saida -= result;
     } else if (categorynames == 'Farmacia') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'farmacia': farmac - result,
-      });
+          .update({'farmacia': farmac - result, 'saida': saida -= result});
       farmac -= result;
+      saida -= result;
     } else if (categorynames == 'Pagamentos') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'pagamentos': pagament - result,
-      });
+          .update({'pagamentos': pagament - result, 'saida': saida -= result});
       pagament -= result;
+      saida -= result;
     } else {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({
-        'gastosex': gastosex - result,
-      });
+          .update({'gastosex': gastosex - result, 'saida': saida -= result});
       gastosex -= result;
+      saida -= result;
     }
     notifyListeners();
   }

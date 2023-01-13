@@ -17,6 +17,8 @@ class UsersService extends ChangeNotifier {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
   String? name;
   String? email;
+  double renda = 0;
+  double? valorLimite;
 
   UsersService() {
     _authCheck();
@@ -35,12 +37,13 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
-  registerUser(String email, String senha, String name) async {
+  registerUser(String email, String senha, String name, double renda2) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
-      addUser(name, email);
+      addUser(name, email, renda2);
       addlvlfire();
       addCategoriesPrimary();
+      renda = renda2;
       _userlogin();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -71,12 +74,12 @@ class UsersService extends ChangeNotifier {
     _userlogin();
   }
 
-  Future<void> addUser(String name, String email) async {
+  Future<void> addUser(String name, String email, double renda2) async {
     String id = "userid";
     await datb
         .collection("usuarios/${usuario!.uid}/user")
         .doc(id)
-        .set({"name": name, "email": email});
+        .set({"name": name, "email": email, "renda": renda2});
     notifyListeners();
   }
 
@@ -113,31 +116,38 @@ class UsersService extends ChangeNotifier {
       for (var element in read.docs) {
         name = element.get('name');
         email = element.get('email');
+        renda = element.get('renda');
       }
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   Future<void> addCategoriesPrimary() async {
+    double supermercado = 0;
+    double lazer = 0;
+    double transporte = 0;
+    double farmacia = 0;
+    double pagamentos = 0;
+    double gastosex = 0;
+    double saida = 0;
     String id = 'categoriesid';
     await datb.collection("usuarios/${usuario!.uid}/categories").doc(id).set({
-      'supermercado': 0,
-      'lazer': 0,
-      'transporte': 0,
-      'farmacia': 0,
-      'pagamentos': 0,
-      'gastosex': 0,
+      'saida': saida,
+      'supermercado': supermercado,
+      'lazer': lazer,
+      'transporte': transporte,
+      'farmacia': farmacia,
+      'pagamentos': pagamentos,
+      'gastosex': gastosex,
     });
   }
 
   Future<void> addlvlfire() async {
+    int date = DateTime.now().day;
     String id = 'nivelsystem';
-    await datb.collection("usuarios/${usuario!.uid}/nivel").doc(id).set({
-      'xp': 0,
-      'finalxp': 100,
-      'lvl': 1,
-      'xpusers': 0,
-      'dayxp': DateTime.now().day
-    });
+    await datb
+        .collection("usuarios/${usuario!.uid}/nivel")
+        .doc(id)
+        .set({'xp': 0, 'finalxp': 100, 'lvl': 1, 'xpusers': 0, 'dayxp': date});
   }
 }

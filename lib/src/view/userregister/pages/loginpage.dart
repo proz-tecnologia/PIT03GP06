@@ -23,14 +23,13 @@ class _LoginUserState extends State<LoginUser> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(220, 104, 89, 205),
         appBar: AppBar(
           title: const Text('Login'),
           backgroundColor: const Color.fromARGB(220, 104, 89, 205),
           centerTitle: true,
         ),
-        body: Container(
-          color: const Color.fromARGB(220, 104, 89, 205),
-          width: double.infinity,
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Container(

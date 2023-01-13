@@ -24,8 +24,9 @@ class _NewRegisterState extends State<NewRegister> {
   final _formKey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _email = TextEditingController();
-  final _income = TextEditingController();
   final _password = TextEditingController();
+  double renda = 0;
+
   bool loading = false;
 
   @override
@@ -112,7 +113,6 @@ class _NewRegisterState extends State<NewRegister> {
                           },
                         ),
                         TextFormField(
-                          controller: _income,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
@@ -142,10 +142,14 @@ class _NewRegisterState extends State<NewRegister> {
                             ),
                           ),
                           maxLength: 10,
-                          onChanged: ((newValue) => controllerEntradas.valor =
-                              double.parse(newValue
-                                  .replaceAll(".", "")
-                                  .replaceAll(",", "."))),
+                          onChanged: ((newValue) {
+                            controllerEntradas.valor = double.parse(newValue
+                                .replaceAll(".", "")
+                                .replaceAll(",", "."));
+                                renda = double.parse(newValue
+                                .replaceAll(".", "")
+                                .replaceAll(",", "."));
+                          }),
                         ),
                         TextFormField(
                           controller: _password,
@@ -268,7 +272,7 @@ class _NewRegisterState extends State<NewRegister> {
       });
       await context
           .read<UsersService>()
-          .registerUser(_email.text, _password.text, _name.text);
+          .registerUser(_email.text, _password.text, _name.text, renda);
       setState(() {
         loading = false;
       });
