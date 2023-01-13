@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     pagesanimated = PageController(initialPage: _selectedIndex);
-    context.read<HistoryController>().transactionsread();
+    context.read<TransactionsController>().transactionsread();
     super.initState();
   }
 

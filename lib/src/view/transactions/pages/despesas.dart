@@ -1,6 +1,6 @@
 import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
-import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -229,7 +229,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                       child: SizedBox(
                         width: 130,
                         height: 40,
-                        child: Consumer2<HistoryController, LvlSystem>(
+                        child: Consumer2<TransactionsController, LvlSystem>(
                           builder: (context, historyController, lvlsystem, _) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -262,9 +262,9 @@ class _AddCategoriesState extends State<DespesasPage> {
                                     ),*/
                                   );
                                   historyController.addTotaltransection(trans);
-                                    historyController.addValueCategory(
-                                        controller.valor,
-                                        controller.categoryname);
+                                  historyController.addValueCategory(
+                                      controller.valor,
+                                      controller.categoryname);
                                   historyController
                                       .novoSaldoSaida(controller.valor);
                                   historyController

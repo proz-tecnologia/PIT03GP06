@@ -1,4 +1,4 @@
-import 'package:ctrl_real/src/model/registers_model.dart';
+import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:brasil_fields/brasil_fields.dart';
@@ -8,11 +8,9 @@ class ItemTransec extends StatefulWidget {
 
   final TotalandCategory itens;
 
-
   @override
   State<ItemTransec> createState() => _ItemTransecState();
 }
-
 
 class _ItemTransecState extends State<ItemTransec> {
   @override
@@ -55,7 +53,8 @@ class _ItemTransecState extends State<ItemTransec> {
                 children: [
                   Text(
                     widget.itens.valor.obterReal(),
-                    style: TextStyle(color: textCardColors(widget.itens.categoryname)),
+                    style: TextStyle(
+                        color: textCardColors(widget.itens.categoryname)),
                   ),
                   Column(
                     children: [
