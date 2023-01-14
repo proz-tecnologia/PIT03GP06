@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "483870613068",
-    "project_id": "projectpi-ctrlreal",
-    "storage_bucket": "projectpi-ctrlreal.appspot.com"
+    "project_number": "1061357051215",
+    "project_id": "projectpitwo-ctrlreal",
+    "storage_bucket": "projectpitwo-ctrlreal.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:483870613068:android:15c85c51d8bb3249fc9ee9",
+        "mobilesdk_app_id": "1:1061357051215:android:e50cc710e81349dc44b93a",
         "android_client_info": {
           "package_name": "com.example.ctrl_real"
         }
       },
       "oauth_client": [
         {
-          "client_id": "483870613068-aa2q0t8tttdio5049rhtf9trd4aojiqr.apps.googleusercontent.com",
+          "client_id": "1061357051215-725lp7ro1o6iis2fpt4ftb7n7t4g4htd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDC4BWukiJYsfqaCbXkPeyegyv2tXm9Hus"
+          "current_key": "AIzaSyCx1DPq8Iv42Q1W2ocipT8pZRz3ZISntdY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "483870613068-aa2q0t8tttdio5049rhtf9trd4aojiqr.apps.googleusercontent.com",
+              "client_id": "1061357051215-725lp7ro1o6iis2fpt4ftb7n7t4g4htd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

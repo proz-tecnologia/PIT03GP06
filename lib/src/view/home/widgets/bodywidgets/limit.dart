@@ -68,7 +68,8 @@ class Speding extends StatelessWidget {
                                     percent: historyController
                                         .porcentSaida(controller.valor),
                                     center: Text(
-                                      "${historyController.atualizarLimite(controller.valor).toStringAsFixed(1)} %",
+                                      "${historyController
+                                        .porcentAtualizar(controller.valor).toStringAsFixed(1)} %",
                                       style: const TextStyle(
                                           color: Color.fromARGB(
                                               255, 255, 255, 255)),
