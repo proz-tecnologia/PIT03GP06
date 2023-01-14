@@ -276,7 +276,7 @@ class _NewRegisterState extends State<NewRegister> {
       setState(() {
         loading = false;
       });
-      navigatorKey.currentState!.pushReplacementNamed("/");
+      navigatorKey.currentState!.pop();
     } on ExceptionUsers catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
