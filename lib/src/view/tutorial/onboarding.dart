@@ -55,7 +55,7 @@ class _OnBoardingAppState extends State<OnBoardingApp> {
                   imagem: 'asset/img/dicas.png',
                   titulo: "A gente te ajuda",
                   texto:
-                      "Na aba Dicas, vamos te apresentar conteúdos gratuitos de especialistas em finanças pessoais!",
+                      "Na aba Dicas, vamos te apresentar conteúdos gratuitos de especialistas em finanças pessoais!\nClique nas imagens para abrir cada conteúdo e aproveite =D",
                 ),
               ],
             ),
