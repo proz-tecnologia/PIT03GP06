@@ -14,11 +14,11 @@ class ButtonDark extends StatelessWidget {
         style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
         child: Text(DarkController.instance.darkmod ? 'Desativar' : 'Atitvar'),
         onPressed: () {
-            DarkController.instance.changeTheme();
-            DarkController.instance.bluemod = false;
-            DarkController.instance.redmod = false;
-            DarkController.instance.greenmod = false;
-            Navigator.of(context).pushReplacementNamed("/home");
+          DarkController.instance.changeTheme();
+          DarkController.instance.bluemod = false;
+          DarkController.instance.redmod = false;
+          DarkController.instance.greenmod = false;
+          Navigator.of(context).pop();
         },
       ),
     );
@@ -42,7 +42,7 @@ class ButtonBlue extends StatelessWidget {
                   DarkController.instance.darkmod = false;
                   DarkController.instance.redmod = false;
                   DarkController.instance.greenmod = false;
-                  Navigator.of(context).pushReplacementNamed("/home");
+                  Navigator.of(context).pop();
                 }
               : () {},
           child: value.lvl >= 2
@@ -63,15 +63,14 @@ class ButtonGreen extends StatelessWidget {
       builder: (context, value, child) => SizedBox(
         width: 94,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green),
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
           onPressed: value.lvl >= 10
               ? () {
                   DarkController.instance.changeThemeGreen();
                   DarkController.instance.darkmod = false;
                   DarkController.instance.bluemod = false;
                   DarkController.instance.redmod = false;
-                  Navigator.of(context).pushReplacementNamed("/home");
+                  Navigator.of(context).pop();
                 }
               : () {},
           child: value.lvl >= 10
@@ -100,7 +99,7 @@ class ButtonRed extends StatelessWidget {
                   DarkController.instance.darkmod = false;
                   DarkController.instance.bluemod = false;
                   DarkController.instance.greenmod = false;
-                  Navigator.of(context).pushReplacementNamed("/home");
+                  Navigator.of(context).pop();
                 }
               : () {},
           child: value.lvl >= 15
