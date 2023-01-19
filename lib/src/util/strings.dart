@@ -16,7 +16,7 @@ abstract class Strings {
 
   //Home Page
   static const String nameBalancesContainer = "Saldo";
-  static const String nameLimitContainer = "Limite";
+  static const String nameLimitContainer = "Consumo da Renda";
   static const String nameCategoriesContainer = "Categorias";
   static const String nameDicasContainer = "Dicas";
 

@@ -56,38 +56,38 @@ class Speding extends StatelessWidget {
                                     'Ainda não houve gastos',
                                     style: TextStyle(color: Colors.white),
                                   )
-                                : historyController.saida > historyController.renda ? const Text(
-                                    'Você ultrapassou seu limite!',
-                                    style: TextStyle(color: Colors.white),
-                                  ) : LinearPercentIndicator(
-                                    width:
-                                        MediaQuery.of(context).size.width - 40,
-                                    animation: true,
-                                    lineHeight: 30.0,
-                                    animationDuration: 2500,
-                                    percent: historyController
-                                        .porcentSaida(controller.valor),
-                                    center: Text(
-                                      "${historyController
-                                        .porcentAtualizar(controller.valor).toStringAsFixed(1)} %",
-                                      style: const TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255)),
-                                    ),
-                                    barRadius: const Radius.circular(16),
-                                    progressColor:
-                                        const Color.fromARGB(255, 63, 138, 224),
-                                  ),
+                                : historyController.saida >
+                                        historyController.renda
+                                    ? const Text(
+                                        'Seus Gastos ultrapassaram sua Renda!',
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    : LinearPercentIndicator(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                40,
+                                        animation: true,
+                                        lineHeight: 30.0,
+                                        animationDuration: 2500,
+                                        percent: historyController
+                                            .porcentSaida(controller.valor),
+                                        center: Text(
+                                          "${historyController.porcentAtualizar(controller.valor).toStringAsFixed(1)} %",
+                                          style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255)),
+                                        ),
+                                        barRadius: const Radius.circular(16),
+                                        progressColor: const Color.fromARGB(
+                                            255, 63, 138, 224),
+                                      ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-
-                      const Text(
-                              'Esse é seu limite atual',
-                              style:TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255))),
-
+                      const Text('Gasto total a partir de sua Renda',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255))),
                     ],
                   ),
                 ),
