@@ -1,5 +1,3 @@
-import 'package:ctrl_real/src/controllers/transactions_controller.dart';
-import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:ctrl_real/src/view/userregister/pages/loginpage.dart';
@@ -23,11 +21,6 @@ class _CheckPageState extends State<CheckPage> {
     } else if (auth.usuario == null) {
       return const LoginUser();
     } else {
-      context.read<UsersService>().userRead();
-      context.read<LvlSystem>().lvlRead();
-      context.read<TransactionsController>().chartRead();
-      context.read<TransactionsController>().renda =
-          context.read<UsersService>().renda;
       //context.read<HistoryController>().transactionsread();
       return const HomePage();
     }

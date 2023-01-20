@@ -11,8 +11,7 @@ class SettingsPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () =>
-                  Navigator.of(context).pushReplacementNamed("/home"),
+              onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
           centerTitle: true,
           title: const Text('Configurações'),
@@ -99,8 +98,7 @@ class SettingsPage extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed("/editthemes");
+                            Navigator.of(context).pushNamed("/editthemes");
                           },
                         ),
                       ],
@@ -168,17 +166,18 @@ class SettingsPage extends StatelessWidget {
                             Icons.delete_outlined,
                           ),
                         ),
-                        TextButton(child: Text(
-                          // excluir conta
-                          'Excluir conta',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.karma(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            height: 1.4525,
-                            color: darkFunctionTexts(),
+                        TextButton(
+                          child: Text(
+                            // excluir conta
+                            'Excluir conta',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.karma(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              height: 1.4525,
+                              color: darkFunctionTexts(),
+                            ),
                           ),
-                        ),
                           onPressed: () {
                             Navigator.of(context).pushNamed("/deleteaccount");
                           },

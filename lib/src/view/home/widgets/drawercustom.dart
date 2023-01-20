@@ -60,12 +60,15 @@ class _DrawerCustonState extends State<DrawerCuston> {
                       ),
                     ),
                   ),
-
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Consumer<UsersService>(builder: (context, value, child) => Center(
-                      child: Text(value.name ?? "", style: const TextStyle(color: Colors.white),),
+                  child: Consumer<UsersService>(
+                    builder: (context, value, child) => Center(
+                      child: Text(
+                        value.name ?? "",
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 )
@@ -99,14 +102,14 @@ class _DrawerCustonState extends State<DrawerCuston> {
                     'Mais temas',
                     textAlign: TextAlign.center,
                   ),
-                  onTap: () => Navigator.of(context).pushReplacementNamed("/editthemes")),
+                  onTap: () => Navigator.of(context).pushNamed("/editthemes")),
             ],
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text(Strings.nameConfigDrawer),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/config');
+              Navigator.of(context).pushNamed('/config');
             },
           ),
           ListTile(

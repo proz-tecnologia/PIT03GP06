@@ -1,10 +1,11 @@
 import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes_controller.dart';
+import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/view/historic/pages/historicpage.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/balances.dart';
-import 'package:ctrl_real/src/view/home/widgets/bodywidgets/dicas.dart';
+import 'package:ctrl_real/src/view/home/widgets/bodywidgets/tips.dart';
 import 'package:ctrl_real/src/view/home/widgets/bodywidgets/limit.dart';
 import 'package:ctrl_real/src/view/home/widgets/drawercustom.dart';
 import 'package:ctrl_real/src/view/transactions/widgets/buttonreceitas.dart';
@@ -26,6 +27,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     pagesanimated = PageController(initialPage: _selectedIndex);
+    context.read<UsersService>().userRead();
+    context.read<LvlSystem>().lvlRead();
+    context.read<TransactionsController>().chartRead();
+    context.read<TransactionsController>().renda =
+        context.read<UsersService>().renda;
     context.read<TransactionsController>().transactionsread();
     super.initState();
   }
@@ -73,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 const Balances(),
                 Speding(),
                 const Categories(),
-                const Dicaswidget()
+                Tips(),
               ],
             ),
           )),

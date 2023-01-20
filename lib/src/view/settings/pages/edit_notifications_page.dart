@@ -9,8 +9,7 @@ class EditNotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () => Navigator.of(context)
-                .pushReplacementNamed("/config"),
+            onPressed: () => Navigator.of(context).pushNamed("/config"),
             icon: const Icon(Icons.arrow_back)),
         title: const Text('Editar notificações'),
         centerTitle: true,

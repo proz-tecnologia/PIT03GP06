@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDMeHv0X9amIvt7WynMgsun2Q9S5E-_iFs',
-    appId: '1:483870613068:web:a88f2b4d9a8d4185fc9ee9',
-    messagingSenderId: '483870613068',
-    projectId: 'projectpi-ctrlreal',
-    authDomain: 'projectpi-ctrlreal.firebaseapp.com',
-    storageBucket: 'projectpi-ctrlreal.appspot.com',
+    apiKey: 'AIzaSyCpBe10gcYQCgHXpuVLMsHNKCRz2AQYwW8',
+    appId: '1:1061357051215:web:612cda416f5be70b44b93a',
+    messagingSenderId: '1061357051215',
+    projectId: 'projectpitwo-ctrlreal',
+    authDomain: 'projectpitwo-ctrlreal.firebaseapp.com',
+    storageBucket: 'projectpitwo-ctrlreal.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDC4BWukiJYsfqaCbXkPeyegyv2tXm9Hus',
-    appId: '1:483870613068:android:15c85c51d8bb3249fc9ee9',
-    messagingSenderId: '483870613068',
-    projectId: 'projectpi-ctrlreal',
-    storageBucket: 'projectpi-ctrlreal.appspot.com',
+    apiKey: 'AIzaSyCx1DPq8Iv42Q1W2ocipT8pZRz3ZISntdY',
+    appId: '1:1061357051215:android:e50cc710e81349dc44b93a',
+    messagingSenderId: '1061357051215',
+    projectId: 'projectpitwo-ctrlreal',
+    storageBucket: 'projectpitwo-ctrlreal.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAbPvVG5ccGm8OGLu823Q5bhafaXtC8Lgk',
-    appId: '1:483870613068:ios:9ce5f354695aae51fc9ee9',
-    messagingSenderId: '483870613068',
-    projectId: 'projectpi-ctrlreal',
-    storageBucket: 'projectpi-ctrlreal.appspot.com',
-    iosClientId: '483870613068-36u0tv29jh0nc2n9pve2f1o4n2f2uhid.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBGwzpMQFi0WcuA8g2dJsKGx8YNqZKcK9Q',
+    appId: '1:1061357051215:ios:1b2d6ca7ff9db83f44b93a',
+    messagingSenderId: '1061357051215',
+    projectId: 'projectpitwo-ctrlreal',
+    storageBucket: 'projectpitwo-ctrlreal.appspot.com',
+    iosClientId: '1061357051215-09ng7u14vjld6rouhcc1ovs0uo1p4uhd.apps.googleusercontent.com',
     iosBundleId: 'com.example.ctrlReal',
   );
 }

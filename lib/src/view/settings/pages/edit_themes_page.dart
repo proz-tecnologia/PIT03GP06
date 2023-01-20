@@ -11,7 +11,7 @@ class EditThemesPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () =>
-                Navigator.of(context).pushReplacementNamed("/home"),
+                Navigator.of(context).pop(),
             icon: const Icon(Icons.arrow_back)),
         title: const Text('Editar tema'),
         centerTitle: true,

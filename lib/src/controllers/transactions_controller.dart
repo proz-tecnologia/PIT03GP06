@@ -151,7 +151,17 @@ class TransactionsController extends ChangeNotifier {
             element.data() as Map<String, dynamic>);
         registersList.add(lista);
       }
+
+      saida = 0;
+      for (var element in registersList) {
+        if (element.type == "Receita") {
+          renda += element.valor;
+        } else if (element.type == "Despesa") {
+          saida += element.valor;
+        }
+      }
       //notifyListeners();
+
     }
     notifyListeners();
   }
