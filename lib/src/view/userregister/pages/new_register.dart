@@ -25,6 +25,7 @@ class _NewRegisterState extends State<NewRegister> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  bool _showPassword = false;
   double renda = 0;
 
   bool loading = false;
@@ -146,7 +147,7 @@ class _NewRegisterState extends State<NewRegister> {
                             controllerEntradas.valor = double.parse(newValue
                                 .replaceAll(".", "")
                                 .replaceAll(",", "."));
-                                renda = double.parse(newValue
+                            renda = double.parse(newValue
                                 .replaceAll(".", "")
                                 .replaceAll(",", "."));
                           }),
@@ -178,12 +179,25 @@ class _NewRegisterState extends State<NewRegister> {
                               fontSize: 14,
                               color: textUser(),
                             ),
+                            suffixIcon: GestureDetector(
+                                child: Icon(
+                                  _showPassword == false
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                }),
                             focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color.fromARGB(220, 248, 248, 248),
                               ),
                             ),
                           ),
+                          obscureText: _showPassword == false ? true : false,
                           onChanged: (value) {
                             controllerEntradas.senha = value;
                           },
