@@ -4,6 +4,7 @@ import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
 import 'package:ctrl_real/src/view/userregister/pages/new_register.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/view/userregister/pages/resetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class _LoginUserState extends State<LoginUser> {
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   labelText: "Email",
                                   hintText: "abcd@abcd.com",
@@ -98,23 +101,56 @@ class _LoginUserState extends State<LoginUser> {
                                     fontSize: 14,
                                     color: textUser(),
                                   ),
+                                  suffixIcon: GestureDetector(
+                                      child: Icon(
+                                        _showPassword == false
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: Colors.white,
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          _showPassword = !_showPassword;
+                                        });
+                                      }),
                                   focusedBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color.fromARGB(220, 248, 248, 248),
                                     ),
                                   ),
                                 ),
+                                obscureText:
+                                    _showPassword == false ? true : false,
                                 onChanged: (value) {
                                   controllerEntradas.senha = value;
                                 },
                                 controller: _password,
                               ),
                             ),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              child: TextButton(
+                                child: const Text("Esqueci a senha",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    )),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const ResetPasswordPage()));
+                                },
+                              ),
+                            ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Center(
+                              padding: const EdgeInsets.only(top: 24.0),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(24))),
                                 child: SizedBox(
-                                  width: 130,
+                                  width: 110,
                                   height: 40,
                                   child: Consumer<TransactionsController>(
                                     builder: (context, historyController, _) =>
@@ -122,10 +158,13 @@ class _LoginUserState extends State<LoginUser> {
                                       style: const ButtonStyle(
                                         backgroundColor:
                                             MaterialStatePropertyAll<Color>(
-                                                Color.fromARGB(
-                                                    220, 104, 89, 205)),
+                                                Color.fromRGBO(
+                                                    104, 89, 205, 0.863)),
                                       ),
-                                      child: const Text("Login"),
+                                      child: const Text(
+                                        "Entrar",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
                                       onPressed: () {
                                         var user = TotalandCategory(
                                           id: '',
@@ -157,28 +196,23 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Center(
-                                child: SizedBox(
-                                  width: 130,
-                                  height: 40,
-                                  child: ElevatedButton(
-                                    style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<
-                                              Color>(
-                                          Color.fromARGB(220, 104, 89, 205)),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
+                            Container(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  child: const Text(
+                                      "Sua primeira vez? Cadastre-se",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      )),
+                                  onPressed: () {
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => NewRegister(),
-                                        ),
-                                      );
-                                    },
-                                    child: const Text("Novo cadastro"),
-                                  ),
+                                            builder: (context) =>
+                                                NewRegister()));
+                                  },
                                 ),
                               ),
                             ),
