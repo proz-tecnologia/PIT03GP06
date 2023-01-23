@@ -62,10 +62,18 @@ class UsersService extends ChangeNotifier {
       if (e.code == 'user-not-found') {
         throw ExceptionUsers("Usuário não encontrado!");
       } else if (e.code == 'wrong-password') {
-        throw ExceptionUsers("Olgo deu errado!");
+        throw ExceptionUsers("Algo deu errado!");
       }
     }
   }
+  reset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      }
+    }
+  
 
   logout() async {
     await _auth.signOut();
