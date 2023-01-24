@@ -31,7 +31,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Receitas'),
+          title: const Text('Registre aqui sua nova receita'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
