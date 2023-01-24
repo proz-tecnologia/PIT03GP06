@@ -3,6 +3,7 @@ import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Receitas'),
+          title: const Text('Registre aqui sua nova receita'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -171,12 +172,15 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 1),
-                                        backgroundColor:
-                                            Color.fromARGB(220, 104, 89, 205),
+                                        padding: EdgeInsets.all(40),
+                                        duration: Duration(seconds: 6),
+                                        backgroundColor: Colors.white,
                                         content: Text(
-                                          'Registrado!',
+                                          'Receita registrada.\nVocê ganhou 40XP e está mais próximo de desbloquear um novo tema, continue registrando suas rendas extras!',
                                           textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  220, 104, 89, 205)),
                                         )),
                                   );
                                   var trans = TotalandCategory(
@@ -198,6 +202,11 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                       controllerEntradas.valor);
                                   lvlsystem.recXpAdd();
                                   lvlsystem.xpFinal();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePage()));
                                 }
                               },
                             );
