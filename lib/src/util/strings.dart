@@ -28,4 +28,5 @@ abstract class Strings {
   static const String userEmail = "Email(obrigatório):*";
   static const String userRenda = "Renda(Opcional):";
   static const String userSenha = "Senha(obrigatório):*";
+  static const String userConfirmarSenha = "Confirme sua senha(obrigatório):*";
 }
