@@ -3,6 +3,7 @@ import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
+import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -240,13 +241,17 @@ class _AddCategoriesState extends State<DespesasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 2),
-                                        backgroundColor:
-                                            Color.fromARGB(220, 104, 89, 205),
-                                        content: Text(
-                                          'Registrado!',
-                                          textAlign: TextAlign.center,
-                                        )),
+                                      padding: EdgeInsets.all(40),
+                                      duration: Duration(seconds: 6),
+                                      backgroundColor: Colors.white,
+                                      content: Text(
+                                        'Despesa registrada.\nVocê ganhou 25XP e está mais próximo de desbloquear um novo tema, continue registrando suas despesas!',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                220, 104, 89, 205)),
+                                      ),
+                                    ),
                                   );
                                   var trans = TotalandCategory(
                                     id: const Uuid().v4(),
@@ -265,13 +270,19 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);
-                                  historyController.addsaidafire(controller.valor);
+                                  historyController
+                                      .addsaidafire(controller.valor);
                                   historyController
                                       .atualizarLimite(controller.valor);
                                   historyController
                                       .porcentAtualizardisp(controller.valor);
                                   lvlsystem.despXpAdd();
                                   lvlsystem.xpFinal();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePage()));
                                 }
                               },
                             );
