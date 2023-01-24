@@ -25,6 +25,7 @@ class _NewRegisterState extends State<NewRegister> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _confirmpassword = TextEditingController();
   bool _showPassword = false;
   double renda = 0;
 
@@ -66,7 +67,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ]),
                           decoration: InputDecoration(
                             labelText: Strings.userNome,
-                            hintText: "Nome e sobrenome",
+                            hintText: "Apenas o primeiro nome",
                             hintStyle: const TextStyle(
                                 fontSize: 12, color: Colors.white),
                             labelStyle: TextStyle(
@@ -172,6 +173,56 @@ class _NewRegisterState extends State<NewRegister> {
                               color: textUser(),
                             ),
                             labelText: Strings.userSenha,
+                            hintText: "*******",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
+                            ),
+                            suffixIcon: GestureDetector(
+                                child: Icon(
+                                  _showPassword == false
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                }),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
+                              ),
+                            ),
+                          ),
+                          obscureText: _showPassword == false ? true : false,
+                          onChanged: (value) {
+                            controllerEntradas.senha = value;
+                          },
+                        ),
+                        TextFormField(
+                          controller: _confirmpassword,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Por favor, informe a senha';
+                            }
+                            if (_password.text != _confirmpassword.text) {
+                              return "As senhas precisam ser iguais";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            helperStyle: TextStyle(
+                              color: textUser(),
+                            ),
+                            labelText: Strings.userConfirmarSenha,
                             hintText: "*******",
                             hintStyle: const TextStyle(
                                 fontSize: 12, color: Colors.white),
