@@ -278,11 +278,8 @@ class _AddCategoriesState extends State<DespesasPage> {
                                       .porcentAtualizardisp(controller.valor);
                                   lvlsystem.despXpAdd();
                                   lvlsystem.xpFinal();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomePage()));
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
                                 }
                               },
                             );
