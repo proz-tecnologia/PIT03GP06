@@ -178,6 +178,7 @@ class TransactionsController extends ChangeNotifier {
   removePorcentChart(String index) {
     var element = registersList.where((element) => element.id == index).first;
     menosValueCategory(element.valor, element.categoryname ?? '');
+    notifyListeners();
   }
 
   double atualizarLimite(double result) {
@@ -206,9 +207,10 @@ class TransactionsController extends ChangeNotifier {
         .collection("usuarios/${authentinc.usuario!.uid}/categories")
         .doc(id)
         .update({
-      'saida': saida += result,
+      'saida': saida + result,
     });
     saida += result;
+    notifyListeners();
   }
 
   Future<void> menosValueCategory(double result, String categorynames) async {
@@ -218,42 +220,42 @@ class TransactionsController extends ChangeNotifier {
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
           .update(
-              {'supermercado': supermerc - result, 'saida': saida -= result});
+              {'supermercado': supermerc - result, 'saida': saida - result});
       supermerc -= result;
       saida -= result;
     } else if (categorynames == 'Lazer') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({'lazer': lazer - result, 'saida': saida -= result});
+          .update({'lazer': lazer - result, 'saida': saida - result});
       lazer -= result;
       saida -= result;
     } else if (categorynames == 'Transporte') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({'transporte': transpor - result, 'saida': saida -= result});
+          .update({'transporte': transpor -= result, 'saida': saida - result});
       transpor -= result;
       saida -= result;
     } else if (categorynames == 'Farmacia') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({'farmacia': farmac - result, 'saida': saida -= result});
+          .update({'farmacia': farmac -= result, 'saida': saida - result});
       farmac -= result;
       saida -= result;
     } else if (categorynames == 'Pagamentos') {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({'pagamentos': pagament - result, 'saida': saida -= result});
+          .update({'pagamentos': pagament -= result, 'saida': saida - result});
       pagament -= result;
       saida -= result;
     } else {
       await datb
           .collection("usuarios/${authentinc.usuario!.uid}/categories")
           .doc(id)
-          .update({'gastosex': gastosex - result, 'saida': saida -= result});
+          .update({'gastosex': gastosex -= result, 'saida': saida - result});
       gastosex -= result;
       saida -= result;
     }
