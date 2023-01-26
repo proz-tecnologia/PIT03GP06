@@ -202,11 +202,8 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                       controllerEntradas.valor);
                                   lvlsystem.recXpAdd();
                                   lvlsystem.xpFinal();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomePage()));
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
                                 }
                               },
                             );
