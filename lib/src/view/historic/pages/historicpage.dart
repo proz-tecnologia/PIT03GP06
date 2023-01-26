@@ -86,7 +86,7 @@ class _HistoricPageState extends State<HistoricPage> {
                                           : menuName))
                                   .toList()[index]
                                   .id;
-
+                                  
                               controller.removePorcentChart(id!);
                               controller.removeByID(id);
                             },
