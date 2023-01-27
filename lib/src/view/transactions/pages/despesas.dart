@@ -3,7 +3,6 @@ import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
-import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +39,18 @@ class _AddCategoriesState extends State<DespesasPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Text(
+                      "Ganhe XP nos 5 primeiros registros de despesa do dia!",
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
