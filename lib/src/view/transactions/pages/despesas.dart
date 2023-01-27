@@ -43,7 +43,7 @@ class _AddCategoriesState extends State<DespesasPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Despesas'),
+          title: const Text('Registre aqui a sua despesa'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
