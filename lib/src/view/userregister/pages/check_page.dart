@@ -21,7 +21,6 @@ class _CheckPageState extends State<CheckPage> {
     } else if (auth.usuario == null) {
       return const LoginUser();
     } else {
-      //context.read<HistoryController>().transactionsread();
       return const HomePage();
     }
   }

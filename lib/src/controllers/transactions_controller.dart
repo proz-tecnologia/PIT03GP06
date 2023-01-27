@@ -66,7 +66,7 @@ class TransactionsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addValueCategory(double result, String categorynames) async {
+   addValueCategory(double result, String categorynames) {
     if (categorynames == 'Supermercado') {
       firestore.addValueCategory(result, categorynames, authentinc.usuario);
       supermerc += result;
@@ -255,3 +255,58 @@ class TransactionsController extends ChangeNotifier {
     return result = renda * 100 / renda;
   }
 }
+
+ /*Future<void> addValueCategory(double result, String categorynames) async {
+    if (categorynames == 'Supermercado') {
+      firestore.supermercado(result, supermerc, authentinc.usuario);
+      supermerc += result;
+    } else if (categorynames == 'Lazer') {
+      firestore.lazer(result, lazer, authentinc.usuario);
+      lazer += result;
+    } else if (categorynames == 'Transporte') {
+      firestore.tranporte(result, transpor, authentinc.usuario);
+      transpor += result;
+    } else if (categorynames == 'Farmacia') {
+      firestore.farmacia(result, farmac, authentinc.usuario);
+      farmac += result;
+    } else if (categorynames == 'Pagamentos') {
+      firestore.pagamentos(result, pagament, authentinc.usuario);
+      pagament += result;
+    } else {
+      firestore.addValueCategory(result, gastosex, authentinc.usuario);
+      gastosex += result;
+    }
+    notifyListeners();
+  }
+    Future<void> menosValueCategory(double result, String categorynames) async {
+    String id = 'categoriesid';
+    if (categorynames == 'Supermercado') {
+      firestore.menossupermercado(result, supermerc, authentinc.usuario);
+      supermerc -= result;
+      saida -= result;
+    } else if (categorynames == 'Lazer') {
+      firestore.menoslazer(result, lazer, authentinc.usuario);
+      lazer -= result;
+      saida -= result;
+    } else if (categorynames == 'Transporte') {
+      firestore.menostranporte(result, transpor, authentinc.usuario);
+      transpor -= result;
+      saida -= result;
+    } else if (categorynames == 'Farmacia') {
+      firestore.menosfarmacia(result, farmac, authentinc.usuario);
+      farmac -= result;
+      saida -= result;
+    } else if (categorynames == 'Pagamentos') {
+      firestore.menospagamentos(result, pagament, authentinc.usuario);
+      pagament -= result;
+      saida -= result;
+    } else {
+      await datb
+          .collection("usuarios/${authentinc.usuario!.uid}/categories")
+          .doc(id)
+          .update({'gastosex': gastosex -= result, 'saida': saida - result});
+      gastosex -= result;
+      saida -= result;
+    }
+    notifyListeners();
+  }*/

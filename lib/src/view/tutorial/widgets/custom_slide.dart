@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomSlide extends StatelessWidget {
-  CustomSlide({
+const CustomSlide({
     super.key,
     required this.imagem,
     required this.titulo,
     required this.texto,
   });
 
-  String imagem;
-  String titulo;
-  String texto;
+  final String imagem;
+  final String titulo;
+  final String texto;
 
   @override
   Widget build(BuildContext context) {

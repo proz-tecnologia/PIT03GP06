@@ -39,20 +39,20 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
-  registerUser(String email, String senha, String name, double renda2) async {
-    await repository.registerUser(email: email, senha: senha);
-    await repository.addUser(name: name, email: email, renda2: renda2);
-    await repository.addlvlfire(usuario);
-    await repository.addCategoriesPrimary(usuario);
+  registerUser(String email, String senha, String name, double renda2)  {
+    repository.registerUser( email, senha,  renda2);
+    repository.addUser(usuario, name, email, renda2);
+    repository.addlvlfire(usuario);
+    repository.addCategoriesPrimary(usuario);
     renda = renda2;
-    await _userlogin();
-
+    _userlogin();
     notifyListeners();
   }
 
-  login(String email, String senha) async {
-    await repository.login(email: email, senha: senha);
+  login(String email, String senha)  {
+     repository.login(email: email, senha: senha);
     _userlogin();
+    notifyListeners();
   }
 
   reset(String email) async {
@@ -61,8 +61,6 @@ class UsersService extends ChangeNotifier {
 
   logout() async {
     await _auth.signOut();
-    navigatorKey.currentState!
-        .pushNamedAndRemoveUntil("/", ModalRoute.withName('/home'));
     _userlogin();
   }
 
@@ -83,7 +81,7 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> userRead() async {
+   userRead() async {
     if (usuario != null) {
       QuerySnapshot read = await repository.userRead(usuario: usuario);
       for (var element in read.docs) {

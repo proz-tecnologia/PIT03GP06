@@ -6,7 +6,7 @@ class AuthRepository {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  registerUser({required String email, required String senha}) async {
+  registerUser(String email, String senha, double renda2) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: senha);
     } on FirebaseAuthException catch (e) {
@@ -18,10 +18,10 @@ class AuthRepository {
   }
 
   Future<void> addUser(
-      {User? usuario,
-      required String name,
-      required String email,
-      required double renda2}) async {
+    User? usuario,
+      String name,
+       String email,
+       double renda2) async {
     String id = "userid";
     await datb
         .collection("usuarios/${usuario!.uid}/user")
@@ -45,10 +45,8 @@ class AuthRepository {
     double farmacia = 0;
     double pagamentos = 0;
     double gastosex = 0;
-    double saida = 0;
     String id = 'categoriesid';
     await datb.collection("usuarios/${usuario!.uid}/categories").doc(id).set({
-      'saida': saida,
       'supermercado': supermercado,
       'lazer': lazer,
       'transporte': transporte,
