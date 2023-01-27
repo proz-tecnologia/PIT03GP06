@@ -30,9 +30,9 @@ class _HomePageState extends State<HomePage> {
     context.read<UsersService>().userRead();
     context.read<LvlSystem>().lvlRead();
     context.read<TransactionsController>().chartRead();
+    context.read<TransactionsController>().transactionsread();
     context.read<TransactionsController>().renda =
         context.read<UsersService>().renda;
-    context.read<TransactionsController>().transactionsread();
     super.initState();
   }
 

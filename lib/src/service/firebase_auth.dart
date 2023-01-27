@@ -40,22 +40,19 @@ class UsersService extends ChangeNotifier {
   }
 
   registerUser(String email, String senha, String name, double renda2) async {
-    try {
-      await repository.registerUser(email: email, senha: senha);
-      await repository.addUser(name: name, email: email, renda2: renda2);
-      await repository.addlvlfire(usuario);
-      await repository.addCategoriesPrimary(usuario);
-      renda = renda2;
-      await _userlogin();
-    } catch (e) {}
+    await repository.registerUser(email: email, senha: senha);
+    await repository.addUser(name: name, email: email, renda2: renda2);
+    await repository.addlvlfire(usuario);
+    await repository.addCategoriesPrimary(usuario);
+    renda = renda2;
+    await _userlogin();
+
     notifyListeners();
   }
 
   login(String email, String senha) async {
-    try {
-      await repository.login(email: email, senha: senha);
-      _userlogin();
-    } catch (e) {}
+    await repository.login(email: email, senha: senha);
+    _userlogin();
   }
 
   reset(String email) async {
