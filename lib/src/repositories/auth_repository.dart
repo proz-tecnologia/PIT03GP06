@@ -1,44 +1,62 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ctrl_real/src/model/register_model.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_test/flutter_test.dart';
+
 
 class AuthRepository {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+<<<<<<< HEAD
   registerUser(String email, String senha, double renda2) async {
+=======
+  Future<String?> registerUser(
+      {required String email, required String senha}) async {
+>>>>>>> ec05c2e6bae2d508cc4a6bafe17c87faafcbc8d2
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      var data = await _auth.createUserWithEmailAndPassword(
+          email: email, password: senha);
+      return data.user!.uid;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         throw ExceptionUsers(
             "E-mail já cadastrado, informe outro email ou recupere a senha.");
       }
     }
+    return null;
   }
 
   Future<void> addUser(
+<<<<<<< HEAD
     User? usuario,
       String name,
        String email,
        double renda2) async {
+=======
+      {required String uid,
+      required String name,
+      required String email,
+      required double renda2}) async {
+>>>>>>> ec05c2e6bae2d508cc4a6bafe17c87faafcbc8d2
     String id = "userid";
     await datb
-        .collection("usuarios/${usuario!.uid}/user")
+        .collection("usuarios/$uid/user")
         .doc(id)
         .set({"name": name, "email": email, "renda": renda2});
   }
 
-  Future<void> addlvlfire(User? usuario) async {
+  Future<void> addlvlfire(String uid) async {
     int date = DateTime.now().day;
     String id = 'nivelsystem';
     await datb
-        .collection("usuarios/${usuario!.uid}/nivel")
+        .collection("usuarios/$uid/nivel")
         .doc(id)
         .set({'xp': 0, 'finalxp': 100, 'lvl': 1, 'xpusers': 0, 'dayxp': date});
   }
 
-  Future<void> addCategoriesPrimary(User? usuario) async {
+  Future<void> addCategoriesPrimary(String uid) async {
     double supermercado = 0;
     double lazer = 0;
     double transporte = 0;
@@ -46,7 +64,12 @@ class AuthRepository {
     double pagamentos = 0;
     double gastosex = 0;
     String id = 'categoriesid';
+<<<<<<< HEAD
     await datb.collection("usuarios/${usuario!.uid}/categories").doc(id).set({
+=======
+    await datb.collection("usuarios/$uid/categories").doc(id).set({
+      'saida': saida,
+>>>>>>> ec05c2e6bae2d508cc4a6bafe17c87faafcbc8d2
       'supermercado': supermercado,
       'lazer': lazer,
       'transporte': transporte,
@@ -97,11 +120,16 @@ class AuthRepository {
         .update({"email": email2});
   }
 
-  Future<QuerySnapshot> userRead({
+  Future<List<Map<String, dynamic>>> userRead({
     User? usuario,
   }) async {
+    List<Map<String, dynamic>> list = [];
     QuerySnapshot read =
         await datb.collection('usuarios/${usuario!.uid}/user').get();
-    return read;
+
+    for (var doc in read.docs) {
+      list.add(doc.data() as Map<String, dynamic>);
+    }
+    return list;
   }
 }

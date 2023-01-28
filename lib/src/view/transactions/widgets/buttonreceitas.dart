@@ -41,11 +41,14 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                           fontSize: 19,
                         ),
                       ),
-                      Text(
-                        "Nos 5 primeiros registros de despesas e receitas do dia,\nvocê ganha XP para desbloquear novos temas no app!",
-                        style: TextStyle(
-                          color: darkFunctionTexts(),
-                          fontSize: 15,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          "Ganhe XP para desbloquear novos temas no app!",
+                          style: TextStyle(
+                            color: darkFunctionTexts(),
+                            fontSize: 15,
+                          ),
                         ),
                       ),
                       Padding(

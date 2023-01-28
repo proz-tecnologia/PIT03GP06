@@ -39,6 +39,7 @@ class UsersService extends ChangeNotifier {
     notifyListeners();
   }
 
+<<<<<<< HEAD
   registerUser(String email, String senha, String name, double renda2)  {
     repository.registerUser( email, senha,  renda2);
     repository.addUser(usuario, name, email, renda2);
@@ -47,6 +48,16 @@ class UsersService extends ChangeNotifier {
     renda = renda2;
     _userlogin();
     notifyListeners();
+=======
+  registerUser(String email, String senha, String name, double renda2) async {
+    var uid = await repository.registerUser(email: email, senha: senha);
+    await repository.addUser(
+        uid: uid ?? '', name: name, email: email, renda2: renda2);
+    await repository.addlvlfire(uid ?? '');
+    await repository.addCategoriesPrimary(uid ?? '');
+    renda = renda2;
+    await _userlogin();
+>>>>>>> ec05c2e6bae2d508cc4a6bafe17c87faafcbc8d2
   }
 
   login(String email, String senha)  {
@@ -83,11 +94,12 @@ class UsersService extends ChangeNotifier {
 
    userRead() async {
     if (usuario != null) {
-      QuerySnapshot read = await repository.userRead(usuario: usuario);
-      for (var element in read.docs) {
-        name = element.get('name');
-        email = element.get('email');
-        renda = element.get('renda');
+      List<Map<String, dynamic>> read =
+          await repository.userRead(usuario: usuario);
+      for (var element in read) {
+        name = element['name'];
+        email = element['email'];
+        renda = element['renda'];
       }
       notifyListeners();
     }

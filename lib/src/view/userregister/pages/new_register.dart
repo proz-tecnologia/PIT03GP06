@@ -255,68 +255,76 @@ class _NewRegisterState extends State<NewRegister> {
                         ),
                         Center(
                           child: SizedBox(
-                            width: 130,
-                            height: 40,
+                            width: 120,
+                            height: 60,
                             child:
                                 Consumer2<TransactionsController, UsersService>(
                                     builder:
                                         (context, historyController, value, _) {
-                              return ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color.fromARGB(
-                                          220, 104, 89, 205)),
-                                  onPressed: (loading)
-                                      ? () {}
-                                      : () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              const SnackBar(
-                                                  duration:
-                                                      Duration(seconds: 2),
-                                                  backgroundColor:
-                                                      Color.fromARGB(
-                                                          220, 104, 89, 205),
-                                                  content: Text(
-                                                    'Cadastro Realizado com sucesso!',
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                            );
-                                            var user = TotalandCategory(
-                                              id: '',
-                                              date: '',
-                                              type: 'Cadastro',
-                                              nome: controllerEntradas.nome,
-                                              email: controllerEntradas.email,
-                                              valor: controllerEntradas.valor,
-                                              senha: controllerEntradas.senha,
-                                              descri:
-                                                  controllerEntradas.descricao,
-                                              categoryname: controllerEntradas
-                                                  .categoryname,
-                                              formPag:
-                                                  'Forma: ${controllerEntradas.formpag}',
-                                              /*icon: const Icon(
-                                          Icons.arrow_downward_outlined,
-                                          color: Colors.red,
-                                        ),*/
-                                            );
-                                            historyController.addNewUser(user);
-                                            historyController.nomeUser(
-                                                controllerEntradas.nome);
-                                            historyController.emailUser(
-                                                controllerEntradas.email);
-                                            historyController.senhaUser(
-                                                controllerEntradas.senha);
-                                            historyController.rendaInicial(
-                                                controllerEntradas.valor);
-                                            registerUser();
-                                          }
-                                        },
-                                  child: (loading)
-                                      ? const CircularProgressIndicator()
-                                      : const Text("Cadastrar"));
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromARGB(
+                                            220, 104, 89, 205)),
+                                    onPressed: (loading)
+                                        ? () {}
+                                        : () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                    duration:
+                                                        Duration(seconds: 2),
+                                                    backgroundColor:
+                                                        Color.fromARGB(
+                                                            220, 104, 89, 205),
+                                                    content: Text(
+                                                      'Cadastro Realizado com sucesso!',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                              );
+                                              var user = TotalandCategory(
+                                                id: '',
+                                                date: '',
+                                                type: 'Cadastro',
+                                                nome: controllerEntradas.nome,
+                                                email: controllerEntradas.email,
+                                                valor: controllerEntradas.valor,
+                                                senha: controllerEntradas.senha,
+                                                descri: controllerEntradas
+                                                    .descricao,
+                                                categoryname: controllerEntradas
+                                                    .categoryname,
+                                                formPag:
+                                                    'Forma: ${controllerEntradas.formpag}',
+                                                /*icon: const Icon(
+                                            Icons.arrow_downward_outlined,
+                                            color: Colors.red,
+                                          ),*/
+                                              );
+                                              historyController
+                                                  .addNewUser(user);
+                                              historyController.nomeUser(
+                                                  controllerEntradas.nome);
+                                              historyController.emailUser(
+                                                  controllerEntradas.email);
+                                              historyController.senhaUser(
+                                                  controllerEntradas.senha);
+                                              historyController.rendaInicial(
+                                                  controllerEntradas.valor);
+                                              registerUser();
+                                            }
+                                          },
+                                    child: (loading)
+                                        ? const CircularProgressIndicator()
+                                        : const Text(
+                                            "Cadastrar",
+                                            style: TextStyle(fontSize: 18),
+                                          )),
+                              );
                             }),
                           ),
                         ),
