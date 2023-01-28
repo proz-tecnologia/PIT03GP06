@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctrl_real/src/model/register_model.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 class AuthRepository {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
