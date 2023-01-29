@@ -50,10 +50,8 @@ class AuthRepository {
     double farmacia = 0;
     double pagamentos = 0;
     double gastosex = 0;
-    double saida = 0;
     String id = 'categoriesid';
     await datb.collection("usuarios/$uid/categories").doc(id).set({
-      'saida': saida,
       'supermercado': supermercado,
       'lazer': lazer,
       'transporte': transporte,

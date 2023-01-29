@@ -61,29 +61,34 @@ class TransactionsController extends ChangeNotifier {
   }
 
   Future<void> addTotaltransection(TotalandCategory trans) async {
-    firestore.addTotaltransection(trans, authentinc.usuario);
+    await firestore.addTotaltransection(trans, authentinc.usuario);
     registersList.add(trans);
     notifyListeners();
   }
 
   Future<void> addValueCategory(double result, String categorynames) async {
     if (categorynames == 'Supermercado') {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.supermercado(
+          result, categorynames, authentinc.usuario, supermerc);
       supermerc += result;
     } else if (categorynames == 'Lazer') {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.lazer(result, categorynames, authentinc.usuario, lazer);
       lazer += result;
     } else if (categorynames == 'Transporte') {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.transporte(
+          result, categorynames, authentinc.usuario, transpor);
       transpor += result;
     } else if (categorynames == 'Farmacia') {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.farmacia(
+          result, categorynames, authentinc.usuario, farmac);
       farmac += result;
     } else if (categorynames == 'Pagamentos') {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.pagamentos(
+          result, categorynames, authentinc.usuario, pagament);
       pagament += result;
     } else {
-      firestore.addValueCategory(result, categorynames, authentinc.usuario);
+      await firestore.gastosex(
+          result, categorynames, authentinc.usuario, gastosex);
       gastosex += result;
     }
     notifyListeners();
@@ -91,15 +96,14 @@ class TransactionsController extends ChangeNotifier {
 
   Future<void> chartRead() async {
     if (authentinc.usuario != null) {
-      QuerySnapshot read = await firestore.chartRead(authentinc.usuario);
-      for (var element in read.docs) {
+      QuerySnapshot? read = await firestore.chartRead(authentinc.usuario);
+      for (var element in read!.docs) {
         supermerc = element.get('supermercado');
         lazer = element.get('lazer');
         transpor = element.get('transporte');
         farmac = element.get('farmacia');
         pagament = element.get('pagamentos');
         gastosex = element.get('gastosex');
-        saida = element.get('saida');
       }
       notifyListeners();
     }
@@ -108,8 +112,9 @@ class TransactionsController extends ChangeNotifier {
   Future<void> transactionsread() async {
     registersList = [];
     if (authentinc.usuario != null && registersList.isEmpty) {
-      QuerySnapshot read = await firestore.transactionsread(authentinc.usuario);
-      for (var element in read.docs) {
+      QuerySnapshot? read =
+          await firestore.transactionsread(authentinc.usuario);
+      for (var element in read!.docs) {
         TotalandCategory lista = TotalandCategory.fromFirestore(
             element.data() as Map<String, dynamic>);
         registersList.add(lista);
@@ -164,55 +169,40 @@ class TransactionsController extends ChangeNotifier {
     return saida += result;
   }
 
-  Future<void> addsaidafire(double result) async {
-    firestore.addsaidafire(result, authentinc.usuario);
+  addsaidafire(double result) {
     saida += result;
     notifyListeners();
   }
 
   Future<void> menosValueCategory(double result, String categorynames) async {
-    String id = 'categoriesid';
     if (categorynames == 'Supermercado') {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update(
-              {'supermercado': supermerc - result, 'saida': saida - result});
+      await firestore.menossupermercado(
+          result, categorynames, authentinc.usuario, supermerc);
       supermerc -= result;
       saida -= result;
     } else if (categorynames == 'Lazer') {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update({'lazer': lazer - result, 'saida': saida - result});
+      await firestore.menoslazer(
+          result, categorynames, authentinc.usuario, lazer);
       lazer -= result;
       saida -= result;
     } else if (categorynames == 'Transporte') {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update({'transporte': transpor -= result, 'saida': saida - result});
+      await firestore.menostransporte(
+          result, categorynames, authentinc.usuario, transpor);
       transpor -= result;
       saida -= result;
     } else if (categorynames == 'Farmacia') {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update({'farmacia': farmac -= result, 'saida': saida - result});
+      await firestore.menosfarmacia(
+          result, categorynames, authentinc.usuario, farmac);
       farmac -= result;
       saida -= result;
     } else if (categorynames == 'Pagamentos') {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update({'pagamentos': pagament -= result, 'saida': saida - result});
+      await firestore.menospagamentos(
+          result, categorynames, authentinc.usuario, pagament);
       pagament -= result;
       saida -= result;
     } else {
-      await datb
-          .collection("usuarios/${authentinc.usuario!.uid}/categories")
-          .doc(id)
-          .update({'gastosex': gastosex -= result, 'saida': saida - result});
+      await firestore.menosgastosex(
+          result, categorynames, authentinc.usuario, gastosex);
       gastosex -= result;
       saida -= result;
     }

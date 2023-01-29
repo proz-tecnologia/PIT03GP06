@@ -86,7 +86,7 @@ class PieChart2State extends State {
                   case 0:
                     return PieChartSectionData(
                       color: supermercColorIndicator(),
-                      value: controle.supermerc != 0 ? controle.supermerc : 0.5,
+                      value: controle.supermerc != 0 ? controle.supermerc : 0.01,
                       title: controle.supermerc.toString() != '0'
                           ? '${controle.porcentSupermerc(controle.supermerc).toStringAsFixed(1)}%'
                           : '',
@@ -100,7 +100,7 @@ class PieChart2State extends State {
                   case 1:
                     return PieChartSectionData(
                       color: transporColorIndicator(),
-                      value: controle.transpor != 0 ? controle.transpor : 0.5,
+                      value: controle.transpor != 0 ? controle.transpor : 0.01,
                       title: controle.transpor.toString() != '0'
                           ? '${controle.porcentTranspor(controle.transpor).toStringAsFixed(1)}%'
                           : '',
@@ -114,7 +114,7 @@ class PieChart2State extends State {
                   case 2:
                     return PieChartSectionData(
                       color: pagColorIndicator(),
-                      value: controle.pagament != 0 ? controle.pagament : 0.5,
+                      value: controle.pagament != 0 ? controle.pagament : 0.01,
                       title: controle.pagament.toString() != '0'
                           ? '${controle.porcentPagament(controle.pagament).toStringAsFixed(1)}%'
                           : '',
@@ -128,7 +128,7 @@ class PieChart2State extends State {
                   case 3:
                     return PieChartSectionData(
                       color: lazerColorIndicator(),
-                      value: controle.lazer != 0 ? controle.lazer : 0.5,
+                      value: controle.lazer != 0 ? controle.lazer : 0.01,
                       title: controle.lazer.toString() != '0'
                           ? '${controle.porcentLazer(controle.lazer).toStringAsFixed(1)}%'
                           : '',
@@ -142,7 +142,7 @@ class PieChart2State extends State {
                   case 4:
                     return PieChartSectionData(
                       color: farmacColorIndicator(),
-                      value: controle.pagament != 0 ? controle.farmac : 0.5,
+                      value: controle.farmac != 0 ? controle.farmac : 0.01,
                       title: controle.farmac.toString() != '0'
                           ? '${controle.porcentFarmac(controle.farmac).toStringAsFixed(1)}%'
                           : '',
@@ -156,7 +156,7 @@ class PieChart2State extends State {
                   case 5:
                     return PieChartSectionData(
                       color: gastosexColorIndicator(),
-                      value: controle.gastosex != 0 ? controle.gastosex : 0.5,
+                      value: controle.gastosex != 0 ? controle.gastosex : 0.01,
                       title: controle.gastosex.toString() != '0'
                           ? '${controle.porcentGastosex(controle.gastosex).toStringAsFixed(1)}%'
                           : '',

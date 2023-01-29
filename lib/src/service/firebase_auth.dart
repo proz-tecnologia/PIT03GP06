@@ -50,6 +50,7 @@ class UsersService extends ChangeNotifier {
 
   login(String email, String senha) async {
     await repository.login(email: email, senha: senha);
+    await userRead();
     _userlogin();
   }
 

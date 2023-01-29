@@ -1,11 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
-import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-final TransactionsController controller =
-    TransactionsController(authentinc: UsersService());
 
 class FirestoreRepository {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
@@ -23,134 +18,227 @@ class FirestoreRepository {
     }
   }
 
-  Future<void> addValueCategory(
-      double result, String categorynames, User? usuario) async {
-    String id = 'categoriesid';
-    if (categorynames == 'Supermercado') {
+  Future<bool> supermercado(double result, String categorynames, User? usuario,
+      double supermerc) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'supermercado': controller.supermerc + result,
+        'supermercado': supermerc + result,
       });
-    } else if (categorynames == 'Lazer') {
-      await datb
-          .collection("usuarios/${usuario!.uid}/categories")
-          .doc(id)
-          .update({
-        'lazer': controller.lazer + result,
-      });
-    } else if (categorynames == 'Transporte') {
-      await datb
-          .collection("usuarios/${usuario!.uid}/categories")
-          .doc(id)
-          .update({
-        'transporte': controller.transpor + result,
-      });
-    } else if (categorynames == 'Farmacia') {
-      await datb
-          .collection("usuarios/${usuario!.uid}/categories")
-          .doc(id)
-          .update({
-        'farmacia': controller.farmac + result,
-      });
-    } else if (categorynames == 'Pagamentos') {
-      await datb
-          .collection("usuarios/${usuario!.uid}/categories")
-          .doc(id)
-          .update({
-        'pagamentos': controller.pagament + result,
-      });
-    } else {
-      await datb
-          .collection("usuarios/${usuario!.uid}/categories")
-          .doc(id)
-          .update({
-        'gastosex': controller.gastosex + result,
-      });
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
-  Future<QuerySnapshot> chartRead(User? usuario) async {
-    QuerySnapshot read =
-        await datb.collection('usuarios/${usuario!.uid}/categories').get();
-    return read;
+  Future<bool> lazer(
+      double result, String categorynames, User? usuario, double lazer) async {
+    try {
+      String id = 'categoriesid';
+      await datb
+          .collection("usuarios/${usuario!.uid}/categories")
+          .doc(id)
+          .update({
+        'lazer': lazer + result,
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<QuerySnapshot> transactionsread(User? usuario) async {
-    QuerySnapshot read =
-        await datb.collection('usuarios/${usuario!.uid}/transacoes').get();
-    return read;
+  Future<bool> transporte(double result, String categorynames, User? usuario,
+      double transpor) async {
+    try {
+      String id = 'categoriesid';
+      await datb
+          .collection("usuarios/${usuario!.uid}/categories")
+          .doc(id)
+          .update({
+        'transporte': transpor + result,
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> removeByID(String id, User? usuario) async {
-    await datb
-        .collection("usuarios/${usuario!.uid}/transacoes")
-        .doc(id)
-        .delete();
+  Future<bool> farmacia(double result, String categorynames, User? usuario,
+      double farmacia) async {
+    try {
+      String id = 'categoriesid';
+      await datb
+          .collection("usuarios/${usuario!.uid}/categories")
+          .doc(id)
+          .update({
+        'farmacia': farmacia + result,
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> addsaidafire(double result, User? usuario) async {
-    String id = 'categoriesid';
-    await datb
-        .collection("usuarios/${usuario!.uid}/categories")
-        .doc(id)
-        .update({
-      'saida': controller.saida + result,
-    });
+  Future<bool> pagamentos(double result, String categorynames, User? usuario,
+      double pagament) async {
+    try {
+      String id = 'categoriesid';
+      await datb
+          .collection("usuarios/${usuario!.uid}/categories")
+          .doc(id)
+          .update({
+        'pagamentos': pagament + result,
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  Future<void> menosValueCategory(
-      double result, String categorynames, User? usuario) async {
-    String id = 'categoriesid';
-    if (categorynames == 'Supermercado') {
+  Future<bool> gastosex(double result, String categorynames, User? usuario,
+      double gastosex) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'supermercado': controller.supermerc - result,
-        'saida': controller.saida - result
+        'gastosex': gastosex + result,
       });
-    } else if (categorynames == 'Lazer') {
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menossupermercado(double result, String categorynames,
+      User? usuario, double supermerc) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'lazer': controller.lazer - result,
-        'saida': controller.saida - result
+        'supermercado': supermerc - result,
       });
-    } else if (categorynames == 'Transporte') {
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menoslazer(
+      double result, String categorynames, User? usuario, double lazer) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'transporte': controller.transpor -= result,
-        'saida': controller.saida - result
+        'lazer': lazer - result,
       });
-    } else if (categorynames == 'Farmacia') {
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menostransporte(double result, String categorynames,
+      User? usuario, double transpor) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'farmacia': controller.farmac -= result,
-        'saida': controller.saida - result
+        'transporte': transpor - result,
       });
-    } else if (categorynames == 'Pagamentos') {
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menosfarmacia(double result, String categorynames, User? usuario,
+      double farmacia) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'pagamentos': controller.pagament -= result,
-        'saida': controller.saida - result
+        'farmacia': farmacia - result,
       });
-    } else {
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menospagamentos(double result, String categorynames,
+      User? usuario, double pagament) async {
+    try {
+      String id = 'categoriesid';
       await datb
           .collection("usuarios/${usuario!.uid}/categories")
           .doc(id)
           .update({
-        'gastosex': controller.gastosex -= result,
-        'saida': controller.saida - result
+        'pagamentos': pagament - result,
       });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> menosgastosex(double result, String categorynames, User? usuario,
+      double gastosex) async {
+    try {
+      String id = 'categoriesid';
+      await datb
+          .collection("usuarios/${usuario!.uid}/categories")
+          .doc(id)
+          .update({
+        'gastosex': gastosex - result,
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<QuerySnapshot?> chartRead(User? usuario) async {
+    try {
+      QuerySnapshot read =
+          await datb.collection('usuarios/${usuario!.uid}/categories').get();
+      return read;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<QuerySnapshot?> transactionsread(User? usuario) async {
+    try {
+      QuerySnapshot read =
+          await datb.collection('usuarios/${usuario!.uid}/transacoes').get();
+      return read;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> removeByID(String id, User? usuario) async {
+    try {
+      await datb
+          .collection("usuarios/${usuario!.uid}/transacoes")
+          .doc(id)
+          .delete();
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }
