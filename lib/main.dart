@@ -2,7 +2,6 @@ import 'package:ctrl_real/firebase_options.dart';
 import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/controllers/themes_controller.dart';
-import 'package:ctrl_real/src/repositories/auth_repository.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/controllers/notification_page_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
@@ -78,10 +77,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) {
           return MaterialApp(
             navigatorKey: navigatorKey,
-            localizationsDelegates: const [
-              GlobalWidgetsLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-            ],
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
             supportedLocales: const [
               Locale("pt", "BR"),
             ],

@@ -143,55 +143,49 @@ class _LoginUserState extends State<LoginUser> {
                                 },
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 24.0),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(24))),
-                                child: SizedBox(
-                                  width: 110,
-                                  height: 40,
-                                  child: Consumer<TransactionsController>(
-                                    builder: (context, historyController, _) =>
-                                        ElevatedButton(
-                                      style: const ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStatePropertyAll<Color>(
-                                                Color.fromRGBO(
-                                                    104, 89, 205, 0.863)),
-                                      ),
-                                      child: const Text(
-                                        "Entrar",
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                      onPressed: () {
-                                        var user = TotalandCategory(
-                                          id: '',
-                                          date: '',
-                                          type: 'Login',
-                                          nome: controllerEntradas.nome,
-                                          email: controllerEntradas.email,
-                                          valor: controllerEntradas.valor,
-                                          senha: controllerEntradas.senha,
-                                          descri: controllerEntradas.descricao,
-                                          categoryname:
-                                              controllerEntradas.categoryname,
-                                          formPag:
-                                              'Forma: ${controllerEntradas.formpag}',
-                                          /*icon: const Icon(
-                                            Icons.arrow_downward_outlined,
-                                            color: Colors.red,
-                                          ),*/
-                                        );
-                                        historyController.addNewUser(user);
-                                        historyController.emailUser(
-                                            controllerEntradas.email);
-                                        historyController.senhaUser(
-                                            controllerEntradas.senha);
-                                        login();
-                                      },
+                            SizedBox(
+                              width: 120,
+                              height: 60,
+                              child: Consumer<TransactionsController>(
+                                builder: (context, historyController, _) =>
+                                    Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: ElevatedButton(
+                                    style: const ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<
+                                              Color>(
+                                          Color.fromRGBO(104, 89, 205, 0.863)),
                                     ),
+                                    child: const Text(
+                                      "Entrar",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    onPressed: () {
+                                      var user = TotalandCategory(
+                                        id: '',
+                                        date: '',
+                                        type: 'Login',
+                                        nome: controllerEntradas.nome,
+                                        email: controllerEntradas.email,
+                                        valor: controllerEntradas.valor,
+                                        senha: controllerEntradas.senha,
+                                        descri: controllerEntradas.descricao,
+                                        categoryname:
+                                            controllerEntradas.categoryname,
+                                        formPag:
+                                            'Forma: ${controllerEntradas.formpag}',
+                                        /*icon: const Icon(
+                                          Icons.arrow_downward_outlined,
+                                          color: Colors.red,
+                                        ),*/
+                                      );
+                                      historyController.addNewUser(user);
+                                      historyController
+                                          .emailUser(controllerEntradas.email);
+                                      historyController
+                                          .senhaUser(controllerEntradas.senha);
+                                      login();
+                                    },
                                   ),
                                 ),
                               ),

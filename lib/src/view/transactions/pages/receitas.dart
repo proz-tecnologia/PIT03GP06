@@ -3,7 +3,6 @@ import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
-import 'package:ctrl_real/src/view/home/pages/homepage.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,13 +17,18 @@ class ReceitasPage extends StatefulWidget {
 }
 
 final TransactionController controllerEntradas = TransactionController();
+final _txtDateTimeController = TextEditingController();
+final _descricao = TextEditingController();
+final _valor = TextEditingController();
 
 class _ReceitasPageState extends State<ReceitasPage> {
   final _formKey = GlobalKey<FormState>();
 
-  double? value;
-  final TransactionController controllerReceita = TransactionController();
-  final _txtDateTimeController = TextEditingController();
+  clearform() {
+    _txtDateTimeController.clear();
+    _descricao.clear();
+    _valor.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +49,22 @@ class _ReceitasPageState extends State<ReceitasPage> {
                   const SizedBox(
                     height: 10,
                   ),
+                  Center(
+                    child: Text(
+                      "Ganhe XP nos 5 primeiros registros de receita do dia!",
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _descricao,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       maxLength: 52,
                       validator: (value) {
@@ -79,6 +96,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _valor,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         CurrencyTextInputFormatter(
@@ -174,13 +192,12 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                     const SnackBar(
                                         padding: EdgeInsets.all(40),
                                         duration: Duration(seconds: 6),
-                                        backgroundColor: Colors.white,
+                                        backgroundColor:
+                                            Color.fromARGB(220, 104, 89, 205),
                                         content: Text(
-                                          'Receita registrada.\nVocê ganhou 40XP e está mais próximo de desbloquear um novo tema, continue registrando suas rendas extras!',
+                                          'Receita registrada.\nContinue registrando suas rendas extras!',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  220, 104, 89, 205)),
+                                          style: TextStyle(color: Colors.black),
                                         )),
                                   );
                                   var trans = TotalandCategory(
@@ -202,9 +219,8 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                       controllerEntradas.valor);
                                   lvlsystem.recXpAdd();
                                   lvlsystem.xpFinal();
-                                  Navigator.of(context).pop();
-                                  Navigator.of(context).pop();
                                 }
+                                clearform();
                               },
                             );
                           },
