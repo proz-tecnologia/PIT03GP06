@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ctrl_real/src/model/register_model.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_test/flutter_test.dart';
-
+import 'package:flutter/foundation.dart';
 
 class AuthRepository {
   final FirebaseFirestore datb = FirebaseFirestore.instance;
@@ -85,7 +83,9 @@ class AuthRepository {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

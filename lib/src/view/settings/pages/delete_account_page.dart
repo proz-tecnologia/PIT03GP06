@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:ctrl_real/src/controllers/xplvl_system_controller.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +74,8 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                 ),
                 child: const Text(
                   'Excluir conta',
-                  style: TextStyle(color: Colors.white, height: 1.8, fontSize: 20),
+                  style:
+                      TextStyle(color: Colors.white, height: 1.8, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
               )),
