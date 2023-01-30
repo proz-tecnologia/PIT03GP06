@@ -19,16 +19,31 @@ class DespesasPage extends StatefulWidget {
 final TransactionController controller = TransactionController();
 
 final _txtDateTimeController = TextEditingController();
+final _descricao = TextEditingController();
+final _valor = TextEditingController();
 
 class _AddCategoriesState extends State<DespesasPage> {
   final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormFieldState> _key = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _key1 = GlobalKey<FormFieldState>();
+
+  clearform() {
+    _txtDateTimeController.clear();
+    _descricao.clear();
+    _valor.clear();
+  }
+
+  reset() {
+    _key.currentState!.reset();
+    _key1.currentState!.reset();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Despesas'),
+          title: const Text('Registre aqui a sua despesa'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -42,7 +57,20 @@ class _AddCategoriesState extends State<DespesasPage> {
                   const SizedBox(
                     height: 10,
                   ),
+                  Center(
+                    child: Text(
+                      "Ganhe XP nos 5 primeiros registros de despesa do dia!",
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   DropdownButtonFormField<String>(
+                    key: _key,
                     decoration: const InputDecoration(
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -82,6 +110,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _descricao,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       maxLength: 52,
                       validator: (value) {
@@ -113,6 +142,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _valor,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         CurrencyTextInputFormatter(
@@ -156,6 +186,7 @@ class _AddCategoriesState extends State<DespesasPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: DropdownButtonFormField<String>(
+                      key: _key1,
                       isExpanded: true,
                       decoration: const InputDecoration(
                         focusedBorder: UnderlineInputBorder(
@@ -240,13 +271,16 @@ class _AddCategoriesState extends State<DespesasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 2),
-                                        backgroundColor:
-                                            Color.fromARGB(220, 104, 89, 205),
-                                        content: Text(
-                                          'Registrado!',
-                                          textAlign: TextAlign.center,
-                                        )),
+                                      padding: EdgeInsets.all(40),
+                                      duration: Duration(seconds: 5),
+                                      backgroundColor:
+                                          Color.fromARGB(220, 104, 89, 205),
+                                      content: Text(
+                                        'Despesa registrada.\nContinue registrando suas despesas!',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
                                   );
                                   var trans = TotalandCategory(
                                     id: const Uuid().v4(),
@@ -265,7 +299,8 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   historyController.addValueCategory(
                                       controller.valor,
                                       controller.categoryname);
-                                  historyController.addsaidafire(controller.valor);
+                                  historyController
+                                      .addsaidafire(controller.valor);
                                   historyController
                                       .atualizarLimite(controller.valor);
                                   historyController
@@ -273,6 +308,8 @@ class _AddCategoriesState extends State<DespesasPage> {
                                   lvlsystem.despXpAdd();
                                   lvlsystem.xpFinal();
                                 }
+                                clearform();
+                                reset();
                               },
                             );
                           },

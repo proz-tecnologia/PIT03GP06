@@ -1,6 +1,5 @@
 import 'package:ctrl_real/src/controllers/themes_controller.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
-import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 
 class ButtomReceitas extends StatefulWidget {
@@ -36,10 +35,20 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        Strings.nameRegisterForm,
+                        "\nO que deseja registrar?\n",
                         style: TextStyle(
                           color: darkFunctionTexts(),
-                          fontSize: 20,
+                          fontSize: 19,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          "Ganhe XP para desbloquear novos temas no app!",
+                          style: TextStyle(
+                            color: darkFunctionTexts(),
+                            fontSize: 15,
+                          ),
                         ),
                       ),
                       Padding(
@@ -58,7 +67,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                     Navigator.of(context)
                                         .pushNamed("/despesas");
                                   },
-                                  child: const Text('Despesa')),
+                                  child: const Text('Despesa +25XP')),
                             ),
                             SizedBox(
                               height: 40,
@@ -70,7 +79,7 @@ class _ButtomReceitasState extends State<ButtomReceitas> {
                                     Navigator.of(context)
                                         .pushNamed("/receitas");
                                   },
-                                  child: const Text('Receitas')),
+                                  child: const Text('Receitas +40XP')),
                             )
                           ],
                         ),

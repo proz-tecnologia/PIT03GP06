@@ -17,20 +17,25 @@ class ReceitasPage extends StatefulWidget {
 }
 
 final TransactionController controllerEntradas = TransactionController();
+final _txtDateTimeController = TextEditingController();
+final _descricao = TextEditingController();
+final _valor = TextEditingController();
 
 class _ReceitasPageState extends State<ReceitasPage> {
   final _formKey = GlobalKey<FormState>();
 
-  double? value;
-  final TransactionController controllerReceita = TransactionController();
-  final _txtDateTimeController = TextEditingController();
+  clearform() {
+    _txtDateTimeController.clear();
+    _descricao.clear();
+    _valor.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Receitas'),
+          title: const Text('Registre aqui sua nova receita'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -44,9 +49,22 @@ class _ReceitasPageState extends State<ReceitasPage> {
                   const SizedBox(
                     height: 10,
                   ),
+                  Center(
+                    child: Text(
+                      "Ganhe XP nos 5 primeiros registros de receita do dia!",
+                      style: TextStyle(
+                        color: darkFunctionTexts(),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _descricao,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       maxLength: 52,
                       validator: (value) {
@@ -78,6 +96,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: TextFormField(
+                      controller: _valor,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         CurrencyTextInputFormatter(
@@ -171,12 +190,14 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                 if (_formKey.currentState!.validate()) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        duration: Duration(seconds: 1),
+                                        padding: EdgeInsets.all(40),
+                                        duration: Duration(seconds: 6),
                                         backgroundColor:
                                             Color.fromARGB(220, 104, 89, 205),
                                         content: Text(
-                                          'Registrado!',
+                                          'Receita registrada.\nContinue registrando suas rendas extras!',
                                           textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.black),
                                         )),
                                   );
                                   var trans = TotalandCategory(
@@ -199,6 +220,7 @@ class _ReceitasPageState extends State<ReceitasPage> {
                                   lvlsystem.recXpAdd();
                                   lvlsystem.xpFinal();
                                 }
+                                clearform();
                               },
                             );
                           },

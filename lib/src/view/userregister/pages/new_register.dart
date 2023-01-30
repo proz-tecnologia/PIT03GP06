@@ -25,6 +25,8 @@ class _NewRegisterState extends State<NewRegister> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _confirmpassword = TextEditingController();
+  bool _showPassword = false;
   double renda = 0;
 
   bool loading = false;
@@ -65,7 +67,7 @@ class _NewRegisterState extends State<NewRegister> {
                           ]),
                           decoration: InputDecoration(
                             labelText: Strings.userNome,
-                            hintText: "Nome e sobrenome",
+                            hintText: "Apenas o primeiro nome",
                             hintStyle: const TextStyle(
                                 fontSize: 12, color: Colors.white),
                             labelStyle: TextStyle(
@@ -146,7 +148,7 @@ class _NewRegisterState extends State<NewRegister> {
                             controllerEntradas.valor = double.parse(newValue
                                 .replaceAll(".", "")
                                 .replaceAll(",", "."));
-                                renda = double.parse(newValue
+                            renda = double.parse(newValue
                                 .replaceAll(".", "")
                                 .replaceAll(",", "."));
                           }),
@@ -178,80 +180,151 @@ class _NewRegisterState extends State<NewRegister> {
                               fontSize: 14,
                               color: textUser(),
                             ),
+                            suffixIcon: GestureDetector(
+                                child: Icon(
+                                  _showPassword == false
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                }),
                             focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color.fromARGB(220, 248, 248, 248),
                               ),
                             ),
                           ),
+                          obscureText: _showPassword == false ? true : false,
+                          onChanged: (value) {
+                            controllerEntradas.senha = value;
+                          },
+                        ),
+                        TextFormField(
+                          controller: _confirmpassword,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Por favor, informe a senha';
+                            }
+                            if (_password.text != _confirmpassword.text) {
+                              return "As senhas precisam ser iguais";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            helperStyle: TextStyle(
+                              color: textUser(),
+                            ),
+                            labelText: Strings.userConfirmarSenha,
+                            hintText: "*******",
+                            hintStyle: const TextStyle(
+                                fontSize: 12, color: Colors.white),
+                            labelStyle: TextStyle(
+                              fontSize: 14,
+                              color: textUser(),
+                            ),
+                            suffixIcon: GestureDetector(
+                                child: Icon(
+                                  _showPassword == false
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    _showPassword = !_showPassword;
+                                  });
+                                }),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(220, 248, 248, 248),
+                              ),
+                            ),
+                          ),
+                          obscureText: _showPassword == false ? true : false,
                           onChanged: (value) {
                             controllerEntradas.senha = value;
                           },
                         ),
                         Center(
                           child: SizedBox(
-                            width: 130,
-                            height: 40,
+                            width: 120,
+                            height: 60,
                             child:
                                 Consumer2<TransactionsController, UsersService>(
                                     builder:
                                         (context, historyController, value, _) {
-                              return ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color.fromARGB(
-                                          220, 104, 89, 205)),
-                                  onPressed: (loading)
-                                      ? () {}
-                                      : () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              const SnackBar(
-                                                  duration:
-                                                      Duration(seconds: 2),
-                                                  backgroundColor:
-                                                      Color.fromARGB(
-                                                          220, 104, 89, 205),
-                                                  content: Text(
-                                                    'Cadastro Realizado com sucesso!',
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                            );
-                                            var user = TotalandCategory(
-                                              id: '',
-                                              date: '',
-                                              type: 'Cadastro',
-                                              nome: controllerEntradas.nome,
-                                              email: controllerEntradas.email,
-                                              valor: controllerEntradas.valor,
-                                              senha: controllerEntradas.senha,
-                                              descri:
-                                                  controllerEntradas.descricao,
-                                              categoryname: controllerEntradas
-                                                  .categoryname,
-                                              formPag:
-                                                  'Forma: ${controllerEntradas.formpag}',
-                                              /*icon: const Icon(
-                                          Icons.arrow_downward_outlined,
-                                          color: Colors.red,
-                                        ),*/
-                                            );
-                                            historyController.addNewUser(user);
-                                            historyController.nomeUser(
-                                                controllerEntradas.nome);
-                                            historyController.emailUser(
-                                                controllerEntradas.email);
-                                            historyController.senhaUser(
-                                                controllerEntradas.senha);
-                                            historyController.rendaInicial(
-                                                controllerEntradas.valor);
-                                            registerUser();
-                                          }
-                                        },
-                                  child: (loading)
-                                      ? const CircularProgressIndicator()
-                                      : const Text("Cadastrar"));
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromARGB(
+                                            220, 104, 89, 205)),
+                                    onPressed: (loading)
+                                        ? () {}
+                                        : () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                    duration:
+                                                        Duration(seconds: 2),
+                                                    backgroundColor:
+                                                        Color.fromARGB(
+                                                            220, 104, 89, 205),
+                                                    content: Text(
+                                                      'Cadastro Realizado com sucesso!',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                              );
+                                              var user = TotalandCategory(
+                                                id: '',
+                                                date: '',
+                                                type: 'Cadastro',
+                                                nome: controllerEntradas.nome,
+                                                email: controllerEntradas.email,
+                                                valor: controllerEntradas.valor,
+                                                senha: controllerEntradas.senha,
+                                                descri: controllerEntradas
+                                                    .descricao,
+                                                categoryname: controllerEntradas
+                                                    .categoryname,
+                                                formPag:
+                                                    'Forma: ${controllerEntradas.formpag}',
+                                                /*icon: const Icon(
+                                            Icons.arrow_downward_outlined,
+                                            color: Colors.red,
+                                          ),*/
+                                              );
+                                              historyController
+                                                  .addNewUser(user);
+                                              historyController.nomeUser(
+                                                  controllerEntradas.nome);
+                                              historyController.emailUser(
+                                                  controllerEntradas.email);
+                                              historyController.senhaUser(
+                                                  controllerEntradas.senha);
+                                              historyController.rendaInicial(
+                                                  controllerEntradas.valor);
+                                              registerUser();
+                                            }
+                                          },
+                                    child: (loading)
+                                        ? const CircularProgressIndicator()
+                                        : const Text(
+                                            "Cadastrar",
+                                            style: TextStyle(fontSize: 18),
+                                          )),
+                              );
                             }),
                           ),
                         ),

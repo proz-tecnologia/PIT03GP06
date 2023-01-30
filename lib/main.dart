@@ -77,10 +77,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) {
           return MaterialApp(
             navigatorKey: navigatorKey,
-            localizationsDelegates: const [
-              GlobalWidgetsLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-            ],
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
             supportedLocales: const [
               Locale("pt", "BR"),
             ],

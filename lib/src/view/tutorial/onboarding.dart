@@ -32,7 +32,7 @@ class _OnBoardingAppState extends State<OnBoardingApp> {
                 });
               },
               physics: const ClampingScrollPhysics(),
-              children: [
+              children: const [
                 CustomSlide(
                   imagem: 'asset/img/controle.png',
                   titulo: "Controle real de suas finanças",
