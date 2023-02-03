@@ -12,12 +12,12 @@ class TextStyles {
 
   String get font => 'mplus1';
 
-  TextStyle get textLight =>
-      TextStyle(fontWeight: FontWeight.w300, fontFamily: font);
   TextStyle get textRegular =>
       TextStyle(fontWeight: FontWeight.normal, fontFamily: font);
   TextStyle get textBold =>
       TextStyle(fontWeight: FontWeight.bold, fontFamily: font);
+  TextStyle get textTitle =>
+      textBold.copyWith(fontSize: 23, color: Colors.white);
 }
 
 extension TextStyleExtensions on BuildContext {

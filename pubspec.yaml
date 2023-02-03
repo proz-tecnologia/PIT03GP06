@@ -100,9 +100,7 @@ flutter:
       fonts:
         - asset: asset/font/MPLUS1p-Bold.ttf
           weight: 700
-        - asset: asset/font/MPLUS1p-Light.ttf
-          weight: 300
-        - asset: assets/fonts/mplus1/MPLUS1p-Regular.ttf
+        - asset: asset/font/MPLUS1p-Regular.ttf
           style: normal
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

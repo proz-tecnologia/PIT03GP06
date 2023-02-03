@@ -1,3 +1,4 @@
+import 'package:ctrl_real/src/util/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -17,25 +18,23 @@ class CustomButton extends StatelessWidget {
       children: [
         SizedBox(
           width: 150,
-          height: 30,
+          height: 26,
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(220, 104, 89, 205)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(const Color(0XFF382D79)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      side: const BorderSide(color: Colors.white))),
+                      borderRadius: BorderRadius.circular(10),
+                      side: const BorderSide(color: Color(0XFF382D79)))),
             ),
             onPressed: () {
               irParaPaginaInicial();
             },
             child: Text(
               titulo,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
+              style: context.textStyles.textRegular
+                  .copyWith(fontSize: 20, color: Colors.white),
             ),
           ),
         ),
