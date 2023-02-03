@@ -4,9 +4,11 @@ import 'package:ctrl_real/src/view/transactions/pages/receitas.dart';
 import 'package:ctrl_real/src/view/userregister/pages/new_register.dart';
 import 'package:ctrl_real/src/model/totallandcategory_model.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/text_styles.dart';
 import 'package:ctrl_real/src/view/userregister/pages/resetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 class LoginUser extends StatefulWidget {
   const LoginUser({super.key});
@@ -20,6 +22,13 @@ class _LoginUserState extends State<LoginUser> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _showPassword = false;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +69,11 @@ class _LoginUserState extends State<LoginUser> {
                                 style: const TextStyle(
                                   color: Colors.white,
                                 ),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                keyboardType: TextInputType.emailAddress,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required("Informe seu e-mail"),
+                                  Validatorless.email("E-mail inválido"),
+                                ]),
+                                //keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   labelText: "Email",
                                   hintText: "abcd@abcd.com",
@@ -90,8 +101,10 @@ class _LoginUserState extends State<LoginUser> {
                                 style: const TextStyle(
                                   color: Colors.white,
                                 ),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required(
+                                      "A senha é obrigatória"),
+                                ]),
                                 decoration: InputDecoration(
                                   labelText: "Senha",
                                   hintText: "*******",
@@ -161,30 +174,32 @@ class _LoginUserState extends State<LoginUser> {
                                       style: TextStyle(fontSize: 18),
                                     ),
                                     onPressed: () {
-                                      var user = TotalandCategory(
-                                        id: '',
-                                        date: '',
-                                        type: 'Login',
-                                        nome: controllerEntradas.nome,
-                                        email: controllerEntradas.email,
-                                        valor: controllerEntradas.valor,
-                                        senha: controllerEntradas.senha,
-                                        descri: controllerEntradas.descricao,
-                                        categoryname:
-                                            controllerEntradas.categoryname,
-                                        formPag:
-                                            'Forma: ${controllerEntradas.formpag}',
-                                        /*icon: const Icon(
-                                          Icons.arrow_downward_outlined,
-                                          color: Colors.red,
-                                        ),*/
-                                      );
-                                      historyController.addNewUser(user);
-                                      historyController
-                                          .emailUser(controllerEntradas.email);
-                                      historyController
-                                          .senhaUser(controllerEntradas.senha);
-                                      login();
+                                      if (_formKey.currentState!.validate()) {
+                                        var user = TotalandCategory(
+                                          id: '',
+                                          date: '',
+                                          type: 'Login',
+                                          nome: controllerEntradas.nome,
+                                          email: controllerEntradas.email,
+                                          valor: controllerEntradas.valor,
+                                          senha: controllerEntradas.senha,
+                                          descri: controllerEntradas.descricao,
+                                          categoryname:
+                                              controllerEntradas.categoryname,
+                                          formPag:
+                                              'Forma: ${controllerEntradas.formpag}',
+                                          /*icon: const Icon(
+                                            Icons.arrow_downward_outlined,
+                                            color: Colors.red,
+                                          ),*/
+                                        );
+                                        historyController.addNewUser(user);
+                                        historyController.emailUser(
+                                            controllerEntradas.email);
+                                        historyController.senhaUser(
+                                            controllerEntradas.senha);
+                                        login();
+                                      }
                                     },
                                   ),
                                 ),
@@ -195,11 +210,23 @@ class _LoginUserState extends State<LoginUser> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextButton(
-                                  child: const Text(
-                                      "Sua primeira vez? Cadastre-se",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      )),
+                                  child: Row(
+                                    children: [
+                                      Text("Sua primeira vez?",
+                                          style: context.textStyles.textLight
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white)),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      Text("Cadastre-se",
+                                          style: context.textStyles.textBold
+                                              .copyWith(
+                                                  fontSize: 17,
+                                                  color: Colors.white)),
+                                    ],
+                                  ),
                                   onPressed: () {
                                     Navigator.push(
                                         context,
