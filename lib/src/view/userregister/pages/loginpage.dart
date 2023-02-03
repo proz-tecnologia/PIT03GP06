@@ -35,11 +35,6 @@ class _LoginUserState extends State<LoginUser> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color.fromARGB(220, 104, 89, 205),
-        appBar: AppBar(
-          title: const Text('Login'),
-          backgroundColor: const Color.fromARGB(220, 104, 89, 205),
-          centerTitle: true,
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -156,22 +151,35 @@ class _LoginUserState extends State<LoginUser> {
                                 },
                               ),
                             ),
-                            SizedBox(
-                              width: 120,
-                              height: 60,
-                              child: Consumer<TransactionsController>(
-                                builder: (context, historyController, _) =>
-                                    Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: ElevatedButton(
-                                    style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<
-                                              Color>(
-                                          Color.fromRGBO(104, 89, 205, 0.863)),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: 150,
+                                height: 26,
+                                child: Consumer<TransactionsController>(
+                                  builder: (context, historyController, _) =>
+                                      ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              const Color(0XFF382D79)),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              side: const BorderSide(
+                                                  color: Color(0XFF382D79)))),
                                     ),
-                                    child: const Text(
+                                    child: Text(
                                       "Entrar",
-                                      style: TextStyle(fontSize: 18),
+                                      style: context.textStyles.textRegular
+                                          .copyWith(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
@@ -189,9 +197,9 @@ class _LoginUserState extends State<LoginUser> {
                                           formPag:
                                               'Forma: ${controllerEntradas.formpag}',
                                           /*icon: const Icon(
-                                            Icons.arrow_downward_outlined,
-                                            color: Colors.red,
-                                          ),*/
+                                                Icons.arrow_downward_outlined,
+                                                color: Colors.red,
+                                              ),*/
                                         );
                                         historyController.addNewUser(user);
                                         historyController.emailUser(
@@ -205,6 +213,9 @@ class _LoginUserState extends State<LoginUser> {
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 30,
+                            ),
                             Container(
                               alignment: Alignment.center,
                               child: Padding(
@@ -213,7 +224,7 @@ class _LoginUserState extends State<LoginUser> {
                                   child: Row(
                                     children: [
                                       Text("Sua primeira vez?",
-                                          style: context.textStyles.textLight
+                                          style: context.textStyles.textRegular
                                               .copyWith(
                                                   fontSize: 16,
                                                   color: Colors.white)),
