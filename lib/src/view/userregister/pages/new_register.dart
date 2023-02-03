@@ -330,7 +330,9 @@ class _NewRegisterState extends State<NewRegister> {
                                           }
                                         },
                                   child: (loading)
-                                      ? const CircularProgressIndicator()
+                                      ? const CircularProgressIndicator(
+                                          strokeWidth: 1.0,
+                                        )
                                       : Text(
                                           "Cadastrar",
                                           style: context.textStyles.textRegular
