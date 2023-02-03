@@ -165,7 +165,6 @@ class _NewRegisterState extends State<NewRegister> {
                           style: const TextStyle(
                             color: Colors.white,
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           maxLength: 10,
                           validator: Validatorless.multiple([
                             Validatorless.required("Defina sua senha"),
@@ -214,7 +213,7 @@ class _NewRegisterState extends State<NewRegister> {
                           style: const TextStyle(
                             color: Colors.white,
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          maxLength: 10,
                           validator: Validatorless.multiple([
                             Validatorless.required(
                                 "Confirmar a senha é obrigatório"),
