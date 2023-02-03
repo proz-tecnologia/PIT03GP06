@@ -222,6 +222,7 @@ class _LoginUserState extends State<LoginUser> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextButton(
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text("Sua primeira vez?",
                                           style: context.textStyles.textRegular
