@@ -25,11 +25,18 @@ class _NewRegisterState extends State<NewRegister> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
-  final _confirmpassword = TextEditingController();
   bool _showPassword = false;
   double renda = 0;
 
   bool loading = false;
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +165,6 @@ class _NewRegisterState extends State<NewRegister> {
                           style: const TextStyle(
                             color: Colors.white,
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           maxLength: 10,
                           validator: Validatorless.multiple([
                             Validatorless.required("Defina sua senha"),
@@ -204,20 +210,16 @@ class _NewRegisterState extends State<NewRegister> {
                           },
                         ),
                         TextFormField(
-                          controller: _confirmpassword,
                           style: const TextStyle(
                             color: Colors.white,
                           ),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Por favor, informe a senha';
-                            }
-                            if (_password.text != _confirmpassword.text) {
-                              return "As senhas precisam ser iguais";
-                            }
-                            return null;
-                          },
+                          maxLength: 10,
+                          validator: Validatorless.multiple([
+                            Validatorless.required(
+                                "Confirmar a senha é obrigatório"),
+                            Validatorless.compare(
+                                _password, "As senhas estão diferentes"),
+                          ]),
                           decoration: InputDecoration(
                             helperStyle: TextStyle(
                               color: textUser(),
