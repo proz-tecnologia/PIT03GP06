@@ -22,6 +22,7 @@ class _LoginUserState extends State<LoginUser> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _showPassword = false;
+  bool loading = false;
 
   @override
   void dispose() {
@@ -173,15 +174,7 @@ class _LoginUserState extends State<LoginUser> {
                                               side: const BorderSide(
                                                   color: Color(0XFF382D79)))),
                                     ),
-                                    child: Text(
-                                      "Entrar",
-                                      style: context.textStyles.textRegular
-                                          .copyWith(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    onPressed: () {
+                                    onPressed: (loading) ? (){} : () {
                                       if (_formKey.currentState!.validate()) {
                                         var user = TotalandCategory(
                                           id: '',
@@ -209,6 +202,16 @@ class _LoginUserState extends State<LoginUser> {
                                         login();
                                       }
                                     },
+                                    child: (loading) ? const  CircularProgressIndicator(
+                                          strokeWidth: 1.0,
+                                        ) : Text(
+                                      "Entrar",
+                                      style: context.textStyles.textRegular
+                                          .copyWith(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -263,7 +266,14 @@ class _LoginUserState extends State<LoginUser> {
 
   login() async {
     try {
+      setState(() {
+        loading = true;
+      });
+
       await context.read<UsersService>().login(_email.text, _password.text);
+      setState(() {
+        loading = false;
+      });
     } on ExceptionUsers catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
