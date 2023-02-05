@@ -55,6 +55,8 @@ dependencies:
   url_launcher: ^6.1.7
   email_validator: ^2.1.17
   mocktail: ^0.3.0
+  firebase_storage: ^11.0.10
+  path: ^1.8.0
 
 dev_dependencies:
   flutter_test:

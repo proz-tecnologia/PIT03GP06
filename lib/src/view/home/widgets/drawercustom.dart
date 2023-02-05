@@ -40,14 +40,23 @@ class _DrawerCustonState extends State<DrawerCuston> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Container(
-                              color: const Color.fromARGB(140, 255, 255, 255),
-                              height: 100,
-                              width: 100,
-                              child: const Icon(
-                                Icons.person_outline,
-                                size: 40,
-                                color: Color.fromARGB(129, 0, 0, 0),
+                            child: Consumer<UsersService>(
+                              builder: (context, value, child) => Container(
+                                color: const Color.fromARGB(140, 255, 255, 255),
+                                height: 100,
+                                width: 100,
+                                child: value.usuario!.photoURL == null &&
+                                        value.perfilImage == null
+                                    ? const Icon(
+                                        Icons.person_outline,
+                                        size: 60,
+                                        color: Color.fromARGB(129, 0, 0, 0),
+                                      )
+                                    : value.usuario!.photoURL != null &&
+                                            value.perfilImage != null
+                                        ? Image.file(value.perfilImage!)
+                                        : Image.network(
+                                            value.usuario!.photoURL!),
                               ),
                             ),
                           ),
