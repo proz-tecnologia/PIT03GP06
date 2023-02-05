@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class ExceptionUsers implements Exception {
   String message;
@@ -11,8 +16,10 @@ class ExceptionUsers implements Exception {
 }
 
 class UsersService extends ChangeNotifier {
+  final storage = FirebaseStorage.instance;
   AuthRepository repository = AuthRepository();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  ImagePicker imagePicker = ImagePicker();
 
   User? usuario;
   bool isloading = true;
@@ -20,6 +27,8 @@ class UsersService extends ChangeNotifier {
   String? email;
   double renda = 0;
   double? valorLimite;
+  File? photoUrl;
+  File? perfilImage;
 
   UsersService() {
     _authCheck();
@@ -92,6 +101,44 @@ class UsersService extends ChangeNotifier {
         renda = element['renda'];
       }
       notifyListeners();
+    }
+  }
+
+  galeryImage() async {
+    final XFile? temporaryImage =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (temporaryImage != null) {
+      perfilImage = File(temporaryImage.path);
+
+      uploadFile();
+      notifyListeners();
+    }
+  }
+
+  cameraImage() async {
+    final XFile? temporaryImage =
+        await imagePicker.pickImage(source: ImageSource.camera);
+    if (temporaryImage != null) {
+      perfilImage = File(temporaryImage.path);
+      uploadFile();
+      notifyListeners();
+    }
+  }
+
+  Future<void> uploadFile() async {
+    if (perfilImage == null) return;
+    final fileName = basename(perfilImage!.path);
+    final destination = 'files/${usuario!.uid}';
+    try {
+      final ref = storage.ref(destination).child(fileName);
+      await ref.putFile(perfilImage!);
+      String image = await ref.getDownloadURL();
+      //userr.image(perfilImage!);
+      //userr.addImage(image);
+      usuario!.updatePhotoURL(image);
+      //user.imageReadd(image);
+    } catch (e) {
+      return;
     }
   }
 }
