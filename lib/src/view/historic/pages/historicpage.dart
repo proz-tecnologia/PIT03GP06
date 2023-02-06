@@ -77,7 +77,7 @@ class _HistoricPageState extends State<HistoricPage> {
                                   color:
                                       const Color.fromARGB(162, 244, 67, 54)),
                             ),
-                            onDismissed: (direction) {
+                            confirmDismiss: (direction) {
                               var id = controller.registersList
                                   .where((element) =>
                                       element.type ==
@@ -86,9 +86,29 @@ class _HistoricPageState extends State<HistoricPage> {
                                           : menuName))
                                   .toList()[index]
                                   .id;
-                                  
-                              controller.removePorcentChart(id!);
-                              controller.removeByID(id);
+
+                              return showDialog(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: Text('Deseja mesmo excluir?',style: TextStyle(color: darkFunctionTexts()),),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                          Navigator.of(context).pop();
+                                      },
+                                      child: Text('Cancelar',style: TextStyle(color: darkFunctionTexts())),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        controller.removePorcentChart(id!);
+                                        controller.removeByID(id);
+                                        Navigator.of(context).pop();
+                                      },
+                                      child:  Text('Sim', style: TextStyle(color: darkFunctionTexts())),
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                             child: ItemTransec(
                               controller.registersList

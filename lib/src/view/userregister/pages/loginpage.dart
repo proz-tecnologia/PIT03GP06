@@ -202,9 +202,13 @@ class _LoginUserState extends State<LoginUser> {
                                         login();
                                       }
                                     },
-                                    child: (loading) ? const  CircularProgressIndicator(
-                                          strokeWidth: 1.0,
-                                        ) : Text(
+                                    child: (loading) ? SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: const  CircularProgressIndicator(
+                                            strokeWidth: 2.0,
+                                          ),
+                                    ) : Text(
                                       "Entrar",
                                       style: context.textStyles.textRegular
                                           .copyWith(
