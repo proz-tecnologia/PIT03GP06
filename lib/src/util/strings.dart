@@ -9,7 +9,7 @@ abstract class Strings {
 
   //Drawer List Tile
   static const String nameThemesDrawer = "Temas";
-  static const String nameThemesDarkDrawer = "Dark";
+  static const String nameThemesDarkDrawer = "Escuro";
   static const String nameConfigDrawer = "Ajustes";
   static const String nameSobreAppDrawer = "Sobre o app";
   static const String nameExitDrawer = "Sair";

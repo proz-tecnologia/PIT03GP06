@@ -49,13 +49,13 @@ class _OnBoardingAppState extends State<OnBoardingApp> {
                   imagem: 'asset/img/temas.png',
                   titulo: "Ganhe XP e libere temas",
                   texto:
-                      "Vida financeira saudável = Conquistas!\nNos primeiros 5 registros diários você ganhará XP para subir de nível e desbloquear novos temas. Deixe o app com sua cara!",
+                      "Vida financeira saudável = Conquistas!\nGanhe XP para subir de nível e desbloquear novos temas. Deixe o app com sua cara!",
                 ),
                 CustomSlide(
                   imagem: 'asset/img/dicas.png',
                   titulo: "A gente te ajuda",
                   texto:
-                      "Na aba Dicas, vamos te apresentar conteúdos gratuitos de especialistas em finanças pessoais!\nClique nas imagens para abrir cada conteúdo e aproveite =D",
+                      "Em Dicas, acesse conteúdos gratuitos de especialistas em finanças pessoais!\nClique nas imagens para abrir cada conteúdo e aproveite =D",
                 ),
               ],
             ),

@@ -99,7 +99,7 @@ class _DrawerCustonState extends State<DrawerCuston> {
                 trailing: ButtonBlue(),
               ),
               const ListTile(
-                title: Text('Money'),
+                title: Text('Dinheiro'),
                 trailing: ButtonGreen(),
               ),
               const ListTile(

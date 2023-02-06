@@ -1,3 +1,4 @@
+import 'package:ctrl_real/src/util/text_styles.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -16,7 +17,7 @@ class CustomSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: 100),
         Image.asset(
@@ -30,24 +31,22 @@ class CustomSlide extends StatelessWidget {
             Expanded(
                 child: Text(
               titulo,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
+              style: context.textStyles.textTitle,
               textAlign: TextAlign.center,
             )),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 5),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 64.0),
           child: Text(
             texto,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontSize: 15),
+            style: context.textStyles.textRegular
+                .copyWith(fontSize: 15, color: Colors.white),
           ),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 40),
       ],
     );
   }

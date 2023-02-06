@@ -26,7 +26,7 @@ class EditThemesPage extends StatelessWidget {
           trailing: ButtonBlue(),
         ),
         ListTile(
-          title: Text('Money'),
+          title: Text('Dinheiro'),
           trailing: ButtonGreen(),
         ),
         ListTile(
