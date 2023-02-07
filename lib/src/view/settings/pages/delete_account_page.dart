@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ctrl_real/src/controllers/transactions_controller.dart';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
@@ -72,13 +73,34 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                   color: Colors.redAccent,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Text(
-                  'Excluir conta',
-                  style:
-                      TextStyle(color: Colors.white, height: 1.8, fontSize: 20),
-                  textAlign: TextAlign.center,
-                ),
-              )),
+                child: TextButton(
+                  child: const Text('Exluir conta',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
+                  onPressed: () {
+                    Provider.of(context).showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: Text('Deseja mesmo excluir sua conta?',style: TextStyle(color: darkFunctionTexts()),),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancelar',style: TextStyle(color: darkFunctionTexts())),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Provider.of<TransactionsController>(context, listen: false).removeByID('id');
+                              Navigator.of(context).pop();
+                            },
+                            child:  Text('Sim', style: TextStyle(color: darkFunctionTexts())),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+              ),),
         ]),
       ),
     );

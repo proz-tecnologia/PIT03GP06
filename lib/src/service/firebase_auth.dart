@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
