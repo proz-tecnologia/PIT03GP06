@@ -367,6 +367,9 @@ class _NewRegisterState extends State<NewRegister> {
       });
       navigatorKey.currentState!.pop();
     } on ExceptionUsers catch (e) {
+      setState(() {
+        loading = false;
+      });
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
     }
