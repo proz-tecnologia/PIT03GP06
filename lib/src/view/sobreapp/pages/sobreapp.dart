@@ -16,7 +16,7 @@ class SobreApp extends StatelessWidget {
         ),
         body: Center(
           child: Padding(
-            padding: EdgeInsets.only(top: 112),
+            padding: const EdgeInsets.only(top: 112),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
