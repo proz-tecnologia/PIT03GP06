@@ -208,11 +208,11 @@ class _LoginUserState extends State<LoginUser> {
                                             }
                                           },
                                     child: (loading)
-                                        ? SizedBox(
+                                        ? const SizedBox(
                                             height: 20,
                                             width: 20,
                                             child:
-                                                const CircularProgressIndicator(
+                                                CircularProgressIndicator(
                                               strokeWidth: 2.0,
                                             ),
                                           )
