@@ -174,48 +174,57 @@ class _LoginUserState extends State<LoginUser> {
                                               side: const BorderSide(
                                                   color: Color(0XFF382D79)))),
                                     ),
-                                    onPressed: (loading) ? (){} : () {
-                                      if (_formKey.currentState!.validate()) {
-                                        var user = TotalandCategory(
-                                          id: '',
-                                          date: '',
-                                          type: 'Login',
-                                          nome: controllerEntradas.nome,
-                                          email: controllerEntradas.email,
-                                          valor: controllerEntradas.valor,
-                                          senha: controllerEntradas.senha,
-                                          descri: controllerEntradas.descricao,
-                                          categoryname:
-                                              controllerEntradas.categoryname,
-                                          formPag:
-                                              'Forma: ${controllerEntradas.formpag}',
-                                          /*icon: const Icon(
+                                    onPressed: (loading)
+                                        ? () {}
+                                        : () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              var user = TotalandCategory(
+                                                id: '',
+                                                date: '',
+                                                type: 'Login',
+                                                nome: controllerEntradas.nome,
+                                                email: controllerEntradas.email,
+                                                valor: controllerEntradas.valor,
+                                                senha: controllerEntradas.senha,
+                                                descri: controllerEntradas
+                                                    .descricao,
+                                                categoryname: controllerEntradas
+                                                    .categoryname,
+                                                formPag:
+                                                    'Forma: ${controllerEntradas.formpag}',
+                                                /*icon: const Icon(
                                                 Icons.arrow_downward_outlined,
                                                 color: Colors.red,
                                               ),*/
-                                        );
-                                        historyController.addNewUser(user);
-                                        historyController.emailUser(
-                                            controllerEntradas.email);
-                                        historyController.senhaUser(
-                                            controllerEntradas.senha);
-                                        login();
-                                      }
-                                    },
-                                    child: (loading) ? SizedBox(
-                                      height: 20,
-                                      width: 20,
-                                      child: const  CircularProgressIndicator(
-                                            strokeWidth: 2.0,
+                                              );
+                                              historyController
+                                                  .addNewUser(user);
+                                              historyController.emailUser(
+                                                  controllerEntradas.email);
+                                              historyController.senhaUser(
+                                                  controllerEntradas.senha);
+                                              login();
+                                            }
+                                          },
+                                    child: (loading)
+                                        ? SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child:
+                                                const CircularProgressIndicator(
+                                              strokeWidth: 2.0,
+                                            ),
+                                          )
+                                        : Text(
+                                            "Entrar",
+                                            style: context
+                                                .textStyles.textRegular
+                                                .copyWith(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                    ) : Text(
-                                      "Entrar",
-                                      style: context.textStyles.textRegular
-                                          .copyWith(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),
@@ -279,6 +288,9 @@ class _LoginUserState extends State<LoginUser> {
         loading = false;
       });
     } on ExceptionUsers catch (e) {
+      setState(() {
+        loading = false;
+      });
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
     }

@@ -53,6 +53,7 @@ class UsersService extends ChangeNotifier {
         uid: uid ?? '', name: name, email: email, renda2: renda2);
     await repository.addlvlfire(uid ?? '');
     await repository.addCategoriesPrimary(uid ?? '');
+    await userRead();
     renda = renda2;
     await _userlogin();
   }
