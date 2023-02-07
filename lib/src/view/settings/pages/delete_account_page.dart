@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
+import 'package:ctrl_real/src/repositories/firestore_repository.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,8 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                       TextStyle(color: Colors.white, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                },
               ),
             ),
           ],
