@@ -85,8 +85,10 @@ class _DrawerCustonState extends State<DrawerCuston>
                                         size: 60,
                                         color: Color.fromARGB(129, 0, 0, 0),
                                       )
-                                    : value.usuario!.photoURL != null &&
-                                            value.perfilImage != null
+                                    : value.usuario!.photoURL == null &&
+                                                value.perfilImage != null ||
+                                            value.usuario!.photoURL != null &&
+                                                value.perfilImage != null
                                         ? Image.file(value.perfilImage!)
                                         : Image.network(
                                             value.usuario!.photoURL!),
