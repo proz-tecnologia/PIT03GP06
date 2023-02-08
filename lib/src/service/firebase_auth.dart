@@ -70,9 +70,9 @@ class UsersService extends ChangeNotifier {
 
   logout() async {
     await _auth.signOut();
-    navigatorKey.currentState!
-        .pushNamedAndRemoveUntil("/", ModalRoute.withName('/home'));
-    _userlogin();
+    //navigatorKey.currentState!
+        //.pushNamedAndRemoveUntil("/", ModalRoute.withName('/home'));
+    await _userlogin();
   }
 
   Future<void> updateNameUser(String name2) async {
