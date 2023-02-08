@@ -4,6 +4,7 @@ import 'package:ctrl_real/src/util/darkfunction.dart';
 import 'package:ctrl_real/src/util/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class DrawerCuston extends StatefulWidget {
@@ -13,8 +14,40 @@ class DrawerCuston extends StatefulWidget {
   State<DrawerCuston> createState() => _DrawerCustonState();
 }
 
-class _DrawerCustonState extends State<DrawerCuston> {
+class _DrawerCustonState extends State<DrawerCuston>
+    with TickerProviderStateMixin {
   final _firebaseAuth = FirebaseAuth.instance;
+  late final AnimationController _controllerTheme;
+  late final AnimationController _controllerSettings;
+  late final AnimationController _controllerInfo;
+  late final AnimationController _controllerExit;
+
+  @override
+  void initState() {
+    super.initState();
+    _controllerTheme = AnimationController(vsync: this);
+    _controllerTheme.duration = const Duration(seconds: 8);
+    _controllerSettings = AnimationController(vsync: this);
+    _controllerSettings.duration = const Duration(seconds: 5);
+    _controllerInfo = AnimationController(vsync: this);
+    _controllerInfo.duration = const Duration(seconds: 2);
+    _controllerExit = AnimationController(vsync: this);
+    _controllerExit.duration = const Duration(seconds: 10);
+    _controllerTheme.repeat();
+    _controllerSettings.repeat();
+    _controllerInfo.repeat();
+    _controllerExit.repeat();
+  }
+
+  @override
+  void dispose() {
+    _controllerTheme.dispose();
+    _controllerSettings.dispose();
+    _controllerInfo.dispose();
+    _controllerExit.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +120,12 @@ class _DrawerCustonState extends State<DrawerCuston> {
           ExpansionTile(
             textColor: darkFunctionSelected(),
             iconColor: darkFunctionSelected(),
-            leading: const Icon(Icons.color_lens),
+            leading: Lottie.network(
+              'lottie/87422-color-wheel.json',
+              controller: _controllerTheme,
+              height: 40,
+              width: 40,
+            ),
             title: const Text(Strings.nameThemesDrawer),
             children: <Widget>[
               const ListTile(
@@ -115,14 +153,24 @@ class _DrawerCustonState extends State<DrawerCuston> {
             ],
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
+            leading: Lottie.network(
+              'lottie/55492-setting.json',
+              controller: _controllerSettings,
+              height: 40,
+              width: 40,
+            ),
             title: const Text(Strings.nameConfigDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/config');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.info_outline_rounded),
+            leading: Lottie.network(
+              'lottie/127407-info.json',
+              controller: _controllerInfo,
+              height: 40,
+              width: 40,
+            ),
             title: const Text(Strings.nameSobreAppDrawer),
             onTap: () {
               Navigator.of(context).pushNamed('/sobreapp');
@@ -130,7 +178,10 @@ class _DrawerCustonState extends State<DrawerCuston> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.exit_to_app),
+            leading: Lottie.network(
+              'lottie/81249-quit-close-exit.json',
+              controller: _controllerExit,
+            ),
             title: const Text(Strings.nameExitDrawer),
             onTap: () {
               context.read<UsersService>().logout();
