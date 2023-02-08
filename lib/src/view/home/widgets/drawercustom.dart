@@ -122,7 +122,7 @@ class _DrawerCustonState extends State<DrawerCuston>
           ExpansionTile(
             textColor: darkFunctionSelected(),
             iconColor: darkFunctionSelected(),
-            leading: Lottie.network(
+            leading: Lottie.asset(
               'lottie/87422-color-wheel.json',
               controller: _controllerTheme,
               height: 40,
@@ -155,7 +155,7 @@ class _DrawerCustonState extends State<DrawerCuston>
             ],
           ),
           ListTile(
-            leading: Lottie.network(
+            leading: Lottie.asset(
               'lottie/55492-setting.json',
               controller: _controllerSettings,
               height: 40,
@@ -167,7 +167,7 @@ class _DrawerCustonState extends State<DrawerCuston>
             },
           ),
           ListTile(
-            leading: Lottie.network(
+            leading: Lottie.asset(
               'lottie/127407-info.json',
               controller: _controllerInfo,
               height: 40,
@@ -180,7 +180,7 @@ class _DrawerCustonState extends State<DrawerCuston>
             },
           ),
           ListTile(
-            leading: Lottie.network(
+            leading: Lottie.asset(
               'lottie/81249-quit-close-exit.json',
               controller: _controllerExit,
             ),
