@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
     context.read<TransactionsController>().transactionsread();
     context.read<TransactionsController>().renda =
         context.read<UsersService>().renda;
+    context.read<UsersService>().perfilImage = null;
     super.initState();
   }
 
