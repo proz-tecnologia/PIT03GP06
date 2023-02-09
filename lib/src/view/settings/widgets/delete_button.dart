@@ -11,12 +11,18 @@ class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AccountController>(
-      builder: (context, controller, child) => OutlinedButton(
-        onPressed: () => dialogBuilder(context),
-        child: const Text(Strings.deleteAccount,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
+      builder: (context, controller, child) => SizedBox(
+        width: 160,
+        height: 60,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+          onPressed: () => dialogBuilder(context),
+          child: const Text(
+            Strings.deleteAccount,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
         ),
       ),
@@ -32,11 +38,15 @@ Future<void> dialogBuilder(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         backgroundColor: darkFunctionWidgets(),
-        title: const Text(Strings.delYourAccount,
-            textAlign: TextAlign.center),
+        title: const Text(
+          Strings.delYourAccount,
+          style: TextStyle(color: Colors.white),
+        ),
         actions: <Widget>[
           TextButton(
-            child: const Text(Strings.cancel,
+            child: const Text(
+              Strings.cancel,
+              textAlign: TextAlign.left,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -47,7 +57,9 @@ Future<void> dialogBuilder(BuildContext context) {
             },
           ),
           TextButton(
-              child: const Text(Strings.yes,
+              child: const Text(
+                Strings.yes,
+                textAlign: TextAlign.right,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
