@@ -29,4 +29,40 @@ abstract class Strings {
   static const String userRenda = "Renda(Opcional):";
   static const String userSenha = "Senha(obrigatório):*";
   static const String userConfirmarSenha = "Confirme sua senha(obrigatório):*";
+
+  //settings page
+  static const String preferences = "Preferências";
+  static const String notifications = "Notificações";
+  static const String user = "Usuário";
+  static const String editAccount = "Editar conta";
+
+  //edit notifications page
+  static const String editNotifications = "Editar notificações";
+  static const String receiveNotifications = "Receber notificações";
+  static const String enableSound = "Habilitar som";
+  static const String dailyFrequency = "Frequência diária";
+
+  //edit themes page
+  static const String editThemes = "Editar tema";
+
+  //edit account page
+  static const String income = "Renda";
+  static const String name = "Nome";
+  static const String newName = "Novo nome";
+  static const String enterName = "Informe seu nome";
+  static const String onlyLetters = "Apenas letras";
+  static const String approve = "Confirmar";
+  static const String email = "E-mail";
+  static const String newEmail = "Novo e-mail";
+  static const String enterEmail = "Informe seu e-mail";
+  static const String invalidEmail = "E-mail inválido";
+  static const String enterPassword = "Senha";
+  static const String newPassword = "Insira uma nova senha";
+  static const String setYourPassword = "Defina sua senha";
+
+  //delete account page
+  static const String delYourAccount = "Deseja mesmo excluir sua conta?";
+  static const String deleteAccount = "Excluir conta";
+  static const String cancel = "Cancelar";
+  static const String yes = "Sim";
 }

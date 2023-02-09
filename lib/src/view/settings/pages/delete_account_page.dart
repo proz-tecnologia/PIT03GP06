@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Excluir conta"),
+          title: const Text(Strings.deleteAccount),
         ),
         body: Column(
           children: [

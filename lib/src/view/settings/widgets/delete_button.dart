@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/account_controller.dart';
 import '../../../repositories/auth_repository.dart';
 import '../../../util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({super.key});
@@ -12,7 +13,12 @@ class DeleteButton extends StatelessWidget {
     return Consumer<AccountController>(
       builder: (context, controller, child) => OutlinedButton(
         onPressed: () => dialogBuilder(context),
-        child: const Text('Excluir conta'),
+        child: const Text(Strings.deleteAccount,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
       ),
     );
   }
@@ -26,22 +32,32 @@ Future<void> dialogBuilder(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         backgroundColor: darkFunctionWidgets(),
-        title: const Text('Deseja mesmo excluir sua conta?'),
+        title: const Text(Strings.delYourAccount,
+            textAlign: TextAlign.center),
         actions: <Widget>[
           TextButton(
-            child: const Text('Cancelar'),
+            child: const Text(Strings.cancel,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           TextButton(
-              child: const Text('Sim'),
+              child: const Text(Strings.yes,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
               onPressed: () {
                 controller.deleteAccount();
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil('/login', (route) => false);
-              }
-          ),
+              }),
         ],
       );
     },
