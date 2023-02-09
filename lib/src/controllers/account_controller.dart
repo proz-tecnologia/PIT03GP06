@@ -11,29 +11,30 @@ class AccountController extends ChangeNotifier {
     return result;
   }
 
-  Future<void> dialogBuilder(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Deseja mesmo excluir sua conta?'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancelar'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Sim'),
-              onPressed: () {
-                deleteAccount();
-                Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+
+  // Future<void> dialogBuilder(BuildContext context) {
+  //   return showDialog<void>(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text('Deseja mesmo excluir sua conta?'),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             child: const Text('Cancelar'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //           TextButton(
+  //             child: const Text('Sim'),
+  //             onPressed: () {
+  //               deleteAccount();
+  //               Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

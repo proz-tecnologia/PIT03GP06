@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:ctrl_real/src/service/firebase_auth.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
-import 'package:ctrl_real/src/controllers/account_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/delete_button.dart';
 
 class DeleteAccountPage extends StatefulWidget {
   const DeleteAccountPage({super.key});
@@ -66,13 +67,9 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                 ],
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(top: 80),
-                child: Consumer<AccountController>(builder: (context, controller, child) => OutlinedButton(
-                  onPressed: () => controller.dialogBuilder(context),
-                  child: const Text('Excluir conta'),
-                ),
-                ),
+            const Padding(
+              padding: EdgeInsets.only(top: 80),
+              child: DeleteButton(),
             ),
           ],
         ),
