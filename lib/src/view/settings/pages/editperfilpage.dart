@@ -5,7 +5,6 @@ import 'package:ctrl_real/src/util/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
-import 'package:ctrl_real/src/util/strings.dart';
 
 class EditAccount extends StatelessWidget {
   EditAccount({super.key});
