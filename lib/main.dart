@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:ctrl_real/firebase_options.dart';
 import 'package:ctrl_real/src/controllers/account_controller.dart';
 import 'package:ctrl_real/src/controllers/transactions_controller.dart';
