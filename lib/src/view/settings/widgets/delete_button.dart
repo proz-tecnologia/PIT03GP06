@@ -46,7 +46,6 @@ Future<void> dialogBuilder(BuildContext context) {
           TextButton(
             child: const Text(
               Strings.cancel,
-              textAlign: TextAlign.left,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -59,7 +58,6 @@ Future<void> dialogBuilder(BuildContext context) {
           TextButton(
               child: const Text(
                 Strings.yes,
-                textAlign: TextAlign.right,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
