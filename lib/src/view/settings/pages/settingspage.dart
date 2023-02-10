@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ctrl_real/src/util/darkfunction.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -14,7 +15,7 @@ class SettingsPage extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
           centerTitle: true,
-          title: const Text('Configurações'),
+          title: const Text(Strings.nameConfigDrawer),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,8 +23,7 @@ class SettingsPage extends StatelessWidget {
             SizedBox(
               // Preferências
               width: double.infinity,
-              child: Text(
-                'Preferências',
+              child: Text(Strings.preferences,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.karma(
                   fontSize: 24,
@@ -55,8 +55,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                         TextButton(
                           //notificações
-                          child: Text(
-                            'Notificações',
+                          child: Text(Strings.notifications,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.karma(
                               fontSize: 20,
@@ -87,8 +86,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                         TextButton(
                           // temas
-                          child: Text(
-                            'Temas',
+                          child: Text(Strings.nameThemesDrawer,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.karma(
                               fontSize: 20,
@@ -108,8 +106,7 @@ class SettingsPage extends StatelessWidget {
                     // usuario
                     margin: const EdgeInsets.fromLTRB(0, 0, 0, 3),
                     width: double.infinity,
-                    child: Text(
-                      'Usuário',
+                    child: Text(Strings.user,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.karma(
                         fontSize: 24,
@@ -135,8 +132,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                         TextButton(
                           // editar conta
-                          child: Text(
-                            'Editar conta',
+                          child: Text(Strings.editAccount,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.karma(
                               fontSize: 20,
@@ -169,7 +165,7 @@ class SettingsPage extends StatelessWidget {
                         TextButton(
                           child: Text(
                             // excluir conta
-                            'Excluir conta',
+                            Strings.deleteAccount,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.karma(
                               fontSize: 20,

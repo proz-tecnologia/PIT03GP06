@@ -116,4 +116,17 @@ class AuthRepository {
     }
     return list;
   }
+
+  Future<bool> deleteUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    try {
+      await datb
+          .collection("usuarios/${user!.uid}/user")
+          .doc(user.uid)
+          .delete();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
