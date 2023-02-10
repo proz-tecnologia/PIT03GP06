@@ -15,7 +15,7 @@ class DeleteButton extends StatelessWidget {
         width: 160,
         height: 60,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurpleAccent),
           onPressed: () => dialogBuilder(context),
           child: const Text(
             Strings.deleteAccount,
