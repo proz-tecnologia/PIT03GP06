@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ctrl_real/src/util/strings.dart';
 import 'package:ctrl_real/src/view/settings/widgets/notifications/notification_buttons.dart';
 
 class EditNotificationsPage extends StatelessWidget {
@@ -8,19 +9,18 @@ class EditNotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () => Navigator.of(context).pushNamed("/config"),
-            icon: const Icon(Icons.arrow_back)),
-        title: const Text('Editar notificações'),
+        title: const Text(Strings.editNotifications),
         centerTitle: true,
       ),
       body: ListView(children: [
         const ListTile(
-            title: Text('Receber notificações'),
+            title: Text(Strings.receiveNotifications),
             trailing: NotificationButton()),
-        const ListTile(title: Text('Habilitar som'), trailing: SoundButton()),
+        const ListTile(
+            title: Text(Strings.enableSound),
+            trailing: SoundButton()),
         ListTile(
-          title: const Text('Frequência diária'),
+          title: const Text(Strings.dailyFrequency),
           trailing: FrequencyButton(),
         )
       ]),

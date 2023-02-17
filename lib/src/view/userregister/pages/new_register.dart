@@ -330,8 +330,12 @@ class _NewRegisterState extends State<NewRegister> {
                                           }
                                         },
                                   child: (loading)
-                                      ? const CircularProgressIndicator(
-                                          strokeWidth: 1.0,
+                                      ? const SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2.0,
+                                          ),
                                         )
                                       : Text(
                                           "Cadastrar",
@@ -367,6 +371,9 @@ class _NewRegisterState extends State<NewRegister> {
       });
       navigatorKey.currentState!.pop();
     } on ExceptionUsers catch (e) {
+      setState(() {
+        loading = false;
+      });
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message)));
     }

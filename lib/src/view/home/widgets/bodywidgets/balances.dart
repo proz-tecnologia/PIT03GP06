@@ -14,12 +14,6 @@ class Balances extends StatefulWidget {
 }
 
 class _BalancesState extends State<Balances> {
-  double renda = 5000;
-
-  double saida = 0;
-
-  double get saldoDisponivel => renda - saida;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

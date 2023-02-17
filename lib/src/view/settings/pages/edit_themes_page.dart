@@ -13,7 +13,7 @@ class EditThemesPage extends StatelessWidget {
             onPressed: () =>
                 Navigator.of(context).pop(),
             icon: const Icon(Icons.arrow_back)),
-        title: const Text('Editar tema'),
+        title: const Text(Strings.editThemes),
         centerTitle: true,
       ),
       body: ListView(children: const [
@@ -26,7 +26,7 @@ class EditThemesPage extends StatelessWidget {
           trailing: ButtonBlue(),
         ),
         ListTile(
-          title: Text('Money'),
+          title: Text('Dinheiro'),
           trailing: ButtonGreen(),
         ),
         ListTile(

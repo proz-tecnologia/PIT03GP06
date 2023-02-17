@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ctrl_real/main.dart';
 import 'package:ctrl_real/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,6 +52,7 @@ class UsersService extends ChangeNotifier {
         uid: uid ?? '', name: name, email: email, renda2: renda2);
     await repository.addlvlfire(uid ?? '');
     await repository.addCategoriesPrimary(uid ?? '');
+    await userRead();
     renda = renda2;
     await _userlogin();
   }
@@ -69,9 +69,9 @@ class UsersService extends ChangeNotifier {
 
   logout() async {
     await _auth.signOut();
-    navigatorKey.currentState!
-        .pushNamedAndRemoveUntil("/", ModalRoute.withName('/home'));
-    _userlogin();
+    //navigatorKey.currentState!
+        //.pushNamedAndRemoveUntil("/", ModalRoute.withName('/home'));
+    await _userlogin();
   }
 
   Future<void> updateNameUser(String name2) async {
